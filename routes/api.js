@@ -3,7 +3,7 @@ var router = express.Router();
 
 var Goal = require('../models/goal');
 
-// test Artur
+// test Artur w nowej gałęzi
 //retrieving data
 router.get('/goals', function(req, res, next){
     Goal.find(function(err, goals){
