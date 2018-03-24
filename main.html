@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>
+                LifeProgress
+            </title>
+            <style>
+                body{
+                    background-color: #ffffcc;
+                }
+                .buttonR {
+                    background-color: red;
+                    border: none;
+                    color: white;
+                    padding: 50px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 15px;
+                    cursor: pointer;
+                }
+            .round {border-radius: 50%;}
+            buttonR.pressed {
+                background-color: green;
+            }
+            .center{
+                text-align: center;
+            }
+            tr.spaceUnder>td {
+                padding-bottom: 5em;
+            }
+            </style>
+    </head>
+    
+    <body class="container">
+        <div style="text-align: center;">
+            <table>
+                <tr>
+                    <td><button>HOME</button></td>
+                    <td><button>START TUTORIAL</button></td>
+                    <td><button>OUR TEAM</button></td>
+                    <td><button>LIFE PROGRESS</button></td>
+                    <td><button>SET LANGUAGE</button></td>
+                    <td><button>SIGN UP</button></td>
+                    <td><button>SIGN IN</button></td>
+                </tr>
+            </table>
+            <p style="font-family: verdana; font-size:14pt">
+                WELCOME TO LIFE PROGRESS APP
+            </p>
+            <br>
+            <p style="font-family: times, serif; font-size:14pt; font-style:italic">
+                This is your running plan.<br>
+                Have you done something new today?<br>
+            </p>
+        <br>
+            <table>
+                <tr class="spaceUnder">
+                    <td colspan = "5"><buttonR class="buttonR round">BIEGANIE</button></td>
+                </tr>
+                <tr class="spaceUnder">
+                    <td colspan = "3"><buttonR class="buttonR round">TRENINGI</button></td>
+                    <td><buttonR class="buttonR round">MARATON</button></td>
+                </tr>
+                <tr>
+                    <td><buttonR class="buttonR round">PRZEBIEGNIJ 1KM</button></td>
+                    <td><buttonR class="buttonR round">PRZEBIEGNIJ 500M</button></td>
+                    <td><buttonR class="buttonR round">PRZEBIEGNIJ 2KM</button></td>
+                </tr>
+            </table>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+            <script>
+                $(() => {
+                  'use strict';
+                  $('buttonR').click(function() {
+                        $(this).toggleClass('pressed');
+                        });
+                  });
+                </script>
+        </div>
+    </body>
+</html>
