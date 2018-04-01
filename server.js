@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 
 var index = require('./routes/index');
 var api = require('./routes/api');
+var userRoutes = require('./routes/user');
 
 var port = 3000;
 
@@ -38,8 +39,10 @@ app.use(express.static(path.join(__dirname, 'client')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+app.use('/user', userRoutes);
 app.use('/', index);
 app.use('/api', api);
+
 
 app.listen(port, function(){
     console.log('Server started on port ' +port);

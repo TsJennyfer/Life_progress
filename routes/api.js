@@ -45,4 +45,34 @@ router.delete('/goal/:id', function(req, res, next){
     });
 });
 
+//get goal by name
+router.get('/goal/:name', function(req, res, next){
+    Goal.findOne({name: req.params.name}, function(err, goal){
+        if (err)
+        {
+            res.json(err);
+        }
+        else
+        {
+            res.json(goal);
+        }
+    });
+});
+
+
+//get goal by name
+router.get('/goal/:name', function(req, res, next){
+    Goal.findOne({name:req.params.name}, function (err, goal) {
+        if (err)
+        {
+            res.json(err);
+        }
+        else
+        {
+            res.json(goal);
+        }
+      });
+
+});
+
 module.exports = router;
