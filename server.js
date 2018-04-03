@@ -7,7 +7,7 @@ var index = require('./routes/index');
 var api = require('./routes/api');
 var userRoutes = require('./routes/user');
 
-var port = 3000;
+var port = 5000;
 
 var app = express();
 
