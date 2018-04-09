@@ -19,19 +19,21 @@ router.get('/users', function(req, res, next){
 //add  new user, sign up
 router.post('/user', function(req, res, next){
     let newUser = new User({
-        userName:req.body.userName,
+        //userName:req.body.userName,
         userPassword:bcrypt.hashSync(req.body.userPassword,10),
+        //userPassword:req.body.userPassword,
         //name:req.body.name,
         //surname:req.body.surname,
         //sex:req.body.sex,
         email:req.body.email,
-        goals:req.body.goals
+        //goals:req.body.goals
     });
 
     newUser.save(function(err, user){
         if (err)
         {
             res.json({msg: "Failed to add user."});
+            res.json(err);
         }
         else
         {
