@@ -7,10 +7,12 @@ class Form extends React.Component {
 
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
+    this.handleGoal = this.handleGoal.bind(this);
 
     this.state = {
       email: "",
       userPassword: "",
+      goal:"",
     };
   }
 
@@ -20,7 +22,12 @@ class Form extends React.Component {
       handlePassword(event){
           this.setState({ userPassword: event.target.value });
         }
+
+      handleGoal(event){
+          this.setState({ goal: event.target.value });
+        }
         
+        //Dodanie użytkownika
         addUser = event => {
           event.preventDefault();
           this.setState({
@@ -28,7 +35,7 @@ class Form extends React.Component {
             userPassword: event.target.value,
           });
 
-          axios.post('/user/user', {
+          axios.post('/user', {
             email: this.state.email,
             userPassword: this.state.userPassword,
           })
@@ -42,6 +49,29 @@ class Form extends React.Component {
           this.setState({
             email: "",
             userPassword: "",
+          });
+        }
+
+        //Znalezienie celu
+        findGoal = event => {
+          event.preventDefault();
+          this.setState({
+            goal: event.target.value,
+          });
+
+          axios.get('/goals/'+ this.state.goal, {
+            goal: this.state.goal,
+          })
+          .then(response => {
+          
+          console.log(response, 'Goal found!');
+          })
+          .catch(err => {
+          console.log(err, 'Goal not found, try again.');
+          });
+
+          this.setState({
+            goal: "",
           });
         }
 
@@ -74,8 +104,25 @@ class Form extends React.Component {
                 Add user<i className="GuestBookButton2" aria-hidden="true" />
                 </button>
             </form>
-         
+            <form className="FindGoalForm" onSubmit={this.findGoal}>  
+              <input
+                onChange={this.handleGoal}
+                name="goal"
+                type="text"
+                className="GoalinputForm"
+                value={this.state.goal}
+                placeholder="Enter your goal"
+                />
+
+                <button
+                className="submitgoal"
+                type="submit"
+                  >
+                Find goal<i className="SubmitGoal" aria-hidden="true" />
+                </button>
+            </form>
             </div>
+            
           )
         }
   }

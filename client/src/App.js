@@ -19,7 +19,7 @@ class App extends Component {
 
   
   handleClick () {
-    axios.get('/api/goal/' + this.goals)
+    axios.get('/goal/' + this.goals)
       .then(function(response){console.log(response.data)});
   }
 

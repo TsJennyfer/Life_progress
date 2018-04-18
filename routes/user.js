@@ -8,7 +8,7 @@ var jwt = require('jsonwebtoken');
 var User = require('../models/user');
 
 //retrieving data
-router.get('/users', function(req, res, next){
+router.get('/', function(req, res, next){
     User.find(function(err, users){
         res.json(users);
     })
@@ -17,7 +17,7 @@ router.get('/users', function(req, res, next){
 
 
 //add  new user, sign up
-router.post('/user', function(req, res, next){
+router.post('/', function(req, res, next){
     let newUser = new User({
         //userName:req.body.userName,
         userPassword:bcrypt.hashSync(req.body.userPassword,10),
