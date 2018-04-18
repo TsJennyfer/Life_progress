@@ -1,8 +1,8 @@
-// To jest pojedynczy cel w liście celi
+// To jest pojedynczy cel z podcelami
 import React from 'react';
 import axios from 'axios';
 
-class Cel extends React.Component {
+class CelSzczegoly extends React.Component {
     constructor(props) {
         super(props);
 
@@ -67,4 +67,4 @@ class Cel extends React.Component {
         )
     }
 }
-export default Cel;
+export default CelSzczegoly;
