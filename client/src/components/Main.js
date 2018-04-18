@@ -9,6 +9,7 @@ class Main extends React.Component {
             <div>
                 Main
                 <Rejestracja />
+                <Cel />
 
             </div>
         )
