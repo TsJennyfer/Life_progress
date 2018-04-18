@@ -1,15 +1,15 @@
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
-var index = require('./routes/index');
-var api = require('./routes/api');
-var userRoutes = require('./routes/user');
+const index = require('./routes/index');
+const goalsRoutes = require('./routes/goals');
+const userRoutes = require('./routes/user');
 
-var port = 5000;
+const port = 5000;
 
-var app = express();
+const app = express();
 
 //Connect to mongodb
 mongoose.connect('mongodb://admin:admin@ds115579.mlab.com:15579/life_progress');
@@ -23,9 +23,10 @@ mongoose.connection.on('Connected',()=>{
 mongoose.connection.on('error',(err)=>{
     if(err)
     {
-        console.log('Error in database connoction '+err);
+        console.log('Error in database connection '+ err);
     }
 });
+mongoose.Promise = global.Promise;
 
 //View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -39,9 +40,26 @@ app.use(express.static(path.join(__dirname, 'client')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+//Routes
 app.use('/user', userRoutes);
 app.use('/', index);
-app.use('/api', api);
+app.use('/goals', goalsRoutes);
+
+
+app.use((req, res, next) => {
+    const error = new Error("Not found");
+    error.status = 404;
+    next(error);
+  });
+  
+  app.use((error, req, res, next) => {
+    res.status(error.status || 500);
+    res.json({
+      error: {
+        message: error.message
+      }
+    });
+  });
 
 
 app.listen(port, function(){
