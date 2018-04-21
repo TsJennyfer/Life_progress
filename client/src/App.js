@@ -4,12 +4,13 @@ import logo from './logo.svg';
 import axios from 'axios';
 // import formularza
 import Form from './components/Form';
+import MainPage from './components/MainPage';
 
 class App extends Component {
   constructor () {
     super()
     this.state = {
-      goal: ''
+      goal: {}
     }
 
     this.handleClick = this.handleClick.bind(this)
@@ -26,10 +27,9 @@ class App extends Component {
   render () {
     return (
       <div className='button__container'>
-        <button  className='button' onClick={this.handleClick}>Click Me</button>
-        <p>{this.state.goal}</p>
-        {/* tutaj jest wstawiony formularz, który jest w components/Form.js*/} 
-        <Form />
+        {/* <button  className='button' onClick={this.handleClick}>Click Me</button>
+        <p>{this.state.goal}</p> */}
+        <MainPage />
       </div>
     )
   }
