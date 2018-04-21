@@ -12,7 +12,7 @@ const Goal = require('../models/goal');
 
 router.get("/", (req, res, next) => {
     Goal.find()
-      .select("name priority parents _id")
+      .select("name priority parent _id")
       .exec()
       .then(docs => {
         const response = {
@@ -21,7 +21,7 @@ router.get("/", (req, res, next) => {
             return {
               name: doc.name,
               priority: doc.priority,
-              parents: doc.parents,
+              parent: doc.parent,
               _id:doc._id,
               request: {
                 type: "GET",
@@ -51,7 +51,7 @@ router.post('/', function(req, res, next){
     let newGoal = new Goal({
         name:req.body.name,
         priority:req.body.priority,
-        parents:req.body.parents
+        parent:req.body.parent
     });
 
     newGoal.save(function(err, goal){
@@ -81,8 +81,8 @@ router.delete('/:id', function(req, res, next){
 });
 
 //get goal by name
-router.get('/:name', function(req, res, next){
-    Goal.findOne({name: req.params.name}, function(err, goal){
+router.get('/:mainGoal', function(req, res, next){
+    Goal.find({mainGoal: req.params.mainGoal}, function(err, goal){
         if (err)
         {
             res.json(err);
