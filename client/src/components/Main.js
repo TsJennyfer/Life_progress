@@ -2,6 +2,7 @@
 import React from 'react';
 import Cel from './Cel';
 import Rejestracja from './Rejestracja';
+import Cele from './Cele';
 
 class Main extends React.Component {
     render() {
@@ -10,6 +11,7 @@ class Main extends React.Component {
                 Main
                 <Rejestracja />
                 <Cel />
+                <Cele />
 
             </div>
         )
