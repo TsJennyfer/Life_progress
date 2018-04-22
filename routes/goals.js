@@ -51,7 +51,8 @@ router.post('/', function(req, res, next){
     let newGoal = new Goal({
         name:req.body.name,
         priority:req.body.priority,
-        parent:req.body.parent
+        parent:req.body.parent,
+        mainGoal:req.body.mainGoal
     });
 
     newGoal.save(function(err, goal){
@@ -65,6 +66,7 @@ router.post('/', function(req, res, next){
         }
     });
 });
+
 
 //delete goal
 router.delete('/:id', function(req, res, next){
