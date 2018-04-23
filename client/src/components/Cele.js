@@ -1,6 +1,7 @@
 // To jest strona wyświetlacjąca cele główne
 import React from 'react';
 import axios from 'axios';
+//import '../css/style-example.css';
 
 class Cele extends React.Component {
     constructor(props) {

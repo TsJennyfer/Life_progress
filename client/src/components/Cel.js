@@ -1,4 +1,4 @@
-// To jest pojedynczy cel w liście celi
+// To jest pojedynczy cel ze szczegółami
 import React from 'react';
 import axios from 'axios';
 

@@ -12,89 +12,110 @@ const Goal = require('../models/goal');
 
 router.get("/", (req, res, next) => {
     Goal.find()
-      .select("name priority parent _id")
-      .exec()
-      .then(docs => {
-        const response = {
-          //count: docs.length,
-          products: docs.map(doc => {
-            return {
-              name: doc.name,
-              priority: doc.priority,
-              parent: doc.parent,
-              _id:doc._id,
-              request: {
-                type: "GET",
-                url: "http://localhost:5000/goals/"
-              }
+        .select("name priority parent _id")
+        .exec()
+        .then(docs => {
+            const response = {
+                //count: docs.length,
+                products: docs.map(doc => {
+                    return {
+                        name: doc.name,
+                        priority: doc.priority,
+                        parent: doc.parent,
+                        _id: doc._id,
+                        request: {
+                            type: "GET",
+                            url: "http://localhost:5000/goals/"
+                        }
+                    };
+                })
             };
-          })
-        };
-        //   if (docs.length >= 0) {
-        res.status(200).json(response);
-        //   } else {
-        //       res.status(404).json({
-        //           message: 'No entries found'
-        //       });
-        //   }
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json({
-          error: err
+            res.status(200).json(response);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
         });
-      });
-  });
+});
+
+// get main goals
+router.get("/mainGoals/", (req, res, next) => {
+    Goal.find({ parent: "null" })
+        .select("name priority parent _id")
+        .exec()
+        .then(docs => {
+            const response = {
+                products: docs.map(doc => {
+                    return {
+                        name: doc.name,
+                        priority: doc.priority,
+                        parent: doc.parent,
+                        _id: doc._id,
+                        request: {
+                            type: "GET",
+                            url: "http://localhost:5000/goals/"
+                        }
+                    };
+                })
+            };
+            res.status(200).json(response);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+});
 
 //add goal
-router.post('/', function(req, res, next){
+router.post('/', function (req, res, next) {
     let newGoal = new Goal({
-        name:req.body.name,
-        priority:req.body.priority,
-        parent:req.body.parent,
-        mainGoal:req.body.mainGoal
+        name: req.body.name,
+        priority: req.body.priority,
+        parent: req.body.parent,
+        mainGoal: req.body.mainGoal
     });
 
-    newGoal.save(function(err, goal){
-        if (err)
-        {
-            res.json({msg: "Failed to add goal."});
+    newGoal.save(function (err, goal) {
+        if (err) {
+            res.json({ msg: "Failed to add goal." });
         }
-        else
-        {
-            res.json({msg: "Goal added succesfully."});
+        else {
+            res.json({ msg: "Goal added succesfully." });
         }
     });
 });
 
 
 //delete goal
-router.delete('/:id', function(req, res, next){
-    Goal.remove({_id: req.params.id}, function(err, result){
-        if (err)
-        {
+router.delete('/:id', function (req, res, next) {
+    Goal.remove({ _id: req.params.id }, function (err, result) {
+        if (err) {
             res.json(err);
         }
-        else
-        {
+        else {
             res.json(result);
         }
     });
 });
 
 //get goal by name
-router.get('/:mainGoal', function(req, res, next){
-    Goal.find({mainGoal: req.params.mainGoal}, function(err, goal){
-        if (err)
-        {
+router.get('/:mainGoal', function (req, res, next) {
+    Goal.find({ mainGoal: req.params.mainGoal }, function (err, goal) {
+        if (err) {
             res.json(err);
         }
-        else
-        {
+        else {
             res.json(goal);
         }
     });
 });
+
+
+
 
 
 module.exports = router;
