@@ -12,7 +12,6 @@
   width: 200px;
 }
 
-
 .button:hover {
   background-color: orange;
   border: none;
@@ -21,3 +20,111 @@
   height: 40px;
   width: 200px;
 }
+
+body{
+  background-color: #ffffcc;
+    background: -webkit-linear-gradient( #ffffcc, #c7d319);
+    background:    -moz-linear-gradient( #ffffcc, #c7d319);
+    background:         linear-gradient( #ffffcc, #c7d319);
+  
+}
+
+.buttonR {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+}
+.round {border-radius: 50%;}
+buttonR.pressed {
+background-color: green;
+}
+.center{
+text-align: center;
+}
+tr.spaceUnder>td {
+padding-bottom: 5em;
+}
+
+.button__container {
+    margin-top: 200px;
+    text-align: center;
+  }
+  
+  .button {
+    background-color:green;
+    border: none;
+    color: white;
+    font-size: 16px;
+    height: 40px;
+    width: 200px;
+  }
+  
+  .top__container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  .main__container{
+    background-color: #ffffcc;
+    height: 100%;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 36px;
+    letter-spacing: 0.2px;
+    word-spacing: 4.2px;
+    color: #000000;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+  }
+  
+  .button_top {
+    background-color:#ffff66;
+    border: none;
+    color: black;
+    font-size: 13px;
+    height: 40px;
+    width: 150px;
+    margin: 10px;
+  }
+  
+  .button_top span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .button_top span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .button_top:hover span {
+    padding-right: 25px;
+  }
+  
+  .button_top:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+  
+  .button_down {
+    background-color:#ffffcc;
+    border: none;
+    color: black;
+    font-size: 16px;
+    height: 40px;
+    width: 150px;
+    margin: 10px;
+  }

@@ -13,12 +13,11 @@ class App extends Component {
       goal: {}
     }
 
-    this.handleClick = this.handleClick.bind(this)
+  this.handleClick = this.handleClick.bind(this)
     //example variable declaration
     this.goals = 'Maraton'
   }
 
-  
   handleClick () {
     axios.get('/goal/' + this.goals)
       .then(function(response){console.log(response.data)});
@@ -26,10 +25,12 @@ class App extends Component {
 
   render () {
     return (
-      <div className='button__container'>
-        {/* <button  className='button' onClick={this.handleClick}>Click Me</button>
-        <p>{this.state.goal}</p> */}
-        <MainPage />
+      <div>
+        <div className='button__container'>
+          {/* <button  className='button' onClick={this.handleClick}>Click Me</button>
+          <p>{this.state.goal}</p> */}
+          <MainPage />
+        </div>
       </div>
     )
   }
