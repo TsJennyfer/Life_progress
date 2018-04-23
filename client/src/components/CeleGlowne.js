@@ -10,6 +10,7 @@ class CeleGlowne extends React.Component {
 
         this.findGoals = this.findGoals.bind(this);
         this.drawGoals = this.drawGoals.bind(this);
+        this.chooseGoal = this.chooseGoal.bind(this);
 
         this.state = {
             goals: {}
@@ -40,8 +41,14 @@ class CeleGlowne extends React.Component {
         return (
             Object
                 .keys(this.state.goals)
-                .map(key => <CelSzczegoly key={key} details={this.state.goals[key]} />)
+                .map(key => <CelSzczegoly key={key} 
+                    details={this.state.goals[key]} chooseGoal={this.chooseGoal}/>)
         )
+    }
+
+    // przejdź do konketnego celu
+    chooseGoal(key) {
+        console.log(key);
     }
 
 

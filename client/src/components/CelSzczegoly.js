@@ -10,7 +10,10 @@ class CelSzczegoly extends React.Component {
 
         return (
             <div>
+                <button class="buttonR round" onClick={() => this.props.chooseGoal(this.props.details.name)}>
                 {this.props.details.name}
+                </button>
+                
                 
             </div>
         )
