@@ -1,11 +1,10 @@
-var express = require('express');
-var router = express.Router();
-//hashing password
-var bcrypt = require('bcryptjs');
-//json web token
-var jwt = require('jsonwebtoken');
-//user structure in database
-var User = require('../models/user');
+const express = require("express");
+const router = express.Router();
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+const User = require("../models/user");
 
 //retrieving data
 router.get('/', function(req, res, next){
@@ -17,56 +16,90 @@ router.get('/', function(req, res, next){
 
 
 //add  new user, sign up
-router.post('/', function(req, res, next){
-    let newUser = new User({
-        //userName:req.body.userName,
-        userPassword:bcrypt.hashSync(req.body.userPassword,10),
-        //userPassword:req.body.userPassword,
-        //name:req.body.name,
-        //surname:req.body.surname,
-        //sex:req.body.sex,
-        email:req.body.email,
-        //goals:req.body.goals
-    });
-
-    newUser.save(function(err, user){
-        if (err)
-        {
-            res.json({msg: "Failed to add user."});
-            res.json(err);
+router.post('/signup', (req, res, next)=>{
+    User.find({ email: req.body.email})
+    .exec()
+    .then(user => {
+        if (user.length >=1) {
+            return res.status(409).json({
+                message: "Mail exist"
+            });
         }
-        else
-        {
-            res.json({msg: "User added succesfully."});
+        else {
+            bcrypt.hash(req.body.userPassword, 10, (err, hash)=>{
+                if (err) {
+                    return res.status(500).json({
+                        error: err
+                    });
+                }
+                else {
+                    const user = new User({
+                        email:req.body.email,
+                        userPassword:hash
+                    });
+                    user.save()
+                    .then(result => {
+                        console.log(result);
+                        res.status(201).json({
+                            message: "User created"
+                        });
+                    })
+                    .catch(err =>{
+                        console.log(err);
+                        res.status(500).json({
+                            error: err
+                        });
+                    });
+                }
+            });
         }
     });
 });
 
-//sign in with token
-router.post('/signin', function(req, res, next){
-    User.findOne({email:req.params.email}, function (err, user) {
-        if (err)
-        {
-            res.json({msg:"An error occurred."});
-            res.json(err);
+//signin
+router.post("/signin", (req, res, next) => {
+    User.find({ email: req.body.email })
+      .exec()
+      .then(user => {
+        if (user.length < 1) {
+          return res.status(401).json({
+            message: "Auth failed"
+          });
         }
-        if (!user)
-        {
-            res.json({msg:"Invalid login credentials."});
-            res.json(err);
-        }
-        if (!bcrypt.compareSync(req.body.userPassword, user.userPassword))
-        {
-            res.json({msg:"Invalid login credentials."});
-            res.json(err);
-        }
-        var token = jwt.sign({user: user},'key', {expiresIn: 7200});
-        res.status(200).json({
-            msg: 'Successfully logged in.',token: token, userId: user._id
+        bcrypt.compare(req.body.userPassword, user[0].userPassword, (err, result) => {
+          if (err) {
+            return res.status(401).json({
+              message: "Auth failed"
+            });
+          }
+          if (result) {
+            const token = jwt.sign(
+              {
+                email: user[0].email,
+                userId: user[0]._id
+              },
+              'secret',
+              {
+                  expiresIn: "1h"
+              }
+            );
+            return res.status(200).json({
+              message: "Auth successful",
+              token: token
+            });
+          }
+          res.status(401).json({
+            message: "Auth failed"
+          });
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
         });
       });
-
-});
+  });
 
 
 module.exports = router;
