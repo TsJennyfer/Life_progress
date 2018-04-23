@@ -1,7 +1,6 @@
 // To jest strona wyświetlacjąca cele główne
 import React from 'react';
 import axios from 'axios';
-//import '../css/style-example.css';
 
 class Cele extends React.Component {
     constructor(props) {
@@ -38,10 +37,10 @@ class Cele extends React.Component {
     render() {
 
         return (
-            <div>Cele
+            <div>Cele główne
                 
             </div>
         )
     }
 }
-export default Cele;
+export default CeleGlowne;

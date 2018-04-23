@@ -1,3 +1,8 @@
+/* Odpalanie projektu:
+server: nodemon
+client: npm run start */
+
+
 import React, { Component } from 'react';
 import './App.css';
 import logo from './logo.svg';
