@@ -1,12 +1,15 @@
 // To jest strona wyświetlacjąca cele główne
 import React from 'react';
 import axios from 'axios';
+import CelSzczegoly from './CelSzczegoly';
 
-class Cele extends React.Component {
+
+class CeleGlowne extends React.Component {
     constructor(props) {
         super(props);
 
-        this.findGoal = this.findGoal.bind(this);
+        this.findGoals = this.findGoals.bind(this);
+        this.drawGoals = this.drawGoals.bind(this);
 
         this.state = {
             goals: {}
@@ -14,23 +17,31 @@ class Cele extends React.Component {
     }
 
     componentDidMount() {
-        this.findGoal();
+        this.findGoals();
     }
 
-    //Znalezienie celu
-    findGoal() {
-        axios.get('/goals/')
+    // Znalezienie celu
+    findGoals() {
+        axios.get('/goals/mainGoals/')
             .then(response => {
 
                 this.setState({
-                    goals: response.data
+                    goals: response.data.products
                 });
                 console.log(response, 'Znaleziono wszystkie cele');
             })
             .catch(err => {
                 console.log(err, 'Goals not found, try again.');
             });
+    }
 
+    // Rysowanie głównych celów
+    drawGoals() {
+        return (
+            Object
+                .keys(this.state.goals)
+                .map(key => <CelSzczegoly key={key} details={this.state.goals[key]} />)
+        )
     }
 
 
@@ -38,7 +49,7 @@ class Cele extends React.Component {
 
         return (
             <div>Cele główne
-                
+                {this.drawGoals()}
             </div>
         )
     }
