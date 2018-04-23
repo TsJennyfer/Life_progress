@@ -13,7 +13,8 @@ class CeleGlowne extends React.Component {
         this.chooseGoal = this.chooseGoal.bind(this);
 
         this.state = {
-            goals: {}
+            goals: {},
+            choosenGoal: ""
         };
     }
 
@@ -48,8 +49,11 @@ class CeleGlowne extends React.Component {
 
     // przejdź do konketnego celu
     chooseGoal(key) {
+        
+        {this.props.renderGoal(key)}
         console.log(key);
-    }
+
+    }  
 
 
     render() {
