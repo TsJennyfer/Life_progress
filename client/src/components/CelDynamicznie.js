@@ -7,11 +7,11 @@ import axios from 'axios';
 
 const Main_goal = () => {
     return (
-      <div>
-        Eloszki
+        <div>
+            Eloszki
       </div>
     );
-  }
+}
 
 
 
@@ -26,7 +26,8 @@ class CelDynamicznie extends React.Component {
         this.state = {
             goals: {},
             goalId: this.props.goalId,
-            goal: {}
+            goal: {},    // cel główny
+            tempGoal: {}    // 
         };
     }
 
@@ -43,11 +44,27 @@ class CelDynamicznie extends React.Component {
             .then(response => {
 
                 this.setState({
-                    goal: response.data
+                    goal: response.data,
+                    tempGoal: response.data
                 },
-                this.findAllGoals);     // findAllGoals wywołuję tutaj, a nie w componentDidMount, aby miec pewność, że setState zostało wykonane
-                console.log(response.data.mainGoal, 'goal 2!');
-                console.log(this.state.goal, 'response 2!');
+                    this.findAllGoals);     // findAllGoals wywołuję tutaj, a nie w componentDidMount, aby miec pewność, że setState zostało wykonane
+                // console.log(response.data.mainGoal, 'goal 2!');
+                // console.log(this.state.goal, 'response 2!');
+            })
+            .catch(err => {
+                console.log(err, 'Goal not found, try again.');
+            });
+    }
+
+    // Znalezienie wsystkich celi należących do celu głównego
+    findAllGoals() {
+        axios.get('/goals/nazwa/' + this.state.goal.mainGoal)
+            .then(response => {
+
+                this.setState({
+                    goals: response.data
+                });
+                //console.log(response, 'Wszystkie podcele znalezione');
             })
             .catch(err => {
                 console.log(err, 'Goal not found, try again.');
@@ -55,32 +72,19 @@ class CelDynamicznie extends React.Component {
 
     }
 
-        // Znalezienie wsystkich celi należących do celu głównego
-        findAllGoals() {
-            axios.get('/goals/nazwa/' + this.state.goal.mainGoal)
-                .then(response => {
-    
-                    this.setState({
-                        goals: response.data
-                    });
-                    console.log(response, 'Wszystkie podcele znalezione');
-                })
-                .catch(err => {
-                    console.log(err, 'Goal not found, try again.');
-                });
-    
-        }
-    
-        // Rysowanie głównych celów
+    // Rysowanie głównych celów
     drawGoalsTree() {
+        console.log(this.state.tempGoal);
         return (
-           
+
             Object
                 .keys(this.state.goals)
-                .map(key => <button>
+                .map(key => 
+                <button>
                     {this.state.goals[key].name}
-                    </button>)
-        )
+                </button>)
+        );
+
     }
 
     changeColor() {
@@ -93,11 +97,8 @@ class CelDynamicznie extends React.Component {
         return (
             <div>
                 CelDynamicznie
-                {console.log(this.state.goals)}
+
                     {this.drawGoalsTree()}
-                    <button>
-                    {this.props.goalId}
-                </button>
             </div>
         )
     }
