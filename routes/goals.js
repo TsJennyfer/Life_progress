@@ -70,6 +70,36 @@ router.get("/mainGoals/", (req, res, next) => {
         });
 });
 
+// get parent
+router.get("/:parent/", (req, res, next) => {
+    Goal.find({ _id: req.params.parent })
+        .select("name priority parent _id")
+        .exec()
+        .then(docs => {
+            const response = {
+                products: docs.map(doc => {
+                    return {
+                        name: doc.name,
+                        priority: doc.priority,
+                        parent: doc.parent,
+                        _id: doc._id,
+                        request: {
+                            type: "GET",
+                            url: "http://localhost:5000/goals/"
+                        }
+                    };
+                })
+            };
+            res.status(200).json(response);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+});
+
 //add goal
 router.post('/', function (req, res, next) {
     let newGoal = new Goal({
