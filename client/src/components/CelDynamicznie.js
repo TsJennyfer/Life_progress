@@ -10,37 +10,34 @@ class CelDynamicznie extends React.Component {
     constructor(props) {
         super(props);
 
-        this.handleGoal = this.handleGoal.bind(this);
-        this.findGoal = this.findGoal.bind(this);
+        this.findGoalById = this.findGoalById.bind(this);
+        this.findAllGoals = this.findAllGoals.bind(this);
 
         this.state = {
             goals: {},
-            inputGoal: ""
+            goalId: this.props.goalId,
+            goal: {}
         };
     }
 
-    changeColor() {
-        this.setState({ color_black: !this.state.color_black })
+    componentDidMount() {
+        this.findGoalById();
+        // ten stan niżej jest pusty, ponieważ findGoalById wykonuje się asynchornicznie (a przynajmniej tak zaobserwowałem)
+        console.log(this.state.goal, 'response 3');
+        //this.findAllGoals();
     }
 
-    handleGoal(event) {
-        this.setState({ inputGoal: event.target.value });
-    }
-
-    //Znalezienie celu
-    findGoal(event) {
-        event.preventDefault();
-
-
-        axios.get('/goals/' + this.state.inputGoal, {
-            goal: this.state.inputGoal
-        })
+    // Znalezienie celu głównego
+    findGoalById(event) {
+        axios.get('/goals/oneGoalById/' + this.props.goalId)
             .then(response => {
 
                 this.setState({
-                    goals: response.data
-                });
-                console.log(response, 'Goal found!');
+                    goal: response.data
+                },
+                this.findAllGoals);     // findAllGoals wywołuję tutaj, a nie w componentDidMount, aby miec pewność, że setState zostało wykonane
+                console.log(response.data.mainGoal, 'goal 2!');
+                console.log(this.state.goal, 'response 2!');
             })
             .catch(err => {
                 console.log(err, 'Goal not found, try again.');
@@ -48,18 +45,36 @@ class CelDynamicznie extends React.Component {
 
     }
 
-    /*<button class="buttonR round" style={{backgroundColor: bgColor}} onClick={this.changeColor.bind(this)}>Button</button>
-    */
+        // Znalezienie wsystkich celi należących do celu głównego
+        findAllGoals() {
+            axios.get('/goals/nazwa/' + this.state.goal.mainGoal)
+                .then(response => {
+    
+                    this.setState({
+                        goals: response.data
+                    });
+                    console.log(response, 'Wszystkie podcele znalezione');
+                })
+                .catch(err => {
+                    console.log(err, 'Goal not found, try again.');
+                });
+    
+        }
+    
+
+    changeColor() {
+        this.setState({ color_black: !this.state.color_black })
+    }
+
+
     render() {
         let bgColor = this.state.color_black ? "red" : "green"
         return (
-            <div>CelDynamicznie
-
-
+            <div>
+                CelDynamicznie
                     <button>
-                        {this.props.goalId}
+                    {this.props.goalId}
                 </button>
-
             </div>
         )
     }
