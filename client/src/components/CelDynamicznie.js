@@ -5,6 +5,15 @@ import axios from 'axios';
 
 
 
+const Main_goal = () => {
+    return (
+      <div>
+        Eloszki
+      </div>
+    );
+  }
+
+
 
 class CelDynamicznie extends React.Component {
     constructor(props) {
@@ -12,6 +21,7 @@ class CelDynamicznie extends React.Component {
 
         this.findGoalById = this.findGoalById.bind(this);
         this.findAllGoals = this.findAllGoals.bind(this);
+        this.drawGoalsTree = this.drawGoalsTree.bind(this);
 
         this.state = {
             goals: {},
@@ -61,6 +71,17 @@ class CelDynamicznie extends React.Component {
     
         }
     
+        // Rysowanie głównych celów
+    drawGoalsTree() {
+        return (
+           
+            Object
+                .keys(this.state.goals)
+                .map(key => <button>
+                    {this.state.goals[key].name}
+                    </button>)
+        )
+    }
 
     changeColor() {
         this.setState({ color_black: !this.state.color_black })
@@ -72,6 +93,8 @@ class CelDynamicznie extends React.Component {
         return (
             <div>
                 CelDynamicznie
+                {console.log(this.state.goals)}
+                    {this.drawGoalsTree()}
                     <button>
                     {this.props.goalId}
                 </button>
