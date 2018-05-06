@@ -2,7 +2,7 @@
 // W nim będą renderowane: header, main, stopka
 // Tutaj również są trzymane dane = stany
 import React from 'react';
-import Header from './Heared';
+import Header from './Header';
 import Main from './Main';
 import Footer from './Footer'
 
@@ -17,7 +17,6 @@ class MainPage extends React.Component {
         render() {
             return (
                 <div>
-                    MainPage
                     <Header />
                     <Main />
                     <Footer />

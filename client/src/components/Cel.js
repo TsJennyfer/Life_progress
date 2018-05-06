@@ -84,7 +84,8 @@ class Cel extends React.Component {
     render() {
         let bgColor = this.state.color_black ? "red" : "green"
         return (
-            <div>Cel
+            <div>
+                Cel
                 <form className="FindGoalForm" onSubmit={this.findGoal}>
                     <input
                         onChange={this.handleGoal}
