@@ -138,3 +138,26 @@ padding-bottom: 5em;
     width: 150px;
     margin: 10px;
   }
+
+  .button-sub-goal {
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    -webkit-box-shadow: 2px 2px 8px #4f224f;
+    -moz-box-shadow: 2px 2px 8px #4f224f;
+    box-shadow: 2px 2px 8px #4f224f;
+    font-family: Courier New;
+    color: #c9eeff;
+    font-size: 19px;
+    background: #9e9e9e;
+    padding: 10px 20px 10px 20px;
+    border: solid #211621 3px;
+    text-decoration: none;
+  }
+  
+  .button-sub-goal:hover {
+    background: #3cb0fd;
+    text-decoration: none;
+  }
+
+  

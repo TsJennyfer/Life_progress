@@ -79,10 +79,12 @@ class CelDynamicznie extends React.Component {
 
             Object
                 .keys(this.state.goals)
-                .map(key => 
-                <button>
-                    {this.state.goals[key].name}
-                </button>)
+                .map(key => {
+                    if (this.state.goals[key].name !== this.state.goal.name)
+                        return <button class="button-sub-goal">
+                            {this.state.goals[key].name}
+                        </button>
+                })
         );
 
     }
@@ -96,9 +98,10 @@ class CelDynamicznie extends React.Component {
         let bgColor = this.state.color_black ? "red" : "green"
         return (
             <div>
-                CelDynamicznie
-
-                    {this.drawGoalsTree()}
+                <button class="button-sub-goal">
+                    {this.state.goal.name}
+                </button> <br />
+                {this.drawGoalsTree()}
             </div>
         )
     }

@@ -1,6 +1,6 @@
 // To jest header strony
 import React from 'react';
-import Img from 'react-image'
+//import Img from 'react-image'
 import logo from '../resourses/logo.png';
 import header from '../resourses/head6.png';
 
