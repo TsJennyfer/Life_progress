@@ -31,11 +31,9 @@ class App extends Component {
   render () {
     return (
       <div>
-        <div className='button__container'>
-          {/* <button  className='button' onClick={this.handleClick}>Click Me</button>
-          <p>{this.state.goal}</p> */}
-          <MainPage />
-        </div>
+        <center>
+        <MainPage />
+        </center>
       </div>
     )
   }

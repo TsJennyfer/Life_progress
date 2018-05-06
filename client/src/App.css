@@ -1,9 +1,4 @@
-.button__container {
-  margin-top: 200px;
-  text-align: center;
-}
-
-.button {
+/*.button {
   background-color:green;
   border: none;
   color: white;
@@ -19,14 +14,14 @@
   font-size: 16px;
   height: 40px;
   width: 200px;
-}
+}*/
 
 body{
-  background-color: #ffffcc;
+/* background-color: #ffffcc;
     background: -webkit-linear-gradient( #ffffcc, #c7d319);
     background:    -moz-linear-gradient( #ffffcc, #c7d319);
     background:         linear-gradient( #ffffcc, #c7d319);
-  
+  */
 }
 
 .buttonR {
@@ -51,11 +46,10 @@ tr.spaceUnder>td {
 padding-bottom: 5em;
 }
 
-.button__container {
-    margin-top: 200px;
+.down__container {
     text-align: center;
   }
-  
+
   .button {
     background-color:green;
     border: none;
@@ -69,6 +63,7 @@ padding-bottom: 5em;
     margin-top: 20px;
     text-align: center;
   }
+
   .main__container{
     background-color: #ffffcc;
     height: 100%;
@@ -83,17 +78,32 @@ padding-bottom: 5em;
     font-variant: normal;
     text-transform: none;
   }
+
+  .button_logo {
+    background-color:black;
+    border: none;
+    color: white;
+    font-size: 13px;
+    height: 150px;
+    width: 150px;
+    margin: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+  }
   
   .button_top {
-    background-color:#ffff66;
+    background-color:black;
     border: none;
-    color: black;
+    color: white;
     font-size: 13px;
     height: 40px;
     width: 150px;
     margin: 10px;
+    border-radius: 12px;
   }
-  
+
   .button_top span {
     cursor: pointer;
     display: inline-block;
@@ -120,7 +130,7 @@ padding-bottom: 5em;
   }
   
   .button_down {
-    background-color:#ffffcc;
+    background-color:white;
     border: none;
     color: black;
     font-size: 16px;
