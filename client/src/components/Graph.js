@@ -13,7 +13,8 @@ const myTreeData = [
       {
         name: 'Przebiegnij 2km',
         attributes: {
-          keyA: 'Muszę to zrobić'
+          keyA: 'Muszę to zrobić',
+          mora: "Olo"
         },
       },
       {

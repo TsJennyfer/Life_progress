@@ -5,7 +5,7 @@ import Rejestracja from './Rejestracja';
 import Cele from './Cele';
 import CeleGlowne from './CeleGlowne';
 import CelDynamicznie from './CelDynamicznie';
-import Graph from './Graph';
+// import Graph from './Graph';
 
 class Main extends React.Component {
 
@@ -37,7 +37,7 @@ class Main extends React.Component {
                     {/* <Rejestracja />
                     <Cel />
                     <Cele /> */}
-                    <Graph />
+                    {/* <Graph /> */}
                     <CeleGlowne renderGoal={this.renderGoal} />
 
 

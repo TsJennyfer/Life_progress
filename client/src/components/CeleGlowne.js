@@ -4,6 +4,7 @@ import axios from 'axios';
 import CelSzczegoly from './CelSzczegoly';
 
 
+
 class CeleGlowne extends React.Component {
     constructor(props) {
         super(props);
@@ -30,10 +31,10 @@ class CeleGlowne extends React.Component {
                 this.setState({
                     goals: response.data.products
                 });
-                console.log(response, 'Znaleziono cel');
+                console.log(response, 'Znaleziono wszystkie cele');
             })
             .catch(err => {
-                console.log(err, 'Nie znaleziono celu');
+                console.log(err, 'Goals not found, try again.');
             });
     }
 
