@@ -144,6 +144,44 @@ router.get('/:mainGoal', function (req, res, next) {
     });
 });
 
+// Pobierz listę celi po id celu głównego
+router.get('/id/:mainGoal', function (req, res, next) {
+    Goal.find({ mainGoal: req.params.mainGoal }, function (err, goal) {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(goal);
+        }
+    });
+});
+
+// Pobierz listę celi po nazwie celu głównego
+// - tymczasowo, potem trzeba zmienić w mainGoal z nazw rodzica, na id rodzica
+// później usunąć tą ścieżkę
+router.get('/nazwa/:mainGoal', function (req, res, next) {
+    Goal.find({ mainGoal: req.params.mainGoal }, function (err, goal) {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(goal);
+        }
+    });
+});
+
+// Znajdź jeden cel po id
+router.get('/oneGoalById/:id', function (req, res, next) {
+    Goal.findOne({ _id: req.params.id }, function (err, goal) {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(goal);
+        }
+    });
+});
+
 
 
 

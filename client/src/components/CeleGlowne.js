@@ -30,10 +30,10 @@ class CeleGlowne extends React.Component {
                 this.setState({
                     goals: response.data.products
                 });
-                console.log(response, 'Znaleziono wszystkie cele');
+                console.log(response, 'Znaleziono cel');
             })
             .catch(err => {
-                console.log(err, 'Goals not found, try again.');
+                console.log(err, 'Nie znaleziono celu');
             });
     }
 

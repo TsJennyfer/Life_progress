@@ -4,6 +4,8 @@ import Cel from './Cel';
 import Rejestracja from './Rejestracja';
 import Cele from './Cele';
 import CeleGlowne from './CeleGlowne';
+import CelDynamicznie from './CelDynamicznie';
+import Graph from './Graph';
 
 class Main extends React.Component {
 
@@ -35,14 +37,16 @@ class Main extends React.Component {
                     {/* <Rejestracja />
                     <Cel />
                     <Cele /> */}
+                    <Graph />
                     <CeleGlowne renderGoal={this.renderGoal} />
+
 
                 </div> 
             )
         } else {
             return (
                 <div>
-                    <Cel />
+                    <CelDynamicznie goalId={this.state.celSzczegoly} />
                 </div>
             )
         }
