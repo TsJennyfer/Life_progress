@@ -40,7 +40,7 @@ class CelDynamicznie extends React.Component {
 
     // Znalezienie celu głównego
     findGoalById(event) {
-        axios.get('/goals/oneGoalById/' + this.props.goalId)
+        axios.get('/goals/main/' + this.props.goalId)
             .then(response => {
 
                 this.setState({
@@ -58,7 +58,7 @@ class CelDynamicznie extends React.Component {
 
     // Znalezienie wsystkich celi należących do celu głównego
     findAllGoals() {
-        axios.get('/goals/nazwa/' + this.state.goal.mainGoal)
+        axios.get('/goals/main/childrenId/' + this.state.goal._id)
             .then(response => {
 
                 this.setState({
@@ -74,17 +74,16 @@ class CelDynamicznie extends React.Component {
 
     // Rysowanie głównych celów
     drawGoalsTree() {
-        console.log(this.state.tempGoal);
+        console.log(this.state.goals);
         return (
 
             Object
                 .keys(this.state.goals)
-                .map(key => {
-                    if (this.state.goals[key].name !== this.state.goal.name)
-                        return <button class="button-sub-goal">
+                .map(key => 
+                        <button class="button-sub-goal">
                             {this.state.goals[key].name}
                         </button>
-                })
+                )
         );
 
     }
