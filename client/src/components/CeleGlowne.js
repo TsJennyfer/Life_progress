@@ -25,7 +25,7 @@ class CeleGlowne extends React.Component {
 
     // Znalezienie celu
     findGoals() {
-        axios.get('/goals/mainGoals/')
+        axios.get('/goals/main/')
             .then(response => {
 
                 this.setState({
