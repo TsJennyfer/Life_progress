@@ -67,7 +67,37 @@ router.get("/main/", (req, res, next) => {
 
 // Pobieranie głównego celu po id
 router.get("/main/:_id", (req, res, next) => {
-    Goal.find({_id: req.params._id})
+    Goal.findOne({ _id: req.params._id })
+        .select("name priority parent _id")
+        .exec()
+        .then(goal => {
+            const response = {
+                name: goal.name,
+                priority: goal.priority,
+                status: goal.status,
+                parent: goal.parent,
+                _id: goal._id,
+                request: {
+                    type: "GET",
+                    url: "http://localhost:5000/goals/"
+                }
+            };
+
+
+            res.status(200).json(response);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+});
+
+
+// Pobieranie głównego celu i jego podcelów po id
+router.get("/main/allId/:_id", (req, res, next) => {
+    Goal.find({ $or: [{ _id: req.params._id }, { parent: req.params._id }] })
         .select("name priority parent _id")
         .exec()
         .then(docs => {
@@ -96,26 +126,25 @@ router.get("/main/:_id", (req, res, next) => {
 });
 
 
-// Pobieranie głównego celu i jego podcelów po id
-router.get("/main/allId/:_id", (req, res, next) => {
-    Goal.find({ $or: [{_id: req.params._id}, {parent:req.params._id}]})
+// Pobieranie  podcelów po id rodzica
+router.get("/main/childrenId/:_id", (req, res, next) => {
+    Goal.find( { parent: req.params._id } )
         .select("name priority parent _id")
         .exec()
-        .then(docs => {
-            const response = {
-                products: docs.map(doc => {
+        .then(goals => {
+            const response = 
+                goals.map(goal => {
                     return {
-                        name: doc.name,
-                        priority: doc.priority,
-                        parent: doc.parent,
-                        _id: doc._id,
+                        name: goal.name,
+                        priority: goal.priority,
+                        parent: goal.parent,
+                        _id: goal._id,
                         request: {
                             type: "GET",
                             url: "http://localhost:5000/goals/"
                         }
                     };
-                })
-            };
+                });
             res.status(200).json(response);
         })
         .catch(err => {
@@ -226,20 +255,6 @@ router.get('/nazwa/:mainGoal', function (req, res, next) {
         }
     });
 });
-
-// Znajdź jeden cel po id
-router.get('/oneGoalById/:id', function (req, res, next) {
-    Goal.findOne({ _id: req.params.id }, function (err, goal) {
-        if (err) {
-            res.json(err);
-        }
-        else {
-            res.json(goal);
-        }
-    });
-});
-
-
 
 
 
