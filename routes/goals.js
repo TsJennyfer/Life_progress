@@ -192,9 +192,9 @@ router.post('/', function (req, res, next) {
         name: req.body.name,
         priority: req.body.priority,
         parent: req.body.parent,
-        mainGoal: req.body.mainGoal
+        userId: req.body.userId
     });
-
+ 
     newGoal.save(function (err, goal) {
         if (err) {
             res.json({ msg: "Failed to add goal." });

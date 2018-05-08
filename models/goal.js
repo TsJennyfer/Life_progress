@@ -8,7 +8,7 @@ const GoalSchema = mongoose.Schema({
     parent:{type:String},
     //parent:{type: Schema.Types.ObjectId, ref: 'Goal' },
     userId:{type: Schema.Types.ObjectId, ref: 'User'},
-    mainGoal: {type:String}
+    //mainGoal: {type:String}
     //mainGoal:{type: Schema.Types.ObjectId, ref: 'Goal' }
 });
 
