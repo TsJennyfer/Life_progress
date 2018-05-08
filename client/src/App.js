@@ -8,7 +8,6 @@ import './App.css';
 import logo from './logo.svg';
 import axios from 'axios';
 // import formularza
-import Form from './components/Form';
 import MainPage from './components/MainPage';
 
 class App extends Component {
