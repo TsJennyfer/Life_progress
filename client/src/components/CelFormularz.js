@@ -15,8 +15,8 @@ class CelFormularz extends React.Component {
         this.state = {
             name: "",
             parent: "null",
-            userId: "example",
-            priority: "0"
+            userId: "",
+            priority: 0
         }
     }
 
@@ -24,7 +24,13 @@ class CelFormularz extends React.Component {
     //Dodanie użytkownika
     addGoal(event) {
         event.preventDefault();
-        
+        const test = {
+            name: this.state.name,
+            parent: this.state.parent,
+            userId: this.state.userId,
+            priority: this.state.priority
+        };
+        console.log(test);
 
         axios.post('/goals/', {
             name: this.state.name,
@@ -78,14 +84,13 @@ class CelFormularz extends React.Component {
                         onChange={this.handleParentChange}
                         name="parent"
                         type="text"
-                        minLength={3}
                         value={this.state.parent}
                         placeholder="Id rodzica"
                     />
                     <br />
                     userId:
                     <input
-                        onChange={this. handleUserIdChange}
+                        onChange={this.handleUserIdChange}
                         name="userId"
                         type="text"
                         value={this.state.userId}
