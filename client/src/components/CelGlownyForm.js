@@ -1,4 +1,4 @@
-// To jest komponent dodawania celu (głównego lub podcelu - brak walidacji)
+// To jest komponent dodawania nowego celu głównego
 import React from 'react';
 import axios from 'axios';
 
@@ -7,26 +7,25 @@ class CelFormularz extends React.Component {
     constructor(props) {
         super(props);
 
-        this.addGoal = this.addGoal.bind(this);
+        this.addGoal = this.addMainGoal.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
-        this.handleParentChange = this.handleParentChange.bind(this);
         this.handleUserIdChange = this.handleUserIdChange.bind(this);
         this.handlePriorityChange = this.handlePriorityChange.bind(this);
         this.state = {
             name: "",
             parent: null,
             userId: null,
-            priority: 0
+            priority: 1
         }
     }
 
 
     //Dodanie użytkownika
-    addGoal(event) {
+    addMainGoal(event) {
         event.preventDefault();
         const test = {
             name: this.state.name,
-            parent: this.state.parent,
+            parent: null,
             userId: this.state.userId,
             priority: this.state.priority
         };
@@ -34,12 +33,12 @@ class CelFormularz extends React.Component {
 
         axios.post('/goals/', {
             name: this.state.name,
-            parent: this.state.parent,
+            parent: null,
             userId: this.state.userId,
             priority: this.state.priority
         })
             .then(response => {
-                console.log(response, `Dodano cel ${this.state.name}`);
+                console.log(response, `Dodano cel główny ${this.state.name}`);
                 this.setState({
                     name: "",
                     parent: null
@@ -47,7 +46,7 @@ class CelFormularz extends React.Component {
                 });
             })
             .catch(err => {
-                console.log(err, 'Błąd dodawania celu');
+                console.log(err, 'Błąd dodawania celu głównego');
             });
 
         
@@ -55,9 +54,6 @@ class CelFormularz extends React.Component {
 
     handleNameChange(event) {
         this.setState({ name: event.target.value });
-    }
-    handleParentChange(event) {
-        this.setState({ parent: event.target.value });
     }
     handleUserIdChange(event) {
         this.setState({ userId: event.target.value });
@@ -69,7 +65,7 @@ class CelFormularz extends React.Component {
     render() {
         return (
             <div>
-                CelFormularz - dodanie jakiegokolwiek celu
+                CelGlownyForm - tylko dodawanie celu głównego
                 <form className="registerForm" onSubmit={this.addGoal}>
                     name:
                     <input
@@ -78,15 +74,6 @@ class CelFormularz extends React.Component {
                         type="text"
                         value={this.state.name}
                         placeholder="Nazwa celu"
-                    />
-                    <br />
-                    parent:
-                    <input
-                        onChange={this.handleParentChange}
-                        name="parent"
-                        type="text"
-                        value={this.state.parent}
-                        placeholder="Id rodzica"
                     />
                     <br />
                     userId:
@@ -109,7 +96,7 @@ class CelFormularz extends React.Component {
                     <br />
 
                     <button type="submit">
-                        Dodaj Cel<i className="GuestBookButton2" aria-hidden="true" />
+                        Dodaj Cel Główny<i className="GuestBookButton2" aria-hidden="true" />
                     </button>
                 </form>
             </div>

@@ -5,6 +5,7 @@ import Rejestracja from './Rejestracja';
 import CeleGlowne from './CeleGlowne';
 import CelDynamicznie from './CelDynamicznie';
 import CelFormularz from './CelFormularz';
+import CelGlownyForm from './CelGlownyForm';
 // import Graph from './Graph';
 
 class Main extends React.Component {
@@ -23,7 +24,7 @@ class Main extends React.Component {
 
     // renderowanie pojedynczego celu
     renderGoal(goal) {
-        
+
         console.log('renderGoal');
         this.setState({
             celeGlowne: false,
@@ -53,17 +54,18 @@ class Main extends React.Component {
                     <CeleGlowne renderGoal={this.renderGoal} addMainGoal={this.addMainGoal} />
 
 
-                </div> 
+                </div>
             )
         } else if (this.state.nowyCelGlowny) {
-            return(
+            return (
                 <div>
-                     Dodawanie celu głównego
                     <CelFormularz />
-                     </div>
+                    <br />
+                    <CelGlownyForm />
+                </div>
             )
         }
-        
+
         else {
             return (
                 <div>
