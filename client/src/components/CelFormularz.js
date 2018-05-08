@@ -26,7 +26,7 @@ class CelFormularz extends React.Component {
         event.preventDefault();
         
 
-        axios.post('/goals', {
+        axios.post('/goals/', {
             name: this.state.name,
             parent: this.state.parent,
             userId: this.state.userId,

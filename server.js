@@ -6,10 +6,12 @@ const mongoose = require('mongoose');
 const index = require('./routes/index');
 const goalsRoutes = require('./routes/goals');
 const userRoutes = require('./routes/user');
+const morgan = require('morgan');
 
 const port = 5000;
 
 const app = express();
+app.use(morgan('dev'));
 
 //Connect to mongodb
 mongoose.connect('mongodb://admin:admin@ds115579.mlab.com:15579/life_progress');

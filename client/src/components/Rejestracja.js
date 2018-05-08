@@ -25,7 +25,7 @@ class Rejestracja extends React.Component {
             userPassword: event.target.value,
         });
 
-        axios.post('/user', {
+        axios.post('/user/signup', {
             email: this.state.email,
             userPassword: this.state.userPassword,
         })
