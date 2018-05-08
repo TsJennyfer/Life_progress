@@ -14,8 +14,8 @@ class CelFormularz extends React.Component {
         this.handlePriorityChange = this.handlePriorityChange.bind(this);
         this.state = {
             name: "",
-            parent: "null",
-            userId: "",
+            parent: null,
+            userId: null,
             priority: 0
         }
     }
@@ -42,7 +42,8 @@ class CelFormularz extends React.Component {
                 console.log(response, `Dodano cel ${this.state.name}`);
                 this.setState({
                     name: "",
-                    parent: "",
+                    parent: null
+
                 });
             })
             .catch(err => {
