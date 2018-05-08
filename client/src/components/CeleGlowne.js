@@ -2,6 +2,8 @@
 import React from 'react';
 import axios from 'axios';
 import CelSzczegoly from './CelSzczegoly';
+import CelFormularz from './CelFormularz';
+import Rejestracja from './Rejestracja';
 
 
 
@@ -61,6 +63,8 @@ class CeleGlowne extends React.Component {
 
         return (
             <div>Cele główne
+                <Rejestracja />
+                <CelFormularz />
                 {this.drawGoals()}
             </div>
         )
