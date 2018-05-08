@@ -4,6 +4,7 @@ import Cel from './Cel';
 import Rejestracja from './Rejestracja';
 import CeleGlowne from './CeleGlowne';
 import CelDynamicznie from './CelDynamicznie';
+import CelFormularz from './CelFormularz';
 // import Graph from './Graph';
 
 class Main extends React.Component {
@@ -12,9 +13,11 @@ class Main extends React.Component {
         super(props);
 
         this.renderGoal = this.renderGoal.bind(this);
+        this.addMainGoal = this.addMainGoal.bind(this);
         this.state = {
             celeGlowne: true,
-            celSzczegoly: ""
+            celSzczegoly: "",
+            nowyCelGlowny: false
         };
     }
 
@@ -24,8 +27,18 @@ class Main extends React.Component {
         console.log('renderGoal');
         this.setState({
             celeGlowne: false,
-            celSzczegoly: goal
+            celSzczegoly: goal,
+            nowyCelGlowny: false
         });
+    }
+
+    // renderowanie okna dodawania nowego celu głównego
+    addMainGoal() {
+        this.setState({
+            nowyCelGlowny: true,
+            celeGlowne: false,
+            celSzczegoly: ""
+        })
     }
 
     render() {
@@ -37,12 +50,21 @@ class Main extends React.Component {
                     <Cel />
                     <Cele /> */}
                     {/* <Graph /> */}
-                    <CeleGlowne renderGoal={this.renderGoal} />
+                    <CeleGlowne renderGoal={this.renderGoal} addMainGoal={this.addMainGoal} />
 
 
                 </div> 
             )
-        } else {
+        } else if (this.state.nowyCelGlowny) {
+            return(
+                <div>
+                     Dodawanie celu głównego
+                    <CelFormularz />
+                     </div>
+            )
+        }
+        
+        else {
             return (
                 <div>
                     <CelDynamicznie goalId={this.state.celSzczegoly} />
