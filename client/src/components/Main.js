@@ -2,6 +2,8 @@
 import React from 'react';
 import Cel from './Cel';
 import Rejestracja from './Rejestracja';
+import Logowanie from './Logowanie';
+import Wylogowanie from './Wylogowanie';
 import CeleGlowne from './CeleGlowne';
 import CelDynamicznie from './CelDynamicznie';
 import CelFormularz from './CelFormularz';
@@ -51,7 +53,10 @@ class Main extends React.Component {
                     <Cel />
                     <Cele /> */}
                     {/* <Graph /> */}
-                    <CeleGlowne renderGoal={this.renderGoal} addMainGoal={this.addMainGoal} />
+                    {/* <CeleGlowne renderGoal={this.renderGoal} addMainGoal={this.addMainGoal} /> */}
+                    <Rejestracja/>
+                    <Logowanie />
+                    <Wylogowanie/>
 
 
                 </div>
