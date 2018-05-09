@@ -160,4 +160,20 @@ padding-bottom: 5em;
     text-decoration: none;
   }
 
-  
+  .grid-cele-glowne {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 1rem;
+  }
+
+  .button-cel-glowny {
+    position: relative;
+    z-index: 1;
+    width: 10rem;
+    height: 10rem;
+    color: #1a1a1a;
+    background: #ed1c5b;
+    border-radius: 50%;
+    border: none;
+  }

@@ -62,9 +62,8 @@ class CeleGlowne extends React.Component {
     render() {
 
         return (
-            <div>Cele główne
-                <br />
-                <button class="dodaj-cel" onClick={() => this.props.addMainGoal()}>
+            <div class="grid-cele-glowne" >
+                <button class="button-sub-goal" onClick={() => this.props.addMainGoal()}>
                 Dodaj cel
                 </button>
                 {this.drawGoals()}
