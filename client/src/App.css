@@ -165,6 +165,7 @@ padding-bottom: 5em;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto;
     grid-gap: 1rem;
+    grid-row-gap: 5rem;
   }
 
   .button-cel-glowny {
@@ -195,4 +196,5 @@ padding-bottom: 5em;
     border: 0.1rem solid #7bc93b;
     font-family: 'PT Sans', sans-serif;
     font-size: 1.7rem;
+    transform: rotate(20deg);
   }
