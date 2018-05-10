@@ -53,7 +53,7 @@ class Main extends React.Component {
                     <Cel />
                     <Cele /> */}
                     {/* <Graph /> */}
-                    {/* <CeleGlowne renderGoal={this.renderGoal} addMainGoal={this.addMainGoal} /> */}
+                    <CeleGlowne renderGoal={this.renderGoal} addMainGoal={this.addMainGoal} />
                     <Rejestracja/>
                     <Logowanie />
                     <Wylogowanie/>
