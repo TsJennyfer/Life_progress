@@ -92,7 +92,17 @@ class CelDynamicznie extends React.Component {
         }
         // podmiana załej listy podceli
         this.setState({ goals: goals });
-       // this.changeButtonColor(id);
+        axios.patch("/goals/" + this.state.goals[id]._id,
+            {
+                priority: this.state.goals[id].priority
+            }).then(response => {
+
+                console.log(response)
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        // this.changeButtonColor(id);
     }
 
     changeButtonColor(id) {
@@ -100,10 +110,10 @@ class CelDynamicznie extends React.Component {
         const goals = { ...this.state.goals };
         // zmiana status 1 <-> 0
         const priority = goals[id].priority;
-        if  (priority == 1) {
-            this.setState({isDone: true});
+        if (priority == 1) {
+            this.setState({ isDone: true });
         } else {
-            this.setState({isDone: false});
+            this.setState({ isDone: false });
         }
     }
 
