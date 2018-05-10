@@ -11,11 +11,13 @@ class CelDynamicznie extends React.Component {
         this.findAllGoals = this.findAllGoals.bind(this);
         this.drawGoalsTree = this.drawGoalsTree.bind(this);
         this.changePriority = this.changePriority.bind(this);
+        this.changeButtonColor = this.changeButtonColor.bind(this);
 
         this.state = {
             goals: {},
             goalId: this.props.goalId,
-            goal: {}
+            goal: {},
+            isDone: false
         };
     }
 
@@ -66,13 +68,13 @@ class CelDynamicznie extends React.Component {
 
             Object
                 .keys(this.state.goals)
-                .map(key => 
-                        <button 
-                        class="button-sub-goal"
+                .map(key =>
+                    <button
+                        className={(this.state.goals[key].priority == 0) ? "button-sub-goal" : "button-sub-goal-done"}
                         id={key}
                         onClick={() => this.changePriority(key)}>
-                            {this.state.goals[key].name}
-                        </button>
+                        {this.state.goals[key].name}
+                    </button>
                 )
         );
 
@@ -80,7 +82,7 @@ class CelDynamicznie extends React.Component {
 
     changePriority(id) {
         // kopia aktualnych celów
-        const goals = {...this.state.goals};
+        const goals = { ...this.state.goals };
         // zmiana status 1 <-> 0
         const priority = goals[id].priority;
         if (priority == 1) {
@@ -89,7 +91,20 @@ class CelDynamicznie extends React.Component {
             goals[id].priority = 1;
         }
         // podmiana załej listy podceli
-        this.setState({goals: goals});
+        this.setState({ goals: goals });
+       // this.changeButtonColor(id);
+    }
+
+    changeButtonColor(id) {
+        // kopia aktualnych celów
+        const goals = { ...this.state.goals };
+        // zmiana status 1 <-> 0
+        const priority = goals[id].priority;
+        if  (priority == 1) {
+            this.setState({isDone: true});
+        } else {
+            this.setState({isDone: false});
+        }
     }
 
 
@@ -97,7 +112,7 @@ class CelDynamicznie extends React.Component {
         let bgColor = this.state.color_black ? "red" : "green"
         return (
             <div>
-                <button class="button-sub-goal">
+                <button className="button-sub-goal">
                     {this.state.goal.name}
                 </button> <br />
                 {this.drawGoalsTree()}

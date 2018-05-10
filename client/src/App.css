@@ -154,11 +154,22 @@ padding-bottom: 5em;
     border: solid #211621 3px;
     text-decoration: none;
   }
-  
-  .button-sub-goal:hover {
-    background: #3cb0fd;
+  .button-sub-goal-done {
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    -webkit-box-shadow: 2px 2px 8px #4f224f;
+    -moz-box-shadow: 2px 2px 8px #4f224f;
+    box-shadow: 2px 2px 8px #4f224f;
+    font-family: Courier New;
+    color: #c9eeff;
+    font-size: 19px;
+    background: #60ff04;
+    padding: 10px 20px 10px 20px;
+    border: solid #211621 3px;
     text-decoration: none;
   }
+  
 
   .grid-cele-glowne {
     display: grid;
