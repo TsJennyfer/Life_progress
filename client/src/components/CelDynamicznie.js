@@ -10,12 +10,12 @@ class CelDynamicznie extends React.Component {
         this.findGoalById = this.findGoalById.bind(this);
         this.findAllGoals = this.findAllGoals.bind(this);
         this.drawGoalsTree = this.drawGoalsTree.bind(this);
+        this.changePriority = this.changePriority.bind(this);
 
         this.state = {
             goals: {},
             goalId: this.props.goalId,
-            goal: {},    // cel główny
-            tempGoal: {}    // 
+            goal: {}
         };
     }
 
@@ -32,8 +32,7 @@ class CelDynamicznie extends React.Component {
             .then(response => {
 
                 this.setState({
-                    goal: response.data,
-                    tempGoal: response.data
+                    goal: response.data
                 },
                     this.findAllGoals);     // findAllGoals wywołuję tutaj, a nie w componentDidMount, aby miec pewność, że setState zostało wykonane
                 // console.log(response.data.mainGoal, 'goal 2!');
@@ -68,7 +67,10 @@ class CelDynamicznie extends React.Component {
             Object
                 .keys(this.state.goals)
                 .map(key => 
-                        <button class="button-sub-goal">
+                        <button 
+                        class="button-sub-goal"
+                        id={key}
+                        onClick={() => this.changePriority(key)}>
                             {this.state.goals[key].name}
                         </button>
                 )
@@ -76,8 +78,18 @@ class CelDynamicznie extends React.Component {
 
     }
 
-    changeColor() {
-        this.setState({ color_black: !this.state.color_black })
+    changePriority(id) {
+        // kopia aktualnych celów
+        const goals = {...this.state.goals};
+        // zmiana status 1 <-> 0
+        const priority = goals[id].priority;
+        if (priority == 1) {
+            goals[id].priority = 0;
+        } else {
+            goals[id].priority = 1;
+        }
+        // podmiana załej listy podceli
+        this.setState({goals: goals});
     }
 
 
