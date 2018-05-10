@@ -211,10 +211,10 @@ router.patch('/:id', function (req, res, next) {
     var update = {priority: req.body.priority}
     Goal.findOneAndUpdate(query, update, function (err, goal) {
         if (err) {
-            res.status(200).json({ msg: "Failed to update goal." });
+            res.status(400).json({ msg: "Failed to update goal." });
         }
         else {
-            res.status(400).json({ msg: "Goal updated succesfully." });
+            res.status(200).json({ msg: "Goal updated succesfully." });
         }
     });
 });
