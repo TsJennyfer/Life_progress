@@ -205,6 +205,20 @@ router.post('/', function (req, res, next) {
     });
 });
 
+// Aktualizacja celu
+router.patch('/:id', function (req, res, next) {
+    var query = {_id: req.params.id};
+    var update = {priority: req.body.priority}
+    Goal.findOneAndUpdate(query, update, function (err, goal) {
+        if (err) {
+            res.json({ msg: "Failed to update goal." });
+        }
+        else {
+            res.json({ msg: "Goal updated succesfully." });
+        }
+    });
+});
+
 
 //Usuwanie celu
 router.delete('/:id', function (req, res, next) {
