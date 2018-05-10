@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require("mongoose");
 const Goal = require('../models/goal');
+const User = require('../models/user');
+const checkAuth = require("../middleware/check-auth");
+const jwt = require("jsonwebtoken");
 
 
 //Pobiera całą kolekcję goals
@@ -187,7 +190,10 @@ router.get("/:parent/", (req, res, next) => {
 });
 
 //Dodanie celu
-router.post('/', function (req, res, next) {
+router.post('/',checkAuth, function (req, res, next) {
+    //const token = req.headers.authorization.split(" ")[1];
+    //const decoded = jwt.decode(token, 'secret');
+    req.userData = decoded;
     let newGoal = new Goal({
         name: req.body.name,
         priority: req.body.priority,
@@ -200,7 +206,7 @@ router.post('/', function (req, res, next) {
             res.json({ msg: "Failed to add goal." });
         }
         else {
-            res.json({ msg: "Goal added succesfully." });
+            res.json({ msg: "Goal added succesfully."});
         }
     });
 });

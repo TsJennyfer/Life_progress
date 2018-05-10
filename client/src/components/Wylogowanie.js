@@ -15,8 +15,10 @@ class Wylogowanie extends React.Component {
     logOut(event){
         event.preventDefault();
         if (localStorage!=null){
-            localStorage.clear();
+            console.log(localStorage);
+            localStorage.removeItem('jwt');
             console.log("Token deleted")
+
         }
         else{
             console.log("User not logged in")
