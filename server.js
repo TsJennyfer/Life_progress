@@ -8,9 +8,58 @@ const goalsRoutes = require('./routes/goals');
 const userRoutes = require('./routes/user');
 const morgan = require('morgan');
 
-const port = 5000;
+//google
+passport = require('passport');
+auth = require("./auth");
+cookieParser = require('cookie-parser'),
+cookieSession = require('cookie-session');
 
 const app = express();
+
+//google
+auth(passport);
+app.use(passport.initialize());
+//google
+app.use(cookieSession({
+    name: 'session',
+    keys: ['123']
+}));
+app.use(cookieParser());
+//google
+app.get('/', (req, res) => {
+    if (req.session.token) {
+        res.cookie('token', req.session.token);
+        res.json({
+            status: 'session cookie set'
+        });
+    } else {
+        res.cookie('token', '')
+        res.json({
+            status: 'session cookie not set'
+        });
+    }
+});
+//google
+app.get('/logout', (req, res) => {
+    req.logout();
+    req.session = null;
+    res.redirect('/');
+});
+//google
+app.get('/auth/google', passport.authenticate('google', {
+    scope: ['https://www.googleapis.com/auth/userinfo.profile']
+}));
+//google
+app.get('/auth/google/callback',
+    passport.authenticate('google', {failureRedirect:'/'}),
+    (req, res) => {
+        req.session.token = req.user.token;
+        res.redirect('http://localhost:3000');
+    }
+);
+
+
+const port = 5000;
 app.use(morgan('dev'));
 
 //Connect to mongodb
