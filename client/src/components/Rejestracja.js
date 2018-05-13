@@ -52,6 +52,8 @@ class Rejestracja extends React.Component {
     render() {
         return (
             <div>
+                <hr />
+
                 Rejestracja
                 <form className="registerForm" onSubmit={this.addUser}>
                     <input
@@ -59,21 +61,31 @@ class Rejestracja extends React.Component {
                         name="email"
                         type="email"
                         value={this.state.email}
-                        placeholder="Podaj email:"
+                        placeholder="Podaj email"
                     />
+                    <br />
                     <input
                         onChange={this.handlePassword}
                         name="userPassword"
                         type="password"
                         minLength={3}
                         value={this.state.userPassword}
-                        placeholder="Podaj haso"
+                        placeholder="Podaj hasło"
                     />
-
-                    <button type="submit">
+                    <br />
+                    <button class="button button1" type="submit">
                         Zarejestruj<i className="GuestBookButton2" aria-hidden="true" />
                     </button>
+                    
+                    <br />
+                    <button class="loginBtn loginBtn--google">
+                    Login with Google
+                </button> 
+                <button class="loginBtn loginBtn--facebook">
+                    Login with Facebook
+                </button>
                 </form>
+                
             </div>
         );
     }

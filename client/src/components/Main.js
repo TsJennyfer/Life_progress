@@ -57,8 +57,6 @@ class Main extends React.Component {
                     <Rejestracja/>
                     <Logowanie />
                     <Wylogowanie/>
-
-
                 </div>
             )
         } else if (this.state.nowyCelGlowny) {
@@ -78,7 +76,6 @@ class Main extends React.Component {
                 </div>
             )
         }
-
     }
 }
 
