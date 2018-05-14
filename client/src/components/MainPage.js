@@ -6,6 +6,8 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import header from '../resourses/head6.png';
+import StickyHeader from 'react-sticky-header';
+import 'react-sticky-header/styles.css';
 
 // import StartPage from './StartPage';
 
@@ -17,20 +19,30 @@ class MainPage extends React.Component {
             goals: {}
         }
     }
-        render() {
-            return (
-                <div>
-                    <img src={header} width="100%" height="500"/>
-                    <div class="fixed-nav-bar">
-                        <Header />
-                    </div>
-                    <div className = "main__container">
-                        <Main />
-                        <Footer />
-                    </div>
-                </div>
-            )
-        }
-    }
+    render() {
+        return (
+            <div>
+                <StickyHeader
+                    className="sticky-header"
+                    header={
+                        <div>
+                            <div className="fixed-nav-bar">
+                                <Header />
+                            </div>
+                        </div>
+                    }
+                    backgroundImage={header}
+                >
+                </StickyHeader>
 
-    export default MainPage;
+                <div className="main__container">
+                    <Main />
+                    <Footer />
+                </div>
+
+            </div>
+        )
+    }
+}
+
+export default MainPage;
