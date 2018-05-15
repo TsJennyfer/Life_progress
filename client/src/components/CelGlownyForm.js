@@ -31,17 +31,17 @@ class CelFormularz extends React.Component {
         };
         console.log(test);
 
-        axios.post('/goals/',  {body:{
+        var headers = {
+            'Authorization': 'Bearer '+localStorage.getItem('token'), 
+            'Content-Type': 'application/json'
+        }
+        axios.post('/goals/',  {
             name: this.state.name,
             parent: null,
             userId: this.state.userId,
             priority: this.state.priority
         },
-        headers: new Headers({
-            'Authorization': 'Bearer '+localStorage.getItem('token'), 
-            'Content-Type': 'application/json'
-          }) 
-        })
+        headers)
             .then(response => {
                 console.log(response, `Dodano cel główny ${this.state.name}`);
                 this.setState({

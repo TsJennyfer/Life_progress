@@ -63,7 +63,8 @@ router.post("/signin", (req, res, next) => {
       .then(user => {
         if (user.length < 1) {
           return res.status(401).json({
-            message: "Auth failed"
+            message: "Auth failed3",
+            header: req.get('Authorization')
           });
         }
         bcrypt.compare(req.body.userPassword, user[0].userPassword, (err, result) => {
