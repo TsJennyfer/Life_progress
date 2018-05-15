@@ -12,7 +12,8 @@ class Logowanie extends React.Component {
         this.handlePassword = this.handlePassword.bind(this);
         this.state = {
             email: "",
-            userPassword: ""
+            userPassword: "",
+            token: ""
         }
     }
 
@@ -31,6 +32,10 @@ class Logowanie extends React.Component {
         })
             .then(response => {
                 console.log(response, 'User logged in!');
+                this.setState({
+                    token: response.data.token
+                });
+                localStorage.setItem('token', this.state.token);
             })
             .catch(err => {
                 console.log(err, 'User not logged in.');

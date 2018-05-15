@@ -193,7 +193,7 @@ router.get("/:parent/", (req, res, next) => {
 router.post('/',checkAuth, function (req, res, next) {
     //const token = req.headers.authorization.split(" ")[1];
     //const decoded = jwt.decode(token, 'secret');
-    req.userData = decoded;
+    //req.userData = decoded;
     let newGoal = new Goal({
         name: req.body.name,
         priority: req.body.priority,

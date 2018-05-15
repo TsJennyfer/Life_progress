@@ -7,7 +7,7 @@ class CelFormularz extends React.Component {
     constructor(props) {
         super(props);
 
-        this.addGoal = this.addMainGoal.bind(this);
+        this.addMainGoal = this.addMainGoal.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleUserIdChange = this.handleUserIdChange.bind(this);
         this.handlePriorityChange = this.handlePriorityChange.bind(this);
@@ -31,11 +31,16 @@ class CelFormularz extends React.Component {
         };
         console.log(test);
 
-        axios.post('/goals/', {
+        axios.post('/goals/',  {body:{
             name: this.state.name,
             parent: null,
             userId: this.state.userId,
             priority: this.state.priority
+        },
+        headers: new Headers({
+            'Authorization': 'Bearer '+localStorage.getItem('token'), 
+            'Content-Type': 'application/json'
+          }) 
         })
             .then(response => {
                 console.log(response, `Dodano cel główny ${this.state.name}`);
@@ -66,7 +71,7 @@ class CelFormularz extends React.Component {
         return (
             <div>
                 CelGlownyForm - tylko dodawanie celu głównego
-                <form className="registerForm" onSubmit={this.addGoal}>
+                <form className="registerForm" onSubmit={this.addMainGoal}>
                     name:
                     <input
                         onChange={this.handleNameChange}
