@@ -2,7 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 
-class CelFormularz extends React.Component {
+class CelGlownyForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -32,16 +32,17 @@ class CelFormularz extends React.Component {
         console.log(test);
 
         var headers = {
-            'Authorization': 'Bearer '+localStorage.getItem('token'), 
+            'Authorization': localStorage.getItem('token'), 
             'Content-Type': 'application/json'
         }
+        console.log(headers);
         axios.post('/goals/',  {
             name: this.state.name,
             parent: null,
             userId: this.state.userId,
             priority: this.state.priority
         },
-        headers)
+        {headers})
             .then(response => {
                 console.log(response, `Dodano cel główny ${this.state.name}`);
                 this.setState({
@@ -110,4 +111,4 @@ class CelFormularz extends React.Component {
 
 }
 
-export default CelFormularz;
+export default CelGlownyForm;
