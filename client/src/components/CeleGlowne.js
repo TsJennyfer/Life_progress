@@ -2,8 +2,6 @@
 import React from 'react';
 import axios from 'axios';
 import CelSzczegoly from './CelSzczegoly';
-import CelFormularz from './CelFormularz';
-import Rejestracja from './Rejestracja';
 
 
 
@@ -52,10 +50,7 @@ class CeleGlowne extends React.Component {
 
     // przejdź do konketnego celu
     chooseGoal(key) {
-        
-        {this.props.renderGoal(key)}
-        console.log(key);
-
+        this.props.renderGoal(key)
     }  
 // <button class="button-sub-goal" onClick={() => this.props.addMainGoal()}>
 

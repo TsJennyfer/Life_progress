@@ -1,6 +1,5 @@
 // To jest komponent strony logowania użytkownika
 import React from 'react';
-import axios from 'axios';
 
 class Wylogowanie extends React.Component {
 
@@ -16,7 +15,7 @@ class Wylogowanie extends React.Component {
         event.preventDefault();
         if (localStorage!=null){
             console.log(localStorage);
-            localStorage.removeItem('jwt');
+            localStorage.removeItem('token');
             console.log("Token deleted")
 
         }

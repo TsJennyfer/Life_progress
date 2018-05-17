@@ -1,6 +1,5 @@
 // To jest Main - środkowa część strony wyświetlająca część główną
 import React from 'react';
-import Cel from './Cel';
 import Rejestracja from './Rejestracja';
 import Logowanie from './Logowanie';
 import Wylogowanie from './Wylogowanie';
@@ -27,7 +26,7 @@ class Main extends React.Component {
         };
     }
     componentDidMount() {
-        if(this.state.userToken != "") {
+        if (this.state.userToken !== "") {
             this.setState({
                 isUserLoggedIn: true
             });
@@ -59,7 +58,7 @@ class Main extends React.Component {
         this.setState({
             userToken: localStorage.getItem('token')
         });
-        if(this.state.userToken != "") {
+        if (this.state.userToken !== "") {
             this.setState({
                 isUserLoggedIn: true
             });
@@ -74,8 +73,8 @@ class Main extends React.Component {
                     <div>
                         Main
                     <CeleGlowne renderGoal={this.renderGoal} addMainGoal={this.addMainGoal} />
-                        <Rejestracja />
-                        <Logowanie  />
+                    
+                    <Logowanie checkToken={this.checkToken} />
                         <Wylogowanie />
                     </div>
                 )
