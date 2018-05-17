@@ -17,20 +17,16 @@ class Main extends React.Component {
         this.renderGoal = this.renderGoal.bind(this);
         this.addMainGoal = this.addMainGoal.bind(this);
         this.checkToken = this.checkToken.bind(this);
+        this.logOut = this.logOut.bind(this);
         this.state = {
             celeGlowne: true,
             celSzczegoly: "",
             nowyCelGlowny: false,
-            isUserLoggedIn: false,
-            userToken: localStorage.getItem('token')
+            isUserLoggedIn: false
         };
     }
     componentDidMount() {
-        if (this.state.userToken !== "") {
-            this.setState({
-                isUserLoggedIn: true
-            });
-        }
+        this.checkToken();
     }
 
 
@@ -55,14 +51,20 @@ class Main extends React.Component {
     }
 
     checkToken() {
-        this.setState({
-            userToken: localStorage.getItem('token')
-        });
-        if (this.state.userToken !== "") {
+        if (localStorage.getItem('token') !== null) {
             this.setState({
                 isUserLoggedIn: true
             });
+        } else {
+            this.setState({
+                isUserLoggedIn: false
+            });
         }
+    }
+
+    logOut() {
+        localStorage.removeItem('token');
+        this.checkToken();
     }
 
     render() {
@@ -71,11 +73,10 @@ class Main extends React.Component {
             if (this.state.celeGlowne) {
                 return (
                     <div>
-                        Main
-                    <CeleGlowne renderGoal={this.renderGoal} addMainGoal={this.addMainGoal} />
-                    
-                    <Logowanie checkToken={this.checkToken} />
-                        <Wylogowanie />
+                        <CeleGlowne renderGoal={this.renderGoal} addMainGoal={this.addMainGoal} />
+                        <button className="log-out-button" onClick={() => this.logOut()}>
+                            Wyloguj
+                            </button>
                     </div>
                 )
             } else if (this.state.nowyCelGlowny) {
@@ -97,7 +98,7 @@ class Main extends React.Component {
             }
         }
         // użytkownik niezalogowany
-        else {
+        else if (!this.state.isUserLoggedIn) {
             return (
                 <div>
                     <Rejestracja />
