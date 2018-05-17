@@ -25,7 +25,7 @@ class CeleGlowne extends React.Component {
 
     // Znalezienie celu
     findGoals() {
-        axios.get('/goals/main/')
+        axios.post('/goals/mainUserGoals/', {userToken: localStorage.getItem('token')})
             .then(response => {
 
                 this.setState({
