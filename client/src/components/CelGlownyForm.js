@@ -20,13 +20,13 @@ class CelGlownyForm extends React.Component {
     }
 
 
-    //Dodanie użytkownika
     addMainGoal(event) {
         event.preventDefault();
         const test = {
             name: this.state.name,
             parent: null,
             userId: this.state.userId,
+            userToken: localStorage.getItem('token'),
             priority: this.state.priority
         };
         console.log(test);
@@ -40,6 +40,7 @@ class CelGlownyForm extends React.Component {
             name: this.state.name,
             parent: null,
             userId: this.state.userId,
+            userToken: localStorage.getItem('token'),
             priority: this.state.priority
         },
         {headers})

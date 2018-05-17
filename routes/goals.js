@@ -195,7 +195,7 @@ router.post('/',checkAuth, function (req, res, next) {
         name: req.body.name,
         priority: req.body.priority,
         parent: req.body.parent,
-        userId: req.body.userId
+        userId: jwt.decode(req.body.userToken).userId
     });
  
     newGoal.save(function (err, goal) {
