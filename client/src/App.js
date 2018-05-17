@@ -5,7 +5,6 @@ client: npm run start */
 
 import React, { Component } from 'react';
 import './App.css';
-import logo from './logo.svg';
 import axios from 'axios';
 
 import MainPage from './components/MainPage';

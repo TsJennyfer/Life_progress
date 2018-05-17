@@ -70,7 +70,7 @@ class CelDynamicznie extends React.Component {
                 .keys(this.state.goals)
                 .map(key =>
                     <button
-                        className={(this.state.goals[key].priority == 0) ? "button-sub-goal" : "button-sub-goal-done"}
+                        className={(this.state.goals[key].priority === 0) ? "button-sub-goal" : "button-sub-goal-done"}
                         id={key}
                         onClick={() => this.changePriority(key)}>
                         {this.state.goals[key].name}
@@ -85,7 +85,7 @@ class CelDynamicznie extends React.Component {
         const goals = { ...this.state.goals };
         // zmiana status 1 <-> 0
         const priority = goals[id].priority;
-        if (priority == 1) {
+        if (priority === 1) {
             goals[id].priority = 0;
         } else {
             goals[id].priority = 1;
@@ -110,7 +110,7 @@ class CelDynamicznie extends React.Component {
         const goals = { ...this.state.goals };
         // zmiana status 1 <-> 0
         const priority = goals[id].priority;
-        if (priority == 1) {
+        if (priority === 1) {
             this.setState({ isDone: true });
         } else {
             this.setState({ isDone: false });
@@ -119,7 +119,6 @@ class CelDynamicznie extends React.Component {
 
 
     render() {
-        let bgColor = this.state.color_black ? "red" : "green"
         return (
             <div>
                 <button className="button-sub-goal">

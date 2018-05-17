@@ -40,7 +40,38 @@ router.get("/", (req, res, next) => {
 
 // Pobieranie głównych celi
 router.get("/main/", (req, res, next) => {
-    Goal.find({ parent: null })
+    Goal.find({ parent: null})
+        .select("name priority parent _id")
+        .exec()
+        .then(docs => {
+            const response = {
+                products: docs.map(doc => {
+                    return {
+                        name: doc.name,
+                        priority: doc.priority,
+                        parent: doc.parent,
+                        _id: doc._id,
+                        request: {
+                            type: "GET",
+                            url: "http://localhost:5000/goals/"
+                        }
+                    };
+                })
+            };
+            res.status(200).json(response);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+});
+
+// Pobieranie głównych celi dla danego użytkownika
+router.post("/mainUserGoals/", (req, res, next) => {
+    Goal.find({ parent: null,
+        userId: jwt.decode(req.body.userToken).userId })
         .select("name priority parent _id")
         .exec()
         .then(docs => {
@@ -195,7 +226,7 @@ router.post('/',checkAuth, function (req, res, next) {
         name: req.body.name,
         priority: req.body.priority,
         parent: req.body.parent,
-        userId: req.body.userId
+        userId: jwt.decode(req.body.userToken).userId
     });
  
     newGoal.save(function (err, goal) {

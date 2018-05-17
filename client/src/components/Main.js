@@ -1,6 +1,5 @@
 // To jest Main - środkowa część strony wyświetlająca część główną
 import React from 'react';
-import Cel from './Cel';
 import Rejestracja from './Rejestracja';
 import Logowanie from './Logowanie';
 import Wylogowanie from './Wylogowanie';
@@ -17,12 +16,19 @@ class Main extends React.Component {
 
         this.renderGoal = this.renderGoal.bind(this);
         this.addMainGoal = this.addMainGoal.bind(this);
+        this.checkToken = this.checkToken.bind(this);
+        this.logOut = this.logOut.bind(this);
         this.state = {
             celeGlowne: true,
             celSzczegoly: "",
-            nowyCelGlowny: false
+            nowyCelGlowny: false,
+            isUserLoggedIn: false
         };
     }
+    componentDidMount() {
+        this.checkToken();
+    }
+
 
     // renderowanie pojedynczego celu
     renderGoal(goal) {
@@ -44,35 +50,60 @@ class Main extends React.Component {
         })
     }
 
-    render() {
-        if (this.state.celeGlowne) {
-            return (
-                <div>
-                    Main
-                    {/* <Rejestracja />
-                    <Cel />
-                    <Cele /> */}
-                    {/* <Graph /> */}
-                    <CeleGlowne renderGoal={this.renderGoal} addMainGoal={this.addMainGoal} />
-                    <Rejestracja/>
-                    <Logowanie />
-                    <Wylogowanie/>
-                </div>
-            )
-        } else if (this.state.nowyCelGlowny) {
-            return (
-                <div>
-                    <CelFormularz />
-                    <br />
-                    <CelGlownyForm />
-                </div>
-            )
+    checkToken() {
+        if (localStorage.getItem('token') !== null) {
+            this.setState({
+                isUserLoggedIn: true
+            });
+        } else {
+            this.setState({
+                isUserLoggedIn: false
+            });
         }
+    }
 
-        else {
+    logOut() {
+        localStorage.removeItem('token');
+        this.checkToken();
+    }
+
+    render() {
+        if (this.state.isUserLoggedIn) {
+
+            if (this.state.celeGlowne) {
+                return (
+                    <div>
+                        <CeleGlowne renderGoal={this.renderGoal} addMainGoal={this.addMainGoal} />
+                        <button className="log-out-button" onClick={() => this.logOut()}>
+                            Wyloguj
+                            </button>
+                    </div>
+                )
+            } else if (this.state.nowyCelGlowny) {
+                return (
+                    <div>
+                        <CelFormularz />
+                        <br />
+                        <CelGlownyForm />
+                    </div>
+                )
+            }
+
+            else {
+                return (
+                    <div>
+                        <CelDynamicznie goalId={this.state.celSzczegoly} />
+                    </div>
+                )
+            }
+        }
+        // użytkownik niezalogowany
+        else if (!this.state.isUserLoggedIn) {
             return (
                 <div>
-                    <CelDynamicznie goalId={this.state.celSzczegoly} />
+                    <Rejestracja />
+                    <Logowanie checkToken={this.checkToken} />
+                    <Wylogowanie />
                 </div>
             )
         }

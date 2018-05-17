@@ -36,6 +36,7 @@ class Logowanie extends React.Component {
                     token: response.data.token
                 });
                 localStorage.setItem('token', this.state.token);
+                this.props.checkToken();
             })
             .catch(err => {
                 console.log(err, 'User not logged in.');
