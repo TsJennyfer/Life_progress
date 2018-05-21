@@ -2,6 +2,7 @@
 // To jest pojedynczy cel ze szczegółami, który ładuje dynamicznie wszystkie podcele
 import React from 'react';
 import axios from 'axios';
+import PodcelForm from './PodcelForm';
 
 class CelDynamicznie extends React.Component {
     constructor(props) {
@@ -124,6 +125,7 @@ class CelDynamicznie extends React.Component {
                 <button className="button-sub-goal">
                     {this.state.goal.name}
                 </button> <br />
+                <PodcelForm goal={this.state.goal} findAllGoals={this.findAllGoals} />
                 {this.drawGoalsTree()}
             </div>
         )
