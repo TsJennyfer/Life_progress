@@ -125,7 +125,7 @@ class CelDynamicznie extends React.Component {
                 <button className="button-sub-goal">
                     {this.state.goal.name}
                 </button> <br />
-                <PodcelForm goal={this.state.goal}/>
+                <PodcelForm goal={this.state.goal} findAllGoals={this.findAllGoals} />
                 {this.drawGoalsTree()}
             </div>
         )

@@ -39,6 +39,7 @@ class PodcelForm extends React.Component {
                 this.setState({
                     name: ""
                 });
+                this.props.findAllGoals();
             })
             .catch(err => {
                 console.log(err, 'Błąd dodawania podcelu');
