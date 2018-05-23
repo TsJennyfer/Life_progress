@@ -1,10 +1,9 @@
 // To jest pojedynczy cel na liście celi
 import React from 'react';
 
+import '../css/Cele.css';
+
 class CelSzczegoly extends React.Component {
-
-
-
     render() {
 
         return (

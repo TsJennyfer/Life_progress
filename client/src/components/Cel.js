@@ -2,6 +2,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import '../css/Cele.css';
+
 const Main_goal = () => {
     return (
       <div>

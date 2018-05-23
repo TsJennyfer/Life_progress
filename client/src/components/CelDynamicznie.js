@@ -4,6 +4,8 @@ import React from 'react';
 import axios from 'axios';
 import PodcelForm from './PodcelForm';
 
+import '../css/Cele.css';
+
 class CelDynamicznie extends React.Component {
     constructor(props) {
         super(props);

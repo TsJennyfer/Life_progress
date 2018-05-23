@@ -3,6 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import CelSzczegoly from './CelSzczegoly';
 
+import '../css/Cele.css';
 
 
 class CeleGlowne extends React.Component {

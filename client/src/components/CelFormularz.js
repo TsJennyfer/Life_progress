@@ -2,6 +2,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import '../css/Cele.css';
+
 class CelFormularz extends React.Component {
 
     constructor(props) {

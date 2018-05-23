@@ -3,6 +3,9 @@ import React from 'react';
 //import Img from 'react-image'
 import logo from '../resourses/logo.png';
 
+import '../css/Header.css';
+
+
 const Top_menu = () => {
     return (
         <div className = "top__container">

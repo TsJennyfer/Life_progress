@@ -1,0 +1,14 @@
+.down__container {
+    text-align: center;
+
+}
+
+.button_down {
+    background-color:white;
+    border: none;
+    color: black;
+    font-size: 16px;
+    height: 40px;
+    width: 150px;
+    margin: 10px;
+}

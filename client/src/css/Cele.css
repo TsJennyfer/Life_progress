@@ -1,0 +1,69 @@
+.button-sub-goal {
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    -webkit-box-shadow: 2px 2px 8px #4f224f;
+    -moz-box-shadow: 2px 2px 8px #4f224f;
+    box-shadow: 2px 2px 8px #4f224f;
+    font-family: Courier New;
+    color: #c9eeff;
+    font-size: 19px;
+    background: #9e9e9e;
+    padding: 10px 20px 10px 20px;
+    border: solid #211621 3px;
+    text-decoration: none;
+  }
+  .button-sub-goal-done {
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    -webkit-box-shadow: 2px 2px 8px #4f224f;
+    -moz-box-shadow: 2px 2px 8px #4f224f;
+    box-shadow: 2px 2px 8px #4f224f;
+    font-family: Courier New;
+    color: #c9eeff;
+    font-size: 19px;
+    background: #088A08;
+    padding: 10px 20px 10px 20px;
+    border: solid #211621 3px;
+    text-decoration: none;
+  }
+  
+  .grid-cele-glowne {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 1rem;
+    grid-row-gap: 5rem;
+  }
+
+  .button-cel-glowny {
+    position: relative;
+    cursor: default;
+    z-index: 1;
+    width: 10rem;
+    height: 10rem;
+    color: #d1ff03;
+    background: #7bc93b;
+    border-radius: 50%;
+    border: none;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 1.5rem;
+    transition: 1s;
+    transition-timing-function: ease-in-out;
+  }
+
+  .button-cel-glowny:hover {
+    position: relative;
+    cursor: pointer;
+    z-index: 1;
+    width: 9.9rem;
+    height: 9.9rem;
+    color: #7bc93b;
+    background: #d1ff03;
+    border-radius: 40%;
+    border: 0.1rem solid #7bc93b;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 1.7rem;
+    transform: rotate(20deg);
+  }
