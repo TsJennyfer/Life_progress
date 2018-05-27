@@ -5,6 +5,13 @@
   font-size: 16px;
   height: 40px;
   width: 400px;
+  border-radius: 10px;
+}
+
+.button:hover,
+.button:focus {
+  background: green;
+  background-image: linear-gradient(rgb(10, 155, 58), rgb(10, 155, 58));
 }
 
 .loginBtn {
@@ -67,4 +74,5 @@
 .loginBtn--google:hover,
 .loginBtn--google:focus {
   background: #E74B37;
+  background-image: linear-gradient(rgb(206, 88, 84), rgb(206, 88, 84));
 }

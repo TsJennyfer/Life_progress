@@ -74,16 +74,17 @@ class CelGlownyForm extends React.Component {
     render() {
         return (
             <div>
-                CelGlownyForm - tylko dodawanie celu głównego
+                Add a goal                
                 <form className="registerForm" onSubmit={this.addMainGoal}>
-                    name:
+                    Goal name:
                     <input
                         onChange={this.handleNameChange}
                         name="name"
                         type="text"
                         value={this.state.name}
-                        placeholder="Nazwa celu"
+                        placeholder="Goal name"
                     />
+                     {/*
                     <br />
                     userId:
                     <input
@@ -102,10 +103,11 @@ class CelGlownyForm extends React.Component {
                         value={this.state.priority}
                         placeholder="Status"
                     />
-                    <br />
-
-                    <button type="submit">
-                        Dodaj Cel Główny<i className="GuestBookButton2" aria-hidden="true" />
+                     */}
+                     <br />
+                     <br />
+                    <button className = "addButton" type="submit">
+                       + Add goal<i className="GuestBookButton2" aria-hidden="true" />
                     </button>
                 </form>
             </div>

@@ -55,15 +55,14 @@ class Rejestracja extends React.Component {
         return (
             <div>
                 <hr />
-
-                Rejestracja
+                Not a member? Create an account
                 <form className="registerForm" onSubmit={this.addUser}>
                     <input
                         onChange={this.handleEmail}
                         name="email"
                         type="email"
                         value={this.state.email}
-                        placeholder="Podaj email"
+                        placeholder="Your email"
                     />
                     <br />
                     <input
@@ -72,18 +71,18 @@ class Rejestracja extends React.Component {
                         type="password"
                         minLength={3}
                         value={this.state.userPassword}
-                        placeholder="Podaj hasło"
+                        placeholder="Your password"
                     />
                     <br />
-                    <button class="button button1" type="submit">
-                        Zarejestruj<i className="GuestBookButton2" aria-hidden="true" />
+                    <button className="button button1" type="submit">
+                        Sign up<i className="GuestBookButton2" aria-hidden="true" />
                     </button>
                     
                     <br />
-                    <button class="loginBtn loginBtn--google">
+                    <button className="loginBtn loginBtn--google">
                     Login with Google
                 </button> 
-                <button class="loginBtn loginBtn--facebook">
+                <button className="loginBtn loginBtn--facebook">
                     Login with Facebook
                 </button>
                 </form>

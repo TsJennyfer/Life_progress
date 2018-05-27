@@ -27,9 +27,9 @@ class Wylogowanie extends React.Component {
     render() {
         return (
             <div>
-                <form className="logoutForm" on onSubmit={this.logOut}>
+                <form className="logoutForm" onSubmit={this.logOut}>
                     <button type="submit">
-                        Wyloguj się<i className="GuestBookButton2" aria-hidden="true" />
+                        Sign out<i className="GuestBookButton2" aria-hidden="true" />
                     </button>
                 </form>
             </div>

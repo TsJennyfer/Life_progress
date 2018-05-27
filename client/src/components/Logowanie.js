@@ -63,14 +63,14 @@ class Logowanie extends React.Component {
         return (
             <div>
                 <hr />
-                Logowanie
+                Sign in
                 <form className="loginForm" onSubmit={this.logIn}>
                     <input
                         onChange={this.handleEmail}
                         name="email"
                         type="email"
                         value={this.state.email}
-                        placeholder="Podaj email"
+                        placeholder="Your email"
                     />
                     <br />
                     <input
@@ -79,11 +79,11 @@ class Logowanie extends React.Component {
                         type="password"
                         minLength={3}
                         value={this.state.userPassword}
-                        placeholder="Podaj hasło"
+                        placeholder="Your password"
                     />                    
                     <br />
-                    <button class="button button1" type="submit">
-                        Zaloguj się<i className="GuestBookButton2" aria-hidden="true" />
+                    <button className="button button1" type="submit">
+                        Sign in<i className="GuestBookButton2" aria-hidden="true" />
                     </button>
                 </form>
             </div>

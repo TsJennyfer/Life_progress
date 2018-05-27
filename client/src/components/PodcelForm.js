@@ -2,6 +2,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import '../css/Cele.css';
+
 class PodcelForm extends React.Component {
 
     constructor(props) {
@@ -57,8 +59,9 @@ class PodcelForm extends React.Component {
 
     render() {
         return (
-            <div>
-                PodcelForm - tylko dodawanie podcelu
+            <div className="add_container">
+            
+Have you any new tasks here? Add it :)
                 <form className="registerForm" onSubmit={this.addSubGoal}>
                     name:
                     <input
@@ -66,10 +69,11 @@ class PodcelForm extends React.Component {
                         name="name"
                         type="text"
                         value={this.state.name}
-                        placeholder="Nazwa podcelu"
+                        placeholder="Task name"
                     />
                     <br />
-                    priority:
+                    
+                    {/*  priority:
                     <input
                         onChange={this.handlePriorityChange}
                         name="priority"
@@ -78,9 +82,10 @@ class PodcelForm extends React.Component {
                         placeholder="priority"
                     />
                     <br />
-
-                    <button type="submit">
-                        Dodaj Podcel<i className="GuestBookButton2" aria-hidden="true" />
+                    */}
+                    <br />
+                    <button className = "addButton" type="submit">
+                      <b>  + </b>Add task <i className="GuestBookButton2" aria-hidden="true" />
                     </button>
                 </form>
             </div>
