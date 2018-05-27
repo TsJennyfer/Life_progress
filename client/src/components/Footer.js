@@ -4,23 +4,20 @@ import logo from '../resourses/logo.png';
 
 import '../css/Footer.css';
 
-
 class Footer extends React.Component {
     render() {
         return (
             <div>
-                     <table>
-                         <td>
-                             <tr>
-                                 <span> 
-                                    <button className='button_logo round' onClick={this.handleClick}>
-                                    LIFE PROGRESS<br /> <img src={logo} width="40" height="40" />
-                                    </button> 
-                                </span>
-                            </tr>
-                        </td>
+                <table>
                         <td>
                             <tr>
+                                <button className='button_logo round' onClick={this.handleClick}>
+                                    LIFE PROGRESS<br /> <img src={logo} width="40" height="40" />
+                                </button> 
+                            </tr>                            
+                        </td>
+                        <td>
+                           <tr>
                                 <button className='button_down' onClick={this.handleClick}><span>HOME</span></button>
                                 <button className='button_down' onClick={this.handleClick}><span>OUR TEAM</span></button>
                             </tr>
@@ -31,9 +28,9 @@ class Footer extends React.Component {
                             <tr> 
                                 <button className='button_down' onClick={this.handleClick}><span>START TUTORIAL</span></button>       
                                 <button className='button_down' onClick={this.handleClick}><span>SIGN IN</span></button>
-                            </tr>
+                            </tr> 
                         </td>
-                    </table>
+                </table>
             </div>
         )
     }

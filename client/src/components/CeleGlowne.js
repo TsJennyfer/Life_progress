@@ -62,7 +62,7 @@ class CeleGlowne extends React.Component {
                
                 <button class="button-cel-glowny" onClick={() => this.props.addMainGoal()}>
                 <b>+</b>
-                <br />Dodaj cel
+                <br />Add goal
                 </button>
                 {this.drawGoals()}
             </div>

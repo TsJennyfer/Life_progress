@@ -8,7 +8,7 @@ const Main_goal = () => {
     return (
       <div>
         <center>
-          <table>
+          <table><tbody>
             <center>
               <tr class="spaceUnder">
                 <td colSpan = "4"> <button className='buttonR round'> BIEGANIE </button> </td>
@@ -23,7 +23,7 @@ const Main_goal = () => {
                 <td><button class="buttonR round">PRZEBIEGNIJ<br /> 2KM</button></td>
               </tr>
             </center>
-          </table>
+            </tbody></table>
         </center>
       </div>
     );

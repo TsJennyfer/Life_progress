@@ -2,7 +2,6 @@
 server: nodemon
 client: npm run start */
 
-
 import React, { Component } from 'react';
 import './css/App.css';
 import axios from 'axios';
@@ -15,6 +14,7 @@ class App extends Component {
     this.state = {
       goal: {}
     }
+    
 
   this.handleClick = this.handleClick.bind(this)
     //example variable declaration
@@ -25,12 +25,13 @@ class App extends Component {
     axios.get('/goal/' + this.goals)
       .then(function(response){console.log(response.data)});
   }
+  
 
   render () {
     return (
       <div>
         <center>
-        <MainPage />
+          <MainPage />
         </center>
       </div>
     )

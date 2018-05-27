@@ -71,7 +71,7 @@ class CelFormularz extends React.Component {
     render() {
         return (
             <div>
-                CelFormularz - dodanie jakiegokolwiek celu
+               {/* CelFormularz - dodanie jakiegokolwiek celu
                 <form className="registerForm" onSubmit={this.addGoal}>
                     name:
                     <input
@@ -112,8 +112,8 @@ class CelFormularz extends React.Component {
 
                     <button type="submit">
                         Dodaj Cel<i className="GuestBookButton2" aria-hidden="true" />
-                    </button>
-                </form>
+                    </button> 
+                </form>*/}
             </div>
         );
     }
