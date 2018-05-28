@@ -82,6 +82,7 @@ class CelGlownyForm extends React.Component {
                         name="name"
                         type="text"
                         value={this.state.name}
+                        minLength={3}
                         placeholder="Goal name"
                     />
                      {/*
