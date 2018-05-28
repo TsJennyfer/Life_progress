@@ -1,11 +1,12 @@
-
 // To jest pojedynczy cel ze szczegółami, który ładuje dynamicznie wszystkie podcele
-import {Timeline, TimelineEvent} from 'react-event-timeline'
+import { Timeline, TimelineEvent } from 'react-event-timeline'
 import React from 'react';
 import axios from 'axios';
 import PodcelForm from './PodcelForm';
+import { CSSTransitionGroup } from 'react-transition-group'
 
 import '../css/Cele.css';
+import '../css/PodceleAnimacje.css';
 
 class CelDynamicznie extends React.Component {
     constructor(props) {
@@ -70,12 +71,20 @@ class CelDynamicznie extends React.Component {
             Object
                 .keys(this.state.goals)
                 .map(key =>
-                    <button
-                        className={(this.state.goals[key].priority === 0) ? "button-sub-goal-done" : "button-sub-goal"}
-                        id={key}
-                        onClick={() => this.changePriority(key)}>
-                        {this.state.goals[key].name}
-                    </button>
+                    <CSSTransitionGroup
+                        transitionName="subgoals"
+                        transitionEnterTimeout={5000}
+                        transitionLeaveTimeout={3000}
+                        transitionAppear={true}
+                        transitionAppearTimeout={800}>
+
+                        <button
+                            className={(this.state.goals[key].priority === 0) ? "button-sub-goal-done" : "button-sub-goal"}
+                            id={key}
+                            onClick={() => this.changePriority(key)}>
+                            {this.state.goals[key].name}
+                        </button>
+                    </CSSTransitionGroup>
                 )
         );
 
@@ -122,12 +131,12 @@ class CelDynamicznie extends React.Component {
     render() {
         return (
             <div>
-            
+
                 <button className="button-cel-main">
                     {this.state.goal.name}
                 </button> <br />
-                <div class = "grid-sub-goal">
-                {this.drawGoalsTree()}
+                <div class="grid-sub-goal">
+                    {this.drawGoalsTree()}
                 </div>
                 <br />
                 <Timeline>
@@ -138,12 +147,12 @@ class CelDynamicznie extends React.Component {
                     <TimelineEvent
                         title="xxx"
                         createdAt="2016-09-11 09:06 AM"
-                        icon={<i className="material-icons md-18"></i>}>   
+                        icon={<i className="material-icons md-18"></i>}>
                     </TimelineEvent>
                     <TimelineEvent
                         title="xxx"
                         createdAt="2016-09-14 09:06 AM"
-                        icon={<i className="material-icons md-18"></i>}>   
+                        icon={<i className="material-icons md-18"></i>}>
                     </TimelineEvent>
                 </Timeline>
                 <br />

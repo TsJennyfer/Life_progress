@@ -1,0 +1,28 @@
+.subgoals-enter {
+    opacity: 0.01;
+  }
+  
+  .subgoals-enter.subgoals-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+  
+  .subgoals-leave {
+    opacity: 1;
+  }
+  
+  .subgoals-leave.subgoals-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+  }
+
+  .subgoals-appear {
+    opacity: 0.01;
+  }
+  
+  .subgoals-appear.subgoals-appear-active {
+    opacity: 1;
+    transition: opacity .5s ease-in;
+  }
+
+  
