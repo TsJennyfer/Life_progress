@@ -4,6 +4,7 @@
   grid-template-rows: auto;
   grid-gap: 1rem;
   grid-row-gap: 4rem;
+  align: center;
 
 }
 

@@ -101,6 +101,7 @@ class Main extends React.Component {
         else if (!this.state.isUserLoggedIn) {
             return (
                 <div>
+                    
                     <Rejestracja />
                     <Logowanie checkToken={this.checkToken} />
                     <Wylogowanie />
