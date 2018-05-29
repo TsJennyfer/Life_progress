@@ -18,7 +18,6 @@ class Rejestracja extends React.Component {
         }
     }
 
-
     //Dodanie użytkownika
     addUser(event) {
         event.preventDefault();
@@ -55,7 +54,7 @@ class Rejestracja extends React.Component {
         return (
             <div>
                 <hr />
-                Not a member? Create an account
+                <h2>Not a member? Create an account</h2>
                 <form className="registerForm" onSubmit={this.addUser}>
                     <input
                         onChange={this.handleEmail}

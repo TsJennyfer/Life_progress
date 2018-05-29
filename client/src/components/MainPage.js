@@ -34,17 +34,6 @@ class MainPage extends React.Component {
                     backgroundImage={header}
                 >
                 </StickyHeader>
-<h1>Hello in Life progress</h1>
-<br />
-Our features
-<br />
-
-Easy planning
-<br />
-Organize tasks
-<br />
-<button className="button button1"> START PLANNING
-</button>
                 <div className="main__container">
                     <Main />
                     <Footer />

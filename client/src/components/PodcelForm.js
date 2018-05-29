@@ -46,8 +46,6 @@ class PodcelForm extends React.Component {
             .catch(err => {
                 console.log(err, 'Błąd dodawania podcelu');
             });
-
-        
     }
 
     handleNameChange(event) {
@@ -61,7 +59,7 @@ class PodcelForm extends React.Component {
         return (
             <div className="add_container">
             
-Have you any new tasks here? Add it :)
+            <h2>Have you any new tasks here? Add it :)</h2>
                 <form className="registerForm" onSubmit={this.addSubGoal}>
                     name:
                     <input

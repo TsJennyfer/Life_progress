@@ -58,14 +58,18 @@ class CeleGlowne extends React.Component {
     render() {
 
         return (
-            <div class="grid-cele-glowne" >
-               
-                <button class="button-cel-glowny" onClick={() => this.props.addMainGoal()}>
-                <b>+</b>
-                <br />Add goal
-                </button>
-                {this.drawGoals()}
+            <div>
+                <h2>This is your goal list</h2>
+                <br />
+                <div class="grid-cele-glowne" >
+                    <button class="button-cel-glowny" onClick={() => this.props.addMainGoal()}>
+                    <b>+</b>
+                    <br />Add goal
+                    </button>
+                    {this.drawGoals()}
+                </div>
             </div>
+
         )
     }
 }

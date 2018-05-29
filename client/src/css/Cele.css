@@ -1,11 +1,10 @@
 .grid-sub-goal {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  display: block;
+    grid-template-columns: repeat(6, 1fr);
   grid-template-rows: auto;
   grid-gap: 1rem;
   grid-row-gap: 4rem;
   align: center;
-
 }
 
 .button-sub-goal {

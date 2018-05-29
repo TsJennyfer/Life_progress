@@ -8,6 +8,8 @@ import CelDynamicznie from './CelDynamicznie';
 import CelFormularz from './CelFormularz';
 import CelGlownyForm from './CelGlownyForm';
 // import Graph from './Graph';
+import icon from '../resourses/done_icon.png';
+
 
 class Main extends React.Component {
 
@@ -101,7 +103,24 @@ class Main extends React.Component {
         else if (!this.state.isUserLoggedIn) {
             return (
                 <div>
-                    
+                    <h1>Hello in Life progress</h1>
+                    <br />
+                    <h2>Our features</h2>
+                    <br />
+                    <table>
+                        <td><tr>
+                            <img src={icon} width="30" height="30" />  Easy planning
+                        </tr><tr>
+                            <img src={icon} width="30" height="30" />  Organize tasks
+                        </tr><tr>
+                            <img src={icon} width="30" height="30" />  Focus on your goals
+                        </tr></td>
+                    </table>
+                    <button className="button button1"> START PLANNING
+                    </button>                    
+                    <br />
+                    <br />
+                    <br />
                     <Rejestracja />
                     <Logowanie checkToken={this.checkToken} />
                     <Wylogowanie />

@@ -63,7 +63,7 @@ class Logowanie extends React.Component {
         return (
             <div>
                 <hr />
-                Sign in
+                <h2>Sign in</h2>
                 <form className="loginForm" onSubmit={this.logIn}>
                     <input
                         onChange={this.handleEmail}
