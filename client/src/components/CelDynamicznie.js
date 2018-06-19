@@ -6,6 +6,7 @@ import PodcelForm from './PodcelForm';
 import { CSSTransitionGroup } from 'react-transition-group'
 
 import '../css/Cele.css';
+import '../css/App.css';
 import '../css/PodceleAnimacje.css';
 
 class CelDynamicznie extends React.Component {
@@ -77,13 +78,18 @@ class CelDynamicznie extends React.Component {
                         transitionLeaveTimeout={3000}
                         transitionAppear={true}
                         transitionAppearTimeout={800}>
+                        <div className="goal-container">
+                            <div
+                                className={(this.state.goals[key].priority === 0) ? "button-sub-goal-done" : "button-sub-goal"}
+                                id={key}
+                                onClick={() => this.changePriority(key)}>
+                                {this.state.goals[key].name}
+                                <button type="button" class="btn btn-default btn-sm trash-btn">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </div>
 
-                        <button
-                            className={(this.state.goals[key].priority === 0) ? "button-sub-goal-done" : "button-sub-goal"}
-                            id={key}
-                            onClick={() => this.changePriority(key)}>
-                            {this.state.goals[key].name}
-                        </button>
+                        </div>
                     </CSSTransitionGroup>
                 )
         );
@@ -134,7 +140,7 @@ class CelDynamicznie extends React.Component {
                 <button className="button-cel-main">
                     {this.state.goal.name}
                 </button> <br />
-                <div class="grid-sub-goal">
+                <div className="grid-sub-goal">
                     {this.drawGoalsTree()}
                 </div>
                 <br />
