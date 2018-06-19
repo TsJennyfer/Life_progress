@@ -6,6 +6,7 @@ import PodcelForm from './PodcelForm';
 import { CSSTransitionGroup } from 'react-transition-group'
 
 import '../css/Cele.css';
+import '../css/App.css';
 import '../css/PodceleAnimacje.css';
 
 class CelDynamicznie extends React.Component {
@@ -16,6 +17,7 @@ class CelDynamicznie extends React.Component {
         this.drawGoalsTree = this.drawGoalsTree.bind(this);
         this.changePriority = this.changePriority.bind(this);
         this.changeButtonColor = this.changeButtonColor.bind(this);
+        this.removeGoal = this.removeGoal.bind(this);
         this.state = {
             goals: {},
             goalId: this.props.goalId,
@@ -56,7 +58,6 @@ class CelDynamicznie extends React.Component {
                 this.setState({
                     goals: response.data
                 });
-                //console.log(response, 'Wszystkie podcele znalezione');
             })
             .catch(err => {
                 console.log(err, 'Goal not found, try again.');
@@ -77,13 +78,20 @@ class CelDynamicznie extends React.Component {
                         transitionLeaveTimeout={3000}
                         transitionAppear={true}
                         transitionAppearTimeout={800}>
+                        <div className="goal-container">
+                            <div
+                                className={(this.state.goals[key].priority === 0) ? "button-sub-goal-done" : "button-sub-goal"}
+                                id={key}
+                                onClick={() => this.changePriority(key)}>
+                                {this.state.goals[key].name}
+                                <button type="button"
+                                 className="btn btn-default btn-sm trash-btn" 
+                                 onClick={() => this.removeGoal(key)}>
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </div>
 
-                        <button
-                            className={(this.state.goals[key].priority === 0) ? "button-sub-goal-done" : "button-sub-goal"}
-                            id={key}
-                            onClick={() => this.changePriority(key)}>
-                            {this.state.goals[key].name}
-                        </button>
+                        </div>
                     </CSSTransitionGroup>
                 )
         );
@@ -112,7 +120,6 @@ class CelDynamicznie extends React.Component {
             .catch(err => {
                 console.log(err);
             });
-        // this.changeButtonColor(id);
     }
 
     changeButtonColor(id) {
@@ -127,6 +134,19 @@ class CelDynamicznie extends React.Component {
         }
     }
 
+    removeGoal(id) {
+        //delete this.state.goals[id]; poźniej tak
+
+        axios.delete("/goals/" + this.state.goals[id]._id)
+        .then(response => {
+            console.log(response)
+        })
+        .catch(err => {
+            console.log(err);
+        });
+        this.findAllGoals();
+
+    }
 
     render() {
         return (
@@ -134,11 +154,11 @@ class CelDynamicznie extends React.Component {
                 <button className="button-cel-main">
                     {this.state.goal.name}
                 </button> <br />
-                <div class="grid-sub-goal">
+                <div className="grid-sub-goal">
                     {this.drawGoalsTree()}
                 </div>
                 <br />
-                <Timeline>
+               {/* <Timeline>
                     <TimelineEvent title="xxx"
                         createdAt="2016-09-12 10:06 PM"
                         icon={<i className="material-icons md-18"></i>}>
@@ -154,6 +174,7 @@ class CelDynamicznie extends React.Component {
                         icon={<i className="material-icons md-18"></i>}>
                     </TimelineEvent>
                 </Timeline>
+               */}
                 <br />
                 <PodcelForm goal={this.state.goal} findAllGoals={this.findAllGoals} />
             </div>
