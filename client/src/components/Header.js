@@ -13,7 +13,6 @@ const Top_menu = () => {
     return (
         <div className = "top__container">
             <center>
-                <br/>
                 <button className='button_top' onClick={this.handleClick}><span>HOME</span></button>
                 <button className='button_top' onClick={this.handleClick}><span>START TUTORIAL</span></button>
                 <button className='button_top' onClick={this.handleClick}><span>OUR TEAM</span></button>
