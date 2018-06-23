@@ -6,15 +6,22 @@ const mongoose = require('mongoose');
 const index = require('./routes/index');
 const goalsRoutes = require('./routes/goals');
 const userRoutes = require('./routes/user');
+const userProfile = require('./routes/userprofile');
 const morgan = require('morgan');
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const flash    = require('connect-flash');
 
-//google
-passport = require('passport');
-auth = require("./auth");
-cookieParser = require('cookie-parser'),
-cookieSession = require('cookie-session');
 
 const app = express();
+//google
+//passport = require('passport');
+auth = require("./auth");
+//cookieParser = require('cookie-parser'),
+cookieSession = require('cookie-session');
+
+//const app = express();
 
 //google
 auth(passport);
@@ -26,7 +33,7 @@ app.use(cookieSession({
 }));
 app.use(cookieParser());
 //google
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
     if (req.session.token) {
         res.cookie('token', req.session.token);
         res.json({
@@ -38,7 +45,7 @@ app.get('/', (req, res) => {
             status: 'session cookie not set'
         });
     }
-});
+});*/
 //google
 app.get('/logout', (req, res) => {
     req.logout();
@@ -47,23 +54,22 @@ app.get('/logout', (req, res) => {
 });
 //google
 app.get('/auth/google', passport.authenticate('google', {
-    scope: ['https://www.googleapis.com/auth/userinfo.profile']
+    scope: ['profile', 'email']
 }));
 //google
 app.get('/auth/google/callback',
-    passport.authenticate('google', {failureRedirect:'/'}),
-    (req, res) => {
-        req.session.token = req.user.token;
-        res.redirect('http://localhost:3000');
-    }
+    passport.authenticate('google', {successRedirect: 'http://localhost:3000' ,failureRedirect:'/'})
 );
 
+require('./config/passport')(passport); // pass passport for configuration
 
 const port = 5000;
 app.use(morgan('dev'));
+//app.use(cookieParser());
+
 
 //Connect to mongodb
-mongoose.connect('mongodb://admin:admin@ds115579.mlab.com:15579/life_progress');
+mongoose.connect('mongodb://admin:!admin!@lifeprogress-shard-00-00-3k52d.mongodb.net:27017,lifeprogress-shard-00-01-3k52d.mongodb.net:27017,lifeprogress-shard-00-02-3k52d.mongodb.net:27017/Life_Progress?ssl=true&replicaSet=LifeProgress-shard-0&authSource=admin&retryWrites=true');
 
 //Mongo on connection
 mongoose.connection.on('Connected',()=>{
@@ -91,10 +97,19 @@ app.use(express.static(path.join(__dirname, 'client')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+
+// required for passport
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
 //Routes
 app.use('/user', userRoutes);
 app.use('/', index);
 app.use('/goals', goalsRoutes);
+//require('./routes/userprofile.js')(app, passport);
+
 
 
 app.use((req, res, next) => {

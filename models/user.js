@@ -9,6 +9,11 @@ const UserSchema = mongoose.Schema({
     //sex:{type: String, require: True},
     email:{type: String, require: true, unique: true},
     //goals:[{type: mongoose.Schema.Types.ObjectId, ref: 'Goal'}]
+
+    googleId:{type: String},
+    googleToken:{type: String},
+    googleEmail:{type: String},
+    googleName:{type: String},
 });
 
 module.exports = mongoose.model('User', UserSchema);

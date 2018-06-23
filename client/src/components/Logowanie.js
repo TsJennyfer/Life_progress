@@ -75,7 +75,7 @@ class Logowanie extends React.Component {
                     <br />
                     <input
                         onChange={this.handlePassword}
-                        name="userPassword"
+                        name="password"
                         type="password"
                         minLength={3}
                         value={this.state.userPassword}
@@ -93,3 +93,8 @@ class Logowanie extends React.Component {
 }
 
 export default Logowanie;
+
+
+
+
+//zmieniłem userPassword na password wszędzie
