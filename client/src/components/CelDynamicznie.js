@@ -151,7 +151,7 @@ class CelDynamicznie extends React.Component {
     render() {
         return (
             <div>
-                <button className="button-cel-main">
+                <button className="button-cel-glowny">
                     {this.state.goal.name}
                 </button> <br />
                 <div className="grid-sub-goal">

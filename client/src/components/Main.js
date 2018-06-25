@@ -77,7 +77,7 @@ class Main extends React.Component {
                     <div>
                         <CeleGlowne renderGoal={this.renderGoal} addMainGoal={this.addMainGoal} />
                         <button className="log-out-button" onClick={() => this.logOut()}>
-                            Wyloguj
+                            Sign out
                             </button>
                     </div>
                 )
@@ -123,7 +123,7 @@ class Main extends React.Component {
                     <br />
                     <Rejestracja />
                     <Logowanie checkToken={this.checkToken} />
-                    <Wylogowanie />
+                    <br />
                 </div>
             )
         }
