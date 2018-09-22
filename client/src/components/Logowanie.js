@@ -15,7 +15,7 @@ class Logowanie extends React.Component {
         this.handlePassword = this.handlePassword.bind(this);
         this.state = {
             email: "",
-            userPassword: "",
+            password: "",
             token: ""
         }
     }
@@ -26,12 +26,12 @@ class Logowanie extends React.Component {
         event.preventDefault();
         this.setState({
             email: event.target.value,
-            userPassword: event.target.value,
+            password: event.target.value,
         });
 
-        axios.post('/user/signin', {
+        axios.post('/users/signin', {
             email: this.state.email,
-            userPassword: this.state.userPassword,
+            password: this.state.password,
         })
             .then(response => {
                 console.log(response, 'User logged in!');
@@ -47,7 +47,7 @@ class Logowanie extends React.Component {
 
         this.setState({
             email: "",
-            userPassword: "",
+            password: "",
         });
     }
 
@@ -56,7 +56,7 @@ class Logowanie extends React.Component {
         this.setState({ email: event.target.value });
     }
     handlePassword(event) {
-        this.setState({ userPassword: event.target.value });
+        this.setState({ password: event.target.value });
     }
 
     render() {
@@ -75,10 +75,10 @@ class Logowanie extends React.Component {
                     <br />
                     <input
                         onChange={this.handlePassword}
-                        name="userPassword"
+                        name="password"
                         type="password"
                         minLength={3}
-                        value={this.state.userPassword}
+                        value={this.state.password}
                         placeholder="Your password"
                     />                    
                     <br />

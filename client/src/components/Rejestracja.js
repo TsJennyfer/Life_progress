@@ -14,7 +14,7 @@ class Rejestracja extends React.Component {
         this.handlePassword = this.handlePassword.bind(this);
         this.state = {
             email: "",
-            userPassword: ""
+            password: ""
         }
     }
 
@@ -23,12 +23,12 @@ class Rejestracja extends React.Component {
         event.preventDefault();
         this.setState({
             email: event.target.value,
-            userPassword: event.target.value,
+            password: event.target.value,
         });
 
-        axios.post('/user/signup', {
+        axios.post('/users/signup', {
             email: this.state.email,
-            userPassword: this.state.userPassword,
+            password: this.state.password,
         })
             .then(response => {
                 console.log(response, 'User added!');
@@ -39,7 +39,7 @@ class Rejestracja extends React.Component {
 
         this.setState({
             email: "",
-            userPassword: "",
+            password: "",
         });
     }
 
@@ -47,7 +47,7 @@ class Rejestracja extends React.Component {
         this.setState({ email: event.target.value });
     }
     handlePassword(event) {
-        this.setState({ userPassword: event.target.value });
+        this.setState({ password: event.target.value });
     }
 
     render() {
@@ -66,10 +66,10 @@ class Rejestracja extends React.Component {
                     <br />
                     <input
                         onChange={this.handlePassword}
-                        name="userPassword"
+                        name="password"
                         type="password"
                         minLength={3}
-                        value={this.state.userPassword}
+                        value={this.state.password}
                         placeholder="Your password"
                     />
                     <br />
