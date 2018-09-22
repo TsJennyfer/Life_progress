@@ -1,83 +1,18 @@
 const express = require('express');
-const path = require('path');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-
-const index = require('./routes/index');
-const goalsRoutes = require('./routes/goals');
-const userRoutes = require('./routes/user');
+const _ = require('lodash');
+const {ObjectId} = require('mongodb');
 const morgan = require('morgan');
+const path = require('path');
 
-//google
-passport = require('passport');
-auth = require("./auth");
-cookieParser = require('cookie-parser'),
-cookieSession = require('cookie-session');
-
-const app = express();
-
-//google
-auth(passport);
-app.use(passport.initialize());
-//google
-app.use(cookieSession({
-    name: 'session',
-    keys: ['123']
-}));
-app.use(cookieParser());
-//google
-app.get('/', (req, res) => {
-    if (req.session.token) {
-        res.cookie('token', req.session.token);
-        res.json({
-            status: 'session cookie set'
-        });
-    } else {
-        res.cookie('token', '')
-        res.json({
-            status: 'session cookie not set'
-        });
-    }
-});
-//google
-app.get('/logout', (req, res) => {
-    req.logout();
-    req.session = null;
-    res.redirect('/');
-});
-//google
-app.get('/auth/google', passport.authenticate('google', {
-    scope: ['https://www.googleapis.com/auth/userinfo.profile']
-}));
-//google
-app.get('/auth/google/callback',
-    passport.authenticate('google', {failureRedirect:'/'}),
-    (req, res) => {
-        req.session.token = req.user.token;
-        res.redirect('http://localhost:3000');
-    }
-);
+var {mongoose} = require('./db/mongoose');
+var {Goal} = require('./models/goal');
+var {User} = require('./models/user');
+var {authenticate} = require('./middleware/authenticate');
 
 
-const port = 5000;
-app.use(morgan('dev'));
-
-//Connect to mongodb
-mongoose.connect('mongodb://admin:admin@ds115579.mlab.com:15579/life_progress');
-
-//Mongo on connection
-mongoose.connection.on('Connected',()=>{
-    console.log('Connected to database mongodb');
-});
-
-//Mongo erros
-mongoose.connection.on('error',(err)=>{
-    if(err)
-    {
-        console.log('Error in database connection '+ err);
-    }
-});
-mongoose.Promise = global.Promise;
+var app = express();
+const port = process.env.PORT || 5000;
 
 //View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -91,28 +26,140 @@ app.use(express.static(path.join(__dirname, 'client')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-//Routes
-app.use('/user', userRoutes);
-app.use('/', index);
-app.use('/goals', goalsRoutes);
+app.use(morgan('dev'));
 
+//#############################################################
+//ROUTES
 
-app.use((req, res, next) => {
-    const error = new Error("Not found");
-    error.status = 404;
-    next(error);
-  });
-  
-  app.use((error, req, res, next) => {
-    res.status(error.status || 500);
-    res.json({
-      error: {
-        message: error.message
-      }
+//Rejestracja
+app.post('/users/signup', (req, res)=> {
+    var body = _.pick(req.body, ['email', 'password']);
+    var user = new User(body);
+
+    user.save().then(() => {
+        return user.generateAuthToken();
+    }).then((token)=>{
+        res.header('x-auth', token).send(user);
+    }).catch((error) => {
+        res.status(400).send(error);
+    })
+});
+
+//Pobiera użytkownika po ID
+app.get('/users/me',authenticate, (req , res) => {
+    res.send(req.user);
+});
+
+//Logowanie
+app.post('/users/signin', (req, res) => {
+    var body = _.pick(req.body, ['email', 'password']);
+
+    User.findByCredentials(body.email, body.password).then((user) => {
+        user.generateAuthToken().then((token) => {
+            res.header('x-auth', token).send(user);
+        });
+    }).catch((error) => {
+        res.status(400).send();
     });
-  });
+});
+
+//Wylogowanie
+app.delete('/users/logout', authenticate, (req, res)=> {
+    req.user.removeToken(req.token).then(()=> {
+        res.status(200).send();
+    }, () => {
+        res.status(400).send();
+    });
+})
+
+//Dodanie celu
+app.post('/goals/', authenticate, (req, res) => {
+    var goal = new Goal({
+        name: req.body.name,
+        _creator: req.user._id,
+        parent: req.body.parent
+    });
+
+    goal.save().then((doc) => {
+        res.send(doc);
+    }, (error) => {
+        res.status(400).send(error);
+    });
+});
+
+//Pobieranie głównych celi użytkownika
+app.get('/goals/mainUserGoals', authenticate, (req, res) => {
+    Goal.find({
+        parent: null,
+        _creator: req.user._id
+    }).then((goals) => {
+        res.send({ goals });
+    }, (error) => {
+        res.status(400).send(error);
+    });
+});
+
+//Pobieranie celu głównego i podceli użytkownika
+app.get('/goals/mainUserGoalAndSubgoals/:id', authenticate, (req, res) => {
+    Goal.find({$or: [{parent: req.params.id}, {_id: req.params.id}]
+    }).then((goals) => {
+        res.send({ goals });
+    }, (error) => {
+        res.status(400).send(error);
+    });
+});
+
+//Usuwanie celu użytkownika
+app.delete('/goals/:id', authenticate, (req, res) => {
+    var id = req.params.id;
+
+    if (!ObjectId.isValid(id)) {
+        return res.status(404).send();
+    }
+
+    Goal.findOneAndRemove({
+        _id: id,
+        _creator: req.user._id
+    }).then((goal) => {
+        if (!goal) {
+            return res.status(404).send();
+        }
+
+        res.send(goal);
+    }).catch((error) => {
+        res.status(400).send();
+    });
+});
+
+//Edycja celu
+app.patch('/goals/:id', authenticate, (req, res) => {
+    var id = req.params.id;
+    var body = _.pick(req.body, ['name', 'completed']); //jakie pola zmieniamy
+
+    if (!ObjectId.isValid(id)) {
+        return res.status(404).send();
+    }
+
+    if (_.isBoolean(body.completed) && body.completed) {
+        body.completedAt = new Date().getTime();
+    } else {
+        body.completed = false;
+        body.completedAt = null;
+    }
+
+    Goal.findOneAndUpdate({_id: id, _creator: req.user._id}, {$set: body}, {new: true}).then((goal)=>{
+        if (!goal){
+            return res.status(404).send();
+        }
+
+        res.send({goal});
+    }).catch((error)=>{
+        res.status(400).send();
+    })
+});
 
 
-app.listen(port, function(){
-    console.log('Server started on port ' +port);
+
+app.listen(port,() => {
+    console.log(`Server started on port ${port}`);
 });

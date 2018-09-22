@@ -1,14 +1,20 @@
-const mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var mongoose = require('mongoose');
 
-const GoalSchema = mongoose.Schema({
-    name:{type: String, minlength: 3, require: true},
-    priority:{type: Number, require: true},
+var Goal = mongoose.model('Goal', {
+    name: {type: String, required: true, minlenght: 3, trim: true},
+    completed: {type: Boolean, default: false},
+    createdAt: {type: Number, default: null},
+    completedAt: {type: Number, default: null},
+    _creator: {type: mongoose.Schema.Types.ObjectId, required: true},
+    parent: {type: mongoose.Schema.Types.ObjectId,  default: null}
+
+/*  priority:{type: Number, require: true},
     status:{type: Number},
     parent:{type: mongoose.Schema.Types.ObjectId, ref: 'Goal'},
     userId:{type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     createDate:{type: Date, default: Date.now},
     finishDate:{type: Date}
+*/
 });
 
-const Goal = module.exports = mongoose.model('Goal', GoalSchema);
+module.exports = {Goal};

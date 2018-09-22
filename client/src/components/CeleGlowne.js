@@ -37,7 +37,7 @@ class CeleGlowne extends React.Component {
             .catch(err => {
                 console.log(err, 'Goals not found, try again.');
             });
-    }
+    }z
 
     // Rysowanie głównych celów
     drawGoals() {
