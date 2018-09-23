@@ -72,12 +72,33 @@ app.delete('/users/logout', authenticate, (req, res)=> {
     });
 })
 
+//Zmiana danych użytkownika NARAZIE TYLKO EMAIL
+app.patch('/users/:id', authenticate, (req, res) => {
+    var id = req.params.id;
+    var body = _.pick(req.body, ['email', 'password']); //jakie pola zmieniamy
+
+    if (!ObjectId.isValid(id)) {
+        return res.status(404).send();
+    }
+
+    User.findOneAndUpdate({_id: id}, {$set: body}, {new: true}).then((user)=>{
+        if (!user){
+            return res.status(404).send();
+        }
+
+        res.send({user});
+    }).catch((error)=>{
+        res.status(400).send();
+    })
+});
+
 //Dodanie celu
 app.post('/goals/', authenticate, (req, res) => {
     var goal = new Goal({
         name: req.body.name,
         _creator: req.user._id,
-        parent: req.body.parent
+        parent: req.body.parent,
+        createdAt: req.body.createdAt = new Date().getTime()
     });
 
     goal.save().then((doc) => {
@@ -102,6 +123,17 @@ app.get('/goals/mainUserGoals', authenticate, (req, res) => {
 //Pobieranie celu głównego i podceli użytkownika
 app.get('/goals/mainUserGoalAndSubgoals/:id', authenticate, (req, res) => {
     Goal.find({$or: [{parent: req.params.id}, {_id: req.params.id}]
+    }).then((goals) => {
+        res.send({ goals });
+    }, (error) => {
+        res.status(400).send(error);
+    });
+});
+
+//Pobieranie podcelów po ID rodzica
+app.get('/goals/main/children/:id', authenticate, (req, res) => {
+    Goal.find({
+        parent: req.params.id
     }).then((goals) => {
         res.send({ goals });
     }, (error) => {
