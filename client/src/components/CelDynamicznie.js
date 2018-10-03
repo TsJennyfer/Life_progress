@@ -21,7 +21,7 @@ class CelDynamicznie extends React.Component {
         this.state = {
             goals: {},
             goalId: this.props.goalId,
-            goal: {},
+            goal: null,
             isDone: false
         };
     }
@@ -44,7 +44,7 @@ class CelDynamicznie extends React.Component {
             .then(response => {
 
                 this.setState({
-                    goal: response.data
+                    goal: response.data.goals
                 },
                     this.findAllGoals);     // findAllGoals wywołuję tutaj, a nie w componentDidMount, aby miec pewność, że setState zostało wykonane
                 // console.log(response.data.mainGoal, 'goal 2!');
@@ -164,7 +164,7 @@ class CelDynamicznie extends React.Component {
         return (
             <div>
                 <button className="button-cel-glowny">
-                    {this.state.goal.name}
+                   {(this.state.goal !== null) ? this.state.goal[0].name : " " }
                 </button> <br />
                 <div className="grid-sub-goal">
                     {this.drawGoalsTree()}
