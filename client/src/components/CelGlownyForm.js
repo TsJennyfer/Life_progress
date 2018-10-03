@@ -34,7 +34,7 @@ class CelGlownyForm extends React.Component {
         console.log(test);
 
         var headers = {
-            'Authorization': localStorage.getItem('token'), 
+            'auth': localStorage.getItem('token'), 
             'Content-Type': 'application/json'
         }
         console.log(headers);

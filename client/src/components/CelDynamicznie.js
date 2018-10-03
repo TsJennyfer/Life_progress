@@ -35,7 +35,12 @@ class CelDynamicznie extends React.Component {
 
     // Znalezienie celu głównego
     findGoalById(event) {
-        axios.get('/goals/main/' + this.props.goalId)
+        var headers = {
+            'auth': localStorage.getItem('token'), 
+            'Content-Type': 'application/json'
+        }
+
+        axios.get('/goals/mainUserGoalAndSubgoals/' + this.props.goalId, {headers})
             .then(response => {
 
                 this.setState({
@@ -52,7 +57,12 @@ class CelDynamicznie extends React.Component {
 
     // Znalezienie wsystkich celi należących do celu głównego
     findAllGoals() {
-        axios.get('/goals/main/childrenId/' + this.state.goal._id)
+        var headers = {
+            'auth': localStorage.getItem('token'), 
+            'Content-Type': 'application/json'
+        }
+
+        axios.get('/goals/main/children/' + this.state.goalId, {headers})
             .then(response => {
 
                 this.setState({
@@ -73,6 +83,7 @@ class CelDynamicznie extends React.Component {
                 .keys(this.state.goals)
                 .map(key =>
                     <CSSTransitionGroup
+                        key = {key}
                         transitionName="subgoals"
                         transitionEnterTimeout={5000}
                         transitionLeaveTimeout={3000}
@@ -80,6 +91,7 @@ class CelDynamicznie extends React.Component {
                         transitionAppearTimeout={800}>
                         <div className="goal-container">
                             <div
+                                key = {key}
                                 className={(this.state.goals[key].priority === 0) ? "button-sub-goal-done" : "button-sub-goal"}
                                 id={key}
                                 onClick={() => this.changePriority(key)}>
