@@ -66,7 +66,7 @@ class CelDynamicznie extends React.Component {
             .then(response => {
 
                 this.setState({
-                    goals: response.data
+                    goals: response.data.goals
                 });
             })
             .catch(err => {
@@ -95,7 +95,7 @@ class CelDynamicznie extends React.Component {
                                 className={(this.state.goals[key].priority === 0) ? "button-sub-goal-done" : "button-sub-goal"}
                                 id={key}
                                 onClick={() => this.changePriority(key)}>
-                                {this.state.goals[key].name}
+                                {(this.state.goals !== null) ? this.state.goals[key].name : " "}
                                 <button type="button"
                                  className="btn btn-default btn-sm trash-btn" 
                                  onClick={() => this.removeGoal(key)}>
@@ -120,12 +120,18 @@ class CelDynamicznie extends React.Component {
         } else {
             goals[id].priority = 1;
         }
-        // podmiana załej listy podceli
+        // podmiana całej listy podceli
         this.setState({ goals: goals });
+        var headers = {
+            'auth': localStorage.getItem('token'), 
+            'Content-Type': 'application/json'
+        }
+
         axios.patch("/goals/" + this.state.goals[id]._id,
             {
                 priority: this.state.goals[id].priority
-            }).then(response => {
+            },
+        headers).then(response => {
 
                 console.log(response)
             })
