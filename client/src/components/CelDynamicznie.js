@@ -131,7 +131,7 @@ class CelDynamicznie extends React.Component {
             {
                 priority: this.state.goals[id].priority
             },
-        headers).then(response => {
+        {headers}).then(response => {
 
                 console.log(response)
             })
@@ -155,7 +155,12 @@ class CelDynamicznie extends React.Component {
     removeGoal(id) {
         //delete this.state.goals[id]; poźniej tak
 
-        axios.delete("/goals/" + this.state.goals[id]._id)
+        var headers = {
+            'auth': localStorage.getItem('token'), 
+            'Content-Type': 'application/json'
+        }
+
+        axios.delete("/goals/" + this.state.goals[id]._id, {headers})
         .then(response => {
             console.log(response)
         })
