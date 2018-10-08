@@ -25,13 +25,13 @@ class PodcelForm extends React.Component {
        
 
         var headers = {
-            'Authorization': localStorage.getItem('token'), 
+            'auth': localStorage.getItem('token'), 
             'Content-Type': 'application/json'
         }
         console.log(headers);
         axios.post('/goals/',  {
             name: this.state.name,
-            parent: this.props.goal._id,
+            parent: this.props.goal[0]._id,
             userToken: localStorage.getItem('token'),
             priority: this.state.priority
         },
