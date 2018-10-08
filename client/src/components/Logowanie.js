@@ -36,7 +36,7 @@ class Logowanie extends React.Component {
             .then(response => {
                 console.log(response, 'User logged in!');
                 this.setState({
-                    token: response.data.token
+                    token: response.headers.auth
                 });
                 localStorage.setItem('token', this.state.token);
                 this.props.checkToken();

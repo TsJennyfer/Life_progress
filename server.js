@@ -39,7 +39,7 @@ app.post('/users/signup', (req, res)=> {
     user.save().then(() => {
         return user.generateAuthToken();
     }).then((token)=>{
-        res.header('x-auth', token).send(user);
+        res.header('auth', token).send(user);
     }).catch((error) => {
         res.status(400).send(error);
     })
@@ -56,7 +56,7 @@ app.post('/users/signin', (req, res) => {
 
     User.findByCredentials(body.email, body.password).then((user) => {
         user.generateAuthToken().then((token) => {
-            res.header('x-auth', token).send(user);
+            res.header('auth', token).send(user);
         });
     }).catch((error) => {
         res.status(400).send();

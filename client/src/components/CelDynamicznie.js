@@ -21,7 +21,7 @@ class CelDynamicznie extends React.Component {
         this.state = {
             goals: {},
             goalId: this.props.goalId,
-            goal: {},
+            goal: null,
             isDone: false
         };
     }
@@ -35,11 +35,16 @@ class CelDynamicznie extends React.Component {
 
     // Znalezienie celu głównego
     findGoalById(event) {
-        axios.get('/goals/main/' + this.props.goalId)
+        var headers = {
+            'auth': localStorage.getItem('token'), 
+            'Content-Type': 'application/json'
+        }
+
+        axios.get('/goals/mainUserGoalAndSubgoals/' + this.props.goalId, {headers})
             .then(response => {
 
                 this.setState({
-                    goal: response.data
+                    goal: response.data.goals
                 },
                     this.findAllGoals);     // findAllGoals wywołuję tutaj, a nie w componentDidMount, aby miec pewność, że setState zostało wykonane
                 // console.log(response.data.mainGoal, 'goal 2!');
@@ -52,11 +57,16 @@ class CelDynamicznie extends React.Component {
 
     // Znalezienie wsystkich celi należących do celu głównego
     findAllGoals() {
-        axios.get('/goals/main/childrenId/' + this.state.goal._id)
+        var headers = {
+            'auth': localStorage.getItem('token'), 
+            'Content-Type': 'application/json'
+        }
+
+        axios.get('/goals/main/children/' + this.state.goalId, {headers})
             .then(response => {
 
                 this.setState({
-                    goals: response.data
+                    goals: response.data.goals
                 });
             })
             .catch(err => {
@@ -73,6 +83,7 @@ class CelDynamicznie extends React.Component {
                 .keys(this.state.goals)
                 .map(key =>
                     <CSSTransitionGroup
+                        key = {key}
                         transitionName="subgoals"
                         transitionEnterTimeout={5000}
                         transitionLeaveTimeout={3000}
@@ -80,10 +91,11 @@ class CelDynamicznie extends React.Component {
                         transitionAppearTimeout={800}>
                         <div className="goal-container">
                             <div
+                                key = {key}
                                 className={(this.state.goals[key].priority === 0) ? "button-sub-goal-done" : "button-sub-goal"}
                                 id={key}
                                 onClick={() => this.changePriority(key)}>
-                                {this.state.goals[key].name}
+                                {(this.state.goals !== null) ? this.state.goals[key].name : " "}
                                 <button type="button"
                                  className="btn btn-default btn-sm trash-btn" 
                                  onClick={() => this.removeGoal(key)}>
@@ -108,12 +120,18 @@ class CelDynamicznie extends React.Component {
         } else {
             goals[id].priority = 1;
         }
-        // podmiana załej listy podceli
+        // podmiana całej listy podceli
         this.setState({ goals: goals });
+        var headers = {
+            'auth': localStorage.getItem('token'), 
+            'Content-Type': 'application/json'
+        }
+
         axios.patch("/goals/" + this.state.goals[id]._id,
             {
                 priority: this.state.goals[id].priority
-            }).then(response => {
+            },
+        {headers}).then(response => {
 
                 console.log(response)
             })
@@ -137,7 +155,12 @@ class CelDynamicznie extends React.Component {
     removeGoal(id) {
         //delete this.state.goals[id]; poźniej tak
 
-        axios.delete("/goals/" + this.state.goals[id]._id)
+        var headers = {
+            'auth': localStorage.getItem('token'), 
+            'Content-Type': 'application/json'
+        }
+
+        axios.delete("/goals/" + this.state.goals[id]._id, {headers})
         .then(response => {
             console.log(response)
         })
@@ -152,7 +175,7 @@ class CelDynamicznie extends React.Component {
         return (
             <div>
                 <button className="button-cel-glowny">
-                    {this.state.goal.name}
+                   {(this.state.goal !== null) ? this.state.goal[0].name : " " }
                 </button> <br />
                 <div className="grid-sub-goal">
                     {this.drawGoalsTree()}
