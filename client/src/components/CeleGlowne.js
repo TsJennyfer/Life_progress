@@ -27,10 +27,10 @@ class CeleGlowne extends React.Component {
     // Znalezienie celu
     findGoals() {
         var headers = {
-            'auth': localStorage.getItem('token'), 
+            'auth': localStorage.getItem('token'),
             'Content-Type': 'application/json'
         }
-        axios.get('/goals/mainUserGoals', {headers})
+        axios.get('/goals/mainUserGoals', { headers })
             .then(response => {
 
                 this.setState({
@@ -41,23 +41,24 @@ class CeleGlowne extends React.Component {
             .catch(err => {
                 console.log(err, 'Goals not found, try again.');
             });
-    }z
+    } z
 
     // Rysowanie głównych celów
     drawGoals() {
         return (
             Object
                 .keys(this.state.goals)
-                .map(key => <CelSzczegoly key={key} 
-                    details={this.state.goals[key]} chooseGoal={this.chooseGoal}/>)
+                .map(key => <div className="col" key={key}>  <CelSzczegoly key={key}
+                    details={this.state.goals[key]} chooseGoal={this.chooseGoal} />
+                    </div>)
         )
     }
 
     // przejdź do konketnego celu
     chooseGoal(key) {
         this.props.renderGoal(key)
-    }  
-// <button class="button-sub-goal" onClick={() => this.props.addMainGoal()}>
+    }
+    // <button class="button-sub-goal" onClick={() => this.props.addMainGoal()}>
 
     render() {
 
@@ -65,12 +66,17 @@ class CeleGlowne extends React.Component {
             <div>
                 <h2>This is your goal list</h2>
                 <br />
-                <div class="grid-cele-glowne" >
-                    <button class="button-cel-glowny" onClick={() => this.props.addMainGoal()}>
-                    <b>+</b>
-                    <br />Add goal
+                <div className="container" >
+                    <div className="row">
+                        <div className="col">
+                            <button className="button-cel-glowny" onClick={() => this.props.addMainGoal()}>
+                                <b>+</b>
+                                <br />Add goal
                     </button>
-                    {this.drawGoals()}
+                        </div>
+                        {this.drawGoals()}
+
+                    </div>
                 </div>
             </div>
 
