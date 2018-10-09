@@ -9,27 +9,29 @@ class Footer extends React.Component {
         return (
             <div>
                 <table>
-                        <td>
-                            <tr>
+                    <tbody>
+                        <tr>
+                            <td>
                                 <button className='button_logo round' onClick={this.handleClick}>
-                                    LIFE PROGRESS<br /> <img src={logo} width="40" height="40" />
+                                    LIFE PROGRESS<br /> <img src={logo} alt="logo" width="40" height="40" />
                                 </button> 
-                            </tr>                            
-                        </td>
-                        <td>
-                           <tr>
+                            </td>                            
+                        </tr>
+                        <tr>
+                           <td>
                                 <button className='button_down' onClick={this.handleClick}><span>HOME</span></button>
                                 <button className='button_down' onClick={this.handleClick}><span>OUR TEAM</span></button>
-                            </tr>
-                             <tr> 
+                            </td>
+                             <td> 
                                 <button className='button_down' onClick={this.handleClick}><span>SET LANGUAGE</span></button>            
                                 <button className='button_down' onClick={this.handleClick}><span>SIGN UP</span></button>
-                            </tr>
-                            <tr> 
+                            </td>
+                            <td> 
                                 <button className='button_down' onClick={this.handleClick}><span>START TUTORIAL</span></button>       
                                 <button className='button_down' onClick={this.handleClick}><span>SIGN IN</span></button>
-                            </tr> 
-                        </td>
+                            </td> 
+                        </tr>
+                        </tbody>
                 </table>
             </div>
         )

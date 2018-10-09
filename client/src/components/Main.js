@@ -2,7 +2,6 @@
 import React from 'react';
 import Rejestracja from './Rejestracja';
 import Logowanie from './Logowanie';
-import Wylogowanie from './Wylogowanie';
 import CeleGlowne from './CeleGlowne';
 import CelDynamicznie from './CelDynamicznie';
 import CelFormularz from './CelFormularz';
@@ -108,13 +107,15 @@ class Main extends React.Component {
                     <h2>Our features</h2>
                     <br />
                     <table>
-                        <td><tr>
-                            <img src={icon} width="30" height="30" />  Easy planning
-                        </tr><tr>
-                            <img src={icon} width="30" height="30" />  Organize tasks
-                        </tr><tr>
-                            <img src={icon} width="30" height="30" />  Focus on your goals
-                        </tr></td>
+                        <tbody>
+                        <tr>
+                            <td><img src={icon} alt="" width="30" height="30" />  Easy planning</td>
+                        
+                            <td><img src={icon} alt="" width="30" height="30" />  Organize tasks </td>
+                        
+                            <td><img src={icon} alt="" width="30" height="30" />  Focus on your goals</td>
+                        </tr>
+                        </tbody>
                     </table>
                     <button className="button button1"> START PLANNING
                     </button>                    

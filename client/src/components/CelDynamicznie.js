@@ -1,5 +1,5 @@
 // To jest pojedynczy cel ze szczegółami, który ładuje dynamicznie wszystkie podcele
-import { Timeline, TimelineEvent } from 'react-event-timeline'
+//import { Timeline, TimelineEvent } from 'react-event-timeline'
 import React from 'react';
 import axios from 'axios';
 import PodcelForm from './PodcelForm';
