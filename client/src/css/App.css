@@ -27,17 +27,12 @@ input{
 }
 
 .main__container{
-  height: 100%;
-  font-size: 20px;
-  letter-spacing: 0.2px;
-  word-spacing: 4.2px;
-  color: #000000;
-  font-weight: normal;
-  text-decoration: none;
-  font-style: normal;
-  font-variant: normal;
-  text-transform: none;
-  margin: 170px;
+  background-image: url("../resourses/pink_table.jpg");
+  background-size: cover;
+}
+
+.welcome {
+  margin-top: 200px;
 }
 
 .button_logo {

@@ -22,7 +22,7 @@ class MainPage extends React.Component {
     render() {
         return (
             <div>
-                <StickyHeader
+                {/*<StickyHeader
                     className="sticky-header"
                     header={
                         <div>
@@ -33,7 +33,7 @@ class MainPage extends React.Component {
                     }
                     backgroundImage={header}
                 >
-                </StickyHeader>
+                </StickyHeader>*/}
                 <div className="main__container">
                     <Main />
                     <Footer />

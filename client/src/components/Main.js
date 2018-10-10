@@ -101,9 +101,12 @@ class Main extends React.Component {
         // użytkownik niezalogowany
         else if (!this.state.isUserLoggedIn) {
             return (
-                <div>
-                    <h1>Hello in Life progress</h1>
-                    <br />
+                <div class="container">
+                    <div className="row welcome">
+                    <div className="col">
+                    <h1>Welcome to Life progress</h1>
+                    </div>
+                    </div>
                     <h2>Our features</h2>
                     <br />
                     <table>
