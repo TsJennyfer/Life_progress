@@ -102,26 +102,21 @@ class Main extends React.Component {
         else if (!this.state.isUserLoggedIn) {
             return (
                 <div class="container">
-                    <div className="row welcome">
-                    <div className="col">
-                    <h1>Welcome to Life progress</h1>
+                    <div className="row justify-content-center welcome">
+                        <div className="col-8 ml-5">
+                            <h1>Welcome to</h1>
+                        </div>
                     </div>
+                    <div className="row justify-content-center mt-4">
+                        <div className="col-8 ml-5">
+                            <h1> Life progress</h1>
+                        </div>
                     </div>
-                    <h2>Our features</h2>
-                    <br />
-                    <table>
-                        <tbody>
-                        <tr>
-                            <td><img src={icon} alt="" width="30" height="30" />  Easy planning</td>
-                        
-                            <td><img src={icon} alt="" width="30" height="30" />  Organize tasks </td>
-                        
-                            <td><img src={icon} alt="" width="30" height="30" />  Focus on your goals</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <div className="row justify-content-center mt-4">
+                        <h3>Planning aplication to<br /> organize...</h3>
+                    </div>
                     <button className="button button1"> START PLANNING
-                    </button>                    
+                    </button>
                     <br />
                     <br />
                     <br />
