@@ -4,11 +4,14 @@ const _ = require('lodash');
 const {ObjectId} = require('mongodb');
 const morgan = require('morgan');
 const path = require('path');
+const bcrypt = require('bcryptjs');
+const nodeMailer = require('nodemailer');
 
 var {mongoose} = require('./db/mongoose');
 var {Goal} = require('./models/goal');
 var {User} = require('./models/user');
 var {authenticate} = require('./middleware/authenticate');
+var {Email} = require('./db/email');
 
 
 var app = express();
@@ -33,6 +36,39 @@ app.use(morgan('dev'));
 
 //Rejestracja
 app.post('/users/signup', (req, res)=> {
+
+//#############################################################
+//Wysyłanie maili
+
+    let transporter = nodeMailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,      //or 587
+        secure: true,   //then false
+        auth: {
+            user: Email.emailAdress,
+            pass: Email.emailPassword
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    });
+    let mailOptions = {
+        from: '"Life Progress App" <lifeprogress.pri@gmail.com>', // sender address
+        to: req.body.email, // list of receivers
+        subject: "Welcome in Life Progress", // Subject line
+        text: Email.emailMessage, // plain text body
+        html: '<b>Registration in Life Progress</b>' // html body
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message %s sent: %s', info.messageId, info.response);
+        });
+
+//###############################################################
+
     var body = _.pick(req.body, ['email', 'password']);
     var user = new User(body);
 
@@ -72,24 +108,31 @@ app.delete('/users/logout', authenticate, (req, res)=> {
     });
 })
 
-//Zmiana danych użytkownika NARAZIE TYLKO EMAIL
+//Zmiana danych użytkownika (hasło, email)
 app.patch('/users/:id', authenticate, (req, res) => {
     var id = req.params.id;
-    var body = _.pick(req.body, ['email', 'password']); //jakie pola zmieniamy
+    //var body = _.pick(req.body, ['email', 'password']); //jakie pola zmieniamy
+    var password = req.body.password;
 
-    if (!ObjectId.isValid(id)) {
-        return res.status(404).send();
-    }
+    bcrypt.genSalt(10, (error, salt) => {
+        bcrypt.hash(password, salt, (error, hash) => {
+            req.body.password = hash;
 
-    User.findOneAndUpdate({_id: id}, {$set: body}, {new: true}).then((user)=>{
-        if (!user){
-            return res.status(404).send();
-        }
+            if (!ObjectId.isValid(id)) {
+                return res.status(404).send();
+            }
+            User.findOneAndUpdate({_id: id}, req.body).then((user)=>{
+                if (!user){
+                    return res.status(404).send();
+                }
+        
+                res.send({user});
+            }).catch((error)=>{
+                res.status(400).send();
+            })
+        }) 
+     })
 
-        res.send({user});
-    }).catch((error)=>{
-        res.status(400).send();
-    })
 });
 
 //Dodanie celu
