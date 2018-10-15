@@ -30,9 +30,9 @@ class App extends Component {
   render () {
     return (
       <div>
-        <center>
+        
           <MainPage />
-        </center>
+        
       </div>
     )
   }

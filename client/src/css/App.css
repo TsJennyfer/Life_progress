@@ -1,5 +1,7 @@
 body{
   margin: auto;
+  font-family: 'Bitter', serif;
+  font-size: 18px;
 }
 
 .center{
@@ -27,18 +29,75 @@ input{
 }
 
 .main__container{
-  height: 100%;
-  font-size: 20px;
-  letter-spacing: 0.2px;
-  word-spacing: 4.2px;
-  color: #000000;
-  font-weight: normal;
-  text-decoration: none;
-  font-style: normal;
-  font-variant: normal;
-  text-transform: none;
-  margin: 170px;
+  background-image: url("../resourses/pink_table.jpg");
+  background-size: cover;
 }
+
+a, a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+  color: #1b1b1b;
+}
+
+.MyHeader {
+  padding: 16px 0px;
+}
+
+.header-button {
+  margin: 16px;
+  margin-left: 0px;
+  text-decoration: none;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  cursor: pointer;
+  border: 2px solid rgb(0, 165, 14);
+  -webkit-border-radius: 40px;
+  border-radius: 40px;
+  font: normal "Advent Pro", Helvetica, sans-serif;
+  padding: 8px 16px;
+  color: rgb(0, 165, 14);
+  text-align: center;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  letter-spacing: 1px;
+  background: rgba(0,0,0,0);
+  -webkit-transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
+  -moz-transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
+  -o-transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
+  transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
+  }
+  .header-button:hover {
+    color: rgba(255,255,255,1);
+    background: rgb(0, 165, 14);
+  }
+
+  .header-button:active {
+    border: 2px solid rgb(0, 165, 14);
+    background: rgba(33,224,163,1);
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+  }
+
+.header-logo {
+  margin: auto;
+  margin-top: 16px;
+  margin-left: 48px;
+  padding: 8px;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 200;
+}
+
+.container {
+  text-align: center;
+}
+
+.welcome {
+  margin-top: 200px;
+}
+
 
 .button_logo {
   background-color:black;
@@ -53,6 +112,20 @@ input{
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
+}
+
+.button-get-started {
+  background-color:rgb(100, 185, 22);
+  border: none;
+  color: #1b1b1b;
+  padding: 6px 20px;
+  font-size: 24px;
+}
+
+.button-get-started:hover,
+.button-get-started:focus {
+  background: green;
+  background-image: linear-gradient(rgb(10, 155, 58), rgb(10, 155, 58));
 }
 
 .buttonR {
@@ -75,22 +148,28 @@ buttonR.pressed {
 }
 
 h1 { 
-  color: #7c795d; 
-  font-family: 'Trocchi', serif; 
-  font-size: 45px; 
-  font-weight: normal; 
+  color: #1b1b1b; 
+  text-transform: uppercase;
+  font-size: 72px; 
+  font-weight: 400; 
   line-height: 48px; 
   margin: 0; 
 }
 
 h2 { 
-  color: #7c795d; 
+  color: #1b1b1b; 
   font-family: 'Source Sans Pro', sans-serif; 
   font-size: 28px; 
   font-weight: 400; 
   line-height: 32px; 
   margin: 0 0 24px; 
 }
+h3 {
+  text-align: left;
+  font-size: 18px;
+  color: #1b1b1b;
+}
+
 .grid-sub-goal {
   display: grid;
     grid-template-columns: repeat(6, 1fr);

@@ -1,18 +1,4 @@
-.button {
-  background-color:green;
-  border: none;
-  color: white;
-  font-size: 16px;
-  height: 40px;
-  width: 400px;
-  border-radius: 10px;
-}
 
-.button:hover,
-.button:focus {
-  background: green;
-  background-image: linear-gradient(rgb(10, 155, 58), rgb(10, 155, 58));
-}
 
 .loginBtn {
   box-sizing: border-box;
