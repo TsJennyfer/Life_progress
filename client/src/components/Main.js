@@ -113,10 +113,18 @@ class Main extends React.Component {
                         </div>
                     </div>
                     <div className="row justify-content-center mt-4">
-                        <h3>Planning aplication to<br /> organize...</h3>
+                        <div className="col-3">
+                            <h3>Planning aplication to<br /> organize...</h3>
+                        </div>
                     </div>
-                    <button className="button button1"> START PLANNING
-                    </button>
+                    <div className="row justify-content-center">
+                        <div className="col-4">
+                            <button className="button-get-started">
+                                <span>Get started</span>
+                            </button>
+                        </div>
+                    </div>
+
                     <br />
                     <br />
                     <br />

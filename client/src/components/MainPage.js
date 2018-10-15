@@ -38,7 +38,8 @@ class MainPage extends React.Component {
                 <div className="main__container">
                     <div class="MyHeader d-flex">
                         <a className="header-logo" href="#">
-                            <img src={feather} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>   LIFE PROGRESS
+                            <img src={feather} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
+                            <span className="ml-3">LIFE PROGRESS</span>
                         </a>
                         <a className="header-button" href="#">About us</a>
                         <a className="header-button" href="#">Sign in</a>

@@ -1,5 +1,7 @@
 body{
   margin: auto;
+  font-family: 'Bitter', serif;
+  font-size: 18px;
 }
 
 .center{
@@ -33,7 +35,11 @@ input{
 
 a, a:link, a:visited, a:hover, a:active {
   text-decoration: none;
-  color: black;
+  color: #1b1b1b;
+}
+
+.MyHeader {
+  padding: 16px 0px;
 }
 
 .header-button {
@@ -80,6 +86,8 @@ a, a:link, a:visited, a:hover, a:active {
   margin-left: 48px;
   padding: 8px;
   text-decoration: none;
+  font-size: 20px;
+  font-weight: 200;
 }
 
 .container {
@@ -106,6 +114,20 @@ a, a:link, a:visited, a:hover, a:active {
   cursor: pointer;
 }
 
+.button-get-started {
+  background-color:rgb(100, 185, 22);
+  border: none;
+  color: #1b1b1b;
+  padding: 6px 20px;
+  font-size: 24px;
+}
+
+.button-get-started:hover,
+.button-get-started:focus {
+  background: green;
+  background-image: linear-gradient(rgb(10, 155, 58), rgb(10, 155, 58));
+}
+
 .buttonR {
   background-color: red;
   border: none;
@@ -126,17 +148,16 @@ buttonR.pressed {
 }
 
 h1 { 
-  color: #7c795d; 
+  color: #1b1b1b; 
   text-transform: uppercase;
-  font-family: 'Trocchi', serif; 
   font-size: 72px; 
-  font-weight: 700; 
+  font-weight: 400; 
   line-height: 48px; 
   margin: 0; 
 }
 
 h2 { 
-  color: #7c795d; 
+  color: #1b1b1b; 
   font-family: 'Source Sans Pro', sans-serif; 
   font-size: 28px; 
   font-weight: 400; 
@@ -145,10 +166,8 @@ h2 {
 }
 h3 {
   text-align: left;
-  font-size: 20px;
-  font-weight: 700;
-  font-family: "Times New Roman", Times, serif;
-  color: black;
+  font-size: 18px;
+  color: #1b1b1b;
 }
 
 .grid-sub-goal {
