@@ -42,7 +42,7 @@ class MainPage extends React.Component {
                             <span className="ml-3">LIFE PROGRESS</span>
                         </a>
                         <a className="header-button" href="#">About us</a>
-                        <a className="header-button" href="#">Sign in</a>
+                        <a className="header-button" id="sign-in" href="#">Sign in</a>
                         <a className="header-button" href="#">Sign up</a>
                     </div>
                     <Main />
