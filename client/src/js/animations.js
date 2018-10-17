@@ -15,3 +15,12 @@ $(document).ready(function (){
         }, 1000);
     });
 });
+
+// przewijanie strony Sign in
+$(document).ready(function (){
+    $("#sign-up").click(function (){
+        $('html, body').animate({
+            scrollTop: $(".registerForm").offset().top
+        }, 700);
+    });
+});

@@ -61,8 +61,7 @@ class Logowanie extends React.Component {
 
     render() {
         return (
-            <div>
-                <hr />
+            <div className="row justify-content-center form-login">
                 <h2>Sign in</h2>
                 <form className="loginForm" onSubmit={this.logIn}>
                     <input
@@ -80,7 +79,7 @@ class Logowanie extends React.Component {
                         minLength={3}
                         value={this.state.password}
                         placeholder="Your password"
-                    />                    
+                    />
                     <br />
                     <button className="button button1" type="submit">
                         Sign in<i className="GuestBookButton2" aria-hidden="true" />
