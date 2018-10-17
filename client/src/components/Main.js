@@ -7,7 +7,7 @@ import CelDynamicznie from './CelDynamicznie';
 import CelFormularz from './CelFormularz';
 import CelGlownyForm from './CelGlownyForm';
 // import Graph from './Graph';
-import icon from '../resourses/done_icon.png';
+//import icon from '../resourses/done_icon.png';
 
 
 class Main extends React.Component {
@@ -101,7 +101,7 @@ class Main extends React.Component {
         // użytkownik niezalogowany
         else if (!this.state.isUserLoggedIn) {
             return (
-                <div class="container">
+                <div className="container">
                     <div className="row justify-content-center welcome">
                         <div className="col-8 ml-5">
                             <h1>Welcome to</h1>
@@ -125,12 +125,8 @@ class Main extends React.Component {
                         </div>
                     </div>
 
-                    <br />
-                    <br />
-                    <br />
                     <Rejestracja />
                     <Logowanie checkToken={this.checkToken} />
-                    <br />
                 </div>
             )
         }
