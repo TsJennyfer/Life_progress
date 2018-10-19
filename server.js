@@ -34,11 +34,34 @@ app.use(morgan('dev'));
 //#############################################################
 //ROUTES
 
+//Potwierdzenie email
+app.get('/users/confirmEmail/:token', (req, res)=>{
+    var token = req.params.token;
+
+    User.findOneAndUpdate({'tokens.token': token},{activated: true}).then((user)=>{
+        if (!user){
+            return res.status(404).send();
+        }
+
+        res.send({user});
+    }).catch((error)=>{
+        res.status(400).send();
+    })
+})
+
 //Rejestracja
 app.post('/users/signup', (req, res)=> {
 
-//#############################################################
-//Wysyłanie maili
+    var body = _.pick(req.body, ['email', 'password']);
+    var user = new User(body);
+
+    user.save().then(() => {
+        var confirmToken = user.generateAuthToken();
+        var token = user.tokens[0].token;
+        console.log(token); //pierwszy token
+
+    //#############################################################
+    //Wysyłanie maili
 
     let transporter = nodeMailer.createTransport({
         host: 'smtp.gmail.com',
@@ -57,7 +80,7 @@ app.post('/users/signup', (req, res)=> {
         to: req.body.email, // list of receivers
         subject: "Welcome in Life Progress", // Subject line
         text: Email.emailMessage, // plain text body
-        html: '<b>Registration in Life Progress</b>' // html body
+        html: `<b>Registration in Life Progress</b><br><a href="http://localhost:5000/users/${token}">Click to confirm your email address.<a/><br>` // html body
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -67,13 +90,9 @@ app.post('/users/signup', (req, res)=> {
         console.log('Message %s sent: %s', info.messageId, info.response);
         });
 
-//###############################################################
+    //###############################################################
 
-    var body = _.pick(req.body, ['email', 'password']);
-    var user = new User(body);
-
-    user.save().then(() => {
-        return user.generateAuthToken();
+        return confirmToken;
     }).then((token)=>{
         res.header('auth', token).send(user);
     }).catch((error) => {
@@ -91,11 +110,16 @@ app.post('/users/signin', (req, res) => {
     var body = _.pick(req.body, ['email', 'password']);
 
     User.findByCredentials(body.email, body.password).then((user) => {
+        if (user.activated === false){  //czy email potwierdzony
+            res.status(401).send();
+    }
+    else {
         user.generateAuthToken().then((token) => {
             res.header('auth', token).send(user);
         });
-    }).catch((error) => {
-        res.status(400).send();
+    }
+        }).catch((error) => {
+            res.status(400).send();
     });
 });
 
@@ -111,17 +135,17 @@ app.delete('/users/logout', authenticate, (req, res)=> {
 //Zmiana danych użytkownika (hasło, email)
 app.patch('/users/:id', authenticate, (req, res) => {
     var id = req.params.id;
-    //var body = _.pick(req.body, ['email', 'password']); //jakie pola zmieniamy
-    var password = req.body.password;
+    var body = _.pick(req.body, ['email', 'password']); //jakie pola zmieniamy
+
+    if (!ObjectId.isValid(id)) {
+        return res.status(404).send();
+    }
 
     bcrypt.genSalt(10, (error, salt) => {
-        bcrypt.hash(password, salt, (error, hash) => {
-            req.body.password = hash;
+        bcrypt.hash(body.password, salt, (error, hash) => {
+            body.password = hash;
 
-            if (!ObjectId.isValid(id)) {
-                return res.status(404).send();
-            }
-            User.findOneAndUpdate({_id: id}, req.body).then((user)=>{
+            User.findOneAndUpdate({_id: id}, {$set: body}, {new: true}).then((user)=>{
                 if (!user){
                     return res.status(404).send();
                 }
@@ -130,10 +154,12 @@ app.patch('/users/:id', authenticate, (req, res) => {
             }).catch((error)=>{
                 res.status(400).send();
             })
-        }) 
-     })
+        })
+    })
+
 
 });
+
 
 //Dodanie celu
 app.post('/goals/', authenticate, (req, res) => {

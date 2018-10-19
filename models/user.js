@@ -10,7 +10,8 @@ var UserSchema = new mongoose.Schema({
     tokens: [{
         access: {type: String, required: true},
         token: {type: String, required: true}
-    }]
+    }],
+    activated: {type: Boolean, default: false}
 });
 
 UserSchema.methods.toJSON = function () {
