@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 const nodeMailer = require('nodemailer');
+require('dotenv').config();
 
 var {mongoose} = require('./db/mongoose');
 var {Goal} = require('./models/goal');
@@ -80,7 +81,7 @@ app.post('/users/signup', (req, res)=> {
         to: req.body.email, // list of receivers
         subject: "Welcome in Life Progress", // Subject line
         text: Email.emailMessage, // plain text body
-        html: `<b>Registration in Life Progress</b><br><a href="http://localhost:5000/users/${token}">Click to confirm your email address.<a/><br>` // html body
+        html: `<b>Registration in Life Progress</b><br><a href="http://localhost:5000/users/confirmEmail/${token}">Click to confirm your email address.<a/><br>` // html body
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
