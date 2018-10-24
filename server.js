@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 const nodeMailer = require('nodemailer');
 require('dotenv').config();
 
-var {mongoose} = require('./db/mongoose');
+//var {mongoose} = require('./db/mongoose');
 var {Goal} = require('./models/goal');
 var {User} = require('./models/user');
 var {authenticate} = require('./middleware/authenticate');
