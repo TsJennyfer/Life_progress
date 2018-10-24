@@ -1,4 +1,2 @@
 node_modules/
-db/mongoose.js
-db/email.js
 .env
