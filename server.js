@@ -19,9 +19,9 @@ var app = express();
 const port = process.env.PORT || 5000;
 
 //View Engine
-app.set('views', path.join(__dirname, 'client'));
+/* app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.engine('html', require('ejs').renderFile);
+app.engine('html', require('ejs').renderFile); */
 
 //Set Static Folder
 app.use(express.static(path.join(__dirname, 'client')));
