@@ -8,11 +8,11 @@ const bcrypt = require('bcryptjs');
 const nodeMailer = require('nodemailer');
 require('dotenv').config();
 
-//var {mongoose} = require('./db/mongoose');
+var {mongoose} = require('./database/mongoose');
 var {Goal} = require('./models/goal');
 var {User} = require('./models/user');
 var {authenticate} = require('./middleware/authenticate');
-var {Email} = require('./db/email');
+var {Email} = require('./databe/email');
 
 
 var app = express();
