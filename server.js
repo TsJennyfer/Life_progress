@@ -12,7 +12,7 @@ var {mongoose} = require('./database/mongoose');
 var {Goal} = require('./models/goal');
 var {User} = require('./models/user');
 var {authenticate} = require('./middleware/authenticate');
-var {Email} = require('./databe/email');
+var {Email} = require('./database/email');
 
 
 var app = express();
