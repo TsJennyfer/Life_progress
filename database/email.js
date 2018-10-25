@@ -1,5 +1,5 @@
 var Email = {
-    emailAdress: "lifeprogress.pri@gmail.com",
+    emailAdress: process.env.EMAIL_ADDRESS,
     emailPassword: process.env.EMAIL_PASSWORD,
     emailMessage: "Hello in our App !"
 };

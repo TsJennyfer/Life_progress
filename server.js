@@ -19,9 +19,11 @@ var app = express();
 const port = process.env.PORT || 5000;
 
 //View Engine
-/* app.set('views', path.join(__dirname, 'views'));
+/* 
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.engine('html', require('ejs').renderFile); */
+app.engine('html', require('ejs').renderFile);
+*/
 
 //Set Static Folder
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -81,7 +83,7 @@ app.post('/users/signup', (req, res)=> {
         to: req.body.email, // list of receivers
         subject: "Welcome in Life Progress", // Subject line
         text: Email.emailMessage, // plain text body
-        html: `<b>Registration in Life Progress</b><br><a href="http://localhost:5000/users/confirmEmail/${token}">Click to confirm your email address.<a/><br>` // html body
+        html: `<b>Registration in Life Progress</b><br><a href="https://life-progress.herokuapp.com/users/confirmEmail/${token}">Click to confirm your email address.<a/><br>` // html body
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
