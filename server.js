@@ -12,7 +12,6 @@ var {mongoose} = require('./database/mongoose');
 var {Goal} = require('./models/goal');
 var {User} = require('./models/user');
 var {authenticate} = require('./middleware/authenticate');
-var {Email} = require('./database/email');
 
 
 var app = express();
@@ -71,8 +70,8 @@ app.post('/users/signup', (req, res)=> {
         port: 465,      //or 587
         secure: true,   //then false
         auth: {
-            user: Email.emailAdress,
-            pass: Email.emailPassword
+            user: process.env.EMAIL_ADDRESS,
+            pass: process.env.EMAIL_PASSWORD
         },
         tls: {
             rejectUnauthorized: false
@@ -82,7 +81,7 @@ app.post('/users/signup', (req, res)=> {
         from: '"Life Progress App" <lifeprogress.pri@gmail.com>', // sender address
         to: req.body.email, // list of receivers
         subject: "Welcome in Life Progress", // Subject line
-        text: Email.emailMessage, // plain text body
+        text: process.env.EMAIL_MESSAGE, // plain text body
         html: `<b>Registration in Life Progress</b><br><a href="https://life-progress.herokuapp.com/users/confirmEmail/${token}">Click to confirm your email address.<a/><br>` // html body
     };
 
@@ -93,7 +92,7 @@ app.post('/users/signup', (req, res)=> {
         console.log('Message %s sent: %s', info.messageId, info.response);
         });
 
-    //###############################################################
+    //######################################################################
 
         return confirmToken;
     }).then((token)=>{
