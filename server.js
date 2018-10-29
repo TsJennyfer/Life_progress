@@ -12,6 +12,7 @@ var {mongoose} = require('./database/mongoose');
 var {Goal} = require('./models/goal');
 var {User} = require('./models/user');
 var {authenticate} = require('./middleware/authenticate');
+var {sender} = require('./middleware/sender');
 
 
 var app = express();
@@ -61,11 +62,12 @@ app.post('/users/signup', (req, res)=> {
         var confirmToken = user.generateAuthToken();
         var token = user.tokens[0].token;
         console.log(token); //pierwszy token
+        sender(req, token);
 
     //#############################################################
     //Wysyłanie maili
 
-    let transporter = nodeMailer.createTransport({
+/*     let transporter = nodeMailer.createTransport({
         host: 'smtp.gmail.com',
         port: 465,      //or 587
         secure: true,   //then false
@@ -90,7 +92,7 @@ app.post('/users/signup', (req, res)=> {
             return console.log(error);
         }
         console.log('Message %s sent: %s', info.messageId, info.response);
-        });
+        }); */
 
     //######################################################################
 
@@ -113,7 +115,8 @@ app.post('/users/signin', (req, res) => {
 
     User.findByCredentials(body.email, body.password).then((user) => {
         if (user.activated === false){  //czy email potwierdzony
-            res.status(401).send();
+            res.status(401).send('Please confirm your email address.');
+            console.log('Please confirm your email address.');
     }
     else {
         user.generateAuthToken().then((token) => {
