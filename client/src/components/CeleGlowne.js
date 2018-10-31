@@ -38,7 +38,7 @@ class CeleGlowne extends React.Component {
                 console.log(response, 'Znaleziono wszystkie cele');
             })
             .catch(err => {
-                console.log(err, 'Goals not found, try again.');
+                console.log(err, 'Błąd, nie znaleziono celów.');
             });
     } z
 
@@ -52,24 +52,15 @@ class CeleGlowne extends React.Component {
                 </div>)
         )
     }
-
-   
+ 
 
     render() {
-
         return (
             <div>
                 <h2>This is your goal list</h2>
                 <div className="container" >
                     <div className="row">
-                        {/*<div className="col">
-                            <button className="button-cel-glowny" onClick={() => this.props.addMainGoal()}>
-                                <b>+</b>
-                                <br />Add goal
-        </button>
-                        </div>*/}
                         {this.drawGoals()}
-
                     </div>
                     <CelGlownyForm findGoals={this.findGoals} />
                 </div>

@@ -3,16 +3,12 @@ import React from 'react';
 import CeleGlowne from './CeleGlowne';
 import CelDynamicznie from './CelDynamicznie';
 import CelGlownyForm from './CelGlownyForm';
-// import Graph from './Graph';
-//import icon from '../resourses/done_icon.png';
-
 
 class Protected extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.renderGoal = this.renderGoal.bind(this);
         this.checkToken = this.checkToken.bind(this);
         this.logOut = this.logOut.bind(this);
         this.state = {
@@ -25,23 +21,12 @@ class Protected extends React.Component {
     componentDidMount() {
         this.checkToken();
     }
-
+    // przekierowanie do strony dla niezalogowanych
     goToPublic() {
         this.props.history.push('/');
     }
 
-
-    // renderowanie pojedynczego celu
-    renderGoal(goal) {
-
-        console.log('renderGoal');
-        this.setState({
-            celeGlowne: false,
-            celSzczegoly: goal,
-            nowyCelGlowny: false
-        });
-    }
-
+    // sprawdzenie czy jest token
     checkToken() {
         if (localStorage.getItem('token') !== null) {
             this.setState({
@@ -66,7 +51,7 @@ class Protected extends React.Component {
             if (this.state.celeGlowne) {
                 return (
                     <div>
-                        <CeleGlowne renderGoal={this.renderGoal}  />
+                        <CeleGlowne />
                         <button className="log-out-button" onClick={() => this.logOut()}>
                             Sign out
                             </button>
