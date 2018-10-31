@@ -5,8 +5,9 @@ client: npm run start */
 import React, { Component } from 'react';
 import './css/App.css';
 import axios from 'axios';
+import Public from './components/Public'
 
-import MainPage from './components/MainPage';
+import MainPage2 from './components/MainPage2';
 
 class App extends Component {
   constructor () {
@@ -30,9 +31,7 @@ class App extends Component {
   render () {
     return (
       <div>
-        
-          <MainPage />
-        
+          <MainPage2 /> 
       </div>
     )
   }

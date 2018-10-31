@@ -1,44 +1,23 @@
-// To jest header strony
-import React from 'react';
-//import Img from 'react-image'
-import logo from '../resourses/logo.png';
-//import english from '../resourses/english.png';
-//import polish from '../resourses/polish.png';
-//import russian from '../resourses/russian.png';
-//import ukrainian from '../resourses/ukrainian.png';
-//import german from '../resourses/german.png';
-import '../css/Header.css';
+import React, { Component } from 'react';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom';
+import feather from '../resourses/feather.png';
 
-const TopMenu = () => {
-    return (
-        <div className = "top__container">
-            <center>
-                <button className='button_top' onClick={this.handleClick}><span>HOME</span></button>
-                <button className='button_top' onClick={this.handleClick}><span>START TUTORIAL</span></button>
-                <button className='button_top' onClick={this.handleClick}><span>OUR TEAM</span></button>
-                <button className='button_logo round' onClick={this.handleClick}>
-                    <span> LIFE PROGRESS<br /> <img src={logo} alt="logo" width="40" height="40" /> </span> 
-                </button>                            
-                <select className='button_top' defaultValue="SET LANGUAGE" >{/*onClick={this.handleClick}><span>SET LANGUAGE</span>*/}
-                    <option value="grapefruit">SET LANGUAGE</option>  
-                    <option value="lime"> ENGLISH</option>  
-                    <option value="coconut">POLISH</option>  
-                    <option value="mango">RUSSIAN</option>  
-                    <option value="mango">UKRAINIAN</option>  
-                    <option value="mango">GERMAN</option>  
-                </select>                                             
-                <button className='button_top'  onClick={this.rejestacja}><span>SIGN UP</span></button>
-                <button className='button_top' onClick={this.handleClick}><span>SIGN IN</span></button>
-        </center>
-    </div>
-    );
-  }
 
 class Header extends React.Component {
     render() {
         return (
-            <div>
-                <TopMenu />
+            <div className="MyHeader d-flex">
+                <a className="header-logo">
+                    <img src={feather} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
+                    <span className="ml-3">LIFE PROGRESS</span>
+                </a>
+                <a className="header-button" ><Link to="/">About us</Link></a>
+                <a className="header-button" id="sign-in" ><Link to="/signin">Sign in</Link></a>
+                <a className="header-button" id="sign-up" ><Link to="/register">Sign up</Link></a>
             </div>
         )
     }
