@@ -4,7 +4,6 @@ import React from 'react';
 import axios from 'axios';
 import PodcelForm from './PodcelForm';
 import { CSSTransitionGroup } from 'react-transition-group'
-
 import '../css/Cele.css';
 import '../css/App.css';
 import '../css/PodceleAnimacje.css';
@@ -22,51 +21,43 @@ class CelDynamicznie2 extends React.Component {
         this.state = {
             goals: {},
             goalId: null,
-            goal: null,
-            isDone: false
+            allGoals: null,
+            isDone: false,
+            header: {headers: {
+                'auth': localStorage.getItem('token'), 
+                'Content-Type': 'application/json'
+            }}
         };
     }
 
     componentDidMount() {
         this.setState({
-            goalId: this.props.location.state.id},this.findGoalById()) 
-        
+            goalId: this.props.location.state.id},this.findGoalById());
         // ten stan niżej jest pusty, ponieważ findGoalById wykonuje się asynchornicznie (a przynajmniej tak zaobserwowałem)
-        console.log(this.state.goal, 'response 3');
-        //this.findAllGoals();
+        console.log(this.state.allGoals, 'z CelDynamicznie - componentDidMount');
     }
 
     // Znalezienie celu głównego
     findGoalById(event) {
-        console.log(this.state.goal, 'response 3');
-        var headers = {
-            'auth': localStorage.getItem('token'), 
-            'Content-Type': 'application/json'
-        }
+        console.log(this.state.allGoals, 'z findGoalById');
 
-        axios.get('/goals/mainUserGoalAndSubgoals/' + this.props.location.state.id, {headers})
+        axios.get('/goals/mainUserGoalAndSubgoals/' + this.props.location.state.id, this.state.header)
             .then(response => {
 
                 this.setState({
-                    goal: response.data.goals
+                    allGoals: response.data.goals
                 },
                     this.findAllGoals);     // findAllGoals wywołuję tutaj, a nie w componentDidMount, aby miec pewność, że setState zostało wykonane
-                // console.log(response.data.mainGoal, 'goal 2!');
-                // console.log(this.state.goal, 'response 2!');
+                // console.log(this.state.allGoal, 'response 2!');
             })
             .catch(err => {
                 console.log(err, 'Goal not found, try again.');
             });
     }
 
-    // Znalezienie wsystkich celi należących do celu głównego
+    // Znalezienie wszstkich celi należących do celu głównego
     findAllGoals() {
-        var headers = {
-            'auth': localStorage.getItem('token'), 
-            'Content-Type': 'application/json'
-        }
-
-        axios.get('/goals/main/children/' + this.state.goalId, {headers})
+        axios.get('/goals/main/children/' + this.state.goalId, this.state.header)
             .then(response => {
 
                 this.setState({
@@ -113,7 +104,7 @@ class CelDynamicznie2 extends React.Component {
         );
 
     }
-
+    
     changePriority(id) {
         // kopia aktualnych celów
         const goals = { ...this.state.goals };
@@ -126,16 +117,12 @@ class CelDynamicznie2 extends React.Component {
         }
         // podmiana całej listy podceli
         this.setState({ goals: goals });
-        var headers = {
-            'auth': localStorage.getItem('token'), 
-            'Content-Type': 'application/json'
-        }
 
         axios.patch("/goals/" + this.state.goals[id]._id,
             {
                 priority: this.state.goals[id].priority
             },
-        {headers}).then(response => {
+        this.state.header).then(response => {
 
                 console.log(response)
             })
@@ -159,12 +146,7 @@ class CelDynamicznie2 extends React.Component {
     removeGoal(id) {
         //delete this.state.goals[id]; poźniej tak
 
-        var headers = {
-            'auth': localStorage.getItem('token'), 
-            'Content-Type': 'application/json'
-        }
-
-        axios.delete("/goals/" + this.state.goals[id]._id, {headers})
+        axios.delete("/goals/" + this.state.goals[id]._id, this.state.header)
         .then(response => {
             console.log(response)
         })
@@ -180,13 +162,13 @@ class CelDynamicznie2 extends React.Component {
             <div>
                 <Link to="/protected"> <button>back</button></Link>
                 <button className="button-cel-glowny">
-                   {(this.state.goal !== null) ? this.state.goal[0].name : " " }
+                   {(this.state.allGoals !== null) ? this.state.allGoals[0].name : " " }
                 </button> <br />
                 <div className="grid-sub-goal">
                     {this.drawGoalsTree()}
                 </div>
                 <br />
-                <PodcelForm goal={this.state.goal} findAllGoals={this.findAllGoals} />
+                <PodcelForm goal={this.state.allGoals} findAllGoals={this.findAllGoals} />
             </div>
         )
     }
