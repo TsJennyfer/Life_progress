@@ -13,7 +13,6 @@ class Protected extends React.Component {
         super(props);
 
         this.renderGoal = this.renderGoal.bind(this);
-        this.addMainGoal = this.addMainGoal.bind(this);
         this.checkToken = this.checkToken.bind(this);
         this.logOut = this.logOut.bind(this);
         this.state = {
@@ -43,15 +42,6 @@ class Protected extends React.Component {
         });
     }
 
-    // renderowanie okna dodawania nowego celu głównego
-    addMainGoal() {
-        this.setState({
-            nowyCelGlowny: true,
-            celeGlowne: false,
-            celSzczegoly: ""
-        })
-    }
-
     checkToken() {
         if (localStorage.getItem('token') !== null) {
             this.setState({
@@ -76,7 +66,7 @@ class Protected extends React.Component {
             if (this.state.celeGlowne) {
                 return (
                     <div>
-                        <CeleGlowne renderGoal={this.renderGoal} addMainGoal={this.addMainGoal} />
+                        <CeleGlowne renderGoal={this.renderGoal}  />
                         <button className="log-out-button" onClick={() => this.logOut()}>
                             Sign out
                             </button>

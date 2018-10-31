@@ -13,11 +13,9 @@ class CeleGlowne extends React.Component {
 
         this.findGoals = this.findGoals.bind(this);
         this.drawGoals = this.drawGoals.bind(this);
-        this.chooseGoal = this.chooseGoal.bind(this);
 
         this.state = {
-            goals: {},
-            choosenGoal: ""
+            goals: {}
         };
     }
 
@@ -50,16 +48,12 @@ class CeleGlowne extends React.Component {
             Object
                 .keys(this.state.goals)
                 .map(key => <div className="col" key={key}>  <CelSzczegoly key={key}
-                    details={this.state.goals[key]} chooseGoal={this.chooseGoal} />
+                    details={this.state.goals[key]} />
                 </div>)
         )
     }
 
-    // przejdź do konketnego celu
-    chooseGoal(key) {
-        this.props.renderGoal(key)
-    }
-    // <button class="button-sub-goal" onClick={() => this.props.addMainGoal()}>
+   
 
     render() {
 
