@@ -14,6 +14,7 @@ import Protected from './Protected';
 import Public from './Public';
 import Rejestracja from './Rejestracja';
 import Logowanie from './Logowanie';
+import CelDynamicznie2 from './CelDynamicznie2';
 
 
 import React, { Component } from 'react';
@@ -41,9 +42,10 @@ class MainPage2 extends React.Component {
                 <div>
                     <Header />
                     <Route exact path="/" component={Public} />
-                    <Route path="/protected" component={Protected} />
+                    <Route exact path="/protected" component={Protected} />
                     <Route path="/register" component={Rejestracja} />
                     <Route path="/signin" component={Logowanie} />
+                    <Route exact path="/protected/:goal" component={CelDynamicznie2} />
                 </div>
             </Router>
         )
