@@ -4,6 +4,7 @@ import axios from 'axios';
 import CelSzczegoly from './CelSzczegoly';
 
 import '../css/Cele.css';
+import CelGlownyForm from './CelGlownyForm';
 
 
 class CeleGlowne extends React.Component {
@@ -50,7 +51,7 @@ class CeleGlowne extends React.Component {
                 .keys(this.state.goals)
                 .map(key => <div className="col" key={key}>  <CelSzczegoly key={key}
                     details={this.state.goals[key]} chooseGoal={this.chooseGoal} />
-                    </div>)
+                </div>)
         )
     }
 
@@ -65,18 +66,18 @@ class CeleGlowne extends React.Component {
         return (
             <div>
                 <h2>This is your goal list</h2>
-                <br />
                 <div className="container" >
                     <div className="row">
-                        <div className="col">
+                        {/*<div className="col">
                             <button className="button-cel-glowny" onClick={() => this.props.addMainGoal()}>
                                 <b>+</b>
                                 <br />Add goal
-                    </button>
-                        </div>
+        </button>
+                        </div>*/}
                         {this.drawGoals()}
 
                     </div>
+                    <CelGlownyForm findGoals={this.findGoals} />
                 </div>
             </div>
 

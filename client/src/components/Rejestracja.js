@@ -32,6 +32,7 @@ class Rejestracja extends React.Component {
         })
             .then(response => {
                 console.log(response, 'User added!');
+                this.props.history.push('/signin');
             })
             .catch(err => {
                 console.log(err, 'User not added, try again.');

@@ -21,6 +21,7 @@ class Logowanie extends React.Component {
     }
 
 
+
     //Logowanie
     logIn(event) {
         event.preventDefault();
@@ -40,6 +41,12 @@ class Logowanie extends React.Component {
                 });
                 localStorage.setItem('token', this.state.token);
                 //this.props.checkToken();
+                this.props.history.push({
+                    pathname: '/protected',
+                    state: {
+                        userToken: this.state.token
+                    }
+                });
             })
             .catch(err => {
                 console.log(err, 'User not logged in.');

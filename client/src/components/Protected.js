@@ -30,6 +30,10 @@ class Protected extends React.Component {
         this.checkToken();
     }
 
+    goToPublic() {
+        this.props.history.push('/');
+    }
+
 
     // renderowanie pojedynczego celu
     renderGoal(goal) {
@@ -60,6 +64,7 @@ class Protected extends React.Component {
             this.setState({
                 isUserLoggedIn: false
             });
+            this.props.history.push('/');
         }
     }
 
@@ -83,8 +88,6 @@ class Protected extends React.Component {
             } else if (this.state.nowyCelGlowny) {
                 return (
                     <div>
-                        <CelFormularz />
-                        <br />
                         <CelGlownyForm />
                     </div>
                 )
@@ -101,32 +104,8 @@ class Protected extends React.Component {
         // użytkownik niezalogowany
         else if (!this.state.isUserLoggedIn) {
             return (
-                <div className="container">
-                    <div className="row justify-content-center welcome">
-                        <div className="col-8 ml-5">
-                            <h1>Welcome to</h1>
-                        </div>
-                    </div>
-                    <div className="row justify-content-center mt-4">
-                        <div className="col-8 ml-5">
-                            <h1> Life progress</h1>
-                        </div>
-                    </div>
-                    <div className="row justify-content-center mt-4">
-                        <div className="col-3">
-                            <h3>Planning aplication to<br /> organize...</h3>
-                        </div>
-                    </div>
-                    <div className="row justify-content-center">
-                        <div className="col-4">
-                            <button className="button-get-started">
-                                <span>Get started</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <Rejestracja />
-                    <Logowanie checkToken={this.checkToken} />
+                <div>
+                    {this.goToPublic}
                 </div>
             )
         }
