@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import {
-  BrowserRouter as Router,
-  Route,
   Link
 } from 'react-router-dom';
-import Header from './Header';
-import Rejestracja from './Rejestracja';
-import Logowanie from './Logowanie';
-import feather from '../resourses/feather.png';
 
 class Public extends Component {
   constructor(props) {

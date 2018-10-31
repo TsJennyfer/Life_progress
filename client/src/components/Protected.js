@@ -1,10 +1,7 @@
 // To jest Main - środkowa część strony wyświetlająca część główną
 import React from 'react';
-import Rejestracja from './Rejestracja';
-import Logowanie from './Logowanie';
 import CeleGlowne from './CeleGlowne';
 import CelDynamicznie from './CelDynamicznie';
-import CelFormularz from './CelFormularz';
 import CelGlownyForm from './CelGlownyForm';
 // import Graph from './Graph';
 //import icon from '../resourses/done_icon.png';
@@ -23,7 +20,7 @@ class Protected extends React.Component {
             celeGlowne: true,
             celSzczegoly: "",
             nowyCelGlowny: false,
-            isUserLoggedIn: false
+            isUserLoggedIn: true
         };
     }
     componentDidMount() {
@@ -103,9 +100,10 @@ class Protected extends React.Component {
         }
         // użytkownik niezalogowany
         else if (!this.state.isUserLoggedIn) {
+            
             return (
                 <div>
-                    {this.goToPublic}
+                    {this.goToPublic()}
                 </div>
             )
         }
