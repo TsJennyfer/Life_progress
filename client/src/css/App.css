@@ -2,36 +2,60 @@ body{
   margin: auto;
   font-family: 'Bitter', serif;
   font-size: 18px;
+  
 }
 
 .center{
   text-align: center;
 }
 
+
 tr.spaceUnder>td {
   padding-bottom: 5em;
 }
 
 input{
-  border: 1px solid #ccc;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
-	border-radius: 10px;
 	-moz-box-shadow: 2px 2px 3px #666;
 	-webkit-box-shadow: 2px 2px 3px #666;
 	box-shadow: 2px 2px 3px #666;
 	font-size: 20px;
-	padding: 4px 7px;
 	outline: 0;
   -webkit-appearance: none;
   height: 20px;
   width: 350px;
+  text-align: center;
+  padding: .55em;
+  margin-bottom: 0.5em;
+  border: none;
 }
 
 .main__container{
-  background-image: url("../resourses/pink_table.jpg");
+  background-image: url("../resourses/pink_table.jpg" );
   background-size: cover;
+
+  /*
+   background-image: url("../resourses/table_back.jpg" );
+  -webkit-backdrop-filter: grayscale() blur(10px); 
+    backdrop-filter: grayscale() blur(10px);  */
 }
+
+/*.background-image {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: block;
+  background-image: url("../resourses/table_back.jpg");
+  width: 1200px;
+  height: 800px;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}*/
 
 a, a:link, a:visited, a:hover, a:active {
   text-decoration: none;
@@ -51,8 +75,8 @@ a, a:link, a:visited, a:hover, a:active {
   box-sizing: content-box;
   cursor: pointer;
   border: 2px solid rgb(0, 165, 14);
-  -webkit-border-radius: 40px;
-  border-radius: 40px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
   font: normal "Advent Pro", Helvetica, sans-serif;
   padding: 8px 16px;
   color: rgb(0, 165, 14);
@@ -80,6 +104,21 @@ a, a:link, a:visited, a:hover, a:active {
     transition: none;
   }
 
+  .button-forgot-pass{
+    color: #7f7f7f;
+    display: inline-block;
+    font: 12px/1 sans-serif;
+    right: -19px;
+    position: relative;
+    text-decoration: none;
+    top: 5px;
+    transition: color .4s;
+  }
+  .button-forgot-pass:hover{
+    text-decoration:underline;
+    
+  }  
+
 .header-logo {
   margin: auto;
   margin-top: 16px;
@@ -98,7 +137,6 @@ a, a:link, a:visited, a:hover, a:active {
   margin-top: 200px;
 }
 
-
 .button_logo {
   background-color:black;
   border: none;
@@ -114,38 +152,23 @@ a, a:link, a:visited, a:hover, a:active {
   cursor: pointer;
 }
 
-.button-get-started {
-  background-color:rgb(100, 185, 22);
+.button-main {
+  background-color:rgb(0, 165, 14);
   border: none;
   color: #1b1b1b;
   padding: 6px 20px;
-  font-size: 24px;
-}
-
-.button-get-started:hover,
-.button-get-started:focus {
-  background: green;
-  background-image: linear-gradient(rgb(10, 155, 58), rgb(10, 155, 58));
-}
-
-.buttonR {
-  background-color: red;
-  border: none;
-  color: white;
-  padding: 50px;
-  text-align: center;
-  text-decoration: none;
+  font-size: 15px;
   display: inline-block;
-  font-size: 10px;
-  cursor: pointer;
-  padding: 20px;
+  position: relative;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
 }
 
-.round {border-radius: 50%;}
-
-buttonR.pressed {
-  background-color: green;
+.button-main:hover,
+.button-main:focus {
+  background: rgb(5, 170, 5);
 }
+
 
 h1 { 
   color: #1b1b1b; 

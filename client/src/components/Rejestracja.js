@@ -2,8 +2,6 @@
 import React from 'react';
 import axios from 'axios';
 
-import '../css/RejestracjaLogowanie.css';
-
 class Rejestracja extends React.Component {
 
     constructor(props) {
@@ -49,33 +47,53 @@ class Rejestracja extends React.Component {
     handlePassword(event) {
         this.setState({ password: event.target.value });
     }
+    
+    //zmienic na pole name
 
     render() {
         return (
+
             <div className="row justify-content-center form-register">
                 <div className="col-12">
-                <h2>Not a member? Create an account</h2>
+                <h2><u>Not a member? Create an account</u></h2>
                 </div>
                 <div className="col-12">
                 <form className="registerForm" onSubmit={this.addUser}>
                     <input
                         onChange={this.handleEmail}
+                        name="name"
+                        type="name"
+                        value={this.state.name}
+                        placeholder="Name"
+                    />
+                    <br/>
+                    <input
+                        onChange={this.handleEmail}
                         name="email"
                         type="email"
                         value={this.state.email}
-                        placeholder="Your email"
+                        placeholder="E-mail"
                     />
-                    <br />
+                    <br/>
                     <input
                         onChange={this.handlePassword}
                         name="password"
                         type="password"
                         minLength={3}
                         value={this.state.password}
-                        placeholder="Your password"
+                        placeholder="Password"
                     />
-                    <br />
-                    <button className="button button1" type="submit">
+                    <br/>
+                    <input
+                        onChange={this.handlePassword}
+                        name="password"
+                        type="password"
+                        minLength={3}
+                        value={this.state.password}
+                        placeholder="Confirm password"
+                    />
+                    </form>
+                    <button className="button-main" type="submit">
                         Sign up<i className="GuestBookButton2" aria-hidden="true" />
                     </button>
                     
@@ -86,8 +104,7 @@ class Rejestracja extends React.Component {
                 <button className="loginBtn loginBtn--facebook">
                     Login with Facebook
                 </button>
-                </form>
-                </div>
+
                 
             </div>
         );

@@ -35,19 +35,21 @@ class MainPage extends React.Component {
                     backgroundImage={header}
                 >
                 </StickyHeader>*/}
+
                 <div className="main__container">
                     <div className="MyHeader d-flex">
                         <a className="header-logo">
                             <img src={feather} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
                             <span className="ml-3">LIFE PROGRESS</span>
                         </a>
+            <a className="header-button">Set language</a>
                         <a className="header-button" >About us</a>
                         <a className="header-button" id="sign-in" >Sign in</a>
                         <a className="header-button" id="sign-up" >Sign up</a>
+
                     </div>
                     <Main />
                 </div>
-
             </div>
         )
     }
