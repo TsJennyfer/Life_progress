@@ -8,8 +8,7 @@ import Public from './Public';
 import Rejestracja from './Rejestracja';
 import Logowanie from './Logowanie';
 import CelDynamicznie2 from './CelDynamicznie2';
-
-
+import UserProfile from './UserProfile';
 import React from 'react';
 import {
     BrowserRouter as Router,
@@ -38,6 +37,7 @@ class MainPage2 extends React.Component {
                     <Route path="/register" component={Rejestracja} />
                     <Route path="/signin" component={Logowanie} />
                     <Route exact path="/protected/:goal" component={CelDynamicznie2} />
+                    <Route path="/userProfile" component={UserProfile} />
                 </div>
             </Router>
         )

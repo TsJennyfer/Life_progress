@@ -16,6 +16,7 @@ class Header extends React.Component {
                 <div className="header-button" ><Link to="/">About us</Link></div>
                 <div className="header-button" id="sign-in" ><Link to="/signin">Sign in</Link></div>
                 <div className="header-button" id="sign-up" ><Link to="/register">Sign up</Link></div>
+                <div className="header-button" id="user-profile" ><Link to="/userProfile">Your account</Link></div>
             </div>
         )
     }

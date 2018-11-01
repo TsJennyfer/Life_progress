@@ -8,6 +8,7 @@ import '../css/Cele.css';
 import '../css/App.css';
 import '../css/PodceleAnimacje.css';
 import Link from 'react-router-dom/Link';
+import { timingSafeEqual } from 'crypto';
 
 class CelDynamicznie2 extends React.Component {
     constructor(props) {
@@ -15,6 +16,7 @@ class CelDynamicznie2 extends React.Component {
         this.findGoalById = this.findGoalById.bind(this);
         this.findAllGoals = this.findAllGoals.bind(this);
         this.drawGoalsTree = this.drawGoalsTree.bind(this);
+        this.writeDetailsList = this.writeDetailsList.bind(this);
         this.changePriority = this.changePriority.bind(this);
         this.changeButtonColor = this.changeButtonColor.bind(this);
         this.removeGoal = this.removeGoal.bind(this);
@@ -23,16 +25,19 @@ class CelDynamicznie2 extends React.Component {
             goalId: null,
             allGoals: null,
             isDone: false,
-            header: {headers: {
-                'auth': localStorage.getItem('token'), 
-                'Content-Type': 'application/json'
-            }}
+            header: {
+                headers: {
+                    'auth': localStorage.getItem('token'),
+                    'Content-Type': 'application/json'
+                }
+            }
         };
     }
 
     componentDidMount() {
         this.setState({
-            goalId: this.props.location.state.id},this.findGoalById());
+            goalId: this.props.location.state.id
+        }, this.findGoalById());
         // ten stan niżej jest pusty, ponieważ findGoalById wykonuje się asynchornicznie (a przynajmniej tak zaobserwowałem)
         console.log(this.state.allGoals, 'z CelDynamicznie - componentDidMount');
     }
@@ -78,7 +83,7 @@ class CelDynamicznie2 extends React.Component {
                 .keys(this.state.goals)
                 .map(key =>
                     <CSSTransitionGroup
-                        key = {key}
+                        key={key}
                         transitionName="subgoals"
                         transitionEnterTimeout={5000}
                         transitionLeaveTimeout={3000}
@@ -86,14 +91,14 @@ class CelDynamicznie2 extends React.Component {
                         transitionAppearTimeout={800}>
                         <div className="goal-container">
                             <div
-                                key = {key}
+                                key={key}
                                 className={(this.state.goals[key].priority === 0) ? "button-sub-goal-done" : "button-sub-goal"}
                                 id={key}
                                 onClick={() => this.changePriority(key)}>
                                 {(this.state.goals !== null) ? this.state.goals[key].name : " "}
                                 <button type="button"
-                                 className="btn btn-default btn-sm trash-btn" 
-                                 onClick={() => this.removeGoal(key)}>
+                                    className="btn btn-default btn-sm trash-btn"
+                                    onClick={() => this.removeGoal(key)}>
                                     <span className="glyphicon glyphicon-trash"></span>
                                 </button>
                             </div>
@@ -104,7 +109,23 @@ class CelDynamicznie2 extends React.Component {
         );
 
     }
-    
+
+    writeDetailsList() {
+        return (
+
+            Object
+                .keys(this.state.goals)
+                .map(key =>
+                    <form>
+                        <div className="datails-list-form">
+                            <label for="date">{this.state.goals[key].name}</label> <div className="details-list-form-element" name="date">zakończone lub nie</div><div>...coments</div>
+                        </div>
+                    </form>
+                )
+
+        );
+    }
+
     changePriority(id) {
         // kopia aktualnych celów
         const goals = { ...this.state.goals };
@@ -122,7 +143,7 @@ class CelDynamicznie2 extends React.Component {
             {
                 priority: this.state.goals[id].priority
             },
-        this.state.header).then(response => {
+            this.state.header).then(response => {
 
                 console.log(response)
             })
@@ -147,12 +168,12 @@ class CelDynamicznie2 extends React.Component {
         //delete this.state.goals[id]; poźniej tak
 
         axios.delete("/goals/" + this.state.goals[id]._id, this.state.header)
-        .then(response => {
-            console.log(response)
-        })
-        .catch(err => {
-            console.log(err);
-        });
+            .then(response => {
+                console.log(response)
+            })
+            .catch(err => {
+                console.log(err);
+            });
         this.findAllGoals();
 
     }
@@ -162,11 +183,13 @@ class CelDynamicznie2 extends React.Component {
             <div>
                 <Link to="/protected"> <button>back</button></Link>
                 <button className="button-cel-glowny">
-                   {(this.state.allGoals !== null) ? this.state.allGoals[0].name : " " }
+                    {(this.state.allGoals !== null) ? this.state.allGoals[0].name : " "}
                 </button> <br />
                 <div className="grid-sub-goal">
                     {this.drawGoalsTree()}
                 </div>
+                <h2>Details</h2>
+                {this.writeDetailsList()}
                 <br />
                 <PodcelForm goal={this.state.allGoals} findAllGoals={this.findAllGoals} />
             </div>
