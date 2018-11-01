@@ -48,7 +48,7 @@ a, a:link, a:visited, a:hover, a:active {
 }
 
 .MyHeader {
-  background-image: linear-gradient(to right top, #00c9ff, #00dbf8, #00eae2, #41f6c2, #92fe9d);
+  background-image: linear-gradient(to bottom, rgba(223, 234, 41, 0.45), rgba(146, 254, 157, 0), rgba(146, 254, 157, 0));
   padding: 16px 0px;
 }
 

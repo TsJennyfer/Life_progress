@@ -122,7 +122,7 @@ class CelDynamicznie2 extends React.Component {
                 .map(key =>
                     <form>
                         <div className="datails-list-form">
-                            <label for="date">{this.state.goals[key].name}</label> <div className="details-list-form-element" name="date">zakończone lub nie</div><div>...coments</div>
+                            <label for="date">{this.state.goals[key].name}</label> <span className="details-list-form-element" name="date">zakończone lub nie</span><span>...coments</span >
                         </div>
                     </form>
                 )
