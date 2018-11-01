@@ -2,9 +2,6 @@
 import React from 'react';
 import axios from 'axios';
 
-import '../css/RejestracjaLogowanie.css';
-
-
 class Logowanie extends React.Component {
 
     constructor(props) {
@@ -15,7 +12,7 @@ class Logowanie extends React.Component {
         this.handlePassword = this.handlePassword.bind(this);
         this.state = {
             email: "",
-            password: "",
+            userPassword: "",
             token: ""
         }
     }
@@ -26,17 +23,17 @@ class Logowanie extends React.Component {
         event.preventDefault();
         this.setState({
             email: event.target.value,
-            password: event.target.value,
+            userPassword: event.target.value,
         });
 
-        axios.post('/users/signin', {
+        axios.post('/user/signin', {
             email: this.state.email,
-            password: this.state.password,
+            userPassword: this.state.userPassword,
         })
             .then(response => {
                 console.log(response, 'User logged in!');
                 this.setState({
-                    token: response.headers.auth
+                    token: response.data.token
                 });
                 localStorage.setItem('token', this.state.token);
                 this.props.checkToken();
@@ -47,7 +44,7 @@ class Logowanie extends React.Component {
 
         this.setState({
             email: "",
-            password: "",
+            userPassword: "",
         });
     }
 
@@ -56,14 +53,14 @@ class Logowanie extends React.Component {
         this.setState({ email: event.target.value });
     }
     handlePassword(event) {
-        this.setState({ password: event.target.value });
+        this.setState({ userPassword: event.target.value });
     }
 
     render() {
         return (
             <div>
                 <hr />
-                <h2>Sign in</h2>
+                <h2><u>Sign in</u></h2>
                 <form className="loginForm" onSubmit={this.logIn}>
                     <input
                         onChange={this.handleEmail}
@@ -75,16 +72,20 @@ class Logowanie extends React.Component {
                     <br />
                     <input
                         onChange={this.handlePassword}
-                        name="password"
+                        name="userPassword"
                         type="password"
                         minLength={3}
-                        value={this.state.password}
+                        value={this.state.userPassword}
                         placeholder="Your password"
                     />                    
-                    <br />
-                    <button className="button button1" type="submit">
+                    <div>
+                    <button className="button-main" type="submit">
                         Sign in<i className="GuestBookButton2" aria-hidden="true" />
                     </button>
+                    <a href="#" className="button-forgot-pass" >
+                        Forgot password?
+                    </a>
+                    </div>
                 </form>
             </div>
         );
