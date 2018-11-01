@@ -5,6 +5,10 @@ body, html, #root{
   margin:0; 
   padding:0; 
   min-height: 100%;
+  text-align: center;
+}
+#root {
+  background-image: url("../resourses/square_bg.png");
 }
 
 .center{
@@ -32,7 +36,7 @@ input{
 }
 
 .main__container{
-  background-image: url("../resourses/pink_table2.jpg");
+  
   background-size: cover;
   text-align: center;
   height: 100%;
@@ -44,6 +48,7 @@ a, a:link, a:visited, a:hover, a:active {
 }
 
 .MyHeader {
+  background-image: linear-gradient(to right top, #00c9ff, #00dbf8, #00eae2, #41f6c2, #92fe9d);
   padding: 16px 0px;
 }
 
@@ -93,10 +98,6 @@ a, a:link, a:visited, a:hover, a:active {
   text-decoration: none;
   font-size: 20px;
   font-weight: 200;
-}
-
-.container {
-  text-align: center;
 }
 
 .welcome {
@@ -191,11 +192,6 @@ h3 {
   grid-gap: 1rem;
   grid-row-gap: 4rem;
   align: center;
-}
-
-.goal-container {
-  display: inline;
-  position: relative;
 }
 
 .trash-btn {

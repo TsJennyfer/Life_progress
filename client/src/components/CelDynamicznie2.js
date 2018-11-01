@@ -8,7 +8,9 @@ import '../css/Cele.css';
 import '../css/App.css';
 import '../css/PodceleAnimacje.css';
 import Link from 'react-router-dom/Link';
-import { timingSafeEqual } from 'crypto';
+import backButton from '../resourses/back-button.png';
+//import { timingSafeEqual } from 'crypto';
+
 
 class CelDynamicznie2 extends React.Component {
     constructor(props) {
@@ -82,6 +84,7 @@ class CelDynamicznie2 extends React.Component {
             Object
                 .keys(this.state.goals)
                 .map(key =>
+                    <div className="col-2">
                     <CSSTransitionGroup
                         key={key}
                         transitionName="subgoals"
@@ -89,7 +92,7 @@ class CelDynamicznie2 extends React.Component {
                         transitionLeaveTimeout={3000}
                         transitionAppear={true}
                         transitionAppearTimeout={800}>
-                        <div className="goal-container">
+                        
                             <div
                                 key={key}
                                 className={(this.state.goals[key].priority === 0) ? "button-sub-goal-done" : "button-sub-goal"}
@@ -103,8 +106,9 @@ class CelDynamicznie2 extends React.Component {
                                 </button>
                             </div>
 
-                        </div>
+                        
                     </CSSTransitionGroup>
+                    </div>
                 )
         );
 
@@ -180,18 +184,29 @@ class CelDynamicznie2 extends React.Component {
 
     render() {
         return (
-            <div>
-                <Link to="/protected"> <button>back</button></Link>
-                <button className="button-cel-glowny">
-                    {(this.state.allGoals !== null) ? this.state.allGoals[0].name : " "}
-                </button> <br />
-                <div className="grid-sub-goal">
-                    {this.drawGoalsTree()}
+            <div className="container">
+                <div className="row align-items-center">
+                    <div className="col-1">
+                        <Link to="/protected"> <img src={backButton}></img></Link>
+                    </div>
+                    <div className="col-11">
+                        <button className="button-cel-glowny">
+                            {(this.state.allGoals !== null) ? this.state.allGoals[0].name : " "}
+                        </button></div>
                 </div>
+                <div className="row">
+                    <div className="container">
+                        <div className="row">
+                            {this.drawGoalsTree()}
+                        </div>
+                    </div>
+                </div>
+
                 <h2>Details</h2>
                 {this.writeDetailsList()}
                 <br />
                 <PodcelForm goal={this.state.allGoals} findAllGoals={this.findAllGoals} />
+
             </div>
         )
     }
