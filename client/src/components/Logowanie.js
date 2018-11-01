@@ -58,10 +58,12 @@ class Logowanie extends React.Component {
 
     render() {
         return (
-
+<div>
+    <hr />
             <div className="row justify-content-center form-login">
+            <div className="col-12">
                 <h2><u>Sign in</u></h2>
-
+               </div>
                 <form className="loginForm" onSubmit={this.logIn}>
                     <input
                         onChange={this.handleEmail}
@@ -89,8 +91,11 @@ class Logowanie extends React.Component {
                         Forgot password?
                     </a>
                     </div>
+                   
                 </form>
             </div>
+            </div>
+
         );
     }
 
