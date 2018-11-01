@@ -52,9 +52,12 @@ class Rejestracja extends React.Component {
 
     render() {
         return (
-            <div>
-                <hr />
+
+            <div className="row justify-content-center form-register">
+                <div className="col-12">
                 <h2><u>Not a member? Create an account</u></h2>
+                </div>
+                <div className="col-12">
                 <form className="registerForm" onSubmit={this.addUser}>
                     <input
                         onChange={this.handleEmail}
@@ -101,7 +104,7 @@ class Rejestracja extends React.Component {
                 <button className="loginBtn loginBtn--facebook">
                     Login with Facebook
                 </button>
-               
+
                 
             </div>
         );

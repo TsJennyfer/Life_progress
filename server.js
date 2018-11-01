@@ -6,24 +6,27 @@ const morgan = require('morgan');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 const nodeMailer = require('nodemailer');
+require('dotenv').config();
 
-var {mongoose} = require('./db/mongoose');
+var {mongoose} = require('./database/mongoose');
 var {Goal} = require('./models/goal');
 var {User} = require('./models/user');
 var {authenticate} = require('./middleware/authenticate');
-var {Email} = require('./db/email');
+var {sender} = require('./middleware/sender');
 
 
 var app = express();
 const port = process.env.PORT || 5000;
 
 //View Engine
+/* 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
+*/
 
 //Set Static Folder
-app.use(express.static(path.join(__dirname, 'client')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 //Body Parser MW
 app.use(bodyParser.json());
@@ -34,19 +37,43 @@ app.use(morgan('dev'));
 //#############################################################
 //ROUTES
 
+//Potwierdzenie email
+app.get('/users/confirmEmail/:token', (req, res)=>{
+    var token = req.params.token;
+
+    User.findOneAndUpdate({'tokens.token': token},{activated: true}).then((user)=>{
+        if (!user){
+            return res.status(404).send();
+        }
+
+        res.send({user});
+    }).catch((error)=>{
+        res.status(400).send();
+    })
+})
+
 //Rejestracja
 app.post('/users/signup', (req, res)=> {
 
-//#############################################################
-//Wysyłanie maili
+    var body = _.pick(req.body, ['email', 'password']);
+    var user = new User(body);
 
-    let transporter = nodeMailer.createTransport({
+    user.save().then(() => {
+        var confirmToken = user.generateAuthToken();
+        var token = user.tokens[0].token;
+        console.log(token); //pierwszy token
+        sender(req, token);
+
+    //#############################################################
+    //Wysyłanie maili
+
+/*     let transporter = nodeMailer.createTransport({
         host: 'smtp.gmail.com',
         port: 465,      //or 587
         secure: true,   //then false
         auth: {
-            user: Email.emailAdress,
-            pass: Email.emailPassword
+            user: process.env.EMAIL_ADDRESS,
+            pass: process.env.EMAIL_PASSWORD
         },
         tls: {
             rejectUnauthorized: false
@@ -56,8 +83,8 @@ app.post('/users/signup', (req, res)=> {
         from: '"Life Progress App" <lifeprogress.pri@gmail.com>', // sender address
         to: req.body.email, // list of receivers
         subject: "Welcome in Life Progress", // Subject line
-        text: Email.emailMessage, // plain text body
-        html: '<b>Registration in Life Progress</b>' // html body
+        text: process.env.EMAIL_MESSAGE, // plain text body
+        html: `<b>Registration in Life Progress</b><br><a href="https://life-progress.herokuapp.com/users/confirmEmail/${token}">Click to confirm your email address.<a/><br>` // html body
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -65,15 +92,11 @@ app.post('/users/signup', (req, res)=> {
             return console.log(error);
         }
         console.log('Message %s sent: %s', info.messageId, info.response);
-        });
+        }); */
 
-//###############################################################
+    //######################################################################
 
-    var body = _.pick(req.body, ['email', 'password']);
-    var user = new User(body);
-
-    user.save().then(() => {
-        return user.generateAuthToken();
+        return confirmToken;
     }).then((token)=>{
         res.header('auth', token).send(user);
     }).catch((error) => {
@@ -91,11 +114,17 @@ app.post('/users/signin', (req, res) => {
     var body = _.pick(req.body, ['email', 'password']);
 
     User.findByCredentials(body.email, body.password).then((user) => {
+        if (user.activated === false){  //czy email potwierdzony
+            res.status(401).send('Please confirm your email address.');
+            console.log('Please confirm your email address.');
+    }
+    else {
         user.generateAuthToken().then((token) => {
             res.header('auth', token).send(user);
         });
-    }).catch((error) => {
-        res.status(400).send();
+    }
+        }).catch((error) => {
+            res.status(400).send();
     });
 });
 
@@ -111,17 +140,17 @@ app.delete('/users/logout', authenticate, (req, res)=> {
 //Zmiana danych użytkownika (hasło, email)
 app.patch('/users/:id', authenticate, (req, res) => {
     var id = req.params.id;
-    //var body = _.pick(req.body, ['email', 'password']); //jakie pola zmieniamy
-    var password = req.body.password;
+    var body = _.pick(req.body, ['email', 'password']); //jakie pola zmieniamy
+
+    if (!ObjectId.isValid(id)) {
+        return res.status(404).send();
+    }
 
     bcrypt.genSalt(10, (error, salt) => {
-        bcrypt.hash(password, salt, (error, hash) => {
-            req.body.password = hash;
+        bcrypt.hash(body.password, salt, (error, hash) => {
+            body.password = hash;
 
-            if (!ObjectId.isValid(id)) {
-                return res.status(404).send();
-            }
-            User.findOneAndUpdate({_id: id}, req.body).then((user)=>{
+            User.findOneAndUpdate({_id: id}, {$set: body}, {new: true}).then((user)=>{
                 if (!user){
                     return res.status(404).send();
                 }
@@ -130,10 +159,12 @@ app.patch('/users/:id', authenticate, (req, res) => {
             }).catch((error)=>{
                 res.status(400).send();
             })
-        }) 
-     })
+        })
+    })
+
 
 });
+
 
 //Dodanie celu
 app.post('/goals/', authenticate, (req, res) => {

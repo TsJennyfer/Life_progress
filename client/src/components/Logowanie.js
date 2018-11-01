@@ -58,9 +58,10 @@ class Logowanie extends React.Component {
 
     render() {
         return (
-            <div>
-                <hr />
+
+            <div className="row justify-content-center form-login">
                 <h2><u>Sign in</u></h2>
+
                 <form className="loginForm" onSubmit={this.logIn}>
                     <input
                         onChange={this.handleEmail}
@@ -77,9 +78,11 @@ class Logowanie extends React.Component {
                         minLength={3}
                         value={this.state.userPassword}
                         placeholder="Your password"
+
                     />                    
                     <div>
                     <button className="button-main" type="submit">
+
                         Sign in<i className="GuestBookButton2" aria-hidden="true" />
                     </button>
                     <a href="#" className="button-forgot-pass" >
