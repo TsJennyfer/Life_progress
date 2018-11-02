@@ -114,11 +114,7 @@ class Main extends React.Component {
                     </div>
                     <div className="row justify-content-center mt-4">
                         <div className="col-3">
-                            <h3>Get organised in seconds<br />
-                            Planning tasks<br />
-                            Measure progress<br />
-                            Feel organised and motywated<br />
-                            </h3>
+                            <h3>Planning aplication to<br /> organize...</h3>
                         </div>
                     </div>
                     <div className="row justify-content-center">
@@ -135,7 +131,6 @@ class Main extends React.Component {
                     <div>
                     <Rejestracja />
                     </div>
-
                 </div>
             )
         }

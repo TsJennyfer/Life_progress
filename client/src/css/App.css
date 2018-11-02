@@ -193,15 +193,6 @@ h3 {
   color: #1b1b1b;
 }
 
-.form-register {
-  margin-top: 400px;
-}
-
-.form-login {
-  margin-top: 400px;
-  margin-bottom: 200px;
-}
-
 .grid-sub-goal {
   display: grid;
     grid-template-columns: repeat(6, 1fr);

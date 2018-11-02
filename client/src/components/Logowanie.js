@@ -2,6 +2,9 @@
 import React from 'react';
 import axios from 'axios';
 
+import '../css/RejestracjaLogowanie.css';
+
+
 class Logowanie extends React.Component {
 
     constructor(props) {
@@ -12,7 +15,7 @@ class Logowanie extends React.Component {
         this.handlePassword = this.handlePassword.bind(this);
         this.state = {
             email: "",
-            userPassword: "",
+            password: "",
             token: ""
         }
     }
@@ -23,17 +26,17 @@ class Logowanie extends React.Component {
         event.preventDefault();
         this.setState({
             email: event.target.value,
-            userPassword: event.target.value,
+            password: event.target.value,
         });
 
-        axios.post('/user/signin', {
+        axios.post('/users/signin', {
             email: this.state.email,
-            userPassword: this.state.userPassword,
+            password: this.state.password,
         })
             .then(response => {
                 console.log(response, 'User logged in!');
                 this.setState({
-                    token: response.data.token
+                    token: response.headers.auth
                 });
                 localStorage.setItem('token', this.state.token);
                 this.props.checkToken();
@@ -44,7 +47,7 @@ class Logowanie extends React.Component {
 
         this.setState({
             email: "",
-            userPassword: "",
+            password: "",
         });
     }
 
@@ -53,13 +56,13 @@ class Logowanie extends React.Component {
         this.setState({ email: event.target.value });
     }
     handlePassword(event) {
-        this.setState({ userPassword: event.target.value });
+        this.setState({ password: event.target.value });
     }
 
     render() {
         return (
-<div>
-    <hr />
+        <div>
+    <       hr />
             <div className="row justify-content-center form-login">
             <div className="col-12">
                 <h2><u>Sign in</u></h2>
@@ -75,23 +78,21 @@ class Logowanie extends React.Component {
                     <br />
                     <input
                         onChange={this.handlePassword}
-                        name="userPassword"
+                        name="password"
                         type="password"
                         minLength={3}
-                        value={this.state.userPassword}
+                        value={this.state.password}
                         placeholder="Your password"
 
                     />                    
                     <div>
                     <button className="button-main" type="submit">
-
                         Sign in<i className="GuestBookButton2" aria-hidden="true" />
                     </button>
-                    <a href="#" className="button-forgot-pass" >
+                    <a className="button-forgot-pass" >
                         Forgot password?
                     </a>
                     </div>
-                   
                 </form>
             </div>
             </div>

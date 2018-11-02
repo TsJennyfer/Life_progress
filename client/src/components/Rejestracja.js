@@ -2,6 +2,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import '../css/RejestracjaLogowanie.css';
+
 class Rejestracja extends React.Component {
 
     constructor(props) {
@@ -47,67 +49,48 @@ class Rejestracja extends React.Component {
     handlePassword(event) {
         this.setState({ password: event.target.value });
     }
-    
-    //zmienic na pole name
 
     render() {
         return (
-        <div>
+       
+        <div className="row justify-content-center form-register">
+            <div className="col-12">
             <hr />
-            <div className="row justify-content-center form-register">
-                <div className="col-12">
-                <h2><u>Not a member? Create an account</u></h2>
-                </div>
-                <div className="col-12">
+            <h2><u>Not a member? Create an account</u></h2>
+            </div>
+            <div className="col-12">
+
                 <form className="registerForm" onSubmit={this.addUser}>
-                    <input
-                        onChange={this.handleEmail}
-                        name="name"
-                        type="name"
-                        value={this.state.name}
-                        placeholder="Name"
-                    />
-                    <br/>
                     <input
                         onChange={this.handleEmail}
                         name="email"
                         type="email"
                         value={this.state.email}
-                        placeholder="E-mail"
+                        placeholder="Your email"
                     />
-                    <br/>
+                    <br />
                     <input
                         onChange={this.handlePassword}
                         name="password"
                         type="password"
                         minLength={3}
                         value={this.state.password}
-                        placeholder="Password"
+                        placeholder="Your password"
                     />
-                    <br/>
-                    <input
-                        onChange={this.handlePassword}
-                        name="password"
-                        type="password"
-                        minLength={3}
-                        value={this.state.password}
-                        placeholder="Confirm password"
-                    />
-                    </form>
+                    <br />
                     <button className="button-main" type="submit">
                         Sign up<i className="GuestBookButton2" aria-hidden="true" />
                     </button>
-                    
                     <br />
                     <button className="loginBtn loginBtn--google">
-                    Login with Google
-                </button> 
-                <button className="loginBtn loginBtn--facebook">
-                    Login with Facebook
-                </button>
-                </div>
+                        Login with Google
+                    </button> 
+                    <button className="loginBtn loginBtn--facebook">
+                        Login with Facebook
+                    </button>
+                </form>
             </div>
-            </div>
+        </div>
         );
     }
 
