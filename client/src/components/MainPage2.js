@@ -16,7 +16,6 @@ import {
 } from 'react-router-dom';
 
 import Header from './Header';
-import backgroundPattern from '../resourses/square_bg.png';
 
 
 class MainPage2 extends React.Component {

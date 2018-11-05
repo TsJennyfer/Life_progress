@@ -7,6 +7,8 @@ body, html, #root{
 
 #root {
   background-image: url("../resourses/square_bg.png");
+  text-align: center;
+  height: 100%;
 }
 
 .center{
@@ -131,6 +133,20 @@ a, a:link, a:visited, a:hover, a:active {
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
+}
+
+.button-get-started {
+  background-color:rgb(0, 165, 14);
+  border: none;
+  color: #1b1b1b;
+  padding: 6px 20px;
+  font-size: 24px;
+}	
+
+.button-get-started:hover,	
+.button-get-started:focus {	
+ background: green;	
+ background-image: linear-gradient(rgb(10, 155, 58), rgb(10, 155, 58));	
 }
 
 .button-main {

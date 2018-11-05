@@ -69,12 +69,11 @@ class Logowanie extends React.Component {
     render() {
         return (
         <div>
-    <       hr />
-            <div className="row justify-content-center form-login">
+            <div className="row justify-content-center">
             <div className="col-12">
                 <h2><u>Sign in</u></h2>
                </div>
-                <form className="loginForm" onSubmit={this.logIn}>
+                <form onSubmit={this.logIn}>
                     <input
                         onChange={this.handleEmail}
                         name="email"

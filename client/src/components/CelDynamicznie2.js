@@ -187,7 +187,7 @@ class CelDynamicznie2 extends React.Component {
             <div className="container">
                 <div className="row align-items-center">
                     <div className="col-1">
-                        <Link to="/protected"> <img src={backButton}></img></Link>
+                        <Link to="/protected"> <img src={backButton} alt=""></img></Link>
                     </div>
                     <div className="col-11">
                         <button className="button-cel-glowny">
