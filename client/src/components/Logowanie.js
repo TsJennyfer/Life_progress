@@ -68,8 +68,12 @@ class Logowanie extends React.Component {
 
     render() {
         return (
+        <div>
+    <       hr />
             <div className="row justify-content-center form-login">
-                <h2>Sign in</h2>
+            <div className="col-12">
+                <h2><u>Sign in</u></h2>
+               </div>
                 <form className="loginForm" onSubmit={this.logIn}>
                     <input
                         onChange={this.handleEmail}
@@ -86,13 +90,20 @@ class Logowanie extends React.Component {
                         minLength={3}
                         value={this.state.password}
                         placeholder="Your password"
-                    />
-                    <br />
-                    <button className="button button1" type="submit">
+
+                    />                    
+                    <div>
+                    <button className="button-main" type="submit">
                         Sign in<i className="GuestBookButton2" aria-hidden="true" />
                     </button>
+                    <a className="button-forgot-pass" >
+                        Forgot password?
+                    </a>
+                    </div>
                 </form>
             </div>
+            </div>
+
         );
     }
 

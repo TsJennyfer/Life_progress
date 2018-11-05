@@ -92,6 +92,7 @@ class Rejestracja extends React.Component {
                     </div>
 
                 </div>
+
             </div>
         );
     }
