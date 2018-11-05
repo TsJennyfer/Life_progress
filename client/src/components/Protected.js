@@ -1,7 +1,6 @@
 // To jest Main - środkowa część strony wyświetlająca część główną
 import React from 'react';
 import CeleGlowne from './CeleGlowne';
-import CelDynamicznie from './CelDynamicznie';
 import CelGlownyForm from './CelGlownyForm';
 
 class Protected extends React.Component {
@@ -12,9 +11,6 @@ class Protected extends React.Component {
         this.checkToken = this.checkToken.bind(this);
         this.logOut = this.logOut.bind(this);
         this.state = {
-            celeGlowne: true,
-            celSzczegoly: "",
-            nowyCelGlowny: false,
             isUserLoggedIn: true
         };
     }
@@ -47,35 +43,17 @@ class Protected extends React.Component {
 
     render() {
         if (this.state.isUserLoggedIn) {
-
-            if (this.state.celeGlowne) {
-                return (
-                    <div>
-                        <CeleGlowne />
-                        <button className="log-out-button" onClick={() => this.logOut()}>
-                            Sign out
+            return (
+                <div>
+                    <CeleGlowne />
+                    <button className="log-out-button" onClick={() => this.logOut()}>
+                        Sign out
                             </button>
-                    </div>
-                )
-            } else if (this.state.nowyCelGlowny) {
-                return (
-                    <div>
-                        <CelGlownyForm />
-                    </div>
-                )
-            }
-
-            else {
-                return (
-                    <div>
-                        <CelDynamicznie goalId={this.state.celSzczegoly} />
-                    </div>
-                )
-            }
+                </div>
+            )
         }
         // użytkownik niezalogowany
         else if (!this.state.isUserLoggedIn) {
-            
             return (
                 <div>
                     {this.goToPublic()}
