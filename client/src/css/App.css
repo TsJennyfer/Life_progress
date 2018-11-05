@@ -1,8 +1,14 @@
-body{
+body, html, #root{
   margin: auto;
   font-family: 'Bitter', serif;
   font-size: 18px;
-  
+
+}
+
+#root {
+  background-image: url("../resourses/square_bg.png");
+  text-align: center;
+  height: 100%;
 }
 
 .center{
@@ -32,30 +38,10 @@ input{
 }
 
 .main__container{
-  background-image: url("../resourses/pink_table.jpg" );
   background-size: cover;
-
-  /*
-   background-image: url("../resourses/table_back.jpg" );
-  -webkit-backdrop-filter: grayscale() blur(10px); 
-    backdrop-filter: grayscale() blur(10px);  */
+  text-align: center;
+  height: 100%;
 }
-
-/*.background-image {
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  display: block;
-  background-image: url("../resourses/table_back.jpg");
-  width: 1200px;
-  height: 800px;
-  -webkit-filter: blur(5px);
-  -moz-filter: blur(5px);
-  -o-filter: blur(5px);
-  -ms-filter: blur(5px);
-  filter: blur(5px);
-}*/
 
 a, a:link, a:visited, a:hover, a:active {
   text-decoration: none;
@@ -63,6 +49,7 @@ a, a:link, a:visited, a:hover, a:active {
 }
 
 .MyHeader {
+  background-image: linear-gradient(to bottom, rgba(223, 234, 41, 0.45), rgba(146, 254, 157, 0), rgba(146, 254, 157, 0));
   padding: 16px 0px;
 }
 
@@ -129,10 +116,6 @@ a, a:link, a:visited, a:hover, a:active {
   font-weight: 200;
 }
 
-.container {
-  text-align: center;
-}
-
 .welcome {
   margin-top: 200px;
 }
@@ -150,6 +133,20 @@ a, a:link, a:visited, a:hover, a:active {
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
+}
+
+.button-get-started {
+  background-color:rgb(0, 165, 14);
+  border: none;
+  color: #1b1b1b;
+  padding: 6px 20px;
+  font-size: 24px;
+}	
+
+.button-get-started:hover,	
+.button-get-started:focus {	
+ background: green;	
+ background-image: linear-gradient(rgb(10, 155, 58), rgb(10, 155, 58));	
 }
 
 .button-main {
@@ -200,11 +197,6 @@ h3 {
   grid-gap: 1rem;
   grid-row-gap: 4rem;
   align: center;
-}
-
-.goal-container {
-  display: inline;
-  position: relative;
 }
 
 .trash-btn {

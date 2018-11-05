@@ -1,7 +1,7 @@
 // To jest główny element w react
 // W nim będą renderowane: header, main, stopka
 // Tutaj również są trzymane dane = stany
-import React from 'react';
+
 //import Header from './Header';
 import Main from './Main';
 //import Footer from './Footer';
@@ -10,7 +10,11 @@ import Main from './Main';
 import 'react-sticky-header/styles.css';
 import feather from '../resourses/feather.png';
 
-// import StartPage from './StartPage';
+
+
+import React from 'react';
+
+
 
 class MainPage extends React.Component {
     // konstruktor, tu są inicjowane puste stany=dane
@@ -22,19 +26,7 @@ class MainPage extends React.Component {
     }
     render() {
         return (
-            <div>
-                {/*<StickyHeader
-                    className="sticky-header"
-                    header={
-                        <div>
-                            <div className="fixed-nav-bar">
-                                <Header />
-                            </div>
-                        </div>
-                    }
-                    backgroundImage={header}
-                >
-                </StickyHeader>*/}
+            <div>          
                 <div className="main__container">
                     <div className="MyHeader d-flex">
                         <a className="header-logo">

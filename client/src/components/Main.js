@@ -4,7 +4,6 @@ import Rejestracja from './Rejestracja';
 import Logowanie from './Logowanie';
 import CeleGlowne from './CeleGlowne';
 import CelDynamicznie from './CelDynamicznie';
-import CelFormularz from './CelFormularz';
 import CelGlownyForm from './CelGlownyForm';
 // import Graph from './Graph';
 //import icon from '../resourses/done_icon.png';
@@ -83,7 +82,7 @@ class Main extends React.Component {
             } else if (this.state.nowyCelGlowny) {
                 return (
                     <div>
-                        <CelFormularz />
+                        
                         <br />
                         <CelGlownyForm />
                     </div>

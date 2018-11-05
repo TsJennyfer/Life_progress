@@ -21,6 +21,7 @@ class Logowanie extends React.Component {
     }
 
 
+
     //Logowanie
     logIn(event) {
         event.preventDefault();
@@ -39,7 +40,13 @@ class Logowanie extends React.Component {
                     token: response.headers.auth
                 });
                 localStorage.setItem('token', this.state.token);
-                this.props.checkToken();
+                //this.props.checkToken();
+                this.props.history.push({
+                    pathname: '/protected',
+                    state: {
+                        userToken: this.state.token
+                    }
+                });
             })
             .catch(err => {
                 console.log(err, 'User not logged in.');
@@ -62,12 +69,11 @@ class Logowanie extends React.Component {
     render() {
         return (
         <div>
-    <       hr />
-            <div className="row justify-content-center form-login">
+            <div className="row justify-content-center">
             <div className="col-12">
                 <h2><u>Sign in</u></h2>
                </div>
-                <form className="loginForm" onSubmit={this.logIn}>
+                <form onSubmit={this.logIn}>
                     <input
                         onChange={this.handleEmail}
                         name="email"

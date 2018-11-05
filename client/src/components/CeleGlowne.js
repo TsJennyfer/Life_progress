@@ -4,6 +4,7 @@ import axios from 'axios';
 import CelSzczegoly from './CelSzczegoly';
 
 import '../css/Cele.css';
+import CelGlownyForm from './CelGlownyForm';
 
 
 class CeleGlowne extends React.Component {
@@ -12,11 +13,9 @@ class CeleGlowne extends React.Component {
 
         this.findGoals = this.findGoals.bind(this);
         this.drawGoals = this.drawGoals.bind(this);
-        this.chooseGoal = this.chooseGoal.bind(this);
 
         this.state = {
-            goals: {},
-            choosenGoal: ""
+            goals: {}
         };
     }
 
@@ -39,7 +38,7 @@ class CeleGlowne extends React.Component {
                 console.log(response, 'Znaleziono wszystkie cele');
             })
             .catch(err => {
-                console.log(err, 'Goals not found, try again.');
+                console.log(err, 'Błąd, nie znaleziono celów.');
             });
     } z
 
@@ -49,34 +48,21 @@ class CeleGlowne extends React.Component {
             Object
                 .keys(this.state.goals)
                 .map(key => <div className="col" key={key}>  <CelSzczegoly key={key}
-                    details={this.state.goals[key]} chooseGoal={this.chooseGoal} />
-                    </div>)
+                    details={this.state.goals[key]} />
+                </div>)
         )
     }
-
-    // przejdź do konketnego celu
-    chooseGoal(key) {
-        this.props.renderGoal(key)
-    }
-    // <button class="button-sub-goal" onClick={() => this.props.addMainGoal()}>
+ 
 
     render() {
-
         return (
             <div>
                 <h2>This is your goal list</h2>
-                <br />
                 <div className="container" >
                     <div className="row">
-                        <div className="col">
-                            <button className="button-cel-glowny" onClick={() => this.props.addMainGoal()}>
-                                <b>+</b>
-                                <br />Add goal
-                    </button>
-                        </div>
                         {this.drawGoals()}
-
                     </div>
+                    <CelGlownyForm findGoals={this.findGoals} />
                 </div>
             </div>
 
