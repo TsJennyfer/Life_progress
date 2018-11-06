@@ -5,10 +5,12 @@ import {
 } from 'react-router-dom';
 
 class UserProfile extends React.Component {
-
     constructor(props) {
         super(props);
-        };
+        this.state = {
+            user : "Artur"
+        }
+    };
     render() {
         return (
                 <div className="col-12">
@@ -54,9 +56,9 @@ class UserProfile extends React.Component {
                         <h3><u>CHANGE LANGUAGE</u></h3>
                     </div>
                 </div>
+
         );
     }
-    }
-   
+}
 
 export default UserProfile;
