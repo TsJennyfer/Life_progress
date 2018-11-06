@@ -56,7 +56,7 @@ class Rejestracja extends React.Component {
             <div className="container">
                 <div className="row justify-content-center form-register">
                     <div className="col-12">
-                        <h2>Not a member? Create an account</h2>
+                        <h2><u>Not a member? Create an account</u></h2>
                     </div>
                     <div className="col-12">
                         <form className="registerForm" onSubmit={this.addUser}>
@@ -77,7 +77,7 @@ class Rejestracja extends React.Component {
                                 placeholder="Your password"
                             />
                             <br />
-                            <button className="button button1" type="submit">
+                            <button className="button button-main" type="submit">
                                 Sign up<i className="GuestBookButton2" aria-hidden="true" />
                             </button>
 
