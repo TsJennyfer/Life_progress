@@ -84,14 +84,14 @@ class CelDynamicznie2 extends React.Component {
                 .keys(this.state.goals)
                 .map(key =>
                     <div className="col-2">
-                    <CSSTransitionGroup
-                        key={key}
-                        transitionName="subgoals"
-                        transitionEnterTimeout={5000}
-                        transitionLeaveTimeout={3000}
-                        transitionAppear={true}
-                        transitionAppearTimeout={800}>
-                        
+                        <CSSTransitionGroup
+                            key={key}
+                            transitionName="subgoals"
+                            transitionEnterTimeout={5000}
+                            transitionLeaveTimeout={3000}
+                            transitionAppear={true}
+                            transitionAppearTimeout={800}>
+
                             <div
                                 key={key}
                                 className={(this.state.goals[key].priority === 0) ? "button-sub-goal-done" : "button-sub-goal"}
@@ -105,8 +105,8 @@ class CelDynamicznie2 extends React.Component {
                                 </button>
                             </div>
 
-                        
-                    </CSSTransitionGroup>
+
+                        </CSSTransitionGroup>
                     </div>
                 )
         );
@@ -119,11 +119,25 @@ class CelDynamicznie2 extends React.Component {
             Object
                 .keys(this.state.goals)
                 .map(key =>
-                    <form>
-                        <div className="datails-list-form">
-                            <label for="date">{this.state.goals[key].name}</label> <span className="details-list-form-element" name="date">zakończone lub nie</span><span>...coments</span >
+                    <div className="container">
+                        <div className="row justify-content-center">
+                            <div className="col-sm-3 col-5">
+                                <div className="datails-list-form">
+                                    <label >{this.state.goals[key].name}</label>
+                                </div>
+                            </div>
+                            
+                        <div className="col-1">
+                            <input type="checkbox" ></input>
+                            </div>
+                            <div className="col-sm-4 col-5">
+                                <span className="details-list-form-element" name="date">should end to 27/10/2018</span>
+                            </div>
+                            <div className="col-1">
+                            <span>>></span >
+                            </div>
                         </div>
-                    </form>
+                    </div>
                 )
 
         );
