@@ -4,7 +4,6 @@ import React from 'react';
 import axios from 'axios';
 import PodcelForm from './PodcelForm';
 import { CSSTransitionGroup } from 'react-transition-group'
-import '../css/Cele.css';
 import '../css/App.css';
 import '../css/PodceleAnimacje.css';
 import Link from 'react-router-dom/Link';

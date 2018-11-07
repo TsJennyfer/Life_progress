@@ -26,19 +26,22 @@ class Public extends Component {
             </div>
           </div>
           <div className="row justify-content-center mt-4">
-            <div className="col-3">
+            <div className="col-5">
               <h3>
-                  Get organised in seconds<br />
+                  Get organized in seconds<br />
                   Planning tasks<br />
                   Measure progress<br />
-                  Feel organized and motywated<br />
+                  Feel organized and motivated<br />
+                  Have got any big goals to split? <br />
+                  Use our app to granulate and deal with it! <br />
+
               </h3>
             </div>
           </div>
           <div className="row justify-content-center">
             <div className="col-4">
               <Link to="/register">
-              <button className="button-main">
+              <button className="button-get-started">
                   <span>Get started</span>
                 </button>
               </Link>
