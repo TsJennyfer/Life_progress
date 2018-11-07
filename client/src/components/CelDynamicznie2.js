@@ -18,6 +18,7 @@ class CelDynamicznie2 extends React.Component {
         this.findAllGoals = this.findAllGoals.bind(this);
         this.drawGoalsTree = this.drawGoalsTree.bind(this);
         this.writeDetailsList = this.writeDetailsList.bind(this);
+        this.writeDetailsListColumnNames = this.writeDetailsListColumnNames.bind(this);
         this.changePriority = this.changePriority.bind(this);
         this.changeButtonColor = this.changeButtonColor.bind(this);
         this.removeGoal = this.removeGoal.bind(this);
@@ -83,7 +84,7 @@ class CelDynamicznie2 extends React.Component {
             Object
                 .keys(this.state.goals)
                 .map(key =>
-                    <div className="col-2">
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                         <CSSTransitionGroup
                             key={key}
                             transitionName="subgoals"
@@ -113,6 +114,29 @@ class CelDynamicznie2 extends React.Component {
 
     }
 
+    writeDetailsListColumnNames() {
+        return (
+            <div className="container">
+                <div className="row justify-content-center">
+                    <div className="col-sm-3 col-5">
+                        <div className="datails-list-form">
+                            <label >Task</label>
+                        </div>
+                    </div>
+
+                    <div className="col-1">
+                        Done?
+                            </div>
+                    <div className="col-sm-4 col-5">
+                        <span className="details-list-form-element" name="date">End time</span>
+                    </div>
+                    <div className="col-1">
+                        <span>Description</span >
+                    </div>
+                </div>
+            </div>
+        )
+    }
     writeDetailsList() {
         return (
 
@@ -126,15 +150,15 @@ class CelDynamicznie2 extends React.Component {
                                     <label >{this.state.goals[key].name}</label>
                                 </div>
                             </div>
-                            
-                        <div className="col-1">
-                            <input type="checkbox" ></input>
+
+                            <div className="col-1">
+                                <input type="checkbox" ></input>
                             </div>
                             <div className="col-sm-4 col-5">
                                 <span className="details-list-form-element" name="date">should end to 27/10/2018</span>
                             </div>
                             <div className="col-1">
-                            <span>>></span >
+                                <span>>></span >
                             </div>
                         </div>
                     </div>
@@ -216,6 +240,7 @@ class CelDynamicznie2 extends React.Component {
                 </div>
 
                 <h2>Details</h2>
+                {this.writeDetailsListColumnNames()}
                 {this.writeDetailsList()}
                 <br />
                 <PodcelForm goal={this.state.allGoals} findAllGoals={this.findAllGoals} />
