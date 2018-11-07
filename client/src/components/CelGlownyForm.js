@@ -1,7 +1,10 @@
 // To jest komponent dodawania nowego celu głównego
 import React from 'react';
 import axios from 'axios';
-
+import DatePicker from "react-datepicker";
+import moment from "moment";
+ 
+import "react-datepicker/dist/react-datepicker.css";
 import '../css/Cele.css';
 
 class CelGlownyForm extends React.Component {
@@ -13,11 +16,14 @@ class CelGlownyForm extends React.Component {
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleUserIdChange = this.handleUserIdChange.bind(this);
         this.handlePriorityChange = this.handlePriorityChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+
         this.state = {
             name: "",
             parent: null,
             userId: null,
-            priority: 1
+            priority: 1,
+            startDate: moment()
         }
     }
 
@@ -72,20 +78,54 @@ class CelGlownyForm extends React.Component {
         this.setState({  priority: event.target.value });
     }
 
+    handleChange(date) {
+        this.setState({
+          startDate: date
+        });
+      }
+
     render() {
         return (
-            <div>
-                Add a goal                
+                <div className="row justify-content-center form-register">
+                    <div className="col-12">
+                <label>Have something new? Add new main goal  </label>              
                 <form className="registerForm" onSubmit={this.addMainGoal}>
-                    Goal name:
-                    <input
-                        onChange={this.handleNameChange}
-                        name="name"
-                        type="text"
-                        value={this.state.name}
-                        minLength={3}
-                        placeholder="Goal name"
-                    />
+                    <div>
+                        <label>Goal name*:</label>
+                        <input
+                            onChange={this.handleNameChange}
+                            name="name"
+                            type="text"
+                            value={this.state.name}
+                            minLength={3}
+                        />
+                    </div>
+                    <div>
+                        <label>Category:</label>
+                        <input
+                            name="name"
+                            type="text"
+                            minLength={3}
+                            placeholder="optional"
+                        />
+                    </div>
+                    <div>
+                        <label>Planning date</label>
+                        <DatePicker
+                            selected={this.state.startDate}
+                            onChange={this.handleChange}
+                        />
+                    </div>
+                    <div>
+                        <label>Description</label>
+                        <input
+                            name="name"
+                            type="text"
+                            minLength={3}
+                            placeholder="optional"
+                        />
+                    </div>
+                 
                      {/*
                     <br />
                     userId:
@@ -108,12 +148,13 @@ class CelGlownyForm extends React.Component {
                      */}
                      <br />
                      <br />
-                    <button className = "addButton" type="submit">
-                       + Add goal<i className="GuestBookButton2" aria-hidden="true" />
+                    <button className = "button-main" type="submit">
+                        Add new<i className="GuestBookButton2" aria-hidden="true" />
                     </button>
                 </form>
             </div>
-        );
+            </div>
+            );
     }
 
 }

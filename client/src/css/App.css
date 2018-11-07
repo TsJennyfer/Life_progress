@@ -15,10 +15,6 @@ body, html, #root{
   text-align: center;
 }
 
-tr.spaceUnder>td {
-  padding-bottom: 5em;
-}
-
 input{
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
@@ -139,13 +135,16 @@ a, a:link, a:visited, a:hover, a:active {
   border: none;
   color: #1b1b1b;
   padding: 6px 20px;
-  font-size: 24px;
+  font-size: 28px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  display: inline-block;
+  position: relative;
 }	
 
 .button-get-started:hover,	
 .button-get-started:focus {	
- background: green;	
- background-image: linear-gradient(rgb(10, 155, 58), rgb(10, 155, 58));	
+ background: rgb(5, 170, 5);
 }
 
 .button-main {
@@ -186,11 +185,10 @@ h2 {
 h3 {
   text-align: left;
   font-family: 'Source Sans Pro', sans-serif; 
-  font-weight: 400; 
   line-height: 32px; 
   margin: 0 0 24px; 
   font-size: 22px; 
-  color: #1b1b1b;
+  color: black;
 }
 
 .div_format{
