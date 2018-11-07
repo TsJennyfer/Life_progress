@@ -5,9 +5,11 @@ import {
 } from 'react-router-dom';
 
 class UserProfile extends React.Component {
-
     constructor(props) {
         super(props);
+        this.state = {
+            user : "Artur"
+        }
     };
     render() {
         return (
@@ -66,5 +68,4 @@ class UserProfile extends React.Component {
     }
     }
                
-            
 export default UserProfile;
