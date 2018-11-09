@@ -20,6 +20,7 @@ class CelDynamicznie2 extends React.Component {
         this.writeDetailsList = this.writeDetailsList.bind(this);
         this.writeDetailsListColumnNames = this.writeDetailsListColumnNames.bind(this);
         this.changePriority = this.changePriority.bind(this);
+        this.changeCompleted = this.changeCompleted.bind(this);
         this.changeButtonColor = this.changeButtonColor.bind(this);
         this.removeGoal = this.removeGoal.bind(this);
         this.state = {
@@ -84,7 +85,7 @@ class CelDynamicznie2 extends React.Component {
             Object
                 .keys(this.state.goals)
                 .map(key =>
-                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-3">
                         <CSSTransitionGroup
                             key={key}
                             transitionName="subgoals"
@@ -95,9 +96,9 @@ class CelDynamicznie2 extends React.Component {
 
                             <div
                                 key={key}
-                                className={(this.state.goals[key].priority === 0) ? "button-sub-goal-done" : "button-sub-goal"}
+                                className={(this.state.goals[key].completed === true) ? "button-sub-goal-done" : "button-sub-goal"}
                                 id={key}
-                                onClick={() => this.changePriority(key)}>
+                                onClick={() => this.changeCompleted(key)}>
                                 {(this.state.goals !== null) ? this.state.goals[key].name : " "}
                                 <button type="button"
                                     className="btn btn-default btn-sm trash-btn"
@@ -167,6 +168,30 @@ class CelDynamicznie2 extends React.Component {
         );
     }
 
+    changeCompleted(id) {
+        // kopia aktualnych celów
+        const goals = { ...this.state.goals };
+
+        const completed = goals[id].completed;
+        if (completed === false) {
+            goals[id].completed = true;
+        } else {
+            goals[id].completed = false;
+        }
+        this.setState({ goals: goals });
+        axios.patch("/goals/" + this.state.goals[id]._id,
+            {
+                "completed": this.state.goals[id].completed
+            },
+            this.state.header).then(response => {
+
+                console.log(response)
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
     changePriority(id) {
         // kopia aktualnych celów
         const goals = { ...this.state.goals };
@@ -182,10 +207,11 @@ class CelDynamicznie2 extends React.Component {
 
         axios.patch("/goals/" + this.state.goals[id]._id,
             {
-                priority: this.state.goals[id].priority
+                //priority: this.state.goals[id].priority
+                "completed": true
             },
             this.state.header).then(response => {
-
+                
                 console.log(response)
             })
             .catch(err => {
@@ -197,8 +223,8 @@ class CelDynamicznie2 extends React.Component {
         // kopia aktualnych celów
         const goals = { ...this.state.goals };
         // zmiana status 1 <-> 0
-        const priority = goals[id].priority;
-        if (priority === 1) {
+        const completed = goals[id].completed;
+        if (completed === true) {
             this.setState({ isDone: true });
         } else {
             this.setState({ isDone: false });
@@ -218,6 +244,8 @@ class CelDynamicznie2 extends React.Component {
         this.findAllGoals();
 
     }
+
+
 
     render() {
         return (
