@@ -84,7 +84,7 @@ class CelDynamicznie2 extends React.Component {
             Object
                 .keys(this.state.goals)
                 .map(key =>
-                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-3">
                         <CSSTransitionGroup
                             key={key}
                             transitionName="subgoals"
