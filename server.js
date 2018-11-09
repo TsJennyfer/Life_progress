@@ -52,6 +52,28 @@ app.get('/users/confirmEmail/:token', (req, res)=>{
     })
 })
 
+//Reset hasła, wysłanie tokena
+app.post('/users/resetPassword', (req, res)=>{
+    var body = _.pick(req.body, ['email']);
+
+    User.findOne({email:body.email}).then((user)=>{
+        if (!user){
+            return res.status(404).send();
+        }
+        else {
+            var token = user.generateAuthToken();
+            token.then(function(result) {
+                sender(req, result);
+             })
+            //var token = user.tokens[0].token;
+        }
+
+        res.send({user});
+    }).catch((error)=>{
+        res.status(400).send();
+    })
+})
+
 //Rejestracja
 app.post('/users/signup', (req, res)=> {
 
@@ -61,7 +83,6 @@ app.post('/users/signup', (req, res)=> {
     user.save().then(() => {
         var confirmToken = user.generateAuthToken();
         var token = user.tokens[0].token;
-        console.log(token); //pierwszy token
         sender(req, token);
 
     //#############################################################
