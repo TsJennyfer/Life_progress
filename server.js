@@ -78,47 +78,40 @@ app.post('/users/resetPassword', (req, res) => {
 app.get('/users/resetPasswordToken/:token', (req, res) => {
     var token = req.params.token;
 
-    User.findOneAndUpdate({ 'tokens.token': token }, { tokens: [] }, { new: true }).then((user) => {
+    //User.findOneAndUpdate({ 'tokens.token': token }, { tokens: [] }, { new: true }).then((user) => {
+    User.findOne({ 'tokens.token': token }).then((user) => {
         if (!user) {
             return res.status(404).send();
         }
-
+        res.redirect('http://localhost:3000/'); //przekierowanie do formularza zmiany hasła
         res.send({ user });
-        res.redirect('http://localhost:5000/users/newPassword/');
+        
     }).catch((error) => {
         res.status(400).send();
     })
 })
 
 //Reset hasła po tokenie
-app.patch('/users/newPassword:token', authenticate, (req, res) => {
+app.patch('/users/newPassword/:token', (req, res) => {
     var token = req.params.token;
     var body = _.pick(req.body, ['password']); //jakie pola zmieniamy
-
-    if (!ObjectId.isValid(token)) {
-        return res.status(404).send();
-    }
 
     bcrypt.genSalt(10, (error, salt) => {
         bcrypt.hash(body.password, salt, (error, hash) => {
             body.password = hash;
 
-            User.findOneAndUpdate({'tokens.token': token}, {$set: body}, {new: true}).then((user)=>{
+            User.findOneAndUpdate({'tokens.token': token}, {$set: body, tokens : []}, {new: true}).then((user)=>{
                 if (!user){
                     return res.status(404).send();
                 }
-        
+                //res.redirect('http://localhost:3000/signin/'); // przekierowanie do strony logowania
                 res.send({user});
             }).catch((error)=>{
                 res.status(400).send();
             })
         })
     })
-
-
 });
-
-
 
 //Rejestracja
 app.post('/users/signup', (req, res)=> {
