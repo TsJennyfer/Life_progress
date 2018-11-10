@@ -13,6 +13,7 @@ var {Goal} = require('./models/goal');
 var {User} = require('./models/user');
 var {authenticate} = require('./middleware/authenticate');
 var {sender} = require('./middleware/sender');
+var {passwordResetEmail} = require('./middleware/passwordResetEmail');
 
 
 var app = express();
@@ -52,6 +53,66 @@ app.get('/users/confirmEmail/:token', (req, res)=>{
     })
 })
 
+//Reset hasła, wysłanie tokena
+app.post('/users/resetPassword', (req, res) => {
+    var body = _.pick(req.body, ['email']);
+
+    User.findOne({ email: body.email }).then((user) => {
+        if (!user) {
+            return res.status(404).send();
+        }
+        else {
+            var token = user.generateAuthToken();
+            token.then(function (result) {
+                passwordResetEmail(req, result);
+            })
+        }
+
+        res.send({ user });
+    }).catch((error) => {
+        res.status(400).send();
+    })
+})
+
+//Token do resetu hasła
+app.get('/users/resetPasswordToken/:token', (req, res) => {
+    var token = req.params.token;
+
+    //User.findOneAndUpdate({ 'tokens.token': token }, { tokens: [] }, { new: true }).then((user) => {
+    User.findOne({ 'tokens.token': token }).then((user) => {
+        if (!user) {
+            return res.status(404).send();
+        }
+        res.redirect('http://localhost:3000/'); //przekierowanie do formularza zmiany hasła
+        res.send({ user });
+        
+    }).catch((error) => {
+        res.status(400).send();
+    })
+})
+
+//Reset hasła po tokenie
+app.patch('/users/newPassword/:token', (req, res) => {
+    var token = req.params.token;
+    var body = _.pick(req.body, ['password']); //jakie pola zmieniamy
+
+    bcrypt.genSalt(10, (error, salt) => {
+        bcrypt.hash(body.password, salt, (error, hash) => {
+            body.password = hash;
+
+            User.findOneAndUpdate({'tokens.token': token}, {$set: body, tokens : []}, {new: true}).then((user)=>{
+                if (!user){
+                    return res.status(404).send();
+                }
+                //res.redirect('http://localhost:3000/signin/'); // przekierowanie do strony logowania
+                res.send({user});
+            }).catch((error)=>{
+                res.status(400).send();
+            })
+        })
+    })
+});
+
 //Rejestracja
 app.post('/users/signup', (req, res)=> {
 
@@ -61,41 +122,7 @@ app.post('/users/signup', (req, res)=> {
     user.save().then(() => {
         var confirmToken = user.generateAuthToken();
         var token = user.tokens[0].token;
-        console.log(token); //pierwszy token
         sender(req, token);
-
-    //#############################################################
-    //Wysyłanie maili
-
-/*     let transporter = nodeMailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,      //or 587
-        secure: true,   //then false
-        auth: {
-            user: process.env.EMAIL_ADDRESS,
-            pass: process.env.EMAIL_PASSWORD
-        },
-        tls: {
-            rejectUnauthorized: false
-        }
-    });
-    let mailOptions = {
-        from: '"Life Progress App" <lifeprogress.pri@gmail.com>', // sender address
-        to: req.body.email, // list of receivers
-        subject: "Welcome in Life Progress", // Subject line
-        text: process.env.EMAIL_MESSAGE, // plain text body
-        html: `<b>Registration in Life Progress</b><br><a href="https://life-progress.herokuapp.com/users/confirmEmail/${token}">Click to confirm your email address.<a/><br>` // html body
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            return console.log(error);
-        }
-        console.log('Message %s sent: %s', info.messageId, info.response);
-        }); */
-
-    //######################################################################
-
         return confirmToken;
     }).then((token)=>{
         res.header('auth', token).send(user);
