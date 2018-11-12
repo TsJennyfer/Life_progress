@@ -2,23 +2,20 @@
 import React from 'react';
 import axios from 'axios';
 import CelSzczegoly from './CelSzczegoly';
-
 import '../css/Cele.css';
 import CelGlownyForm from './CelGlownyForm';
-
 
 class CeleGlowne extends React.Component {
     constructor(props) {
         super(props);
-
         this.findGoals = this.findGoals.bind(this);
         this.drawGoals = this.drawGoals.bind(this);
-
         this.state = {
             goals: {}
         };
     }
 
+    // metoda cyklu życia
     componentDidMount() {
         this.findGoals();
     }
@@ -40,7 +37,7 @@ class CeleGlowne extends React.Component {
             .catch(err => {
                 console.log(err, 'Błąd, nie znaleziono celów.');
             });
-    } z
+    }
 
     // Rysowanie głównych celów
     drawGoals() {
@@ -53,7 +50,6 @@ class CeleGlowne extends React.Component {
         )
     }
  
-
     render() {
         return (
             <div>

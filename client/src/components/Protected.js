@@ -1,7 +1,5 @@
-// To jest Main - środkowa część strony wyświetlająca część główną
 import React from 'react';
 import CeleGlowne from './CeleGlowne';
-import CelGlownyForm from './CelGlownyForm';
 
 class Protected extends React.Component {
 
@@ -21,7 +19,6 @@ class Protected extends React.Component {
     goToPublic() {
         this.props.history.push('/');
     }
-
     // sprawdzenie czy jest token
     checkToken() {
         if (localStorage.getItem('token') !== null) {
