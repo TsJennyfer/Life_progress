@@ -12,7 +12,7 @@ var {mongoose} = require('./database/mongoose');
 var {Goal} = require('./models/goal');
 var {User} = require('./models/user');
 var {authenticate} = require('./middleware/authenticate');
-var {sender} = require('./middleware/sender');
+var {confirmEmail} = require('./middleware/confirmEmail');
 var {passwordResetEmail} = require('./middleware/passwordResetEmail');
 
 
@@ -122,7 +122,7 @@ app.post('/users/signup', (req, res)=> {
     user.save().then(() => {
         var confirmToken = user.generateAuthToken();
         var token = user.tokens[0].token;
-        sender(req, token);
+        confirmEmail(req, token);
         return confirmToken;
     }).then((token)=>{
         res.header('auth', token).send(user);

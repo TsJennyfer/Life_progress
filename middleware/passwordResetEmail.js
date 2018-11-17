@@ -1,6 +1,6 @@
 const nodeMailer = require('nodemailer');
 
-var passwordResetEmail = ((req, token)=>{
+var passwordResetEmail = ((req, token) => {
 
     let transporter = nodeMailer.createTransport({
         host: 'smtp.gmail.com',
@@ -27,7 +27,7 @@ var passwordResetEmail = ((req, token)=>{
             return console.log(error);
         }
         console.log('Message %s sent: %s', info.messageId, info.response);
-        });
+    });
 })
 
-module.exports = {passwordResetEmail};
+module.exports = { passwordResetEmail };

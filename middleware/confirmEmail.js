@@ -1,6 +1,6 @@
 const nodeMailer = require('nodemailer');
 
-var sender = ((req, token)=>{
+var confirmEmail = ((req, token)=>{
 
     let transporter = nodeMailer.createTransport({
         host: 'smtp.gmail.com',
@@ -30,4 +30,4 @@ var sender = ((req, token)=>{
         });
 })
 
-module.exports = {sender};
+module.exports = {confirmEmail};

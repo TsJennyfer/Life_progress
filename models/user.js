@@ -5,7 +5,7 @@ const _ = require('lodash');
 const bcrypt = require('bcryptjs');
 
 var UserSchema = new mongoose.Schema({
-    email: {type: String, required: true, unique: true, trim: true, minlength: 1, validate: {validator: validator.isEmail, message: '{VALUE} is not a valid emal'}},
+    email: {type: String, required: true, unique: true, trim: true, minlength: 1, validate: {validator: validator.isEmail, message: '{VALUE} is not a valid email'}},
     password: {type: String, required: true, minlength: 6},
     tokens: [{
         access: {type: String, required: true},
