@@ -6,7 +6,6 @@ import {
 class Public extends Component {
   constructor(props) {
     super(props);
-
   }
   componentDidMount() {
     //this.props.history.push('/register');
@@ -16,7 +15,7 @@ class Public extends Component {
       <div className="main__container">
         <div className="container">
           <div className="row justify-content-center welcome">
-            <div className="col-8 ml-5">
+            <div className="col-6 ml-5">
               <h1>Welcome to</h1>
             </div>
           </div>
