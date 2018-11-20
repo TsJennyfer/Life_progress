@@ -153,7 +153,7 @@ class CelDynamicznie2 extends React.Component {
                             </div>
 
                             <div className="col-1">
-                                <input type="checkbox" ></input>
+                                <input type="checkbox" checked={this.state.goals[key].completed} onClick={() => this.changeCompleted(key)}></input>
                             </div>
                             <div className="col-sm-4 col-5">
                                 <span className="details-list-form-element" name="date">should end to 27/10/2018</span>
