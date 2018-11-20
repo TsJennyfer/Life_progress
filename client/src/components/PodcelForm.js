@@ -82,8 +82,8 @@ class PodcelForm extends React.Component {
                     <br />
                     */}
                     <br />
-                    <button className = "addButton" type="submit">
-                      <b>  + </b>Add task <i className="GuestBookButton2" aria-hidden="true" />
+                    <button className = "button-main" type="submit">
+                    Add new<i className="GuestBookButton2" aria-hidden="true" />
                     </button>
                 </form>
             </div>

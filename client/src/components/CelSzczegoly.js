@@ -17,6 +17,8 @@ class CelSzczegoly extends React.Component {
                 <button className="button-cel-glowny" >
                     {this.props.details.name}
                 </button>
+
+                
             </Link>
         )
     }

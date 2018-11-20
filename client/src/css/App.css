@@ -1,21 +1,26 @@
 body, html, #root{
   margin: auto;
   font-family: 'Bitter', serif;
-  font-size: 18px;
-
-}
-
-#root {
-  background-image: url("../resourses/square_bg.png");
   text-align: center;
   height: 100%;
 }
-
+/*
+#root {
+  background-image: url("../resourses/back_table.jpg");
+  text-align: center;
+  height: 100%;
+}
+ */
 .center{
   text-align: center;
 }
 
-
+fieldset {
+  font-size: 1em;
+  padding: 0.5em;
+  border-radius: 1em;
+  font-family: sans-serif;
+}
 form input {
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
@@ -31,6 +36,13 @@ form input {
   padding: .55em;
   margin-bottom: 0.5em;
   border: none;
+  font-size: inherit;
+  padding: 0.2em;
+  margin: 0.1em 0.2em;
+  /* the following ensures they're all using the same box-model for rendering */
+  -moz-box-sizing: content-box; /* or `border-box` */
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
 }
 
 .main__container{

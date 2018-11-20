@@ -1,7 +1,9 @@
 // To jest komponent strony rejsetracji nowego użytkownika
 import React from 'react';
 import axios from 'axios';
-
+import {
+    Link
+} from 'react-router-dom';
 import '../css/RejestracjaLogowanie.css';
 
 class Rejestracja extends React.Component {
@@ -84,10 +86,14 @@ class Rejestracja extends React.Component {
                             <br />
                             <button className="loginBtn loginBtn--google">
                                 Login with Google
-                </button>
+                            </button>
                             <button className="loginBtn loginBtn--facebook">
                                 Login with Facebook
-                </button>
+                            </button>
+                            <br />
+                            <div className="button-forgot-pass" id="sign-in" >
+                            <Link to="/signin">Already have an account?</Link>
+                            </div>
                         </form>
                     </div>
 

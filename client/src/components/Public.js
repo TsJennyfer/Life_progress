@@ -3,6 +3,7 @@ import {
   Link
 } from 'react-router-dom';
 
+
 class Public extends Component {
   constructor(props) {
     super(props);
@@ -10,6 +11,7 @@ class Public extends Component {
   componentDidMount() {
     //this.props.history.push('/register');
   }
+
   render() {
     return (
       <div className="main__container">

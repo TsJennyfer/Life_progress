@@ -88,10 +88,12 @@ class CelGlownyForm extends React.Component {
         return (
                 <div className="row justify-content-center form-register">
                     <div className="col-12">
-                <label>Have something new? Add new main goal  </label>              
+                <label>Have something new? Add new main goal  </label>   
+                <fieldset>
+        
                 <form className="registerForm" onSubmit={this.addMainGoal}>
                     <div>
-                        <label>Goal name*:</label>
+                        <label>Goal name*: </label>
                         <input
                             onChange={this.handleNameChange}
                             name="name"
@@ -101,7 +103,7 @@ class CelGlownyForm extends React.Component {
                         />
                     </div>
                     <div>
-                        <label>Category:</label>
+                        <label>Category: </label>
                         <input
                             name="name"
                             type="text"
@@ -110,14 +112,14 @@ class CelGlownyForm extends React.Component {
                         />
                     </div>
                     <div>
-                        <label>Planning date</label>
+                        <label>Planning date: </label>
                         <DatePicker
                             selected={this.state.startDate}
                             onChange={this.handleChange}
                         />
                     </div>
                     <div>
-                        <label>Description</label>
+                        <label>Description: </label>
                         <input
                             name="name"
                             type="text"
@@ -125,6 +127,7 @@ class CelGlownyForm extends React.Component {
                             placeholder="optional"
                         />
                     </div>
+                  
                  
                      {/*
                     <br />
@@ -152,8 +155,8 @@ class CelGlownyForm extends React.Component {
                         Add new<i className="GuestBookButton2" aria-hidden="true" />
                     </button>
                 </form>
-            </div>
-            </div>
+                </fieldset>
+</div></div>
             );
     }
 
