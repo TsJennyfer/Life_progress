@@ -8,6 +8,7 @@ import '../css/App.css';
 import '../css/PodceleAnimacje.css';
 import Link from 'react-router-dom/Link';
 import backButton from '../resourses/back-button.png';
+import Calendar from 'react-calendar';
 //import { timingSafeEqual } from 'crypto';
 
 
@@ -153,7 +154,7 @@ class CelDynamicznie2 extends React.Component {
                             </div>
 
                             <div className="col-1">
-                                <input type="checkbox" ></input>
+                                <input type="checkbox" checked={this.state.goals[key].completed} onClick={() => this.changeCompleted(key)}></input>
                             </div>
                             <div className="col-sm-4 col-5">
                                 <span className="details-list-form-element" name="date">should end to 27/10/2018</span>
@@ -211,7 +212,7 @@ class CelDynamicznie2 extends React.Component {
                 "completed": true
             },
             this.state.header).then(response => {
-                
+
                 console.log(response)
             })
             .catch(err => {
@@ -258,6 +259,12 @@ class CelDynamicznie2 extends React.Component {
                         <button className="button-cel-glowny">
                             {(this.state.allGoals !== null) ? this.state.allGoals[0].name : " "}
                         </button></div>
+                </div>
+                <div className="row">
+                    <div className="col-11">
+                    <Calendar 
+                    tileContent={({ date, view }) => view === 'month' && date.getDay() === 0 ? <p>{(this.state.goals ==! null) ? this.state.goals[0].completedAt : " brak"}</p> : null}/>
+                    </div>
                 </div>
                 <div className="row">
                     <div className="container">
