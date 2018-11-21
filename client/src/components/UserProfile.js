@@ -17,10 +17,12 @@ class UserProfile extends React.Component {
             <div className="row justify-content-center form-register">
                 <div className="col-8">
                     <form>
-                        <h3>Edit profile</h3>
+                        <h2>Edit profile</h2>
                         <hr />
                         <input placeholder="New user name"  />
                         <input placeholder="New e-mail" />
+                        <br />
+                        <br />
                         <button className="button-main" type="submit">
                             Submit<i className="GuestBookButton2" aria-hidden="true" />
                         </button>
@@ -30,10 +32,12 @@ class UserProfile extends React.Component {
             <div className="row justify-content-center form-register">
                 <div className="col-8">
                     <form>
-                        <h3>Change password</h3>
+                        <h2>Change password</h2>
                         <hr />
                         <input placeholder="New password"  />
                         <input placeholder="Confirm passsword"  />
+                        <br />
+                        <br />
                         <button className="button-main" type="submit">
                             Submit<i className="GuestBookButton2" aria-hidden="true" />
                         </button>
@@ -42,7 +46,7 @@ class UserProfile extends React.Component {
             </div>
             <div className="row justify-content-center form-register">
                 <div className="col-8">
-                    <h3>Change language</h3>
+                    <h2>Change language</h2>
                     <hr />
                 </div>
             </div>

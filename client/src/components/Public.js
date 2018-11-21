@@ -46,6 +46,8 @@ class Public extends Component {
                   <span>Get started</span>
                 </button>
               </Link>
+              <br />
+              <br />
             </div>
           </div>
         </div>

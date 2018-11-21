@@ -95,13 +95,12 @@ class Logowanie extends React.Component {
                             placeholder="Your password"
                         />                    
                         <div>
-                            <div>
-                                <button className="button-main" type="submit">
-                                    Sign in<i className="GuestBookButton2" aria-hidden="true" />
-                                </button>
-                                <div className="button-forgot-pass" id="sign-in" >
-                                    <Link to="/signin">Forgot password?</Link>
-                                </div>
+                            <br />
+                            <button className="button-main" type="submit">
+                                Sign in<i className="GuestBookButton2" aria-hidden="true" />
+                            </button>
+                            <div className="button-forgot-pass" id="sign-in" >
+                                <Link to="/signin">Forgot password?</Link>
                             </div>
                         </div>
                     </form>

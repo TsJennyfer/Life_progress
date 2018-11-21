@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Link
 } from 'react-router-dom';
-import feather from '../resourses/lp-trans.png';
+import feather from '../resourses/lp-trans2.png';
 
 
 class Header extends React.Component {
@@ -13,8 +13,7 @@ class Header extends React.Component {
                 <div className="header-logo">
                     <button className="button_logo">
                         <Link to="/">
-                            <img src={feather} width="110" height="90" alt="" className="d-inline-block align-top flex-row"></img>
-                            <h4>LIFE PROGRESS</h4>
+                            <img src={feather} width="150" height="70" alt="" className="d-inline-block align-top flex-row"></img>
                             </Link>
                     </button>
                 </div>
