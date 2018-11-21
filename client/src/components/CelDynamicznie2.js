@@ -86,7 +86,7 @@ class CelDynamicznie2 extends React.Component {
             Object
                 .keys(this.state.goals)
                 .map(key =>
-                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-3">
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 my-3">
                         <CSSTransitionGroup
                             key={key}
                             transitionName="subgoals"
@@ -97,9 +97,9 @@ class CelDynamicznie2 extends React.Component {
 
                             <div
                                 key={key}
-                                className={(this.state.goals[key].completed === true) ? "button-sub-goal-done" : "button-sub-goal"}
+                                className={(this.state.goals[key].completed === true) ? "button-sub-goal-done flip-scale-up-hor" : "button-sub-goal"}
                                 id={key}
-                                onClick={() => this.changeCompleted(key)}>
+                                >
                                 {(this.state.goals !== null) ? this.state.goals[key].name : " "}
                                 <button type="button"
                                     className="btn btn-default btn-sm trash-btn"
@@ -256,14 +256,14 @@ class CelDynamicznie2 extends React.Component {
                         <Link to="/protected"> <img src={backButton} alt=""></img></Link>
                     </div>
                     <div className="col-11">
-                        <button className="button-cel-glowny">
+                        <h2>
                             {(this.state.allGoals !== null) ? this.state.allGoals[0].name : " "}
-                        </button></div>
+                        </h2></div>
                 </div>
                 <div className="row">
                     <div className="col-11">
-                    <Calendar 
-                    tileContent={({ date, view }) => view === 'month' && date.getDay() === 0 ? <p>{(this.state.goals ==! null) ? this.state.goals[0].completedAt : " brak"}</p> : null}/>
+                        <Calendar
+                            tileContent={({ date, view }) => view === 'month' && date.getDay() === 0 ? <p>{(this.state.goals == ! null) ? this.state.goals[0].completedAt : " brak"}</p> : null} />
                     </div>
                 </div>
                 <div className="row">

@@ -47,7 +47,7 @@ class CeleGlowne extends React.Component {
         return (
             Object
                 .keys(this.state.goals)
-                .map(key => <div className="col-12 col-sm-4 col-md-3 col-lg-2 mx-3 my-2" key={key}>  <CelSzczegoly key={key}
+                .map(key => <div className="col-12 col-sm-4 col-md-3 col-lg-2 mx-3 my-3" key={key}>  <CelSzczegoly key={key}
                     details={this.state.goals[key]} />
                 </div>)
         )
