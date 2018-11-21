@@ -70,42 +70,44 @@ class Logowanie extends React.Component {
 
     render() {
         return (
-        <div>
-            <div className="row justify-content-center">
-            <div className="col-12">
-                <h2><u>Sign in</u></h2>
-               </div>
-                <form onSubmit={this.logIn}>
-                    <input
-                        onChange={this.handleEmail}
-                        name="email"
-                        type="email"
-                        value={this.state.email}
-                        placeholder="Your email"
-                    />
-                    <br />
-                    <input
-                        onChange={this.handlePassword}
-                        name="password"
-                        type="password"
-                        minLength={3}
-                        value={this.state.password}
-                        placeholder="Your password"
-
-                    />                    
-                    <div>
-                    <button className="button-main" type="submit">
-                        Sign in<i className="GuestBookButton2" aria-hidden="true" />
-                    </button>
-                  
-
-                    <div className="button-forgot-pass" id="sign-in" >
-                            <Link to="/signin">Forgot password?</Link>
+        <div className="container">
+            <div className="row justify-content-center form-register">
+                <div className="col-12">
+                    <h2>Sign in</h2>
+                    <hr />
+                </div>
+               <div className="col-8">
+                    <form onSubmit={this.logIn}>
+                        <input
+                            onChange={this.handleEmail}
+                            name="email"
+                            type="email"
+                            value={this.state.email}
+                            placeholder="Your email"
+                        />
+                        <br />
+                        <input
+                            onChange={this.handlePassword}
+                            name="password"
+                            type="password"
+                            minLength={3}
+                            value={this.state.password}
+                            placeholder="Your password"
+                        />                    
+                        <div>
+                            <div>
+                                <button className="button-main" type="submit">
+                                    Sign in<i className="GuestBookButton2" aria-hidden="true" />
+                                </button>
+                                <div className="button-forgot-pass" id="sign-in" >
+                                    <Link to="/signin">Forgot password?</Link>
+                                </div>
                             </div>
-                    </div>
-                </form>
+                        </div>
+                    </form>
+                </div>
             </div>
-            </div>
+        </div>
 
         );
     }

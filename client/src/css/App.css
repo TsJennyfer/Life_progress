@@ -3,6 +3,9 @@ body, html, #root{
   font-family: 'Bitter', serif;
   text-align: center;
   height: 100%;
+  display: grid;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
 }
 /*
 #root {
@@ -26,30 +29,54 @@ fieldset {
   margin-top: 200px;
 }
 
-form input {
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	-moz-box-shadow: 2px 2px 3px #666;
-	-webkit-box-shadow: 2px 2px 3px #666;
-	box-shadow: 2px 2px 3px #666;
-	font-size: 20px;
-	outline: 0;
-  -webkit-appearance: none;
-  height: 20px;
-  width: 350px;
-  text-align: center;
-  padding: .55em;
-  margin-bottom: 0.5em;
-  border: none;
-  font-size: inherit;
-  padding: 0.2em;
-  margin: 0.1em 0.2em;
-  /* the following ensures they're all using the same box-model for rendering */
-  -moz-box-sizing: content-box; /* or `border-box` */
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
+hr { 
+  display: block;
+  margin-before: 0.5em;
+  margin-after: 0.5em;
+  margin-start: auto;
+  margin-end: auto;
+  overflow: hidden;
+  border-style: inset;
+  border-width: 1px;
 }
 
+*{
+  box-sizing: border-box
+}
+
+border{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: #0077FF;
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    transition: all .15s ease;
+  }
+
+  input{
+    -webkit-appearance: none;
+    width: 100%;
+    border: 0;
+    font-family: inherit;
+    padding: 12px 0;
+    height: 48px;
+    weight: 70px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px solid #C8CCD4;
+    background: none;
+    border-radius: 0;
+    color: #223254;
+    transition: all .15s ease;
+  }
+
+  input.hover{
+    background: rgba(#223254,.03)
+  }
+  
 .main__container{
   background-size: cover;
   text-align: center;

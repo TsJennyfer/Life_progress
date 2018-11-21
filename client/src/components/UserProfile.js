@@ -13,54 +13,37 @@ class UserProfile extends React.Component {
     };
     render() {
         return (
-        <div>
-            <div className="row justify-content-center">
-                <div className="col-6">
-                    <div>
-                        <h3><u>EDIT PROFILE</u></h3>
-                        <div>
-                            <label>Name</label>
-                            <input
-                                placeholder="User NAME"
-                            />
-                        </div>
-                        <div>
-                            <label>E-mail</label>
-                            <input
-                                placeholder="life.progress@gmail.com"
-                            />
-                        </div>
+        <div className="container">
+            <div className="row justify-content-center form-register">
+                <div className="col-8">
+                    <form>
+                        <h3>Edit profile</h3>
+                        <hr />
+                        <input placeholder="New user name"  />
+                        <input placeholder="New e-mail" />
                         <button className="button-main" type="submit">
-                            SUBMIT<i className="GuestBookButton2" aria-hidden="true" />
+                            Submit<i className="GuestBookButton2" aria-hidden="true" />
                         </button>
-                    </div>
+                    </form>
                 </div>
             </div>
-            <div className="row justify-content-center">
-                <div className="col-6">
-                    <div>
-                        <h3><u>CHANGE PASSWORD</u></h3>
-                        <div>
-                            <label>New password</label>
-                            <input
-                                placeholder=""
-                            />
-                        </div>
-                        <div>
-                            <label>Confirm passsword</label>
-                            <input
-                                placeholder=""
-                            />
-                        </div>
+            <div className="row justify-content-center form-register">
+                <div className="col-8">
+                    <form>
+                        <h3>Change password</h3>
+                        <hr />
+                        <input placeholder="New password"  />
+                        <input placeholder="Confirm passsword"  />
                         <button className="button-main" type="submit">
-                            SUBMIT<i className="GuestBookButton2" aria-hidden="true" />
+                            Submit<i className="GuestBookButton2" aria-hidden="true" />
                         </button>
-                    </div>
+                    </form>
                 </div>
             </div>
-            <div className="row justify-content-center">
-                <div className="col-6">
-                    <h3><u>CHANGE LANGUAGE</u></h3>
+            <div className="row justify-content-center form-register">
+                <div className="col-8">
+                    <h3>Change language</h3>
+                    <hr />
                 </div>
             </div>
         </div>

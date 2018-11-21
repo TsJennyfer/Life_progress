@@ -87,78 +87,70 @@ class CelGlownyForm extends React.Component {
 
     render() {
         return (
-                <div className="row justify-content-center form-register">
-                    <div className="col-12">
-                <label>Have something new? Add new main goal  </label>   
-                <fieldset>
-        
-                <form className="registerForm" onSubmit={this.addMainGoal}>
-                    <div>
-                        <label>Goal name*: </label>
+            <div className="row justify-content-center form-register">
+                <div className="col-12">
+                    <label>Have something new? Add new main goal  </label>   
+                </div>
+                <div className="col-8">
+                    <form className="registerForm" onSubmit={this.addMainGoal}>
+                        <div>
+                            <input
+                                onChange={this.handleNameChange}
+                                name="name"
+                                type="text"
+                                value={this.state.name}
+                                minLength={3}
+                                placeholder="Goal name"
+
+                            />
+                            <input
+                                name="name"
+                                type="text"
+                                minLength={3}
+                                placeholder="Category(optional)"
+                            />
+                            <DatePicker
+                                selected={this.state.startDate}
+                                onChange={this.handleChange}
+                                placeholder="Planning date"
+
+                            />
+                            <input
+                                name="name"
+                                type="text"
+                                minLength={3}
+                                placeholder="Description(optional)"
+                            />
+                        {/*
+                        <br />
+                        userId:
                         <input
-                            onChange={this.handleNameChange}
-                            name="name"
+                            onChange={this.handleUserIdChange}
+                            name="userId"
                             type="text"
-                            value={this.state.name}
-                            minLength={3}
+                            value={this.state.userId}
+                            placeholder="Id właciciela celu"
                         />
-                    </div>
-                    <div>
-                        <label>Category: </label>
+                        <br />
+                        priority:
                         <input
-                            name="name"
+                            onChange={this.handlePriorityChange}
+                            name="status"
                             type="text"
-                            minLength={3}
-                            placeholder="optional"
+                            value={this.state.priority}
+                            placeholder="Status"
                         />
-                    </div>
-                    <div>
-                        <label>Planning date: </label>
-                        <DatePicker
-                            selected={this.state.startDate}
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <div>
-                        <label>Description: </label>
-                        <input
-                            name="name"
-                            type="text"
-                            minLength={3}
-                            placeholder="optional"
-                        />
-                    </div>
-                  
-                 
-                     {/*
-                    <br />
-                    userId:
-                    <input
-                        onChange={this.handleUserIdChange}
-                        name="userId"
-                        type="text"
-                        value={this.state.userId}
-                        placeholder="Id właciciela celu"
-                    />
-                    <br />
-                    priority:
-                    <input
-                        onChange={this.handlePriorityChange}
-                        name="status"
-                        type="text"
-                        value={this.state.priority}
-                        placeholder="Status"
-                    />
-                     */}
-                     <br />
-                     <br />
-                    <button className = "button-main" type="submit">
-                        Add new<i className="GuestBookButton2" aria-hidden="true" />
-                    </button>
-                </form>
-                </fieldset>
-</div></div>
-            );
+                        */}
+                        </div>
+                        <br />
+                        <br />
+                        <button className = "button-main" type="submit">
+                            Add new<i className="GuestBookButton2" aria-hidden="true" />
+                        </button>
+                    </form>
+                </div>
+            </div>
+        );
     }
 
 }

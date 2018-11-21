@@ -4,7 +4,6 @@ import axios from 'axios';
 import {
     Link
 } from 'react-router-dom';
-import '../css/RejestracjaLogowanie.css';
 
 class Rejestracja extends React.Component {
 
@@ -58,9 +57,10 @@ class Rejestracja extends React.Component {
             <div className="container">
                 <div className="row justify-content-center form-register">
                     <div className="col-12">
-                        <h2><u>Not a member? Create an account</u></h2>
+                        <h2>Not a member? Create an account</h2>
+                        <hr />
                     </div>
-                    <div className="col-12">
+                    <div className="col-8">
                         <form className="registerForm" onSubmit={this.addUser}>
                             <input
                                 onChange={this.handleEmail}
@@ -82,7 +82,6 @@ class Rejestracja extends React.Component {
                             <button className="button button-main" type="submit">
                                 Sign up<i className="GuestBookButton2" aria-hidden="true" />
                             </button>
-
                             <br />
                             <button className="loginBtn loginBtn--google">
                                 Login with Google
@@ -96,9 +95,7 @@ class Rejestracja extends React.Component {
                             </div>
                         </form>
                     </div>
-
                 </div>
-
             </div>
         );
     }
