@@ -54,6 +54,7 @@ class CelGlownyForm extends React.Component {
         {headers})
             .then(response => {
                 console.log(response, `Dodano cel główny ${this.state.name}`);
+                alert("Dodano cel główny");
                 this.props.findGoals();
                 this.setState({
                     name: "",

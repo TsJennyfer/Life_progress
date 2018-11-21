@@ -8,34 +8,7 @@
     grid-row-gap: 5rem;
   }
 
-  .button-cel-glowny {
-    position: relative;
-    cursor: default;
-    z-index: 1;
-    width: 180px;
-    height: 180px;
-    color: #d1ff03;
-    background: #7bc93b;
-    border-radius: 50%;
-    border: none;
-    font-family: 'PT Sans', sans-serif;
-    transition: 1s;
-    transition-timing-function: ease-in-out;
-  }
 
-  .button-cel-glowny:hover {
-    position: relative;
-    cursor: pointer;
-    z-index: 1;
-    width: 180px;
-    height: 180px;
-    color: #7bc93b;
-    background: #d1ff03;
-    border-radius: 50%;
-    border: 0.1rem solid #7bc93b;
-    font-family: 'PT Sans', sans-serif;
-    font-size: 20px;
-  }
   
 .addButton
 {
