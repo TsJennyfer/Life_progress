@@ -2,14 +2,12 @@ body, html, #root{
   margin: auto;
   font-family: 'Bitter', serif;
   text-align: center;
-  height: 100%;
   -webkit-text-size-adjust: 100%;
 }
 
 #root {
   background-image: url("../resourses/back_table.jpg");
   text-align: center;
-  height: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -29,6 +27,12 @@ fieldset {
   margin-top: 200px;
 }
 
+
+.form-margin{
+  margin-left: 5px;
+  margin-top: 2px;
+}
+
 hr { 
   display: block;
   margin-before: 0.5em;
@@ -41,9 +45,7 @@ hr {
   background-color: black;
 }
 
-*{
-  box-sizing: border-box
-}
+
 
 border{
   position: absolute;
@@ -57,14 +59,13 @@ border{
   transition: all .15s ease;
 }
 
-input{
+form > input{
   -webkit-appearance: none;
   width: 100%;
   border: 0;
   font-family: inherit;
   padding: 12px 0;
   height: 48px;
-  weight: 70px;
   font-size: 16px;
   font-weight: 500;
   border-bottom: 2px solid #C8CCD4;
@@ -77,7 +78,7 @@ input{
 input.hover{
   background: rgba(black,.03)
 }
-  
+
 .main__container{
   background-size: cover;
   text-align: center;

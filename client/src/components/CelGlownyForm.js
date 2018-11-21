@@ -89,58 +89,41 @@ class CelGlownyForm extends React.Component {
         return (
             <div className="row justify-content-center form-register">
                 <div className="col-12">
-                    <label>Have something new? Add new main goal  </label>   
+                    <h2>Have something new? Add new main goal  </h2>   
                 </div>
                 <div className="col-8">
                     <form className="registerForm" onSubmit={this.addMainGoal}>
                         <div>
-                            <input
-                                onChange={this.handleNameChange}
-                                name="name"
-                                type="text"
-                                value={this.state.name}
-                                minLength={3}
-                                placeholder="Goal name"
+                            <form>
+                                <input
+                                    onChange={this.handleNameChange}
+                                    name="name"
+                                    type="text"
+                                    value={this.state.name}
+                                    minLength={3}
+                                    placeholder="Goal name"
 
-                            />
-                            <input
-                                name="name"
-                                type="text"
-                                minLength={3}
-                                placeholder="Category(optional)"
-                            />
-                            <DatePicker
-                                selected={this.state.startDate}
-                                onChange={this.handleChange}
-                                placeholder="Planning date"
-
-                            />
-                            <input
-                                name="name"
-                                type="text"
-                                minLength={3}
-                                placeholder="Description(optional)"
-                            />
-                        {/*
-                        <br />
-                        userId:
-                        <input
-                            onChange={this.handleUserIdChange}
-                            name="userId"
-                            type="text"
-                            value={this.state.userId}
-                            placeholder="Id właciciela celu"
-                        />
-                        <br />
-                        priority:
-                        <input
-                            onChange={this.handlePriorityChange}
-                            name="status"
-                            type="text"
-                            value={this.state.priority}
-                            placeholder="Status"
-                        />
-                        */}
+                                />
+                                <input
+                                    name="name"
+                                    type="text"
+                                    minLength={3}
+                                    placeholder="Category(optional)"
+                                />
+                                <div className="row justify-content-left form-margin">
+                                    <DatePicker input
+                                    selected={this.state.startDate}
+                                    onChange={this.handleChange}
+                                    placeholder="Planning date"
+                                />
+                                </div>
+                                <input
+                                    name="name"
+                                    type="text"
+                                    minLength={3}
+                                    placeholder="Description(optional)"
+                                />
+                            </form>
                         </div>
                         <br />
                         <br />

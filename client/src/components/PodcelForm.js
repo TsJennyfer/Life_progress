@@ -68,41 +68,51 @@ class PodcelForm extends React.Component {
     render() {
         return (
             <div className="add_container">
-            
-            <h2>New Task</h2>
-                <form className="registerForm" onSubmit={this.addSubGoal}>
-                    name:
-                    <input
-                        onChange={this.handleNameChange}
-                        name="name"
-                        type="text"
-                        value={this.state.name}
-                        placeholder="Task name"
-                    />
-                    <div>
-                        <label>Planning date: </label>
-                        <DatePicker
-                            selected={this.state.startDate}
-                            onChange={this.handleChange}
-                        />
+                <div className="row justify-content-center form-register">
+                    <div className="col-12">
+                    <h2>Have something new? Add it! </h2>
+                        <hr />
                     </div>
-                    <br />
-                    
-                    {/*  priority:
-                    <input
-                        onChange={this.handlePriorityChange}
-                        name="priority"
-                        type="text"
-                        value={this.state.priority}
-                        placeholder="priority"
-                    />
-                    <br />
-                    */}
-                    <br />
-                    <button className = "button-main" type="submit">
-                    Add new<i className="GuestBookButton2" aria-hidden="true" />
-                    </button>
-                </form>
+                    <div className="col-8">
+                        <form className="registerForm" onSubmit={this.addSubGoal}>
+                            <input
+                                onChange={this.handleNameChange}
+                                name="name"
+                                type="text"
+                                value={this.state.name}
+                                placeholder="Goal name"
+                            />
+                            <div className="row justify-content-left form-margin">
+                                <DatePicker
+                                    selected={this.state.startDate}
+                                    onChange={this.handleChange}
+                                />
+                            </div>
+                            <input
+                                name="name"
+                                type="text"
+                                minLength={3}
+                                placeholder="Description(optional)"
+                            />
+                            <br />
+                            
+                            {/*  priority:
+                            <input
+                                onChange={this.handlePriorityChange}
+                                name="priority"
+                                type="text"
+                                value={this.state.priority}
+                                placeholder="priority"
+                            />
+                            <br />
+                            */}
+                            <br />
+                            <button className = "button-main" type="submit">
+                            Add new<i className="GuestBookButton2" aria-hidden="true" />
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
         );
     }
