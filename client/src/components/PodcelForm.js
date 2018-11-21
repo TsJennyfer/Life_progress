@@ -1,6 +1,8 @@
 // To jest komponent dodawania nowego podcelu do celu głównego
 import React from 'react';
 import axios from 'axios';
+import DatePicker from "react-datepicker";
+import moment from "moment";
 
 import '../css/Cele.css';
 
@@ -12,17 +14,18 @@ class PodcelForm extends React.Component {
         this.addSubGoal = this.addSubGoal.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handlePriorityChange = this.handlePriorityChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.state = {
             name: "",
             parent: null,
-            priority: 1
+            priority: 1,
+            startDate: moment()
         }
     }
 
 
     addSubGoal(event) {
-        event.preventDefault();
-       
+        event.preventDefault();   
 
         var headers = {
             'auth': localStorage.getItem('token'), 
@@ -33,7 +36,8 @@ class PodcelForm extends React.Component {
             name: this.state.name,
             parent: this.props.goal[0],
             userToken: localStorage.getItem('token'),
-            priority: this.state.priority
+            priority: this.state.priority,
+            completedAt: this.state.startDate
         },
         {headers})
             .then(response => {
@@ -55,11 +59,17 @@ class PodcelForm extends React.Component {
         this.setState({  priority: event.target.value });
     }
 
+    handleChange(date) {
+        this.setState({
+          startDate: date
+        });
+      }
+
     render() {
         return (
             <div className="add_container">
             
-            <h2>Have you any new tasks here? Add it :)</h2>
+            <h2>New Task</h2>
                 <form className="registerForm" onSubmit={this.addSubGoal}>
                     name:
                     <input
@@ -69,6 +79,13 @@ class PodcelForm extends React.Component {
                         value={this.state.name}
                         placeholder="Task name"
                     />
+                    <div>
+                        <label>Planning date: </label>
+                        <DatePicker
+                            selected={this.state.startDate}
+                            onChange={this.handleChange}
+                        />
+                    </div>
                     <br />
                     
                     {/*  priority:

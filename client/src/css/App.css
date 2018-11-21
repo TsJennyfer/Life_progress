@@ -21,6 +21,11 @@ fieldset {
   border-radius: 1em;
   font-family: sans-serif;
 }
+
+.form-register {
+  margin-top: 200px;
+}
+
 form input {
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
