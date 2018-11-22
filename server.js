@@ -232,9 +232,10 @@ app.get('/goals/mainUserGoalAndSubgoals/:id', authenticate, (req, res) => {
 });
 
 //Pobieranie podceli użytkownika posortowane
-app.get('/goals/userSubgoals/:id', authenticate, (req, res) => {
-    Goal.find({$and: [{_creator: req.params.id},{parent: {$ne : null}}]}
-    ).sort([['completedAt', 1]])
+
+app.get('/goals/userSubgoals/', authenticate, (req, res) => {
+    Goal.find({$and: [{_creator: req.user._id},{parent: {$ne : null}}]}
+    ).sort([['plannedAt', 1]])
     .then((goals) => {
         res.send({ goals });
     }, (error) => {
