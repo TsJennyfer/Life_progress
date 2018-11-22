@@ -2,6 +2,7 @@
 import React from 'react';
 import CeleGlowne from './CeleGlowne';
 import CelGlownyForm from './CelGlownyForm';
+import Remainder from './Remainder';
 
 class Protected extends React.Component {
 
