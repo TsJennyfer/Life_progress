@@ -231,6 +231,17 @@ app.get('/goals/mainUserGoalAndSubgoals/:id', authenticate, (req, res) => {
     });
 });
 
+//Pobieranie podceli użytkownika posortowane
+app.get('/goals/userSubgoals/:id', authenticate, (req, res) => {
+    Goal.find({$and: [{_creator: req.params.id},{parent: {$ne : null}}]}
+    ).sort([['completedAt', 1]])
+    .then((goals) => {
+        res.send({ goals });
+    }, (error) => {
+        res.status(400).send(error);
+    });
+});
+
 //Pobieranie podcelów po ID rodzica
 app.get('/goals/main/children/:id', authenticate, (req, res) => {
     Goal.find({
