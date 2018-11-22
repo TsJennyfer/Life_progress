@@ -8,7 +8,6 @@ import '../css/App.css';
 import '../css/PodceleAnimacje.css';
 import Link from 'react-router-dom/Link';
 import backButton from '../resourses/back-button.png';
-import Calendar from 'react-calendar';
 //import { timingSafeEqual } from 'crypto';
 
 
@@ -99,7 +98,7 @@ class CelDynamicznie2 extends React.Component {
                                 key={key}
                                 className={(this.state.goals[key].completed === true) ? "button-sub-goal-done flip-scale-up-hor" : "button-sub-goal"}
                                 id={key}
-                                >
+                            >
                                 {(this.state.goals !== null) ? this.state.goals[key].name : " "}
                                 <button type="button"
                                     className="btn btn-default btn-sm trash-btn"
@@ -262,8 +261,6 @@ class CelDynamicznie2 extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-11">
-                        <Calendar
-                            tileContent={({ date, view }) => view === 'month' && date.getDay() === 0 ? <p>{(this.state.goals == ! null) ? this.state.goals[0].completedAt : " brak"}</p> : null} />
                     </div>
                 </div>
                 <div className="row">
