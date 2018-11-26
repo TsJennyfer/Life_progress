@@ -87,50 +87,52 @@ class CelGlownyForm extends React.Component {
 
     render() {
         return (
-            <div className="row justify-content-center form-register">
-                <div className="col-12">
-                    <h2>Have something new? Add new main goal  </h2>   
-                </div>
-                <div className="col-8">
-                    <form className="registerForm" onSubmit={this.addMainGoal}>
-                        <div>
-                            <form>
-                                <input
-                                    onChange={this.handleNameChange}
-                                    name="name"
-                                    type="text"
-                                    value={this.state.name}
-                                    minLength={3}
-                                    placeholder="Goal name"
-
-                                />
-                                <input
-                                    name="name"
-                                    type="text"
-                                    minLength={3}
-                                    placeholder="Category(optional)"
-                                />
-                                <div className="row justify-content-left form-margin">
-                                    <DatePicker input
-                                    selected={this.state.startDate}
-                                    onChange={this.handleChange}
-                                    placeholder="Planning date"
-                                />
-                                </div>
-                                <input
-                                    name="name"
-                                    type="text"
-                                    minLength={3}
-                                    placeholder="Description(optional)"
-                                />
-                            </form>
-                        </div>
-                        <br />
-                        <br />
-                        <button className = "button-main" type="submit">
-                            Add new<i className="GuestBookButton2" aria-hidden="true" />
-                        </button>
-                    </form>
+            <div>
+                <div className="row justify-content-center form-register">
+                    <div className="col-12">
+                        <h2>Have something new? Add new main goal  </h2>  
+                        <hr />
+                    </div>
+                    <div className="col-6">
+                        <form className="registerForm" onSubmit={this.addMainGoal}>
+                            <div>
+                                <form>
+                                    <input
+                                        onChange={this.handleNameChange}
+                                        name="name"
+                                        type="text"
+                                        value={this.state.name}
+                                        minLength={3}
+                                        placeholder="Goal name"
+                                    />
+                                    <input
+                                        name="name"
+                                        type="text"
+                                        minLength={3}
+                                        placeholder="Category(optional)"
+                                    />
+                                    <div className="row justify-content-left form-margin">
+                                        <DatePicker input
+                                        selected={this.state.startDate}
+                                        onChange={this.handleChange}
+                                        placeholder="Planning date"
+                                    />
+                                    </div>
+                                    <input
+                                        name="name"
+                                        type="text"
+                                        minLength={3}
+                                        placeholder="Description(optional)"
+                                    />
+                                </form>
+                            </div>
+                            <br />
+                            <br />
+                            <button className = "button-main" type="submit">
+                                Add new<i className="GuestBookButton2" aria-hidden="true" />
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         );

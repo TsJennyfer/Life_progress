@@ -82,7 +82,7 @@ class PodcelForm extends React.Component {
                                 value={this.state.name}
                                 placeholder="Goal name"
                             />
-                            <div className="row justify-content-left form-margin">
+                            <div className="row justify-content-left form-margin ">
                                 <DatePicker
                                     selected={this.state.startDate}
                                     onChange={this.handleChange}

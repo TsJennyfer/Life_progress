@@ -56,16 +56,24 @@ class CeleGlowne extends React.Component {
 
     render() {
         return (
-            <div>
-                <h2>This is your goal list</h2>
-                <div className="container" >
-                    <div className="row">
-                        {this.drawGoals()}
+            <div className="row">
+                <div className="background_grey">  
+                    <div className="container">
+                        <div className= "background_white">
+                        {/*  <div class="col-sm-4">.col-sm-4</div> */}
+                        {/*  <div class="col-sm-8">.col-sm-8 */}
+                            <h2>This is your goal list</h2>
+                            <hr />
+
+                        <div className="row">
+                            {this.drawGoals()}
+                        </div>
+                    
+                            <CelGlownyForm findGoals={this.findGoals} />        
+                        </div>
                     </div>
-                    <CelGlownyForm findGoals={this.findGoals} />
                 </div>
             </div>
-
         )
     }
 }

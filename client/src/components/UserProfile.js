@@ -1,8 +1,4 @@
-// To jest komponent profilu użytkownika
 import React from 'react';
-import {
-    Link
-} from 'react-router-dom';
 
 class UserProfile extends React.Component {
     constructor(props) {
@@ -13,7 +9,7 @@ class UserProfile extends React.Component {
     };
     render() {
         return (
-        <div className="container">
+        <div className="container" >
             <div className="row justify-content-center form-register">
                 <div className="col-8">
                     <form>

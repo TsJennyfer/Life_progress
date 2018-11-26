@@ -249,34 +249,42 @@ class CelDynamicznie2 extends React.Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="row align-items-center">
-                    <div className="col-1">
-                        <Link to="/protected"> <img src={backButton} alt=""></img></Link>
-                    </div>
-                    <div className="col-11">
-                        <h2>
-                            {(this.state.allGoals !== null) ? this.state.allGoals[0].name : " "}
-                        </h2></div>
-                </div>
-                <div className="row">
-                    <div className="col-11">
-                    </div>
-                </div>
-                <div className="row">
+            <div className="row">
+                <div className="background_grey">  
                     <div className="container">
-                        <div className="row">
-                            {this.drawGoalsTree()}
+                        <div className= "background_white">
+                            <div className="row align-items-center">
+                                <div className="col-1">
+                                    <Link to="/protected"> <img src={backButton} alt=""></img></Link>
+                                </div>
+                                <div className="col-11">
+                                    <h2>
+                                        {(this.state.allGoals !== null) ? this.state.allGoals[0].name : " "}
+                                    </h2></div>
+                            </div>
+                            <div className="row">
+                                <div className="col-11">
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="container">
+                                    <div className="row">
+                                        {this.drawGoalsTree()}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2>Details</h2>
+                            <hr />
+
+                            {this.writeDetailsListColumnNames()}
+                            {this.writeDetailsList()}
+                            <br />
+                            <PodcelForm goal={this.state.allGoals} findAllGoals={this.findAllGoals} />
+
                         </div>
                     </div>
                 </div>
-
-                <h2>Details</h2>
-                {this.writeDetailsListColumnNames()}
-                {this.writeDetailsList()}
-                <br />
-                <PodcelForm goal={this.state.allGoals} findAllGoals={this.findAllGoals} />
-
             </div>
         )
     }
