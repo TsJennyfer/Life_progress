@@ -96,7 +96,6 @@ class CelGlownyForm extends React.Component {
                     <div className="col-6">
                         <form className="registerForm" onSubmit={this.addMainGoal}>
                             <div>
-                                <form>
                                     <input
                                         onChange={this.handleNameChange}
                                         name="name"
@@ -124,7 +123,6 @@ class CelGlownyForm extends React.Component {
                                         minLength={3}
                                         placeholder="Description(optional)"
                                     />
-                                </form>
                             </div>
                             <br />
                             <br />

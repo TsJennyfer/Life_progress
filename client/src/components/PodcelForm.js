@@ -75,6 +75,7 @@ class PodcelForm extends React.Component {
                     </div>
                     <div className="col-8">
                         <form className="registerForm" onSubmit={this.addSubGoal}>
+                        <div>
                             <input
                                 onChange={this.handleNameChange}
                                 name="name"
@@ -106,6 +107,7 @@ class PodcelForm extends React.Component {
                             />
                             <br />
                             */}
+                            </div>
                             <br />
                             <button className = "button-main" type="submit">
                             Add new<i className="GuestBookButton2" aria-hidden="true" />
