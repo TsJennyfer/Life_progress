@@ -78,29 +78,31 @@ class Logowanie extends React.Component {
                 </div>
                <div className="col-8">
                     <form onSubmit={this.logIn}>
-                        <input
-                            onChange={this.handleEmail}
-                            name="email"
-                            type="email"
-                            value={this.state.email}
-                            placeholder="Your email"
-                        />
-                        <br />
-                        <input
-                            onChange={this.handlePassword}
-                            name="password"
-                            type="password"
-                            minLength={3}
-                            value={this.state.password}
-                            placeholder="Your password"
-                        />                    
                         <div>
+                            <input
+                                onChange={this.handleEmail}
+                                name="email"
+                                type="email"
+                                value={this.state.email}
+                                placeholder="Your email"
+                            />
                             <br />
-                            <button className="button-main" type="submit">
-                                Sign in<i className="GuestBookButton2" aria-hidden="true" />
-                            </button>
-                            <div className="button-forgot-pass" id="sign-in" >
-                                <Link to="/signin">Forgot password?</Link>
+                            <input
+                                onChange={this.handlePassword}
+                                name="password"
+                                type="password"
+                                minLength={3}
+                                value={this.state.password}
+                                placeholder="Your password"
+                            />                    
+                            <div>
+                                <br />
+                                <button className="button-main" type="submit">
+                                    Sign in<i className="GuestBookButton2" aria-hidden="true" />
+                                </button>
+                                <div className="button-forgot-pass" id="sign-in" >
+                                    <Link to="/signin">Forgot password?</Link>
+                                </div>
                             </div>
                         </div>
                     </form>

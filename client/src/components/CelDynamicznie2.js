@@ -8,6 +8,10 @@ import '../css/App.css';
 import '../css/PodceleAnimacje.css';
 import Link from 'react-router-dom/Link';
 import backButton from '../resourses/back-button.png';
+
+import DayPicker from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
+
 //import { timingSafeEqual } from 'crypto';
 
 
@@ -23,6 +27,8 @@ class CelDynamicznie2 extends React.Component {
         this.changeCompleted = this.changeCompleted.bind(this);
         this.changeButtonColor = this.changeButtonColor.bind(this);
         this.removeGoal = this.removeGoal.bind(this);
+        this.handleDayClick = this.handleDayClick.bind(this);
+        this.handleDayMouseEnter = this.handleDayMouseEnter.bind(this);
         this.state = {
             goals: {},
             goalId: null,
@@ -44,6 +50,21 @@ class CelDynamicznie2 extends React.Component {
         // ten stan niżej jest pusty, ponieważ findGoalById wykonuje się asynchornicznie (a przynajmniej tak zaobserwowałem)
         console.log(this.state.allGoals, 'z CelDynamicznie - componentDidMount');
     }
+
+    handleDayMouseEnter(day, { firstOfMonth }) {
+        if (firstOfMonth) {
+          // Do something when the first day of month has been mouse-entered
+        }
+      }
+    
+      handleDayClick(day, { sunday, disabled }) {
+        if (sunday) {
+          window.alert('Sunday has been clicked');
+        }
+        if (disabled) {
+          window.alert('This day is disabled');
+        }
+      }
 
     // Znalezienie celu głównego
     findGoalById(event) {
@@ -260,29 +281,47 @@ class CelDynamicznie2 extends React.Component {
                                 <div className="col-11">
                                     <h2>
                                         {(this.state.allGoals !== null) ? this.state.allGoals[0].name : " "}
-                                    </h2></div>
-                            </div>
-                            <div className="row">
-                                <div className="col-11">
+                                    </h2>
+                                    <hr />
                                 </div>
                             </div>
-                            <div className="row">
-                                <div className="container">
-                                    <div className="row">
-                                        {this.drawGoalsTree()}
+
+                            <div className="col-sm-4">
+                               
+                                 <DayPicker 
+                                     disabledDays={new Date()}
+                                     onDayClick={this.handleDayClick}
+                                     onDayMouseEnter={this.handleDayMouseEnter}
+                                 />
+
+                            </div>
+
+                            <div className="col-sm-8">
+                                <div className="row">
+                                    <div className="col-11">
                                     </div>
                                 </div>
+                                <div className="row">
+                                    <div className="container">
+                                        <div className="row justify-content-center form-register">
+                                            {this.drawGoalsTree()}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row justify-content-center form-register">
+                                <div className="col-11">
+                                    <h2>Details</h2>
+                                    <hr />
+                                    </div>
+                                    {this.writeDetailsListColumnNames()}
+                                    {this.writeDetailsList()}
+                                    <br />
+                                    
+                                    <PodcelForm goal={this.state.allGoals} findAllGoals={this.findAllGoals} />
+                                </div>
                             </div>
-
-                            <h2>Details</h2>
-                            <hr />
-
-                            {this.writeDetailsListColumnNames()}
-                            {this.writeDetailsList()}
-                            <br />
-                            <PodcelForm goal={this.state.allGoals} findAllGoals={this.findAllGoals} />
-
                         </div>
+
                     </div>
                 </div>
             </div>

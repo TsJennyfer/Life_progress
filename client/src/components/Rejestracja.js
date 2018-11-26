@@ -62,37 +62,39 @@ class Rejestracja extends React.Component {
                     </div>
                     <div className="col-8">
                         <form className="registerForm" onSubmit={this.addUser}>
-                            <input
-                                onChange={this.handleEmail}
-                                name="email"
-                                type="email"
-                                value={this.state.email}
-                                placeholder="Your email"
-                            />
-                            <br />
-                            <input
-                                onChange={this.handlePassword}
-                                name="password"
-                                type="password"
-                                minLength={3}
-                                value={this.state.password}
-                                placeholder="Your password"
-                            />
                             <div>
+                                <input
+                                    onChange={this.handleEmail}
+                                    name="email"
+                                    type="email"
+                                    value={this.state.email}
+                                    placeholder="Your email"
+                                />
                                 <br />
-                                <button className="button button-main" type="submit">
-                                    Sign up<i className="GuestBookButton2" aria-hidden="true" />
-                                </button>
-                                <br />
-                                <button className="loginBtn loginBtn--google">
-                                    Login with Google
-                                </button>
-                                <button className="loginBtn loginBtn--facebook">
-                                    Login with Facebook
-                                </button>
-                                <br />
-                                <div className="button-forgot-pass" id="sign-in" >
-                                <Link to="/signin">Already have an account?</Link>
+                                <input
+                                    onChange={this.handlePassword}
+                                    name="password"
+                                    type="password"
+                                    minLength={3}
+                                    value={this.state.password}
+                                    placeholder="Your password"
+                                />
+                                <div>
+                                    <br />
+                                    <button className="button button-main" type="submit">
+                                        Sign up<i className="GuestBookButton2" aria-hidden="true" />
+                                    </button>
+                                    <br />
+                                    <button className="loginBtn loginBtn--google">
+                                        Login with Google
+                                    </button>
+                                    <button className="loginBtn loginBtn--facebook">
+                                        Login with Facebook
+                                    </button>
+                                    <br />
+                                    <div className="button-forgot-pass" id="sign-in" >
+                                    <Link to="/signin">Already have an account?</Link>
+                                    </div>
                                 </div>
                             </div>
                         </form>

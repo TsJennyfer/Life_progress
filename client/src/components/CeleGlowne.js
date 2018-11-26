@@ -64,11 +64,9 @@ class CeleGlowne extends React.Component {
                         {/*  <div class="col-sm-8">.col-sm-8 */}
                             <h2>This is your goal list</h2>
                             <hr />
-
                         <div className="row">
                             {this.drawGoals()}
                         </div>
-                    
                             <CelGlownyForm findGoals={this.findGoals} />        
                         </div>
                     </div>
