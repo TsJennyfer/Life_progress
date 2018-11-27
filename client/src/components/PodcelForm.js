@@ -37,7 +37,7 @@ class PodcelForm extends React.Component {
             parent: this.props.goal[0],
             userToken: localStorage.getItem('token'),
             priority: this.state.priority,
-            plannedAt: this.state.startDate
+            plannedAt: this.state.startDate.valueOf()
         },
         {headers})
             .then(response => {

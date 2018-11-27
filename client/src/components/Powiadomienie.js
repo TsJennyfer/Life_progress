@@ -12,10 +12,9 @@ class Powiadomienie extends React.Component {
         super(props);
         this.convertTimestampToDate = this.convertTimestampToDate.bind(this);
     }
-    convertTimestampToDate(timestamp)
-    {
+    convertTimestampToDate(timestamp) {
         var t = new Date(timestamp);
-        var date = t.getDate() + "/" + t.getMonth()  + "/" + t.getFullYear();
+        var date = t.getDate() + "/" + t.getMonth() + "/" + t.getFullYear();
         return date;
     }
 
@@ -25,14 +24,19 @@ class Powiadomienie extends React.Component {
                 pathname: "/protected/" + this.props.details.parent,
                 state: { id: this.props.details.parent }
             }}>
+            <div className="powiadomienie-circle" style={{clear: "both"}}> </div>
+            <div className="powiadomienie-circle"> </div>
+            <div className="powiadomienie-circle"> </div>
                 <div className="powiadomienie" >
-                    {this.props.details.name} 
                     <div>
-                    {this.convertTimestampToDate(this.props.details.plannedAt)}
+                        {this.convertTimestampToDate(this.props.details.plannedAt)}
+                    </div>
+                    <div>
+                        {this.props.details.name}
                     </div>
                 </div>
 
-                
+
             </Link>
         )
     }

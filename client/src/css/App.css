@@ -300,6 +300,21 @@ h4 {
   width: 100px;
   background-color: #a6b6c5d9;
   font-size: 10px;
+  margin: 10px;
+  border-radius: 5%;
+  float: left;
+  text-align: left;
+  padding: 6px;
+}
+
+.powiadomienie-circle {
+  width: 6px;
+  height: 6px;
+  background-color: #a6b6c5d9;
+  float: left;
+  margin-left: 6px;
+  margin-top: 15px;
+  border-radius: 50%;
 }
 
 .button-cel-glowny {
@@ -334,8 +349,8 @@ h4 {
 .trash-btn {
   position: absolute;
   z-index: 50;
-  left: 80px;
-  bottom: 100px;
+  left: 70px;
+  bottom: 90px;
   display: none;
 }
 

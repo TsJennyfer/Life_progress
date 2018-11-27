@@ -48,9 +48,6 @@ class Protected extends React.Component {
                 <div>
                     <Remainder />
                     <CeleGlowne />
-                    <button className="log-out-button" onClick={() => this.logOut()}>
-                        Sign out
-                            </button>
                 </div>
             )
         }
