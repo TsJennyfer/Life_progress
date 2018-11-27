@@ -46,6 +46,7 @@ class Protected extends React.Component {
         if (this.state.isUserLoggedIn) {
             return (
                 <div>
+                    <Remainder />
                     <CeleGlowne />
                     <button className="log-out-button" onClick={() => this.logOut()}>
                         Sign out

@@ -12,7 +12,6 @@
     "react-day-picker": "^7.2.4",
     "react-dom": "^16.4.1",
     "react-event-timeline": "^1.5.3",
-    "react-moment": "^0.8.3",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.1",
     "react-sticky-header": "^0.1.9",
