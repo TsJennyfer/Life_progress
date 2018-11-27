@@ -199,7 +199,8 @@ app.post('/goals/', authenticate, (req, res) => {
         name: req.body.name,
         _creator: req.user._id,
         parent: req.body.parent,
-        createdAt: req.body.createdAt = new Date().getTime()
+        createdAt: req.body.createdAt = new Date().getTime(),
+        plannedAt: req.body.plannedAt
     });
 
     goal.save().then((doc) => {
