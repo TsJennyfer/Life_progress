@@ -1,0 +1,44 @@
+// To powiadomienie o najbliższym podzadaniu
+import React from 'react';
+import {
+    Link
+} from 'react-router-dom';
+import moment from "moment";
+import '../css/Cele.css';
+
+
+class Powiadomienie extends React.Component {
+    constructor(props) {
+        super(props);
+        this.convertTimestampToDate = this.convertTimestampToDate.bind(this);
+    }
+    convertTimestampToDate(timestamp) {
+        var t = new Date(timestamp);
+        var date = t.getDate() + "/" + t.getMonth() + "/" + t.getFullYear();
+        return date;
+    }
+
+    render() {
+        return (
+            <Link to={{
+                pathname: "/protected/" + this.props.details.parent,
+                state: { id: this.props.details.parent }
+            }}>
+            <div className="powiadomienie-circle" style={{clear: "both"}}> </div>
+            <div className="powiadomienie-circle"> </div>
+            <div className="powiadomienie-circle"> </div>
+                <div className="powiadomienie" >
+                    <div>
+                        {this.convertTimestampToDate(this.props.details.plannedAt)}
+                    </div>
+                    <div>
+                        {this.props.details.name}
+                    </div>
+                </div>
+
+
+            </Link>
+        )
+    }
+}
+export default Powiadomienie;

@@ -1,6 +1,7 @@
 // To jest komponent z powiadomieniami
 import React from 'react';
 import axios from 'axios';
+import Powiadomienie from './Powiadomienie';
 
 class Remainder extends React.Component {
 
@@ -39,7 +40,7 @@ class Remainder extends React.Component {
         return (
             Object
             .keys(this.state.userSubgoals)
-            .map(key => <div><div> {this.state.userSubgoals[key].name} </div> <div> {this.state.userSubgoals[key].plannedAt} </div></div>)
+            .map(key => <div><Powiadomienie key={key} details={this.state.userSubgoals[key]} /></div>)
             
         );
     }

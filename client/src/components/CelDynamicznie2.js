@@ -53,18 +53,18 @@ class CelDynamicznie2 extends React.Component {
 
     handleDayMouseEnter(day, { firstOfMonth }) {
         if (firstOfMonth) {
-          // Do something when the first day of month has been mouse-entered
+            // Do something when the first day of month has been mouse-entered
         }
-      }
-    
-      handleDayClick(day, { sunday, disabled }) {
+    }
+
+    handleDayClick(day, { sunday, disabled }) {
         if (sunday) {
-          window.alert('Sunday has been clicked');
+            window.alert('Sunday has been clicked');
         }
         if (disabled) {
-          window.alert('This day is disabled');
+            window.alert('This day is disabled');
         }
-      }
+    }
 
     // Znalezienie celu głównego
     findGoalById(event) {
@@ -271,59 +271,59 @@ class CelDynamicznie2 extends React.Component {
     render() {
         return (
             <div className="row">
-                <div className="background_grey">  
-                    <div className="container">
-                        <div className= "background_white">
-                            <div className="row align-items-center">
-                                <div className="col-1">
-                                    <Link to="/protected"> <img src={backButton} alt=""></img></Link>
-                                </div>
-                                <div className="col-11">
-                                    <h2>
-                                        {(this.state.allGoals !== null) ? this.state.allGoals[0].name : " "}
-                                    </h2>
-                                    <hr />
-                                </div>
+
+                <div className="container">
+                    <div className="background_white">
+                        <div className="row align-items-center">
+                            <div className="col-1">
+                                <Link to="/protected"> <img src={backButton} alt=""></img></Link>
                             </div>
-
-                            <div className="col-sm-4">
-                               
-                                 <DayPicker 
-                                     disabledDays={new Date()}
-                                     onDayClick={this.handleDayClick}
-                                     onDayMouseEnter={this.handleDayMouseEnter}
-                                 />
-
-                            </div>
-
-                            <div className="col-sm-8">
-                                <div className="row">
-                                    <div className="col-11">
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="container">
-                                        <div className="row justify-content-center form-register">
-                                            {this.drawGoalsTree()}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row justify-content-center form-register">
-                                <div className="col-11">
-                                    <h2>Details</h2>
-                                    <hr />
-                                    </div>
-                                    {this.writeDetailsListColumnNames()}
-                                    {this.writeDetailsList()}
-                                    <br />
-                                    
-                                    <PodcelForm goal={this.state.allGoals} findAllGoals={this.findAllGoals} />
-                                </div>
+                            <div className="col-11">
+                                <h2>
+                                    {(this.state.allGoals !== null) ? this.state.allGoals[0].name : " "}
+                                </h2>
+                                <hr />
                             </div>
                         </div>
 
+                        <div className="col-sm-4">
+
+                            <DayPicker
+                                disabledDays={new Date()}
+                                onDayClick={this.handleDayClick}
+                                onDayMouseEnter={this.handleDayMouseEnter}
+                            />
+
+                        </div>
+
+                        <div className="col-sm-8">
+                            <div className="row">
+                                <div className="col-11">
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="container">
+                                    <div className="row justify-content-center form-register">
+                                        {this.drawGoalsTree()}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row justify-content-center form-register">
+                                <div className="col-11">
+                                    <h2>Details</h2>
+                                    <hr />
+                                </div>
+                                {this.writeDetailsListColumnNames()}
+                                {this.writeDetailsList()}
+                                <br />
+
+                                <PodcelForm goal={this.state.allGoals} findAllGoals={this.findAllGoals} />
+                            </div>
+                        </div>
                     </div>
+
                 </div>
+
             </div>
         )
     }

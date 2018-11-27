@@ -57,8 +57,8 @@ class CeleGlowne extends React.Component {
     render() {
         return (
             <div className="row">
-                <div className="background_grey">  
-                    <div className="container">
+               
+                    <div className="container m-0">
                         <div className= "background_white">
                         {/*  <div class="col-sm-4">.col-sm-4</div> */}
                         {/*  <div class="col-sm-8">.col-sm-8 */}
@@ -70,7 +70,7 @@ class CeleGlowne extends React.Component {
                             <CelGlownyForm findGoals={this.findGoals} />        
                         </div>
                     </div>
-                </div>
+            
             </div>
         )
     }
