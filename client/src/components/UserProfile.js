@@ -9,8 +9,7 @@ class UserProfile extends React.Component {
     };
     render() {
         return (
-        <div className="row">
-            <div className="background_grey">  
+        <div className="row justify-content-center form-register">
                 <div className="container">
                     <div className= "background_white">
                         <div className="row justify-content-center form-register">
@@ -55,7 +54,6 @@ class UserProfile extends React.Component {
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
         );
     }

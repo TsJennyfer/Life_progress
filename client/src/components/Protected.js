@@ -46,7 +46,6 @@ class Protected extends React.Component {
         if (this.state.isUserLoggedIn) {
             return (
                 <div>
-                    <Remainder />
                     <CeleGlowne />
                 </div>
             )
