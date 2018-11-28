@@ -2,10 +2,12 @@
 import React from 'react';
 import axios from 'axios';
 import CelSzczegoly from './CelSzczegoly';
+import Remainder from './Remainder';
 
 import '../css/Cele.css';
 import CelGlownyForm from './CelGlownyForm';
-
+import DayPicker from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
 
 class CeleGlowne extends React.Component {
     constructor(props) {
@@ -56,21 +58,28 @@ class CeleGlowne extends React.Component {
 
     render() {
         return (
-            <div className="row">
-               
-                    <div className="container m-0">
+            <div className="row justify-content-center form-register">
+                    <div className="container">
                         <div className= "background_white">
-                        {/*  <div class="col-sm-4">.col-sm-4</div> */}
-                        {/*  <div class="col-sm-8">.col-sm-8 */}
                             <h2>This is your goal list</h2>
                             <hr />
-                        <div className="row">
-                            {this.drawGoals()}
-                        </div>
-                            <CelGlownyForm findGoals={this.findGoals} />        
+                            <div class="col-sm-4">
+                            <DayPicker
+                                disabledDays={new Date()}
+                                onDayClick={this.handleDayClick}
+                                onDayMouseEnter={this.handleDayMouseEnter}
+                            />
+
+                                <Remainder />
+                            </div>
+                            <div class="col-sm-8">
+                                <div className="row">
+                                    {this.drawGoals()}
+                                </div>
+                                <CelGlownyForm findGoals={this.findGoals} />
+                                </div>        
                         </div>
                     </div>
-            
             </div>
         )
     }

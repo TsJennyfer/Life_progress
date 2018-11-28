@@ -270,7 +270,7 @@ class CelDynamicznie2 extends React.Component {
 
     render() {
         return (
-            <div className="row">
+            <div className="row justify-content-center form-register">
 
                 <div className="container">
                     <div className="background_white">
