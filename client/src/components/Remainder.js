@@ -9,6 +9,7 @@ class Remainder extends React.Component {
         super(props);
         this.drawNotes = this.drawNotes.bind(this);
         this.findSubgoals = this.findSubgoals.bind(this);
+        this.isAfter = this.isAfter.bind(this);
         this.state = {
             userSubgoals: {}
         };
@@ -36,12 +37,23 @@ class Remainder extends React.Component {
     }
 
 
+    isAfter(taskDate) {
+        var timeStamp = Math.floor(Date.now());
+        if (taskDate < timeStamp)
+            return true;
+        else return false;
+    }
+
     drawNotes() {
         return (
             Object
-            .keys(this.state.userSubgoals)
-            .map(key => <div><Powiadomienie key={key} details={this.state.userSubgoals[key]} /></div>)
-            
+                .keys(this.state.userSubgoals)
+                .map(key => {
+                    if (this.isAfter(this.state.userSubgoals[key].plannedAt) === true)
+                        return <div><Powiadomienie key={key} details={this.state.userSubgoals[key]} after={true} /></div>
+                    return <div><Powiadomienie key={key} details={this.state.userSubgoals[key]} after={false} /></div>
+                }
+                )
         );
     }
 
