@@ -35,7 +35,6 @@ fieldset {
   margin-bottom: 40px;
 }
 
-
 .form-margin{
   margin-left: 5px;
   margin-top: 2px;
@@ -65,7 +64,8 @@ border{
 }
 
 .DayPicker-Month{
-  font-size: 200%;
+  position: relative;
+  font-size: 11pt;  
 }
 
 form > div >input{
@@ -111,6 +111,7 @@ input.hover{
   padding-right: 30px;
   padding-bottom: 50px;
   padding-left: 30px;
+  background: radial-gradient(circle, rgba(238, 227, 243, 0.01) 0%, rgb(255, 255, 255) 100%);
 }
 
 a, a:link, a:visited, a:hover, a:active {
@@ -137,7 +138,8 @@ a, a:link, a:visited, a:hover, a:active {
   border-radius: 20px;
   font: normal "Advent Pro", Helvetica, sans-serif;
   padding: 8px 16px;
-  color: rgb(0, 165, 14);
+  background-image: -webkit-linear-gradient(45deg, rgb(0, 165, 14) 0%, rgb(93, 192, 102) 100%);
+  background-image: linear-gradient(45deg, rgb(0, 165, 14) 0%, rgb(93, 192, 102) 100%);
   text-align: center;
   -o-text-overflow: clip;
   text-overflow: clip;
@@ -150,12 +152,14 @@ a, a:link, a:visited, a:hover, a:active {
   }
   .header-button:hover {
     color: rgba(255,255,255,1);
-    background: rgb(0, 165, 14);
+    background-image: -webkit-linear-gradient(45deg, rgb(0, 165, 14) 0%, rgb(93, 192, 102) 100%);
+    background-image: linear-gradient(45deg, rgb(0, 165, 14) 50%, rgb(93, 192, 102) 100%);
   }
 
   .header-button:active {
     border: 2px solid rgb(0, 165, 14);
-    background: rgb(0, 165, 14);
+    background-image: -webkit-linear-gradient(45deg, rgb(0, 165, 14) 0%, rgb(93, 192, 102) 100%);
+    background-image: linear-gradient(45deg, rgb(0, 165, 14) 50%, rgb(93, 192, 102) 100%);
     -webkit-transition: none;
     -moz-transition: none;
     -o-transition: none;
@@ -215,38 +219,40 @@ a, a:link, a:visited, a:hover, a:active {
 }
 
 .button-get-started {
-  background-color:rgb(0, 165, 14);
-  border: none;
   color: #1b1b1b;
   padding: 6px 20px;
   font-size: 28px;
   -webkit-border-radius: 30px;
   border-radius: 30px;
-  display: inline-block;
   position: relative;
+  background-image: -webkit-linear-gradient(45deg, rgb(0, 165, 14) 0%, rgb(93, 192, 102) 100%);
+  background-image: linear-gradient(45deg, rgb(0, 165, 14) 0%, rgb(93, 192, 102) 100%);
+  transition: .4s;
+  border: none;
 }	
 
 .button-get-started:hover,	
 .button-get-started:focus {	
- background: rgb(5, 170, 5);
+  background-image: -webkit-linear-gradient(45deg, rgb(0, 165, 14) 0%, rgb(93, 192, 102) 100%);
+  background-image: linear-gradient(45deg, rgb(0, 165, 14) 50%, rgb(93, 192, 102) 100%);
 }
 
 .button-main {
-  background-color:rgb(0, 165, 14);
+  background-image: -webkit-linear-gradient(45deg, rgb(0, 165, 14) 0%, rgb(93, 192, 102) 100%);
+  background-image: linear-gradient(45deg, rgb(0, 165, 14) 0%, rgb(93, 192, 102) 100%);  
   border: none;
   color: #1b1b1b;
-  padding: 6px 20px;
+  padding: 6px 80px;
   font-size: 20px;
   display: inline-block;
   position: relative;
   -webkit-border-radius: 20px;
-  border-radius: 20px;
 }
 
 .button-main:hover,
 .button-main:focus {
-  background: rgb(5, 170, 5);
-}
+  background-image: -webkit-linear-gradient(45deg, rgb(0, 165, 14) 0%, rgb(93, 192, 102) 100%);
+  background-image: linear-gradient(45deg, rgb(0, 165, 14) 50%, rgb(93, 192, 102) 100%);}
 
 h1 { 
   color: #1b1b1b; 
@@ -289,7 +295,7 @@ h4 {
 
 .grid-sub-goal {
   display: grid;
-    grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-template-rows: auto;
   grid-gap: 1rem;
   grid-row-gap: 4rem;
@@ -307,30 +313,10 @@ h4 {
   padding: 6px;
 }
 
-.powiadomienie-after {
-  width: 100px;
-  background-color: #e45642;
-  font-size: 10px;
-  margin: 10px;
-  border-radius: 5%;
-  float: left;
-  text-align: left;
-  padding: 6px;
-}
-
 .powiadomienie-circle {
   width: 6px;
   height: 6px;
   background-color: #a6b6c5d9;
-  float: left;
-  margin-left: 6px;
-  margin-top: 15px;
-  border-radius: 50%;
-}
-.powiadomienie-circle-after {
-  width: 6px;
-  height: 6px;
-  background-color: #e45642;
   float: left;
   margin-left: 6px;
   margin-top: 15px;
@@ -341,30 +327,26 @@ h4 {
   position: relative;
   cursor: default;
   z-index: 1;
-  width: 120px;
-  height: 120px;
-  color: #d1ff03;
-  background: rgb(5, 170, 5);
-  border-radius: 100%;
-  border: none;
+  width: 125px;
+  height: 125px;
+  background: rgb(0, 165, 14);
   font-family: 'PT Sans', sans-serif;
-  transition: 0.5s;
   transition-timing-function: ease-in-out;
+  color: #FFF; 
+  border-radius: 50%;
+  box-shadow: 0px 0px 0px 5px rgb(0, 165, 14);
+  transition: .4s;
+  border: solid 2px rgba(255, 255, 255, 0.47);
 }
 
 .button-cel-glowny:hover {
   position: relative;
   cursor: pointer;
   z-index: 1;
-  width: 120px;
-  height: 120px;
-  color: #d1ff03;
   background: rgb(5, 170, 5);
-  border-radius: 10%;
-  font-family: 'PT Sans', sans-serif;
-  font-size: 20px;
+  border-style: dashed;
+  box-shadow: 0px 0px 0px 5px rgb(5, 170, 5);
 }
-
 
 .trash-btn {
   position: absolute;
@@ -373,7 +355,6 @@ h4 {
   bottom: 90px;
   display: none;
 }
-
 
 .button-sub-goal {
  position: relative;

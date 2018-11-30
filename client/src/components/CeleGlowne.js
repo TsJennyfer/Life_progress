@@ -64,12 +64,11 @@ class CeleGlowne extends React.Component {
                             <h2>This is your goal list</h2>
                             <hr />
                             <div class="col-sm-4">
-                            <DayPicker
-                                disabledDays={new Date()}
-                                onDayClick={this.handleDayClick}
-                                onDayMouseEnter={this.handleDayMouseEnter}
-                            />
-
+                                <DayPicker
+                                    disabledDays={new Date()}
+                                    onDayClick={this.handleDayClick}
+                                    onDayMouseEnter={this.handleDayMouseEnter}
+                                />
                                 <Remainder />
                             </div>
                             <div class="col-sm-8">
