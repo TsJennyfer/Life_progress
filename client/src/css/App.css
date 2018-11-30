@@ -313,10 +313,29 @@ h4 {
   padding: 6px;
 }
 
-.powiadomienie-circle {
+.powiadomienie-after {
+  width: 100px;
+  background-color: #e45642;
+  font-size: 10px;
+  margin: 10px;
+  border-radius: 5%;
+  float: left;
+  text-align: left;
+  padding: 6px;
+}
+ .powiadomienie-circle {
+    width: 6px;
+    height: 6px;
+    background-color: #a6b6c5d9;
+    float: left;
+    margin-left: 6px;
+    margin-top: 15px;
+    border-radius: 50%;
+}
+.powiadomienie-circle-after {
   width: 6px;
   height: 6px;
-  background-color: #a6b6c5d9;
+  background-color: #e45642;
   float: left;
   margin-left: 6px;
   margin-top: 15px;
