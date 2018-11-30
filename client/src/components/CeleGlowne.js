@@ -15,6 +15,8 @@ class CeleGlowne extends React.Component {
 
         this.findGoals = this.findGoals.bind(this);
         this.drawGoals = this.drawGoals.bind(this);
+        this.whichPeriod = this.whichPeriod.bind(this);
+        this.drawSortedGoals = this.drawSortedGoals.bind(this);
 
         this.state = {
             goals: {}
@@ -45,40 +47,89 @@ class CeleGlowne extends React.Component {
     }
 
     // Rysowanie głównych celów
-    drawGoals() {
+    drawGoals(numberOfGroup) {
         return (
             Object
                 .keys(this.state.goals)
-                .map(key => <div className="col-12 col-sm-4 col-md-3 col-lg-2 mx-3 my-3" key={key}>  <CelSzczegoly key={key}
-                    details={this.state.goals[key]} />
-                </div>)
+                .map(key => {
+                    if (this.whichPeriod(this.state.goals[key].plannedAt) === numberOfGroup)
+                        return <div className="col-12 col-sm-6 col-md-4 col-lg-3 mx-3 my-3" key={key}>  <CelSzczegoly key={key}
+                            details={this.state.goals[key]} />
+                        </div>
+                }
+                )
         )
     }
- 
+
+    drawSortedGoals() {
+        return (
+            <div className="container">
+                <div className="row"><h3>This month:</h3></div>
+                <div className="row">
+                    {this.drawGoals(1)}
+                </div>
+                <div className="row">
+                    <h3>Next month:</h3>
+                </div>
+                <div className="row">
+                    {this.drawGoals(2)}
+                </div>
+                <div className="row">
+                    <h3>Later:</h3>
+                </div>
+                <div className="row">
+                    {this.drawGoals(3)}
+                </div>
+                <div className="row">
+                    <h3>Past:</h3>
+                </div>
+                <div className="row">
+                    {this.drawGoals(0)}
+                </div>
+            </div>
+        )
+    }
+
+    whichPeriod(taskDate) {
+        var CurrentDate = new Date();
+        var nextMonthTimeStamp = Math.floor(CurrentDate.setMonth(CurrentDate.getMonth() + 1));
+        var next2MonthTimeStamp = Math.floor(CurrentDate.setMonth(CurrentDate.getMonth() + 2));
+        var currentTimeStamp = Math.floor(Date.now());
+        if ((taskDate > currentTimeStamp) && (taskDate < nextMonthTimeStamp)) {
+            return 1; // ten miesiąc
+        }
+        else if ((taskDate > nextMonthTimeStamp) && (taskDate < next2MonthTimeStamp)) {
+            return 2; // następny miesiąc 
+        }
+        else if (taskDate > next2MonthTimeStamp) {
+            return 3; // ponad 2 miesiące
+        }
+        else return 0;  // przeszłe
+    }
 
     render() {
         return (
             <div className="row justify-content-center form-register">
-                    <div className="container">
-                        <div className= "background_white">
-                            <h2>This is your goal list</h2>
-                            <hr />
-                            <div class="col-sm-4">
-                                <DayPicker
-                                    disabledDays={new Date()}
-                                    onDayClick={this.handleDayClick}
-                                    onDayMouseEnter={this.handleDayMouseEnter}
-                                />
-                                <Remainder />
+                <div className="container">
+                    <div className="background_white">
+                        <h2>This is your goal list</h2>
+                        <hr />
+                        <div class="col-sm-4">
+                            <DayPicker
+                                disabledDays={new Date()}
+                                onDayClick={this.handleDayClick}
+                                onDayMouseEnter={this.handleDayMouseEnter}
+                            />
+                            <Remainder />
+                        </div>
+                        <div class="col-sm-8">
+                            <div className="row">
+                                {this.drawSortedGoals()}
                             </div>
-                            <div class="col-sm-8">
-                                <div className="row">
-                                    {this.drawGoals()}
-                                </div>
-                                <CelGlownyForm findGoals={this.findGoals} />
-                                </div>        
+                            <CelGlownyForm findGoals={this.findGoals} />
                         </div>
                     </div>
+                </div>
             </div>
         )
     }
