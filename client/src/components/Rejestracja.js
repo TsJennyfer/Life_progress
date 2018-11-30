@@ -84,13 +84,7 @@ class Rejestracja extends React.Component {
                                     <button className="button button-main" type="submit">
                                         Sign up<i className="GuestBookButton2" aria-hidden="true" />
                                     </button>
-                                    <br />
-                                    <button className="loginBtn loginBtn--google">
-                                        Login with Google
-                                    </button>
-                                    <button className="loginBtn loginBtn--facebook">
-                                        Login with Facebook
-                                    </button>
+                                   
                                     <br />
                                     <div className="button-forgot-pass" id="sign-in" >
                                     <Link to="/signin">Already have an account?</Link>

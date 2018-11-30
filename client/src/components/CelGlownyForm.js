@@ -104,19 +104,7 @@ class CelGlownyForm extends React.Component {
                                         minLength={3}
                                         placeholder="Goal name"
                                     />
-                                    <input
-                                        name="name"
-                                        type="text"
-                                        minLength={3}
-                                        placeholder="Category(optional)"
-                                    />
-                                    <div className="row justify-content-left form-margin">
-                                        <DatePicker input
-                                        selected={this.state.startDate}
-                                        onChange={this.handleChange}
-                                        placeholder="Planning date"
-                                    />
-                                    </div>
+                                  
                                     <input
                                         name="name"
                                         type="text"
