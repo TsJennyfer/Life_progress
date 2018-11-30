@@ -49,7 +49,8 @@ class CelGlownyForm extends React.Component {
             parent: null,
             userId: this.state.userId,
             userToken: localStorage.getItem('token'),
-            priority: this.state.priority
+            priority: this.state.priority,
+            plannedAt: this.state.startDate.valueOf()
         },
         {headers})
             .then(response => {
@@ -104,7 +105,13 @@ class CelGlownyForm extends React.Component {
                                         minLength={3}
                                         placeholder="Goal name"
                                     />
-                                  
+                                   <div className="row justify-content-left form-margin">	
+                                        <DatePicker input	
+                                        selected={this.state.startDate}	
+                                        onChange={this.handleChange}	
+                                        placeholder="Planning date"	
+                                    />	
+                                    </div>
                                     <input
                                         name="name"
                                         type="text"
