@@ -39,19 +39,18 @@ app.use(morgan('dev'));
 //ROUTES
 
 //Potwierdzenie email
-app.get('/users/confirmEmail/:token', (req, res)=>{
+app.get('/users/confirmEmail/:token', (req, res) => {
     var token = req.params.token;
 
-    User.findOneAndUpdate({'tokens.token': token},{activated: true}).then((user)=>{
-        if (!user){
+    User.findOneAndUpdate({ 'tokens.token': token }, { activated: true }).then((user) => {
+        if (!user) {
             return res.status(404).send();
-        }
-
-        res.send({user});
-    }).catch((error)=>{
-        res.status(400).send();
-    })
-})
+        };
+        res.send({ user });
+    }).catch((error) => {
+        res.status(400).send(error);
+    });
+});
 
 //Reset hasła, wysłanie tokena
 app.post('/users/resetPassword', (req, res) => {
@@ -65,14 +64,13 @@ app.post('/users/resetPassword', (req, res) => {
             var token = user.generateAuthToken();
             token.then(function (result) {
                 passwordResetEmail(req, result);
-            })
-        }
-
+            });
+        };
         res.send({ user });
     }).catch((error) => {
-        res.status(400).send();
-    })
-})
+        res.status(400).send(error);
+    });
+});
 
 //Token do resetu hasła
 app.get('/users/resetPasswordToken/:token', (req, res) => {
@@ -85,11 +83,10 @@ app.get('/users/resetPasswordToken/:token', (req, res) => {
         }
         res.redirect('http://localhost:3000/'); //przekierowanie do formularza zmiany hasła
         res.send({ user });
-        
     }).catch((error) => {
-        res.status(400).send();
-    })
-})
+        res.status(400).send(error);
+    });
+});
 
 //Reset hasła po tokenie
 app.patch('/users/newPassword/:token', (req, res) => {
@@ -100,17 +97,17 @@ app.patch('/users/newPassword/:token', (req, res) => {
         bcrypt.hash(body.password, salt, (error, hash) => {
             body.password = hash;
 
-            User.findOneAndUpdate({'tokens.token': token}, {$set: body, tokens : []}, {new: true}).then((user)=>{
-                if (!user){
+            User.findOneAndUpdate({ 'tokens.token': token }, { $set: body, tokens: [] }, { new: true }).then((user) => {
+                if (!user) {
                     return res.status(404).send();
                 }
                 //res.redirect('http://localhost:3000/signin/'); // przekierowanie do strony logowania
-                res.send({user});
-            }).catch((error)=>{
-                res.status(400).send();
-            })
-        })
-    })
+                res.send({ user });
+            }).catch((error) => {
+                res.status(400).send(error);
+            });
+        });
+    });
 });
 
 //Rejestracja
@@ -132,7 +129,7 @@ app.post('/users/signup', (req, res)=> {
 });
 
 //Pobiera użytkownika po ID
-app.get('/users/me',authenticate, (req , res) => {
+app.get('/users/me', authenticate, (req, res) => {
     res.send(req.user);
 });
 
@@ -141,28 +138,28 @@ app.post('/users/signin', (req, res) => {
     var body = _.pick(req.body, ['email', 'password']);
 
     User.findByCredentials(body.email, body.password).then((user) => {
-        if (user.activated === false){  //czy email potwierdzony
+        if (user.activated === false) {  //czy email potwierdzony
             res.status(401).send('Please confirm your email address.');
             console.log('Please confirm your email address.');
-    }
-    else {
-        user.generateAuthToken().then((token) => {
-            res.header('auth', token).send(user);
-        });
-    }
-        }).catch((error) => {
-            res.status(400).send();
+        }
+        else {
+            user.generateAuthToken().then((token) => {
+                res.header('auth', token).send(user);
+            });
+        }
+    }).catch((error) => {
+        res.status(400).send(error);
     });
 });
 
 //Wylogowanie
-app.delete('/users/logout', authenticate, (req, res)=> {
-    req.user.removeToken(req.token).then(()=> {
+app.delete('/users/logout', authenticate, (req, res) => {
+    req.user.removeToken(req.token).then(() => {
         res.status(200).send();
-    }, () => {
-        res.status(400).send();
+    }).catch((error) => {
+        res.status(400).send(error);
     });
-})
+});
 
 //Zmiana danych użytkownika (hasło, email)
 app.patch('/users/:id', authenticate, (req, res) => {
@@ -177,21 +174,18 @@ app.patch('/users/:id', authenticate, (req, res) => {
         bcrypt.hash(body.password, salt, (error, hash) => {
             body.password = hash;
 
-            User.findOneAndUpdate({_id: id}, {$set: body}, {new: true}).then((user)=>{
-                if (!user){
+            User.findOneAndUpdate({ _id: id }, { $set: body }, { new: true }).then((user) => {
+                if (!user) {
                     return res.status(404).send();
                 }
-        
-                res.send({user});
-            }).catch((error)=>{
-                res.status(400).send();
+
+                res.send({ user });
+            }).catch((error) => {
+                res.status(400).send(error);
             })
         })
     })
-
-
 });
-
 
 //Dodanie celu
 app.post('/goals/', authenticate, (req, res) => {
@@ -202,10 +196,9 @@ app.post('/goals/', authenticate, (req, res) => {
         createdAt: req.body.createdAt = new Date().getTime(),
         plannedAt: req.body.plannedAt
     });
-
     goal.save().then((doc) => {
         res.send(doc);
-    }, (error) => {
+    }).catch((error) => {
         res.status(400).send(error);
     });
 });
@@ -217,31 +210,31 @@ app.get('/goals/mainUserGoals', authenticate, (req, res) => {
         _creator: req.user._id
     }).then((goals) => {
         res.send({ goals });
-    }, (error) => {
+    }).catch((error) => {
         res.status(400).send(error);
     });
 });
 
 //Pobieranie celu głównego i podceli użytkownika
 app.get('/goals/mainUserGoalAndSubgoals/:id', authenticate, (req, res) => {
-    Goal.find({$or: [{parent: req.params.id}, {_id: req.params.id}]
+    Goal.find({
+        $or: [{ parent: req.params.id }, { _id: req.params.id }]
     }).then((goals) => {
         res.send({ goals });
-    }, (error) => {
+    }).catch((error) => {
         res.status(400).send(error);
     });
 });
 
 //Pobieranie podceli użytkownika posortowane
-
-app.get('/goals/userSubgoals/', authenticate, (req, res) => {
-    Goal.find({$and: [{_creator: req.user._id},{parent: {$ne : null}}]}
+app.get('/goals/userSubgoals', authenticate, (req, res) => {
+    Goal.find({ $and: [{ _creator: req.user._id }, { parent: { $ne: null } }] }
     ).sort([['plannedAt', 1]])
-    .then((goals) => {
-        res.send({ goals });
-    }, (error) => {
-        res.status(400).send(error);
-    });
+        .then((goals) => {
+            res.send({ goals });
+        }).catch((error) => {
+            res.status(400).send(error);
+        });
 });
 
 //Pobieranie podcelów po ID rodzica
@@ -250,7 +243,7 @@ app.get('/goals/main/children/:id', authenticate, (req, res) => {
         parent: req.params.id
     }).then((goals) => {
         res.send({ goals });
-    }, (error) => {
+    }).catch((error) => {
         res.status(400).send(error);
     });
 });
@@ -273,7 +266,7 @@ app.delete('/goals/:id', authenticate, (req, res) => {
 
         res.send(goal);
     }).catch((error) => {
-        res.status(400).send();
+        res.status(400).send(error);
     });
 });
 
@@ -293,14 +286,14 @@ app.patch('/goals/:id', authenticate, (req, res) => {
         body.completedAt = null;
     }
 
-    Goal.findOneAndUpdate({_id: id, _creator: req.user._id}, {$set: body}, {new: true}).then((goal)=>{
-        if (!goal){
+    Goal.findOneAndUpdate({ _id: id, _creator: req.user._id }, { $set: body }, { new: true }).then((goal) => {
+        if (!goal) {
             return res.status(404).send();
         }
 
-        res.send({goal});
-    }).catch((error)=>{
-        res.status(400).send();
+        res.send({ goal });
+    }).catch((error) => {
+        res.status(400).send(error);
     })
 });
 
