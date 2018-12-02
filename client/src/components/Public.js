@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   Link
 } from 'react-router-dom';
+import done from '../resourses/done_icon.png';
 
 
 class Public extends Component {
@@ -27,15 +28,32 @@ class Public extends Component {
             </div>
           </div>
           <div className="row justify-content-center mt-4">
-            <div className="col-5">
+            <div className="col-4">
               <h3>
-                  Get organized in seconds<br />
-                  Planning tasks<br />
-                  Measure progress<br />
-                  Feel organized and motivated<br />
-                  Have got any big goals to split? <br />
-                  Use our app to granulate and deal with it! <br />
-
+                <div className = 'form-margin'>
+                  <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
+                  &emsp; Get organized in seconds<br />
+                </div>
+                <div className = 'form-margin'>
+                  <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
+                  &emsp; Planning tasks<br />
+                </div>
+                <div className = 'form-margin'>
+                  <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
+                  &emsp; Measure progress<br />
+                </div>
+                <div className = 'form-margin'>
+                  <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
+                  &emsp; Feel organized and motivated<br />
+                </div>
+                <div className = 'form-margin'>
+                  <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
+                  &emsp; Have got any big goals to split?<br />
+                </div>
+                <div className = 'form-margin'>
+                  <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
+                  &emsp; Use our app to granulate it!<br />
+                </div>
               </h3>
             </div>
           </div>

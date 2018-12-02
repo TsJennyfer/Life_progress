@@ -123,8 +123,29 @@ class CelGlownyForm extends React.Component {
                             <br />
                             <button className = "button-main" type="submit">
                                 Add new<i className="GuestBookButton2" aria-hidden="true" />
-                            </button>
+                            </button> 
                         </form>
+                    </div>
+                </div>
+
+                <div className="row justify-content-center form-register">
+                    <div className="col-12">
+                        <h2>Don't have any idea's? Generate it  </h2>  
+                        <hr />
+                    </div>
+                    <div className="col-6">
+                        <button className = "button-main" type="submit">
+                            Generate<i className="GuestBookButton2" aria-hidden="true" />
+                        </button>
+                        <div align="left">
+                            <h3>
+                                1. Make cookies<br />
+                                2. Do sport<br />
+                                3. Swimming<br />
+                                4. 1000 wathed films<br />
+                                5. Buy prezents<br />
+                            </h3>
+                        </div>
                     </div>
                 </div>
             </div>
