@@ -49,9 +49,13 @@ class Remainder extends React.Component {
             Object
                 .keys(this.state.userSubgoals)
                 .map(key => {
-                    if (this.isAfter(this.state.userSubgoals[key].plannedAt) === true)
-                        return <div><Powiadomienie key={key} details={this.state.userSubgoals[key]} after={true} /></div>
-                    return <div><Powiadomienie key={key} details={this.state.userSubgoals[key]} after={false} /></div>
+                    if (this.state.userSubgoals[key].completed === false) {
+                        if (this.isAfter(this.state.userSubgoals[key].plannedAt) === true) {
+                            return <div><Powiadomienie key={key} details={this.state.userSubgoals[key]} after={true} /></div>
+                        } else {
+                            return <div><Powiadomienie key={key} details={this.state.userSubgoals[key]} after={false} /></div>
+                        }
+                    }
                 }
                 )
         );
