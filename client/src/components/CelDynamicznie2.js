@@ -117,7 +117,7 @@ class CelDynamicznie2 extends React.Component {
 
                             <div
                                 key={key}
-                                className={(this.state.goals[key].completed === true) ? "button-sub-goal-done flip-scale-up-hor" : "button-sub-goal"}
+                                className={(this.state.goals[key].completed === true) ? "button-sub-goal-done" : "button-sub-goal"}
                                 id={key}
                             >
                                 {(this.state.goals !== null) ? this.state.goals[key].name : " "}
