@@ -8,9 +8,11 @@ const bcrypt = require('bcryptjs');
 const nodeMailer = require('nodemailer');
 require('dotenv').config();
 
+var random = require('mongoose-simple-random');
 var {mongoose} = require('./database/mongoose');
 var {Goal} = require('./models/goal');
 var {User} = require('./models/user');
+var {RandomGoal} = require('./models/randomGoal');
 var {authenticate} = require('./middleware/authenticate');
 var {sender} = require('./middleware/sender');
 var {passwordResetEmail} = require('./middleware/passwordResetEmail');
@@ -297,7 +299,15 @@ app.patch('/goals/:id', authenticate, (req, res) => {
     })
 });
 
-
+//Pobranie losowego celu
+app.get('/randomGoals', (req, res) => {
+    RandomGoal.findOneRandom({},{_id:0, name:1},{},function(error, result) {
+        if (!error) {
+          console.log(result);
+          res.send(result);
+        };
+      });
+});
 
 app.listen(port,() => {
     console.log(`Server started on port ${port}`);
