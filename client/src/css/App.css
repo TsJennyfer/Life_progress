@@ -419,6 +419,13 @@ h4 {
 .button-sub-goal-done:hover > button {
   display: inline-block;
 }
+
+.description-subgoal-none {
+  display: none;
+}
   
+.description-subgoal-block {
+  display: block;
+}
 
 

@@ -8,6 +8,8 @@ import '../css/App.css';
 import '../css/PodceleAnimacje.css';
 import Link from 'react-router-dom/Link';
 import backButton from '../resourses/back-button.png';
+import arrowDown from '../resourses/arrow-down.png';
+import arrowUp from '../resourses/arrow-up.png';
 
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
@@ -18,11 +20,13 @@ import 'react-day-picker/lib/style.css';
 class CelDynamicznie2 extends React.Component {
     constructor(props) {
         super(props);
+        this.convertTimestampToDate = this.convertTimestampToDate.bind(this);
         this.findGoalById = this.findGoalById.bind(this);
         this.findAllGoals = this.findAllGoals.bind(this);
         this.drawGoalsTree = this.drawGoalsTree.bind(this);
         this.writeDetailsList = this.writeDetailsList.bind(this);
         this.writeDetailsListColumnNames = this.writeDetailsListColumnNames.bind(this);
+        this.expandDescription = this.expandDescription.bind(this);
         this.changePriority = this.changePriority.bind(this);
         this.changeCompleted = this.changeCompleted.bind(this);
         this.changeButtonColor = this.changeButtonColor.bind(this);
@@ -41,6 +45,12 @@ class CelDynamicznie2 extends React.Component {
                 }
             }
         };
+    }
+
+    convertTimestampToDate(timestamp) {
+        var t = new Date(timestamp);
+        var date = t.getDate() + "/" + t.getMonth() + "/" + t.getFullYear();
+        return date;
     }
 
     componentDidMount() {
@@ -98,6 +108,7 @@ class CelDynamicznie2 extends React.Component {
             });
 
     }
+
 
     // Rysowanie głównych celów
     drawGoalsTree() {
@@ -177,16 +188,34 @@ class CelDynamicznie2 extends React.Component {
                                 <input type="checkbox" checked={this.state.goals[key].completed} onClick={() => this.changeCompleted(key)}></input>
                             </div>
                             <div className="col-sm-4 col-5">
-                                <span className="details-list-form-element" name="date">should end to 27/10/2018</span>
+                                <span className="details-list-form-element" name="date">{this.convertTimestampToDate(this.state.goals[key].plannedAt)}</span>
                             </div>
                             <div className="col-1">
-                                <span>>></span >
+                                {(this.state.goals[key].isDescription === true)
+                                    ? <img src={arrowUp} onClick={() => this.expandDescription(key)} width="20" height="20" ></img>
+                                    : <img src={arrowDown} onClick={() => this.expandDescription(key)} width="20" height="20" ></img>}
                             </div>
+                        </div>
+                        <div className={(this.state.goals[key].isDescription === true) ? "row justify-content-center" : "row justify-content-center"} >
+                            {(this.state.goals[key].isDescription === true) ? this.state.goals[key].description : ""}
                         </div>
                     </div>
                 )
 
         );
+    }
+
+    // rozwijanie opisów podcelu
+    expandDescription(id) {
+        const goals = { ...this.state.goals };
+        const isDescription = goals[id].isDescription;
+        if (isDescription === false) {
+            goals[id].isDescription = true;
+        } else {
+            goals[id].isDescription = false;
+        }
+        this.setState({ goals: goals });
+
     }
 
     changeCompleted(id) {

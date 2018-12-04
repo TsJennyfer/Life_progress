@@ -9,7 +9,8 @@ var Goal = mongoose.model('Goal', {
     plannedAt: {type: Number, default: null},
     completedAt: {type: Number, default: null},
     _creator: {type: mongoose.Schema.Types.ObjectId, required: true},
-    parent: {type: mongoose.Schema.Types.ObjectId,  default: null}
+    parent: {type: mongoose.Schema.Types.ObjectId,  default: null},
+    isDescription: {type: Boolean, default: false}
     
 });
 
