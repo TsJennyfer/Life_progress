@@ -17,13 +17,15 @@ class CelGlownyForm extends React.Component {
         this.handleUserIdChange = this.handleUserIdChange.bind(this);
         this.handlePriorityChange = this.handlePriorityChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.generateGoal = this.generateGoal.bind(this);
 
         this.state = {
             name: "",
             parent: null,
             userId: null,
             priority: 1,
-            startDate: moment()
+            startDate: moment(),
+            randomGoal: null
         }
     }
 
@@ -68,6 +70,16 @@ class CelGlownyForm extends React.Component {
             });
 
         
+    }
+
+    generateGoal() {
+        axios.get('/randomGoals')
+            .then(response => {
+                console.log(response.data);
+                this.setState({
+                    randomGoal: response.data
+                });
+            });
     }
 
     handleNameChange(event) {
@@ -134,16 +146,15 @@ class CelGlownyForm extends React.Component {
                         <hr />
                     </div>
                     <div className="col-6">
-                        <button className = "button-main" type="submit">
+                        <button 
+                        className = "button-main" 
+                        onClick={() => this.generateGoal()}
+                        >
                             Generate<i className="GuestBookButton2" aria-hidden="true" />
                         </button>
                         <div align="left">
                             <h3>
-                                1. Make cookies<br />
-                                2. Do sport<br />
-                                3. Swimming<br />
-                                4. 1000 wathed films<br />
-                                5. Buy prezents<br />
+                                {(this.state.randomGoal !== null ) ? this.state.randomGoal.name : ""}
                             </h3>
                         </div>
                     </div>
