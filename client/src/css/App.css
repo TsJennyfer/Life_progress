@@ -419,6 +419,11 @@ h4 {
 .button-sub-goal-done:hover > button {
   display: inline-block;
 }
-  
+
+.description-subgoal {
+  background-color: #64a3ed6b;
+  padding: 10px;
+  border: 2px solid rgba(57, 93, 60, 0.61);
+}
 
 

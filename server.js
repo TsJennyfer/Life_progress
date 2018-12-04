@@ -193,6 +193,7 @@ app.patch('/users/:id', authenticate, (req, res) => {
 app.post('/goals/', authenticate, (req, res) => {
     var goal = new Goal({
         name: req.body.name,
+        description: req.body.description,
         _creator: req.user._id,
         parent: req.body.parent,
         createdAt: req.body.createdAt = new Date().getTime(),

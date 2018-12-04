@@ -15,8 +15,10 @@ class PodcelForm extends React.Component {
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handlePriorityChange = this.handlePriorityChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
         this.state = {
             name: "",
+            description: "",
             parent: null,
             priority: 1,
             startDate: moment()
@@ -25,21 +27,22 @@ class PodcelForm extends React.Component {
 
 
     addSubGoal(event) {
-        event.preventDefault();   
+        event.preventDefault();
 
         var headers = {
-            'auth': localStorage.getItem('token'), 
+            'auth': localStorage.getItem('token'),
             'Content-Type': 'application/json'
         }
         console.log(headers);
-        axios.post('/goals/',  {
+        axios.post('/goals/', {
             name: this.state.name,
             parent: this.props.goal[0],
             userToken: localStorage.getItem('token'),
             priority: this.state.priority,
-            plannedAt: this.state.startDate.valueOf()
+            plannedAt: this.state.startDate.valueOf(),
+            description: this.state.description
         },
-        {headers})
+            { headers })
             .then(response => {
                 console.log(response, `Dodano podcel ${this.state.name}`);
                 this.setState({
@@ -56,48 +59,54 @@ class PodcelForm extends React.Component {
         this.setState({ name: event.target.value });
     }
     handlePriorityChange(event) {
-        this.setState({  priority: event.target.value });
+        this.setState({ priority: event.target.value });
+    }
+
+    handleDescriptionChange(event) {
+        this.setState({ description: event.target.value });
     }
 
     handleChange(date) {
         this.setState({
-          startDate: date
+            startDate: date
         });
-      }
+    }
 
     render() {
         return (
             <div className="add_container">
                 <div className="row justify-content-center form-register">
                     <div className="col-12">
-                    <h2>Have something new? Add it! </h2>
+                        <h2>Have something new? Add it! </h2>
                         <hr />
                     </div>
                     <div className="col-8">
                         <form className="registerForm" onSubmit={this.addSubGoal}>
-                        <div>
-                            <input
-                                onChange={this.handleNameChange}
-                                name="name"
-                                type="text"
-                                value={this.state.name}
-                                placeholder="Goal name"
-                            />
-                            <div className="row justify-content-left form-margin ">
-                                <DatePicker
-                                    selected={this.state.startDate}
-                                    onChange={this.handleChange}
+                            <div>
+                                <input
+                                    onChange={this.handleNameChange}
+                                    name="name"
+                                    type="text"
+                                    value={this.state.name}
+                                    placeholder="Goal name"
                                 />
-                            </div>
-                            <input
-                                name="name"
-                                type="text"
-                                minLength={3}
-                                placeholder="Description(optional)"
-                            />
-                            <br />
-                            
-                            {/*  priority:
+                                <div className="row justify-content-left form-margin ">
+                                    <DatePicker
+                                        selected={this.state.startDate}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+                                <input
+                                    onChange={this.handleDescriptionChange}
+                                    name="name"
+                                    type="text"
+                                    minLength={3}
+                                    value={this.state.description}
+                                    placeholder="Description(optional)"
+                                />
+                                <br />
+
+                                {/*  priority:
                             <input
                                 onChange={this.handlePriorityChange}
                                 name="priority"
@@ -109,8 +118,8 @@ class PodcelForm extends React.Component {
                             */}
                             </div>
                             <br />
-                            <button className = "button-main" type="submit">
-                            Add new<i className="GuestBookButton2" aria-hidden="true" />
+                            <button className="button-main" type="submit">
+                                Add new<i className="GuestBookButton2" aria-hidden="true" />
                             </button>
                         </form>
                     </div>
