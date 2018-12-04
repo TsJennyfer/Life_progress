@@ -197,7 +197,7 @@ class CelDynamicznie2 extends React.Component {
                             </div>
                         </div>
                         <div className={(this.state.goals[key].isDescription === true) ? "row justify-content-center" : "row justify-content-center"} >
-                            {(this.state.goals[key].isDescription === true) ? this.state.goals[key].description : ""}
+                            {(this.state.goals[key].isDescription === true) ? <div className="col-8 description-subgoal"> {this.state.goals[key].description} </div>: ""}
                         </div>
                     </div>
                 )
