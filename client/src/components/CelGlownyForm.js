@@ -117,6 +117,7 @@ class CelGlownyForm extends React.Component {
                                         minLength={3}
                                         placeholder="Goal name"
                                     />
+                                   
                                    <div className="row justify-content-left form-margin">	
                                         <DatePicker input	
                                         selected={this.state.startDate}	

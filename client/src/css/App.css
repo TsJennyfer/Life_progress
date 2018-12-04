@@ -69,7 +69,7 @@ border{
   font-size: 11pt;  
 }
 
-form > div >input{
+form > div >input, form > div >div, .DayPicker-input, .DayPicker[type=input]  {
   -webkit-appearance: none;
   width: 100%;
   border: 0;
@@ -84,7 +84,6 @@ form > div >input{
   color: black;
   transition: all .15s ease;
 }
-
 
 input.hover{
   background: rgba(black,.03)

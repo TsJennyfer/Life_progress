@@ -91,7 +91,7 @@ class PodcelForm extends React.Component {
                                     placeholder="Goal name"
                                 />
                                 <div className="row justify-content-left form-margin ">
-                                    <DatePicker
+                                    <DatePicker type="input" 
                                         selected={this.state.startDate}
                                         onChange={this.handleChange}
                                     />
@@ -104,18 +104,6 @@ class PodcelForm extends React.Component {
                                     value={this.state.description}
                                     placeholder="Description(optional)"
                                 />
-                                <br />
-
-                                {/*  priority:
-                            <input
-                                onChange={this.handlePriorityChange}
-                                name="priority"
-                                type="text"
-                                value={this.state.priority}
-                                placeholder="priority"
-                            />
-                            <br />
-                            */}
                             </div>
                             <br />
                             <button className="button-main" type="submit">
