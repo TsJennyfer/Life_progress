@@ -3,7 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import DatePicker from "react-datepicker";
 import moment from "moment";
- 
+
 import "react-datepicker/dist/react-datepicker.css";
 import '../css/Cele.css';
 
@@ -42,11 +42,11 @@ class CelGlownyForm extends React.Component {
         console.log(test);
 
         var headers = {
-            'auth': localStorage.getItem('token'), 
+            'auth': localStorage.getItem('token'),
             'Content-Type': 'application/json'
         }
         console.log(headers);
-        axios.post('/goals/',  {
+        axios.post('/goals/', {
             name: this.state.name,
             parent: null,
             userId: this.state.userId,
@@ -54,10 +54,10 @@ class CelGlownyForm extends React.Component {
             priority: this.state.priority,
             plannedAt: this.state.startDate.valueOf()
         },
-        {headers})
+            { headers })
             .then(response => {
                 console.log(response, `Dodano cel główny ${this.state.name}`);
-                alert("Dodano cel główny");
+                alert("Main goal added");
                 this.props.findGoals();
                 this.setState({
                     name: "",
@@ -69,7 +69,7 @@ class CelGlownyForm extends React.Component {
                 console.log(err, 'Błąd dodawania celu głównego');
             });
 
-        
+
     }
 
     generateGoal() {
@@ -89,77 +89,82 @@ class CelGlownyForm extends React.Component {
         this.setState({ userId: event.target.value });
     }
     handlePriorityChange(event) {
-        this.setState({  priority: event.target.value });
+        this.setState({ priority: event.target.value });
     }
 
     handleChange(date) {
         this.setState({
-          startDate: date
+            startDate: date
         });
-      }
+    }
 
     render() {
         return (
             <div>
                 <div className="row justify-content-center form-register">
                     <div className="col-12">
-                        <h2>Have something new? Add new main goal  </h2>  
+                        <h2>Have something new? Add new main goal  </h2>
                         <hr />
                     </div>
                     <div className="col-6">
                         <form className="registerForm" onSubmit={this.addMainGoal}>
                             <div>
-                                    <input
-                                        onChange={this.handleNameChange}
-                                        name="name"
-                                        type="text"
-                                        value={this.state.name}
-                                        minLength={3}
-                                        placeholder="Goal name"
+                                <input
+                                    onChange={this.handleNameChange}
+                                    name="name"
+                                    type="text"
+                                    value={this.state.name}
+                                    minLength={3}
+                                    placeholder="Goal name"
+                                />
+
+                                <div className="row justify-content-left form-margin">
+                                    <DatePicker input
+                                        selected={this.state.startDate}
+                                        onChange={this.handleChange}
+                                        placeholder="Planning date"
                                     />
-                                   
-                                   <div className="row justify-content-left form-margin">	
-                                        <DatePicker input	
-                                        selected={this.state.startDate}	
-                                        onChange={this.handleChange}	
-                                        placeholder="Planning date"	
-                                    />	
-                                    </div>
-                                    <input
-                                        name="name"
-                                        type="text"
-                                        minLength={3}
-                                        placeholder="Description(optional)"
-                                    />
+                                </div>
+                                <input
+                                    name="name"
+                                    type="text"
+                                    minLength={3}
+                                    placeholder="Description(optional)"
+                                />
                             </div>
                             <br />
                             <br />
-                            <button className = "button-main" type="submit">
+                            <button className="button-main" type="submit">
                                 Add new<i className="GuestBookButton2" aria-hidden="true" />
-                            </button> 
+                            </button>
                         </form>
                     </div>
                 </div>
 
                 <div className="row justify-content-center form-register">
                     <div className="col-12">
-                        <h2>Don't have any idea's? Generate it  </h2>  
+                        <h2>Don't have any idea's? Generate it  </h2>
                         <hr />
                     </div>
-                    <div className="col-6">
-                        <button 
-                        className = "button-main" 
-                        onClick={() => this.generateGoal()}
+                    <div className="col-7">
+                        <button
+                            className="button-main"
+                            onClick={() => this.generateGoal()}
                         >
                             Generate<i className="GuestBookButton2" aria-hidden="true" />
                         </button>
-                        <div align="left">
-                            <h3>
-                                {(this.state.randomGoal !== null ) ? this.state.randomGoal.name : ""}
-                            </h3>
-                        </div>
                     </div>
                 </div>
+                <div className="row">
+                    <div className="col-12">
+                        <h4>
+                            {(this.state.randomGoal !== null) ? this.state.randomGoal.name + "       " : ""}
+                            {(this.state.randomGoal !== null) ? <button onClick={() => this.setState({ name: this.state.randomGoal.name })}>Take it!</button> : ""}
+                        </h4>
+                    </div>
+                </div>
+
+
             </div>
         );
     }
