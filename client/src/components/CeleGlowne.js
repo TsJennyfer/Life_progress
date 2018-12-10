@@ -1,23 +1,21 @@
 // To jest strona wyświetlacjąca cele główne
 import React from 'react';
-import axios from 'axios';
+
 import CelSzczegoly from './CelSzczegoly';
 import Remainder from './Remainder';
-
 import '../css/Cele.css';
 import CelGlownyForm from './CelGlownyForm';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
+import axios from 'axios';
 
 class CeleGlowne extends React.Component {
     constructor(props) {
         super(props);
-
         this.findGoals = this.findGoals.bind(this);
         this.drawGoals = this.drawGoals.bind(this);
         this.whichPeriod = this.whichPeriod.bind(this);
         this.drawSortedGoals = this.drawSortedGoals.bind(this);
-
         this.state = {
             goals: {}
         };
@@ -27,7 +25,7 @@ class CeleGlowne extends React.Component {
         this.findGoals();
     }
 
-    // Znalezienie celu
+    // Znalezienie celów
     findGoals() {
         var headers = {
             'auth': localStorage.getItem('token'),
@@ -35,7 +33,6 @@ class CeleGlowne extends React.Component {
         }
         axios.get('/goals/mainUserGoals', { headers })
             .then(response => {
-
                 this.setState({
                     goals: response.data.goals
                 });
