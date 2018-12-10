@@ -375,6 +375,11 @@ h4 {
   display: none;
 }
 
+.trash-main-goal {
+  height: 50px;
+  width: 50px;
+}
+
 .button-sub-goal {
  position: relative;
   cursor: default;

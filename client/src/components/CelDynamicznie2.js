@@ -197,7 +197,7 @@ class CelDynamicznie2 extends React.Component {
                             </div>
                         </div>
                         <div className={(this.state.goals[key].isDescription === true) ? "row justify-content-center" : "row justify-content-center"} >
-                            {(this.state.goals[key].isDescription === true) ? <div className="col-8 description-subgoal"> {this.state.goals[key].description} </div>: ""}
+                            {(this.state.goals[key].isDescription === true) ? <div className="col-8 description-subgoal"> {this.state.goals[key].description} </div> : ""}
                         </div>
                     </div>
                 )
@@ -307,10 +307,21 @@ class CelDynamicznie2 extends React.Component {
                             <div className="col-1">
                                 <Link to="/protected"> <img src={backButton} alt=""></img></Link>
                             </div>
-                            <div className="col-11">
+                            <div className="col-10">
                                 <h2>
                                     {(this.state.allGoals !== null) ? this.state.allGoals[0].name : " "}
                                 </h2>
+
+                            </div>
+                            <div className="col-1">
+                                <button className="glyphicon glyphicon-trash trash-main-goal" 
+                                onClick={() => {
+                                if (window.confirm("Do you want remove this main goal and all subgoals?")) {
+                                    alert("Dopisać kod na usunięci i redirect");
+                                    }  }}> 
+                                </button>
+                            </div>
+                            <div className="col-12">
                                 <hr />
                             </div>
                         </div>

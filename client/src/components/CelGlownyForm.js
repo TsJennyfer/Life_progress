@@ -62,14 +62,11 @@ class CelGlownyForm extends React.Component {
                 this.setState({
                     name: "",
                     parent: null
-
                 });
             })
             .catch(err => {
                 console.log(err, 'Błąd dodawania celu głównego');
             });
-
-
     }
 
     generateGoal() {
