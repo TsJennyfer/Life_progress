@@ -199,8 +199,8 @@ app.post('/goals/', authenticate, (req, res) => {
         createdAt: req.body.createdAt = new Date().getTime(),
         plannedAt: req.body.plannedAt
     });
-    goal.save().then((doc) => {
-        res.send(doc);
+    goal.save().then((goal) => {
+        res.send(goal);
     }).catch((error) => {
         res.status(400).send(error);
     });
@@ -259,15 +259,13 @@ app.delete('/goals/:id', authenticate, (req, res) => {
         return res.status(404).send();
     }
 
-    Goal.findOneAndRemove({
-        _id: id,
-        _creator: req.user._id
+    Goal.deleteMany({ $or: [{_id: id, _creator: req.user._id},{parent: id, _creator: req.user._id}]
     }).then((goal) => {
         if (!goal) {
             return res.status(404).send();
         }
 
-        res.send(goal);
+        console.log("Deleted main goal and subgoals");
     }).catch((error) => {
         res.status(400).send(error);
     });
