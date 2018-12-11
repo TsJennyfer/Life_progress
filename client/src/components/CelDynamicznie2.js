@@ -31,6 +31,7 @@ class CelDynamicznie2 extends React.Component {
         this.changeCompleted = this.changeCompleted.bind(this);
         this.changeButtonColor = this.changeButtonColor.bind(this);
         this.removeGoal = this.removeGoal.bind(this);
+        this.removeThisGoalAndSubgoals = this.removeThisGoalAndSubgoals.bind(this);
         this.handleDayClick = this.handleDayClick.bind(this);
         this.handleDayMouseEnter = this.handleDayMouseEnter.bind(this);
         this.state = {
@@ -197,7 +198,7 @@ class CelDynamicznie2 extends React.Component {
                             </div>
                         </div>
                         <div className={(this.state.goals[key].isDescription === true) ? "row justify-content-center" : "row justify-content-center"} >
-                            {(this.state.goals[key].isDescription === true) ? <div className="col-8 description-subgoal"> {this.state.goals[key].description} </div>: ""}
+                            {(this.state.goals[key].isDescription === true) ? <div className="col-8 description-subgoal"> {this.state.goals[key].description} </div> : ""}
                         </div>
                     </div>
                 )
@@ -295,7 +296,21 @@ class CelDynamicznie2 extends React.Component {
 
     }
 
-
+    removeThisGoalAndSubgoals() {
+        if (window.confirm("Do you want to remove this main goal and all subgoals?")) {
+            axios.delete("/goals/" + this.state.allGoals[0]._id, this.state.header)
+                .then(response => {
+                    console.log(response)
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+            this.props.history.push({
+                pathname: '/protected'
+            });
+            alert("Goal has been removed");
+        }
+    }
 
     render() {
         return (
@@ -307,10 +322,21 @@ class CelDynamicznie2 extends React.Component {
                             <div className="col-1">
                                 <Link to="/protected"> <img src={backButton} alt=""></img></Link>
                             </div>
-                            <div className="col-11">
+                            <div className="col-10">
                                 <h2>
                                     {(this.state.allGoals !== null) ? this.state.allGoals[0].name : " "}
                                 </h2>
+
+                            </div>
+                            <div className="col-1">
+                                <button className="glyphicon glyphicon-trash trash-main-goal"
+                                    onClick={() => this.removeThisGoalAndSubgoals()}>
+                                </button>
+                            </div>
+                            <div className="col-12">
+                                {(this.state.allGoals !== null) ? this.state.allGoals[0].name : ""}
+                            </div>
+                            <div className="col-12">
                                 <hr />
                             </div>
                         </div>

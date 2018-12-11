@@ -3,7 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import DatePicker from "react-datepicker";
 import moment from "moment";
- 
+
 import "react-datepicker/dist/react-datepicker.css";
 import '../css/Cele.css';
 
@@ -19,13 +19,15 @@ class CelGlownyForm extends React.Component {
         this.handleUserIdChange = this.handleUserIdChange.bind(this);
         this.handlePriorityChange = this.handlePriorityChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.generateGoal = this.generateGoal.bind(this);
 
         this.state = {
             name: "",
             parent: null,
             userId: null,
             priority: 1,
-            startDate: moment()
+            startDate: moment(),
+            randomGoal: null
         }
     }
 
@@ -42,11 +44,11 @@ class CelGlownyForm extends React.Component {
         console.log(test);
 
         var headers = {
-            'auth': localStorage.getItem('token'), 
+            'auth': localStorage.getItem('token'),
             'Content-Type': 'application/json'
         }
         console.log(headers);
-        axios.post('/goals/',  {
+        axios.post('/goals/', {
             name: this.state.name,
             parent: null,
             userId: this.state.userId,
@@ -54,22 +56,29 @@ class CelGlownyForm extends React.Component {
             priority: this.state.priority,
             plannedAt: this.state.startDate.valueOf()
         },
-        {headers})
+            { headers })
             .then(response => {
                 console.log(response, `Dodano cel główny ${this.state.name}`);
-                alert("Dodano cel główny");
+                alert("Main goal added");
                 this.props.findGoals();
                 this.setState({
                     name: "",
                     parent: null
-
                 });
             })
             .catch(err => {
                 console.log(err, 'Błąd dodawania celu głównego');
             });
+    }
 
-        
+    generateGoal() {
+        axios.get('/randomGoals')
+            .then(response => {
+                console.log(response.data);
+                this.setState({
+                    randomGoal: response.data
+                });
+            });
     }
 
     handleNameChange(event) {
@@ -79,26 +88,27 @@ class CelGlownyForm extends React.Component {
         this.setState({ userId: event.target.value });
     }
     handlePriorityChange(event) {
-        this.setState({  priority: event.target.value });
+        this.setState({ priority: event.target.value });
     }
 
     handleChange(date) {
         this.setState({
-          startDate: date
+            startDate: date
         });
-      }
+    }
 
     render() {
         return (
             <div>
                 <div className="row justify-content-center form-register">
                     <div className="col-12">
-                        <h2>Have something new? Add new main goal  </h2>  
+                        <h2>Have something new? Add new main goal  </h2>
                         <hr />
                     </div>
                     <div className="col-6">
                         <form className="registerForm" onSubmit={this.addMainGoal}>
                             <div>
+
                                     <input className = 'input_line'
                                         onChange={this.handleNameChange}
                                         name="name"
@@ -117,42 +127,42 @@ class CelGlownyForm extends React.Component {
                                     <img src={Icon_calendar} width="30" height="30" alt=""
                                      className="d-inline-block align-top flex-row"></img>
                                     </div>
-                                    <input className = 'input_line'
-                                        name="name"
-                                        type="text"
-                                        minLength={3}
-                                        placeholder="Description(optional)"
-                                    />
+                           
+                                
                             </div>
                             <br />
                             <br />
-                            <button className = "button-main" type="submit">
+                            <button className="button-main" type="submit">
                                 Add new<i className="GuestBookButton2" aria-hidden="true" />
-                            </button> 
+                            </button>
                         </form>
                     </div>
                 </div>
 
                 <div className="row justify-content-center form-register">
                     <div className="col-12">
-                        <h2>Don't have any idea's? Generate it  </h2>  
+                        <h2>Don't have any idea's? Generate it  </h2>
                         <hr />
                     </div>
-                    <div className="col-6">
-                        <button className = "button-main" type="submit">
+                    <div className="col-7">
+                        <button
+                            className="button-main"
+                            onClick={() => this.generateGoal()}
+                        >
                             Generate<i className="GuestBookButton2" aria-hidden="true" />
                         </button>
-                        <div align="left">
-                            <h3>
-                                1. Make cookies<br />
-                                2. Do sport<br />
-                                3. Swimming<br />
-                                4. 1000 wathed films<br />
-                                5. Buy prezents<br />
-                            </h3>
-                        </div>
                     </div>
                 </div>
+                <div className="row">
+                    <div className="col-12">
+                        <h4>
+                            {(this.state.randomGoal !== null) ? this.state.randomGoal.name + "       " : ""}
+                            {(this.state.randomGoal !== null) ? <button onClick={() => this.setState({ name: this.state.randomGoal.name })}>Take it!</button> : ""}
+                        </h4>
+                    </div>
+                </div>
+
+
             </div>
         );
     }
