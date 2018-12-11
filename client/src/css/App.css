@@ -69,7 +69,7 @@ border{
   font-size: 11pt;  
 }
 
-form > div >input, form > div >div, .DayPicker-input, .DayPicker[type=input]  {
+.input_line {
   -webkit-appearance: none;
   width: 100%;
   border: 0;

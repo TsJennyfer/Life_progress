@@ -7,6 +7,8 @@ import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import '../css/Cele.css';
 
+import Icon_calendar from '../resourses/Icon_calendar.png';
+
 class CelGlownyForm extends React.Component {
 
     constructor(props) {
@@ -97,7 +99,7 @@ class CelGlownyForm extends React.Component {
                     <div className="col-6">
                         <form className="registerForm" onSubmit={this.addMainGoal}>
                             <div>
-                                    <input
+                                    <input className = 'input_line'
                                         onChange={this.handleNameChange}
                                         name="name"
                                         type="text"
@@ -107,13 +109,15 @@ class CelGlownyForm extends React.Component {
                                     />
                                    
                                    <div className="row justify-content-left form-margin">	
-                                        <DatePicker input	
+                                        <DatePicker input className = 'input_line'	
                                         selected={this.state.startDate}	
                                         onChange={this.handleChange}	
                                         placeholder="Planning date"	
-                                    />	
+                                    />	 
+                                    <img src={Icon_calendar} width="30" height="30" alt=""
+                                     className="d-inline-block align-top flex-row"></img>
                                     </div>
-                                    <input
+                                    <input className = 'input_line'
                                         name="name"
                                         type="text"
                                         minLength={3}

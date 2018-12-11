@@ -6,6 +6,8 @@ import moment from "moment";
 
 import '../css/Cele.css';
 
+import Icon_calendar from '../resourses/Icon_calendar.png';
+
 class PodcelForm extends React.Component {
 
     constructor(props) {
@@ -83,7 +85,7 @@ class PodcelForm extends React.Component {
                     <div className="col-8">
                         <form className="registerForm" onSubmit={this.addSubGoal}>
                             <div>
-                                <input
+                                <input className = 'input_line'
                                     onChange={this.handleNameChange}
                                     name="name"
                                     type="text"
@@ -91,12 +93,14 @@ class PodcelForm extends React.Component {
                                     placeholder="Goal name"
                                 />
                                 <div className="row justify-content-left form-margin ">
-                                    <DatePicker type="input" 
+                                    <DatePicker type="input" className = 'input_line'
                                         selected={this.state.startDate}
                                         onChange={this.handleChange}
                                     />
+                                    <img src={Icon_calendar} width="30" height="30" alt=""
+                                     className="d-inline-block align-top flex-row"></img>
                                 </div>
-                                <input
+                                <input className = 'input_line'
                                     onChange={this.handleDescriptionChange}
                                     name="name"
                                     type="text"
