@@ -18,8 +18,8 @@ class UserProfile extends React.Component {
                                 <div>
                                     <h2>Edit profile</h2>
                                     <hr />
-                                    <input placeholder="New user name"  />
-                                    <input placeholder="New e-mail" />
+                                    <input  className = 'input_line' placeholder="New user name"  />
+                                    <input  className = 'input_line' placeholder="New e-mail" />
                                     <br />
                                     <br />
                                     <button className="button-main" type="submit">
@@ -35,8 +35,8 @@ class UserProfile extends React.Component {
                                 <div>
                                     <h2>Change password</h2>
                                     <hr />
-                                    <input placeholder="New password"  />
-                                    <input placeholder="Confirm passsword"  />
+                                    <input  className = 'input_line' placeholder="New password"  />
+                                    <input  className = 'input_line' placeholder="Confirm passsword"  />
                                     <br />
                                     <br />
                                     <button className="button-main" type="submit">
@@ -44,12 +44,6 @@ class UserProfile extends React.Component {
                                     </button>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                    <div className="row justify-content-center form-register">
-                        <div className="col-8">
-                            <h2>Change language</h2>
-                            <hr />
                         </div>
                     </div>
                 </div>
