@@ -286,6 +286,21 @@ h3 {
 h4 {
   font-family: 'Source Sans Pro', sans-serif; 
 }
+
+h5 {
+  text-align: left;
+  font-family: 'Source Sans Pro', sans-serif; 
+  line-height: 32px; 
+  margin: 0 0 24px; 
+  font-size: 12px; 
+  color: rgb(87, 85, 85);
+}
+
+.terms_format{
+  text-align: justify;
+
+}
+
 .div_format{
   margin-top: 100px;
   margin-bottom: 100px;
