@@ -30,27 +30,27 @@ class Public extends Component {
           <div className="row justify-content-center mt-4">
             <div className="col-4">
               <h3>
-                <div className = 'form-margin'>
+                <div className='form-margin'>
                   <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
                   &emsp; Get organized in seconds<br />
                 </div>
-                <div className = 'form-margin'>
+                <div className='form-margin'>
                   <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
                   &emsp; Planning tasks<br />
                 </div>
-                <div className = 'form-margin'>
+                <div className='form-margin'>
                   <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
                   &emsp; Measure progress<br />
                 </div>
-                <div className = 'form-margin'>
+                <div className='form-margin'>
                   <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
                   &emsp; Feel organized and motivated<br />
                 </div>
-                <div className = 'form-margin'>
+                <div className='form-margin'>
                   <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
                   &emsp; Have got any big goals to split?<br />
                 </div>
-                <div className = 'form-margin'>
+                <div className='form-margin'>
                   <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
                   &emsp; Use our app to granulate it!<br />
                 </div>
@@ -60,7 +60,7 @@ class Public extends Component {
           <div className="row justify-content-center">
             <div className="col-4">
               <Link to="/register">
-              <button className="button-get-started">
+                <button className="button-get-started">
                   <span>Get started</span>
                 </button>
               </Link>

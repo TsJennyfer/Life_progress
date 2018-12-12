@@ -1,8 +1,6 @@
 // To jest główny element w react
-// W nim będą renderowane: header, main, stopka
+// W nim będą renderowane: header i treść główna
 // Tutaj również są trzymane dane = stany
-//import StickyHeader from 'react-sticky-header';
-import 'react-sticky-header/styles.css';
 import Protected from './Protected';
 import Public from './Public';
 import Rejestracja from './Rejestracja';
@@ -14,19 +12,9 @@ import {
     BrowserRouter as Router,
     Route
 } from 'react-router-dom';
-
 import Header from './Header';
 
-
-class MainPage2 extends React.Component {
-    // konstruktor, tu są inicjowane puste stany=dane
-    constructor(props, context) {
-        super()
-        this.state = {
-            goals: {}
-        }
-    }
-
+class MainPage2 extends React.Component { 
     render() {
         return (
             <Router>
@@ -43,5 +31,4 @@ class MainPage2 extends React.Component {
         )
     }
 }
-
 export default MainPage2;

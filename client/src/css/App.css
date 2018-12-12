@@ -414,6 +414,12 @@ h4 {
   align-items: center;
   justify-content: center;
 }
+.button-sub-goal:hover {
+  cursor: pointer;
+}
+.button-sub-goal-done:hover {
+  cursor: pointer;
+}
 
 .button-sub-goal:hover > button {
   display: inline-block;
