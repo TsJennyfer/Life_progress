@@ -60,9 +60,10 @@ class Header extends React.Component {
                     </button>
                 </div>
                 {/*<div className="header-button" ><Link to="/">About us</Link></div>*/}
+                {(this.state.isUserLoggedIn === true) ? <div className="header-button" ><Link to="/protected">Your goals</Link></div> : " "}
                 {(this.state.isUserLoggedIn === false) ? <div className="header-button" id="sign-in" ><Link to="/signin">Sign in</Link></div> : " "}
                 {(this.state.isUserLoggedIn === false) ? <div className="header-button" id="sign-up" ><Link to="/register">Sign up</Link></div> : " "}
-                {(this.state.isUserLoggedIn === true) ? <div className="header-button" id="user-profile" ><Link to="/userProfile">Your account</Link></div> : " "}
+                {/*(this.state.isUserLoggedIn === true) ? <div className="header-button" id="user-profile" ><Link to="/userProfile">Your account</Link></div> : " "*/}
                 {(this.state.isUserLoggedIn === true) ? <div className="header-button" id="log-out" ><Link to="/" onClick={() => this.logOut()}>Log out</Link></div> : " "}
             </div>
         )
