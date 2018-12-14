@@ -2,6 +2,7 @@ import React from 'react';
 import {
     Link
 } from 'react-router-dom';
+import { connect } from "react-redux"
 import feather from '../resourses/lp-trans2.png';
 
 
@@ -16,10 +17,16 @@ class Header extends React.Component {
         };
     }
     componentDidMount() {
-        window.addEventListener('localStorage', 
-            console.log("Slucham")
-        //this.checkToken();
+        window.addEventListener('localStorage',
+            this.checkToken()
         );
+    }
+
+    componentDidUpdate(prevProps) {
+        // sprawdzam token gdy zmieniają się props
+        if (prevProps !== this.props) {
+            this.checkToken();
+        }
     }
 
     // sprawdzenie czy jest token
@@ -44,22 +51,42 @@ class Header extends React.Component {
     render() {
         return (
             <div className="MyHeader d-flex">
-                <link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css' />           
+                <link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css' />
                 <div className="header-logo">
                     <button className="button_logo">
                         <Link to="/">
                             <img src={feather} width="150" height="70" alt="" className="d-inline-block align-top flex-row"></img>
-                            </Link>
+                        </Link>
                     </button>
                 </div>
                 {/*<div className="header-button" ><Link to="/">About us</Link></div>*/}
+                {(this.state.isUserLoggedIn === true) ? <div className="header-button" ><Link to="/protected">Your goals</Link></div> : " "}
                 {(this.state.isUserLoggedIn === false) ? <div className="header-button" id="sign-in" ><Link to="/signin">Sign in</Link></div> : " "}
                 {(this.state.isUserLoggedIn === false) ? <div className="header-button" id="sign-up" ><Link to="/register">Sign up</Link></div> : " "}
-                {(this.state.isUserLoggedIn === true) ? <div className="header-button" id="user-profile" ><Link to="/userProfile">Your account</Link></div> : " "}
-                <div className="header-button" id="log-out" ><Link to="/" onClick={() => this.logOut()}>Log out</Link></div>
+                {/*(this.state.isUserLoggedIn === true) ? <div className="header-button" id="user-profile" ><Link to="/userProfile">Your account</Link></div> : " "*/}
+                {(this.state.isUserLoggedIn === true) ? <div className="header-button" id="log-out" ><Link to="/" onClick={() => this.logOut()}>Log out</Link></div> : " "}
             </div>
         )
     }
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+        math: state.math,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setName: (name) => {
+            dispatch({
+                type: "SET_NAME",
+                payload: name
+            });
+        }
+    };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
