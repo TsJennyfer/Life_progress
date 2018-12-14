@@ -5,6 +5,7 @@ import {
     Link
 } from 'react-router-dom';
 import '../css/RejestracjaLogowanie.css';
+import { refreshHeader } from "./MainPage2";
 
 
 class Logowanie extends React.Component {
@@ -49,6 +50,7 @@ class Logowanie extends React.Component {
                         userToken: this.state.token
                     }
                 });
+                refreshHeader();
             })
             .catch(err => {
                 console.log(err, 'User not logged in.');

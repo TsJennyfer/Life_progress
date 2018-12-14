@@ -9,6 +9,11 @@ import CelDynamicznie2 from './CelDynamicznie2';
 import UserProfile from './UserProfile';
 import TermsPolicy from './TermsPolicy';
 
+import {createStore, combineReducers, applyMiddleware} from "redux";
+import logger from "redux-logger";
+import {Provider} from "react-redux";
+
+
 import React from 'react';
 import {
     BrowserRouter as Router,
@@ -21,7 +26,7 @@ class MainPage2 extends React.Component {
         return (
             <Router>
                 <div >
-                    <Header />
+                <Provider store={store}><Header /> </ Provider>
                     <Route exact path="/" component={Public} />
                     <Route exact path="/protected" component={Protected} />
                     <Route path="/register" component={Rejestracja} />
@@ -35,3 +40,54 @@ class MainPage2 extends React.Component {
     }
 }
 export default MainPage2;
+
+    
+const mathReducer = (state = {
+    result: 1,
+    lastValues: []
+}, action) => {
+    switch (action.type) {
+        case "ADD":
+            state = {
+                ...state,
+                result: state.result + action.payload,
+                lastValues: [...state.lastValues, action.payload]
+            };
+            break;
+    }
+    return state;
+};
+
+const userReducer = (state = {
+    counter: 0
+}, action) => {
+    switch (action.type) {
+            case "REFRESH_HEADER":
+            state = {
+                ...state,
+                counter: state.counter + 1
+            };
+            break;
+    }
+    return state;
+};
+
+const myLogger = (store) => (next) => (action) => {
+    console.log("Logged Action: ", action);
+    next(action);
+};
+
+const store = createStore(
+    combineReducers({math: mathReducer, user: userReducer}),
+    {},
+    applyMiddleware(logger)
+);
+
+export const refreshHeader = () => store.dispatch({
+    type: "REFRESH_HEADER",
+    payload: "Artur"
+});
+
+store.subscribe(() => {
+    console.log("Store updated!", store.getState());
+});
