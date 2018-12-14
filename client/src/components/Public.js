@@ -28,7 +28,7 @@ class Public extends Component {
             </div>
           </div>
           <div className="row justify-content-center mt-4">
-            <div className="col-4">
+            <div className="col-5">
               <h3>
                 <div className='form-margin'>
                   <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
