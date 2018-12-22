@@ -109,26 +109,27 @@ class CelGlownyForm extends React.Component {
                         <form className="registerForm" onSubmit={this.addMainGoal}>
                             <div>
 
-                                    <input className = 'input_line'
-                                        onChange={this.handleNameChange}
-                                        name="name"
-                                        type="text"
-                                        value={this.state.name}
-                                        minLength={3}
-                                        placeholder="Goal name"
+                                <input className='input_line'
+                                    onChange={this.handleNameChange}
+                                    name="name"
+                                    type="text"
+                                    value={this.state.name}
+                                    minLength={3}
+                                    placeholder="Goal name"
+                                />
+
+                                <div className="row justify-content-left form-margin">
+                                    <DatePicker input className='input_line'
+                                        dateFormat="DD/MM/YYYY"
+                                        selected={this.state.startDate}
+                                        onChange={this.handleChange}
+                                        placeholder="Planning date"
                                     />
-                                   
-                                   <div className="row justify-content-left form-margin">	
-                                        <DatePicker input className = 'input_line'	
-                                        selected={this.state.startDate}	
-                                        onChange={this.handleChange}	
-                                        placeholder="Planning date"	
-                                    />	 
                                     <img src={Icon_calendar} width="30" height="30" alt=""
-                                     className="d-inline-block align-top flex-row"></img>
-                                    </div>
-                           
-                                
+                                        className="d-inline-block align-top flex-row"></img>
+                                </div>
+
+
                             </div>
                             <br />
                             <br />

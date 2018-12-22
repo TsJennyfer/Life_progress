@@ -6,9 +6,6 @@ import done from '../resourses/done_icon.png';
 
 
 class Public extends Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     //this.props.history.push('/register');
   }
@@ -18,12 +15,12 @@ class Public extends Component {
       <div className="main__container">
         <div className="container">
           <div className="row justify-content-center welcome">
-            <div className="col-6 ml-5">
+            <div className="col-10 ml-5">
               <h1>Welcome to</h1>
             </div>
           </div>
           <div className="row justify-content-center mt-4">
-            <div className="col-8 ml-5">
+            <div className="col-10 ml-5">
               <h1> Life progress</h1>
             </div>
           </div>
