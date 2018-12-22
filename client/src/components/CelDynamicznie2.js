@@ -8,8 +8,8 @@ import '../css/App.css';
 import '../css/PodceleAnimacje.css';
 import Link from 'react-router-dom/Link';
 import backButton from '../resourses/back-button.png';
-import arrowDown from '../resourses/arrow-down.png';
-import arrowUp from '../resourses/arrow-up.png';
+import arrowDown from '../resourses/arrow-down2.png';
+import arrowUp from '../resourses/arrow-up2.png';
 
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
