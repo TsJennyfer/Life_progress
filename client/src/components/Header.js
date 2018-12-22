@@ -53,11 +53,19 @@ class Header extends React.Component {
             <div className="MyHeader d-flex">
                 <link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css' />
                 <div className="header-logo">
-                    <button className="button_logo">
-                        <Link to="/">
-                            <img src={feather} width="150" height="70" alt="" className="d-inline-block align-top flex-row"></img>
-                        </Link>
-                    </button>
+                    {(this.state.isUserLoggedIn === true) ?
+                        <button className="button_logo">
+                            <Link to="/protected">
+                                <img src={feather} width="150" height="70" alt="" className="d-inline-block align-top flex-row"></img>
+                            </Link>
+                        </button>
+                        :
+                        <button className="button_logo">
+                            <Link to="/">
+                                <img src={feather} width="150" height="70" alt="" className="d-inline-block align-top flex-row"></img>
+                            </Link>
+                        </button>
+                    }
                 </div>
                 {/*<div className="header-button" ><Link to="/">About us</Link></div>*/}
                 {(this.state.isUserLoggedIn === true) ? <div className="header-button" ><Link to="/protected">Your goals</Link></div> : " "}

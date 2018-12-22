@@ -111,7 +111,7 @@ class CeleGlowne extends React.Component {
                     <div className="background_white">
                         <h2>This is your goal list</h2>
                         <hr />
-                        <div class="col-sm-4">
+                        <div className="col-sm-4">
                             <DayPicker
                                 disabledDays={new Date()}
                                 onDayClick={this.handleDayClick}
@@ -119,7 +119,7 @@ class CeleGlowne extends React.Component {
                             />
                             <Remainder />
                         </div>
-                        <div class="col-sm-8">
+                        <div className="col-sm-8">
                             <div className="row">
                                 {this.drawSortedGoals()}
                             </div>

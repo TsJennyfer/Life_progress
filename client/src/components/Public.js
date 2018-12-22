@@ -6,9 +6,6 @@ import done from '../resourses/done_icon.png';
 
 
 class Public extends Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     //this.props.history.push('/register');
   }

@@ -194,8 +194,8 @@ class CelDynamicznie2 extends React.Component {
                             </div>
                             <div className="col-1">
                                 {(this.state.goals[key].isDescription === true)
-                                    ? <img src={arrowUp} onClick={() => this.expandDescription(key)} width="20" height="20" ></img>
-                                    : <img src={arrowDown} onClick={() => this.expandDescription(key)} width="20" height="20" ></img>}
+                                    ? <img src={arrowUp} onClick={() => this.expandDescription(key)} width="20" height="20" alt=""></img>
+                                    : <img src={arrowDown} onClick={() => this.expandDescription(key)} width="20" height="20" alt=""></img>}
                             </div>
                         </div>
                         <div className={(this.state.goals[key].isDescription === true) ? "row justify-content-center" : "row justify-content-center"} >
