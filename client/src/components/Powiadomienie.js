@@ -27,7 +27,7 @@ class Powiadomienie extends React.Component {
                 <div className={(this.props.after === true) ? "powiadomienie-circle-after" : "powiadomienie-circle"} style={{ clear: "both" }}> </div>
                 <div className={(this.props.after === true) ? "powiadomienie-circle-after" : "powiadomienie-circle"}> </div>
                 <div className={(this.props.after === true) ? "powiadomienie-circle-after" : "powiadomienie-circle"}> </div>
-                <div className={(this.props.after === true) ? "powiadomienie-after" : "powiadomienie"} >
+                <div className={(this.props.after === true) ? "powiadomienie-after shadows" : "powiadomienie shadows"} >
                     <div>
                         {this.convertTimestampToDate(this.props.details.plannedAt)}
                     </div>

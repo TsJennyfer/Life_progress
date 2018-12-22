@@ -52,15 +52,6 @@ class Rejestracja extends React.Component {
         this.setState({ password: event.target.value });
     }
 
-    checkForm(form) {
-    if(!form.terms.checked) {
-        alert("Please indicate that you accept the Privacy Policy");
-        form.terms.focus();
-        return false;
-    }
-    return true;
-    }
-
     render() {
         return (
             <div className="container">
@@ -88,7 +79,7 @@ class Rejestracja extends React.Component {
                                     value={this.state.password}
                                     placeholder="Your password"
                                 />
-                                <div className = "registerForm" onSubmit='return checkForm(this);'>
+                                <div className = "registerForm">
                                     <input type="checkbox" required name="terms" /> 
                                     <label>
                                         <h5>

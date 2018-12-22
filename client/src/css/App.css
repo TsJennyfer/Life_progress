@@ -319,6 +319,19 @@ h5 {
   align: center;
 }
 
+.shadows {
+  -webkit-box-shadow: 0px 0px 57px -5px rgba(0,0,0,0.5);
+-moz-box-shadow: 0px 0px 57px -5px rgba(0,0,0,0.5);
+box-shadow: 0px 0px 57px -5px rgba(0,0,0,0.5);
+
+}
+
+.shadows:hover {
+  -webkit-box-shadow: 0px 0px 58px -5px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 58px -5px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 58px -5px rgba(0,0,0,0.75);
+}
+
 .powiadomienie {
   width: 100px;
   background-color: #a6b6c5d9;
