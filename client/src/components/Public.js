@@ -18,12 +18,12 @@ class Public extends Component {
       <div className="main__container">
         <div className="container">
           <div className="row justify-content-center welcome">
-            <div className="col-6 ml-5">
+            <div className="col-10 ml-5">
               <h1>Welcome to</h1>
             </div>
           </div>
           <div className="row justify-content-center mt-4">
-            <div className="col-8 ml-5">
+            <div className="col-10 ml-5">
               <h1> Life progress</h1>
             </div>
           </div>
