@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const _ = require('lodash');
-const {ObjectId} = require('mongodb');
+const { ObjectId } = require('mongodb');
 const morgan = require('morgan');
 const path = require('path');
 const bcrypt = require('bcryptjs');
@@ -9,13 +9,14 @@ const nodeMailer = require('nodemailer');
 require('dotenv').config();
 
 var random = require('mongoose-simple-random');
-var {mongoose} = require('./database/mongoose');
-var {Goal} = require('./models/goal');
-var {User} = require('./models/user');
-var {RandomGoal} = require('./models/randomGoal');
-var {authenticate} = require('./middleware/authenticate');
-var {sender} = require('./middleware/sender');
-var {passwordResetEmail} = require('./middleware/passwordResetEmail');
+var { mongoose } = require('./database/mongoose');
+var { Goal } = require('./models/goal');
+var { User } = require('./models/user');
+var { RandomGoal } = require('./models/randomGoal');
+var { SuggestedGoal } = require('./models/suggestedGoals');
+var { authenticate } = require('./middleware/authenticate');
+var { sender } = require('./middleware/sender');
+var { passwordResetEmail } = require('./middleware/passwordResetEmail');
 
 
 var app = express();
@@ -33,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 //Body Parser MW
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(morgan('dev'));
 
@@ -113,7 +114,7 @@ app.patch('/users/newPassword/:token', (req, res) => {
 });
 
 //Rejestracja
-app.post('/users/signup', (req, res)=> {
+app.post('/users/signup', (req, res) => {
 
     var body = _.pick(req.body, ['email', 'password']);
     var user = new User(body);
@@ -123,7 +124,7 @@ app.post('/users/signup', (req, res)=> {
         var token = user.tokens[0].token;
         sender(req, token);
         return confirmToken;
-    }).then((token)=>{
+    }).then((token) => {
         res.header('auth', token).send(user);
     }).catch((error) => {
         res.status(400).send(error);
@@ -259,7 +260,8 @@ app.delete('/goals/:id', authenticate, (req, res) => {
         return res.status(404).send();
     }
 
-    Goal.deleteMany({ $or: [{_id: id, _creator: req.user._id},{parent: id, _creator: req.user._id}]
+    Goal.deleteMany({
+        $or: [{ _id: id, _creator: req.user._id }, { parent: id, _creator: req.user._id }]
     }).then((goal) => {
         if (!goal) {
             return res.status(404).send();
@@ -300,14 +302,56 @@ app.patch('/goals/:id', authenticate, (req, res) => {
 
 //Pobranie losowego celu
 app.get('/randomGoals', (req, res) => {
-    RandomGoal.findOneRandom({},{_id:0, name:1},{},function(error, result) {
+    RandomGoal.findOneRandom({}, { _id: 0, name: 1 }, {}, function (error, result) {
         if (!error) {
-          console.log(result);
-          res.send(result);
+            console.log(result);
+            res.send(result);
         };
-      });
+    });
 });
 
-app.listen(port,() => {
+app.listen(port, () => {
     console.log(`Server started on port ${port}`);
 });
+
+//Pobieranie proponowanych celi z podcelami
+app.get('/suggestedgoals/all', (req, res) =>{
+    SuggestedGoal.find().then((goals)=>{
+        res.send({goals});
+    }).catch((error)=>{
+        res.status(400).send(error);
+    });
+});
+
+//Pobieranie głównych celi użytkownika z dwóch kolekcji
+/* app.get('/:var(goals/mainUserGoals|suggestedgoals/all)?', authenticate, (req, res) => {
+
+    //I sposób
+    var response = {};
+    Goal.find({
+        parent: null,
+        _creator: req.user._id
+    }).then((goals) => {
+        response.goals = goals;
+        //res.send({ goals });
+    }).catch((error) => {
+        res.status(400).send(error);
+    });
+    SuggestedGoal.find().then((suggestedgoals) => {
+        //res.send({ goals });
+        response.suggestedgoals = suggestedgoals;
+        res.send({ response });
+    }).catch((error) => {
+        res.status(400).send(error);
+    });
+
+     //II sposób
+    Goal.find({parent: null, _creator: req.user._id}).exec(function(err,goals) {
+        var response = {};
+        response.goals = goals;
+        SuggestedGoal.find().exec(function(err,suggestedgoals) {
+            response.suggestedgoals = suggestedgoals
+            res.send({response});
+          });
+    });
+}); */
