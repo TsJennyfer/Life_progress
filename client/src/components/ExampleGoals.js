@@ -6,8 +6,11 @@ class ExampleGoals extends React.Component {
         super(props);
         this.findSuggestedGoals = this.findSuggestedGoals.bind(this);
         this.displaySuggestedGoals = this.displaySuggestedGoals.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
+        this.addExampleGoal = this.addExampleGoal.bind(this);
         this.state = {
-            suggestedGoals: {}
+            suggestedGoals: {},
+            choosenGoal: 0
         };
     }
 
@@ -33,20 +36,26 @@ class ExampleGoals extends React.Component {
             });
     }
 
+    handleSelect(event) {
+        this.setState({
+            choosenGoal: event.target.value
+        });
+    }
+
+    addExampleGoal() {
+
+    }
+
     displaySuggestedGoals() {
         return(
-        <form>
-            <div class="form-group">
-                <label for="sel1">Select list (select one):</label>
-                <select class="form-control" id="sel1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
+        <form onSubmit={this.addExampleGoal}>
+            <div className="form-group">
+                <select className="form-control" onChange={this.handleSelect}>
                     {
-                        Object.keys(this.state.suggestedGoals).map(key => <option>{this.state.suggestedGoals[key]._id}</option>)
+                        Object.keys(this.state.suggestedGoals).map((key, index) => <option value={index}>{this.state.suggestedGoals[key]._id}</option>)
                     }
                 </select>
+                <button className="button-main mt-3" type="submit">Select</button>
             </div>
         </form>
         )
