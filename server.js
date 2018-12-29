@@ -323,6 +323,11 @@ app.get('/suggestedgoals/all', (req, res) =>{
     });
 });
 
+//Dodanie celu
+app.post('/goals/ListofGoals', authenticate, (req, res) => {
+    res.send("Hello");
+});
+
 //Pobieranie głównych celi użytkownika z dwóch kolekcji
 /* app.get('/:var(goals/mainUserGoals|suggestedgoals/all)?', authenticate, (req, res) => {
 
