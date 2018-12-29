@@ -325,7 +325,27 @@ app.get('/suggestedgoals/all', (req, res) =>{
 
 //Dodanie celu
 app.post('/goals/ListofGoals', authenticate, (req, res) => {
-    res.send("Hello");
+    var response = {};
+    for(var key in req.body.subgoals){
+        if(key === "a" || key === "_id"){continue;}
+        var goal = new Goal({
+            name: req.body.subgoals[key],
+            //description: req.body.description,
+            _creator: req.user._id,
+            parent: req.body.id,
+            createdAt: req.body.createdAt = new Date().getTime(),
+            //plannedAt: req.body.plannedAt
+        });
+        goal.save().then((goal) => {
+            //res.send(goal);
+            response.goal = goal;
+            //console.log(response);
+        }).catch((error) => {
+            res.status(400).send(error);
+        });
+    }
+    //res.send(response);
+    //console.log(response);
 });
 
 //Pobieranie głównych celi użytkownika z dwóch kolekcji
