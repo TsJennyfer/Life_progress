@@ -53,10 +53,23 @@ class ExampleGoals extends React.Component {
             { headers })
             .then(response => {
                 this.setState({
-                    data: response.data._id
+                    NewExampleMainGoalId: response.data._id
                 })
-                console.log(response.data._id, `Example response`);
+                //console.log(response.data._id, `Example response`);
                 alert("Example goal added");
+
+                var payload = {
+                    id: response.data._id,
+                    subgoals: this.state.suggestedGoals[this.state.choosenGoal]
+                }
+                console.log(payload);
+                axios.post('/goals/ListofGoals',
+                    payload
+                    , { headers })
+                    .then(res => {
+                        //console.log(res);
+                        // tu późniejszy kod
+                    })
             })
             .catch(err => {
                 console.log(err, 'Błąd dodawania przykładowego celu');
