@@ -5,9 +5,11 @@ import CelSzczegoly from './CelSzczegoly';
 import Remainder from './Remainder';
 import '../css/Cele.css';
 import CelGlownyForm from './CelGlownyForm';
+import ExampleGoals from './ExampleGoals';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import axios from 'axios';
+
 
 class CeleGlowne extends React.Component {
     constructor(props) {
@@ -111,7 +113,7 @@ class CeleGlowne extends React.Component {
                     <div className="background_white">
                         <h2>This is your goal list</h2>
                         <hr />
-                        <div class="col-sm-4">
+                        <div className="col-sm-4">
                             <DayPicker
                                 disabledDays={new Date()}
                                 onDayClick={this.handleDayClick}
@@ -119,11 +121,12 @@ class CeleGlowne extends React.Component {
                             />
                             <Remainder />
                         </div>
-                        <div class="col-sm-8">
+                        <div className="col-sm-8">
                             <div className="row">
                                 {this.drawSortedGoals()}
                             </div>
                             <CelGlownyForm findGoals={this.findGoals} />
+                            <ExampleGoals />
                         </div>
                     </div>
                 </div>

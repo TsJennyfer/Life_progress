@@ -94,6 +94,7 @@ class PodcelForm extends React.Component {
                                 />
                                 <div className="row justify-content-left form-margin ">
                                     <DatePicker type="input" className = 'input_line'
+                                        dateFormat="DD/MM/YYYY"
                                         selected={this.state.startDate}
                                         onChange={this.handleChange}
                                     />
