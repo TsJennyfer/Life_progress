@@ -10,7 +10,8 @@ class ExampleGoals extends React.Component {
         this.addExampleGoal = this.addExampleGoal.bind(this);
         this.state = {
             suggestedGoals: {},
-            choosenGoal: 0
+            choosenGoal: 0,
+            NewExampleMainGoalId: ''
         };
     }
 
@@ -18,7 +19,7 @@ class ExampleGoals extends React.Component {
         this.findSuggestedGoals();
     }
 
-    // Znalezienie celów
+    // Znalezienie przykładowych celów
     findSuggestedGoals() {
         var headers = {
             'auth': localStorage.getItem('token'),
@@ -29,10 +30,6 @@ class ExampleGoals extends React.Component {
                 this.setState({
                     suggestedGoals: response.data.goals
                 });
-                console.log(response, 'Pobrano przykładowe cele');
-            })
-            .catch(err => {
-                console.log(err, 'Błąd');
             });
     }
 
@@ -42,31 +39,55 @@ class ExampleGoals extends React.Component {
         });
     }
 
+    // dodanie celu głównego i podceli
     addExampleGoal() {
-
+        var headers = {
+            'auth': localStorage.getItem('token'),
+            'Content-Type': 'application/json'
+        }
+        axios.post('/goals/', {
+            name: this.state.suggestedGoals[this.state.choosenGoal].a,
+            parent: null,
+            userToken: localStorage.getItem('token')
+        },
+            { headers })
+            .then(response => {
+                this.setState({
+                    data: response.data._id
+                })
+                console.log(response.data._id, `Example response`);
+                alert("Example goal added");
+            })
+            .catch(err => {
+                console.log(err, 'Błąd dodawania przykładowego celu');
+            });
     }
 
+
+    // pole select wyboru celu głównego
     displaySuggestedGoals() {
-        return(
-        <form onSubmit={this.addExampleGoal}>
+        return (
             <div className="form-group">
                 <select className="form-control" onChange={this.handleSelect}>
                     {
-                        Object.keys(this.state.suggestedGoals).map((key, index) => <option value={index}>{this.state.suggestedGoals[key]._id}</option>)
+                        Object.keys(this.state.suggestedGoals).map((key, index) => <option value={index} key={key} >{this.state.suggestedGoals[key].a}</option>)
                     }
                 </select>
-                <button className="button-main mt-3" type="submit">Select</button>
+                <button className="button-main mt-3" onClick={() => this.addExampleGoal()}>Select</button>
             </div>
-        </form>
+
         )
     }
 
-
     render() {
         return (
-            <div className="row justify-content-center form-register">
-                <h2>Or choose from ready list:</h2>
-                {this.displaySuggestedGoals()}
+            <div>
+                <div className="row justify-content-center">
+                    <h2>Or choose from ready list:</h2>
+                </div>
+                <div className="row justify-content-center">
+                    {this.displaySuggestedGoals()}
+                </div>
             </div>
         )
     }
