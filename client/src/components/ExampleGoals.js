@@ -56,7 +56,6 @@ class ExampleGoals extends React.Component {
                     NewExampleMainGoalId: response.data._id
                 })
                 //console.log(response.data._id, `Example response`);
-                alert("Example goal added");
 
                 var payload = {
                     id: response.data._id,
@@ -67,8 +66,9 @@ class ExampleGoals extends React.Component {
                     payload
                     , { headers })
                     .then(res => {
-                        //console.log(res);
-                        // tu późniejszy kod
+                        console.log(res, "elo");
+                        console.log(response.data._id);
+                        window.location.reload();
                     })
             })
             .catch(err => {

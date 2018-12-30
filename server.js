@@ -344,6 +344,7 @@ app.post('/goals/ListofGoals', authenticate, (req, res) => {
             res.status(400).send(error);
         });
     }
+    res.send("ok");
     //res.send(response);
     //console.log(response);
 });
