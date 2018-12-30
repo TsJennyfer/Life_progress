@@ -93,7 +93,7 @@ class ExampleGoals extends React.Component {
             <div>
                 <hr />
                 <div className="row justify-content-center">
-                    <h2>Or choose example from ready list:</h2>
+                    <h2>Or choose an example from the list:</h2>
                 </div>
                 <div className="row justify-content-center">
                     {this.displaySuggestedGoals()}
