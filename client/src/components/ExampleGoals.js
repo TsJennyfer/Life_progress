@@ -55,19 +55,15 @@ class ExampleGoals extends React.Component {
                 this.setState({
                     NewExampleMainGoalId: response.data._id
                 })
-                //console.log(response.data._id, `Example response`);
-
                 var payload = {
                     id: response.data._id,
                     subgoals: this.state.suggestedGoals[this.state.choosenGoal]
                 }
-                console.log(payload);
+                //console.log(payload);
                 axios.post('/goals/ListofGoals',
                     payload
                     , { headers })
                     .then(res => {
-                        console.log(res, "elo");
-                        console.log(response.data._id);
                         window.location.reload();
                     })
             })
@@ -95,8 +91,9 @@ class ExampleGoals extends React.Component {
     render() {
         return (
             <div>
+                <hr />
                 <div className="row justify-content-center">
-                    <h2>Or choose from ready list:</h2>
+                    <h2>Or choose example from ready list:</h2>
                 </div>
                 <div className="row justify-content-center">
                     {this.displaySuggestedGoals()}
