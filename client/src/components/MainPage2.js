@@ -8,6 +8,7 @@ import Logowanie from './Logowanie';
 import CelDynamicznie2 from './CelDynamicznie2';
 import UserProfile from './UserProfile';
 import TermsPolicy from './TermsPolicy';
+import ForgotPassword from './ForgotPassword';
 
 import {createStore, combineReducers, applyMiddleware} from "redux";
 import logger from "redux-logger";
@@ -34,6 +35,7 @@ class MainPage2 extends React.Component {
                     <Route exact path="/protected/:goal" component={CelDynamicznie2} />
                     <Route path="/userProfile" component={UserProfile} />
                     <Route path="/TermsPolicy" component={TermsPolicy} />
+                    <Route path="/ForgotPassword" component={ForgotPassword} />
                 </div>
             </Router>
         )

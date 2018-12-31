@@ -103,7 +103,7 @@ class Logowanie extends React.Component {
                                     Sign in<i className="GuestBookButton2" aria-hidden="true" />
                                 </button>
                                 <div className="button-forgot-pass" id="sign-in" >
-                                    <Link to="/signin">Forgot password?</Link>
+                                    <Link to="/ForgotPassword">Forgot password?</Link>
                                 </div>
                             </div>
                         </div>

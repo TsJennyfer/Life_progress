@@ -51,6 +51,6 @@ class UserProfile extends React.Component {
         </div>
         );
     }
-    }
+ }
                
 export default UserProfile;
