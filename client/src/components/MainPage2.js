@@ -9,10 +9,12 @@ import CelDynamicznie2 from './CelDynamicznie2';
 import UserProfile from './UserProfile';
 import TermsPolicy from './TermsPolicy';
 import ForgotPassword from './ForgotPassword';
+import ExampleGoals from './ExampleGoals'
 
-import {createStore, combineReducers, applyMiddleware} from "redux";
+
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import logger from "redux-logger";
-import {Provider} from "react-redux";
+import { Provider } from "react-redux";
 
 
 import React from 'react';
@@ -22,12 +24,12 @@ import {
 } from 'react-router-dom';
 import Header from './Header';
 
-class MainPage2 extends React.Component { 
+class MainPage2 extends React.Component {
     render() {
         return (
             <Router>
                 <div >
-                <Provider store={store}><Header /> </ Provider>
+                    <Provider store={store}><Header /> </ Provider>
                     <Route exact path="/" component={Public} />
                     <Route exact path="/protected" component={Protected} />
                     <Route path="/register" component={Rejestracja} />
@@ -43,7 +45,7 @@ class MainPage2 extends React.Component {
 }
 export default MainPage2;
 
-    
+
 const mathReducer = (state = {
     result: 1,
     lastValues: []
@@ -56,6 +58,8 @@ const mathReducer = (state = {
                 lastValues: [...state.lastValues, action.payload]
             };
             break;
+        default:
+            break;
     }
     return state;
 };
@@ -64,23 +68,21 @@ const userReducer = (state = {
     counter: 0
 }, action) => {
     switch (action.type) {
-            case "REFRESH_HEADER":
+        case "REFRESH_HEADER":
             state = {
                 ...state,
                 counter: state.counter + 1
             };
             break;
+        default:
+            break;
     }
     return state;
 };
 
-const myLogger = (store) => (next) => (action) => {
-    console.log("Logged Action: ", action);
-    next(action);
-};
 
 const store = createStore(
-    combineReducers({math: mathReducer, user: userReducer}),
+    combineReducers({ math: mathReducer, user: userReducer }),
     {},
     applyMiddleware(logger)
 );

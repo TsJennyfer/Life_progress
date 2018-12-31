@@ -53,7 +53,8 @@ class Logowanie extends React.Component {
                 refreshHeader();
             })
             .catch(err => {
-                console.log(err, 'User not logged in.');
+                console.log(err);
+                window.alert("Error in login, check the data");
             });
 
         this.setState({

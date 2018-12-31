@@ -318,6 +318,19 @@ h5 {
   align: center;
 }
 
+.shadows {
+  -webkit-box-shadow: 0px 0px 57px -5px rgba(0,0,0,0.5);
+-moz-box-shadow: 0px 0px 57px -5px rgba(0,0,0,0.5);
+box-shadow: 0px 0px 57px -5px rgba(0,0,0,0.5);
+
+}
+
+.shadows:hover {
+  -webkit-box-shadow: 0px 0px 58px -5px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 58px -5px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 58px -5px rgba(0,0,0,0.75);
+}
+
 .powiadomienie {
   width: 100px;
   background-color: #a6b6c5d9;
@@ -408,11 +421,15 @@ h5 {
   border: none;
   font-family: 'PT Sans', sans-serif;
   font-size: 1.5rem;
-  transition: 0.5s;
+  transition: 0.2s;
   transition-timing-function: ease-in-out;
   display: flex;
   align-items: center;
   justify-content: center;
+  -webkit-box-shadow: 0px 0px 57px -5px rgba(0,0,0,0.5);
+-moz-box-shadow: 0px 0px 57px -5px rgba(0,0,0,0.5);
+box-shadow: 0px 0px 57px -5px rgba(0,0,0,0.5);
+
   }
 .button-sub-goal-done {
   position: relative;
@@ -424,18 +441,28 @@ h5 {
   border: none;
   font-family: 'PT Sans', sans-serif;
   font-size: 1.5rem;
-  transition: 0.5s;
+  transition: 0.2s;
   transition-timing-function: ease-in-out;
   background: #088A08;
   display: flex;
   align-items: center;
   justify-content: center;
+  -webkit-box-shadow: 0px 0px 57px -5px rgba(0,0,0,0.5);
+-moz-box-shadow: 0px 0px 57px -5px rgba(0,0,0,0.5);
+box-shadow: 0px 0px 57px -5px rgba(0,0,0,0.5);
+
 }
 .button-sub-goal:hover {
   cursor: pointer;
+  -webkit-box-shadow: 0px 0px 58px -5px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 58px -5px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 58px -5px rgba(0,0,0,0.75);
 }
 .button-sub-goal-done:hover {
   cursor: pointer;
+  -webkit-box-shadow: 0px 0px 58px -5px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 58px -5px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 58px -5px rgba(0,0,0,0.75); 
 }
 
 .button-sub-goal:hover > button {

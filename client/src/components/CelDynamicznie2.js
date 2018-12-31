@@ -8,8 +8,8 @@ import '../css/App.css';
 import '../css/PodceleAnimacje.css';
 import Link from 'react-router-dom/Link';
 import backButton from '../resourses/back-button.png';
-import arrowDown from '../resourses/arrow-down.png';
-import arrowUp from '../resourses/arrow-up.png';
+import arrowDown from '../resourses/arrow-down2.png';
+import arrowUp from '../resourses/arrow-up2.png';
 
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
@@ -118,7 +118,7 @@ class CelDynamicznie2 extends React.Component {
             Object
                 .keys(this.state.goals)
                 .map(key =>
-                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 my-3">
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 my-3" key={key}>
                         <CSSTransitionGroup
                             key={key}
                             transitionName="subgoals"
@@ -178,7 +178,7 @@ class CelDynamicznie2 extends React.Component {
             Object
                 .keys(this.state.goals)
                 .map(key =>
-                    <div className="container">
+                    <div className="container" key={key}>
                         <div className="row justify-content-center">
                             <div className="col-sm-3 col-5">
                                 <div className="datails-list-form">
@@ -187,15 +187,15 @@ class CelDynamicznie2 extends React.Component {
                             </div>
 
                             <div className="col-1">
-                                <input type="checkbox" checked={this.state.goals[key].completed} onClick={() => this.changeCompleted(key)}></input>
+                                <input type="checkbox" defaultChecked={this.state.goals[key].completed} onClick={() => this.changeCompleted(key)}></input>
                             </div>
                             <div className="col-sm-4 col-5">
                                 <span className="details-list-form-element" name="date">{this.convertTimestampToDate(this.state.goals[key].plannedAt)}</span>
                             </div>
                             <div className="col-1">
                                 {(this.state.goals[key].isDescription === true)
-                                    ? <img src={arrowUp} onClick={() => this.expandDescription(key)} width="20" height="20" ></img>
-                                    : <img src={arrowDown} onClick={() => this.expandDescription(key)} width="20" height="20" ></img>}
+                                    ? <img src={arrowUp} onClick={() => this.expandDescription(key)} width="20" height="20" alt=""></img>
+                                    : <img src={arrowDown} onClick={() => this.expandDescription(key)} width="20" height="20" alt=""></img>}
                             </div>
                         </div>
                         <div className={(this.state.goals[key].isDescription === true) ? "row justify-content-center" : "row justify-content-center"} >
