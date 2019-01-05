@@ -64,7 +64,7 @@ class Rejestracja extends React.Component {
                         <form className="registerForm" onSubmit={this.addUser}>
                             <div>
                                 <div>
-                                    <input className = 'input_line'
+                                    <input className='input_line'
                                         onChange={this.handleEmail}
                                         name="email"
                                         type="email"
@@ -73,7 +73,7 @@ class Rejestracja extends React.Component {
                                     />
                                 </div>
                                 <div>
-                                    <input className = 'input_line'
+                                    <input className='input_line'
                                         onChange={this.handlePassword}
                                         name="password"
                                         type="password"
@@ -83,14 +83,14 @@ class Rejestracja extends React.Component {
                                     />
                                 </div>
                                 <div className="row justify-content-center form-margin">
-                                    <div className = "registerForm" onSubmit='return checkForm(this);'>
-                                        <input type="checkbox" required name="terms" /> 
+                                    <div className="registerForm">
+                                        <input type="checkbox" required name="terms" />
                                         <label>
                                             <h5>
-                                                I agree to the 
+                                                I agree to the
                                                 <Link to="/TermsPolicy"> Privacy Policy.</Link>
                                             </h5>
-                                        </label> 
+                                        </label>
                                         <div className="row justify-content-center form-margin">
                                             <button className="button button-main" type="submit">
                                                 Sign up<i className="GuestBookButton2" aria-hidden="true" />
@@ -100,8 +100,6 @@ class Rejestracja extends React.Component {
                                         <div className="button-forgot-pass" id="sign-in" >
                                             <Link to="/signin">Already have an account?</Link>
                                         </div>
-                        <Link to="/signin">Already have an account?</Link>
-
                                     </div>
                                 </div>
                             </div>
