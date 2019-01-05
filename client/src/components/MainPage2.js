@@ -9,8 +9,6 @@ import CelDynamicznie2 from './CelDynamicznie2';
 import UserProfile from './UserProfile';
 import TermsPolicy from './TermsPolicy';
 import ForgotPassword from './ForgotPassword';
-import ExampleGoals from './ExampleGoals'
-
 
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import logger from "redux-logger";

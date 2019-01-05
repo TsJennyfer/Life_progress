@@ -83,7 +83,7 @@ class Rejestracja extends React.Component {
                                     />
                                 </div>
                                 <div className="row justify-content-center form-margin">
-                                    <div className="registerForm" onSubmit='return checkForm(this);'>
+                                    <div className="registerForm">
                                         <input type="checkbox" required name="terms" />
                                         <label>
                                             <h5>
