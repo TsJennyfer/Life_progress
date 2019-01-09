@@ -14,7 +14,7 @@ class Powiadomienie extends React.Component {
     }
     convertTimestampToDate(timestamp) {
         var t = new Date(timestamp);
-        var date = t.getDate() + "/" + t.getMonth() + "/" + t.getFullYear();
+        var date = t.getDate() + "/" + t.getMonth() + 1 + "/" + t.getFullYear();
         return date;
     }
 

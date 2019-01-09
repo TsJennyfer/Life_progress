@@ -100,7 +100,6 @@ class Rejestracja extends React.Component {
                                         <div className="button-forgot-pass" id="sign-in" >
                                             <Link to="/signin">Already have an account?</Link>
                                         </div>
-                        <Link to="/signin">Already have an account?</Link>
 
                                     </div>
                                 </div>
