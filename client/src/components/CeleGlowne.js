@@ -93,7 +93,8 @@ class CeleGlowne extends React.Component {
         var CurrentDate = new Date();
         var nextMonthTimeStamp = Math.floor(CurrentDate.setMonth(CurrentDate.getMonth() + 1));
         var next2MonthTimeStamp = Math.floor(CurrentDate.setMonth(CurrentDate.getMonth() + 2));
-        var currentTimeStamp = Math.floor(Date.now());
+        var currentTimeStamp = Math.floor(Date.now()) - 86400000;
+
         if ((taskDate > currentTimeStamp) && (taskDate < nextMonthTimeStamp)) {
             return 1; // ten miesiąc
         }
