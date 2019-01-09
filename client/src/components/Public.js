@@ -7,7 +7,19 @@ import done from '../resourses/done_icon.png';
 
 class Public extends Component {
   componentDidMount() {
-    //this.props.history.push('/register');
+    this.checkToken();
+  }
+
+  // przekierowanie do strony dla zalogowanych
+  goToProtected = () => {
+    this.props.history.push('/protected');
+  }
+
+  // sprawdzenie czy jest token
+  checkToken = () => {
+    if (localStorage.getItem('token') !== null) {
+      this.goToProtected();
+    }
   }
 
   render() {
@@ -24,8 +36,8 @@ class Public extends Component {
               <h1> Life progress</h1>
             </div>
           </div>
-          <div className="row justify-content-center mt-4">
-            <div className="col-5">
+          <div className="row justify-content-center mt-5">
+            <div className="col-6">
               <h3>
                 <div className='form-margin'>
                   <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
