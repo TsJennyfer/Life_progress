@@ -82,7 +82,7 @@ class ExampleGoals extends React.Component {
                         Object.keys(this.state.suggestedGoals).map((key, index) => <option value={index} key={key} >{this.state.suggestedGoals[key].a}</option>)
                     }
                 </select>
-                <button className="button-main mt-3" onClick={() => this.addExampleGoal()}>Select</button>
+                <button className="button-main mt-3" onClick={() => this.addExampleGoal()}>Take it</button>
             </div>
 
         )
