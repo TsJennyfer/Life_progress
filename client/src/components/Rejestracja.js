@@ -93,7 +93,7 @@ class Rejestracja extends React.Component {
                                         </label>
                                         <div className="row justify-content-center form-margin">
                                             <button className="button button-main" type="submit">
-                                                Sign up<i className="GuestBookButton2" aria-hidden="true" />
+                                            Register<i className="GuestBookButton2" aria-hidden="true" />
                                             </button>
                                         </div>
 

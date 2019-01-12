@@ -65,6 +65,7 @@ class Remainder extends React.Component {
 
         return (
             <div>
+                <h3>You remainder list:</h3> 
                 {this.drawNotes()}
             </div>
         )
