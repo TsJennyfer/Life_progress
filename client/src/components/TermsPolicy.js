@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '../css/Cele.css';
-
 class TermsPolicy extends React.Component {
     constructor(props) {
         super(props);

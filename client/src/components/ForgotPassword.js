@@ -1,6 +1,5 @@
 import React from 'react';
 
-import '../css/Cele.css';
 
 class ForgotPassword extends React.Component {
     constructor(props) {

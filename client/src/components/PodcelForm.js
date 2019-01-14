@@ -4,8 +4,6 @@ import axios from 'axios';
 import DatePicker from "react-datepicker";
 import moment from "moment";
 
-import '../css/Cele.css';
-
 import Icon_calendar from '../resourses/Icon_calendar.png';
 
 class PodcelForm extends React.Component {

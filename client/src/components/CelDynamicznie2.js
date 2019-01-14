@@ -187,7 +187,7 @@ class CelDynamicznie2 extends React.Component {
                             </div>
 
                             <div className="col-1">
-                                <input type="checkbox" defaultChecked={this.state.goals[key].completed} onClick={() => this.changeCompleted(key)}></input>
+                                <input type="checkbox" checked={this.state.goals[key].completed} onClick={() => this.changeCompleted(key)}></input>
                             </div>
                             <div className="col-sm-4 col-5">
                                 <span className="details-list-form-element" name="date">{this.convertTimestampToDate(this.state.goals[key].plannedAt)}</span>
@@ -236,8 +236,7 @@ class CelDynamicznie2 extends React.Component {
                 "completed": this.state.goals[id].completed
             },
             this.state.header).then(response => {
-
-                console.log(response)
+                //console.log(response)
             })
             .catch(err => {
                 console.log(err);
