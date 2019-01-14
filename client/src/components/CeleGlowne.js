@@ -3,7 +3,6 @@ import React from 'react';
 
 import CelSzczegoly from './CelSzczegoly';
 import Remainder from './Remainder';
-import '../css/Cele.css';
 import CelGlownyForm from './CelGlownyForm';
 import ExampleGoals from './ExampleGoals';
 import DayPicker from 'react-day-picker';
