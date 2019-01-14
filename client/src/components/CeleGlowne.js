@@ -9,10 +9,6 @@ import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import axios from 'axios';
 
-import {
-    Link
-} from 'react-router-dom';
-
 class CeleGlowne extends React.Component {
     constructor(props) {
         super(props);
@@ -127,12 +123,10 @@ class CeleGlowne extends React.Component {
                         <div className="col-sm-8">
                             <div className="row">
                                 {this.drawSortedGoals()}
-                            </div>
-                           
-                            <div className="button-forgot-pass" id="sign-in"> 
+                            </div>  
+                            {/*<div className="button-forgot-pass" id="sign-in"> 
                                 <Link to=""> <h3>Show your done goals </h3></Link>
-                            </div>
-
+        </div>*/}
                             <CelGlownyForm findGoals={this.findGoals} />
                             <ExampleGoals />
                         </div>
