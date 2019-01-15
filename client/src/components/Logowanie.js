@@ -94,7 +94,7 @@ class Logowanie extends React.Component {
                                 onChange={this.handlePassword}
                                 name="password"
                                 type="password"
-                                minLength={3}
+                                minLength={6}
                                 value={this.state.password}
                                 placeholder="Your password"
                             />                    
