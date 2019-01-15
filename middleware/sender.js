@@ -19,7 +19,7 @@ var sender = ((req, token)=>{
         to: req.body.email, // list of receivers
         subject: "Welcome in Life Progress", // Subject line
         text: process.env.EMAIL_MESSAGE, // plain text body
-        html: `<b>Registration in Life Progress</b><br><a href="https://life-progress.herokuapp.com/users/confirmEmail/${token}">Click to confirm your email address.<a/><br>` // html body
+        html: `<b>Registration in Life Progress</b><br><a href="http://life-progress.pl/users/confirmEmail/${token}">Click to confirm your email address.<a/><br>` // html body
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
