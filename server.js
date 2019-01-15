@@ -49,7 +49,8 @@ app.get('/users/confirmEmail/:token', (req, res) => {
         if (!user) {
             return res.status(404).send();
         };
-        res.send({ user });
+        //res.send({ user });
+        res.redirect('http://life-progress.pl');
     }).catch((error) => {
         res.status(400).send(error);
     });
@@ -84,7 +85,7 @@ app.get('/users/resetPasswordToken/:token', (req, res) => {
         if (!user) {
             return res.status(404).send();
         }
-        res.redirect('http://localhost:3000/'); //przekierowanie do formularza zmiany hasła
+        res.redirect('http://life-progress.pl/'); //przekierowanie do formularza zmiany hasła
         res.send({ user });
     }).catch((error) => {
         res.status(400).send(error);
