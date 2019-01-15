@@ -5,9 +5,14 @@ class ForgotPassword extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user : "Artur"
+            email : ""
         }
     };
+
+    handleEmail = (event) => {
+        this.setState({ email: event.target.value });
+    }
+
     render() {
         return (
             <div className="container">
@@ -19,7 +24,11 @@ class ForgotPassword extends React.Component {
                 <div className="col-8">
                     <form className="registerForm" onSubmit={this.addUser}>
                         <div>
-                            <input className = 'input_line' placeholder="Your e-mail"  />
+                            <input className = 'input_line'
+                             placeholder="Your e-mail"
+                            type="email" minLength={4} 
+                            onChange={this.handleEmail}
+                            />
                             <div>
                                 <br />
                                 <button className="button-main" type="submit">
