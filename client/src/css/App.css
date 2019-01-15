@@ -69,6 +69,10 @@ border{
   font-size: 11pt;  
 }
 
+.DayPicker-Day--disabled.DayPicker-Day--today {
+  color: red;
+}
+
 .input_line {
   -webkit-appearance: none;
   width: 100%;
@@ -93,6 +97,14 @@ input.hover{
   background-size: cover;
   text-align: center;
   height: 100%;
+}
+
+.container-public{
+  background-size: cover;
+  text-align: center;
+  height: 80%;
+  weight: 80%;
+
 }
 
 .background_grey{

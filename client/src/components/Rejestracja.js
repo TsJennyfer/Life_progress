@@ -82,6 +82,16 @@ class Rejestracja extends React.Component {
                                         placeholder="Your password"
                                     />
                                 </div>
+                                <div>
+                                    <input className='input_line'
+                                        onChange={this.handlePassword}
+                                        name="password"
+                                        type="password"
+                                        minLength={6}
+                                        value={this.state.password}
+                                        placeholder="Confirm your password"
+                                    />
+                                </div>
                                 <div className="row justify-content-center form-margin">
                                     <div className="registerForm">
                                         <input type="checkbox" required name="terms" />
