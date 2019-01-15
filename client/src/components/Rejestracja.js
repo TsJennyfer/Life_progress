@@ -12,46 +12,70 @@ class Rejestracja extends React.Component {
 
         this.addUser = this.addUser.bind(this);
         this.handleEmail = this.handleEmail.bind(this);
-        this.handlePassword = this.handlePassword.bind(this);
+        this.handlePassword1 = this.handlePassword1.bind(this);
+        this.handlePassword2 = this.handlePassword2.bind(this);
+        this.isPasswordsEqual = this.isPasswordsEqual.bind(this);
         this.state = {
             email: "",
-            password: ""
+            password1: "",
+            password2: ""
         }
     }
 
+    // sprawdzanie zgodności haseł
+    isPasswordsEqual() {
+        if (this.state.password1 === this.state.password2) {
+            console.log("takie same");
+            return true
+        } else {
+            console.log("różne");
+            return false;
+        }
+    }
     //Dodanie użytkownika
     addUser(event) {
         event.preventDefault();
         this.setState({
             email: event.target.value,
-            password: event.target.value,
+            password1: event.target.value,
+            password2: event.target.value
         });
 
-        axios.post('/users/signup', {
-            email: this.state.email,
-            password: this.state.password,
-        })
-            .then(response => {
-                console.log(response, 'User added!');
-                this.props.history.push('/signin');
+        if (this.isPasswordsEqual()){
+
+            axios.post('/users/signup', {
+                email: this.state.email,
+                password1: this.state.password1,
+                password1: this.state.password2
             })
-            .catch(err => {
-                console.log(err, 'User not added, try again.');
+                .then(response => {
+                    console.log(response, 'User added!');
+                    this.props.history.push('/signin');
+                })
+                .catch(err => {
+                    console.log(err, 'User not added, try again.');
+                });
+    
+            this.setState({
+                email: "",
+                password1: "",
+                password2: ""
             });
-
-        this.setState({
-            email: "",
-            password: "",
-        });
+        } else {
+            window.alert("Passwords must match");
+        }
     }
 
     handleEmail(event) {
         this.setState({ email: event.target.value });
     }
-    handlePassword(event) {
-        this.setState({ password: event.target.value });
+    handlePassword1(event) {
+        this.setState({ password1: event.target.value });
     }
 
+    handlePassword2(event) {
+        this.setState({ password2: event.target.value });
+    }
     render() {
         return (
             <div className="container">
@@ -74,12 +98,18 @@ class Rejestracja extends React.Component {
                                 </div>
                                 <div>
                                     <input className='input_line'
-                                        onChange={this.handlePassword}
-                                        name="password"
+                                        onChange={this.handlePassword1}
                                         type="password"
                                         minLength={6}
-                                        value={this.state.password}
+                                        value={this.state.password1}
                                         placeholder="Your password"
+                                    />
+                                    <input className='input_line'
+                                        onChange={this.handlePassword2}
+                                        type="password"
+                                        minLength={6}
+                                        value={this.state.password2}
+                                        placeholder="Confirm password"
                                     />
                                 </div>
                                 <div className="row justify-content-center form-margin">
