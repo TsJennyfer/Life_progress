@@ -339,9 +339,9 @@ class CelDynamicznie2 extends React.Component {
                             <div className="col-12">
                                 <hr />
                             </div>
-                        </div>
+                        
 
-                        <div className="col-sm-4">
+                     { /*  <div className="col-sm-4">
 
                             <DayPicker
                                 disabledDays={new Date()}
@@ -350,12 +350,12 @@ class CelDynamicznie2 extends React.Component {
                             />
 
                         </div>
-
-                        <div className="col-sm-8">
+        
                             <div className="row">
                                 <div className="col-11">
                                 </div>
-                            </div>
+                            </div>*/}
+
                             <div className="row">
                                 <div className="container">
                                     <div className="row justify-content-center form-register">
@@ -371,14 +371,11 @@ class CelDynamicznie2 extends React.Component {
                                 {this.writeDetailsListColumnNames()}
                                 {this.writeDetailsList()}
                                 <br />
-
                                 <PodcelForm goal={this.state.allGoals} findAllGoals={this.findAllGoals} />
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         )
     }

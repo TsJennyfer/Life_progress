@@ -113,11 +113,11 @@ class CeleGlowne extends React.Component {
                         <h2>This is your goal list</h2>
                         <hr />
                         <div className="col-sm-4">
-                            <DayPicker
+                        {/* <DayPicker
                                 disabledDays={new Date()}
                                 onDayClick={this.handleDayClick}
                                 onDayMouseEnter={this.handleDayMouseEnter}
-                            />
+                        />*/}
                             <Remainder />
                         </div>
                         <div className="col-sm-8">
@@ -126,7 +126,7 @@ class CeleGlowne extends React.Component {
                             </div>  
                             {/*<div className="button-forgot-pass" id="sign-in"> 
                                 <Link to=""> <h3>Show your done goals </h3></Link>
-        </div>*/}
+                            </div>*/}
                             <CelGlownyForm findGoals={this.findGoals} />
                             <ExampleGoals />
                         </div>
