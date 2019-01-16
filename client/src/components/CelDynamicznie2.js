@@ -50,7 +50,7 @@ class CelDynamicznie2 extends React.Component {
 
     convertTimestampToDate(timestamp) {
         var t = new Date(timestamp);
-        var date = t.getDate() + "/" + t.getMonth() + 1 + "/" + t.getFullYear();
+        var date = t.getDate() + "/" + (t.getMonth() + 1) + "/" + t.getFullYear();
         return date;
     }
 
