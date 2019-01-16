@@ -89,6 +89,8 @@ class PodcelForm extends React.Component {
                                     type="text"
                                     value={this.state.name}
                                     placeholder="Goal name"
+                                    minlength={3}
+                                    maxlength={100}
                                 />
                                 <div className="row justify-content-left form-margin ">
                                     <DatePicker type="input" className = 'input_line'
@@ -106,6 +108,7 @@ class PodcelForm extends React.Component {
                                     minLength={3}
                                     value={this.state.description}
                                     placeholder="Description(optional)"
+                                    maxlength={1000}
                                 />
                             </div>
                             <br />
