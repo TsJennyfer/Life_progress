@@ -2,7 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 import {
-Link
+    Link
 } from 'react-router-dom';
 import HandbookDoc from '../resourses/policies.pdf';
 
@@ -42,26 +42,25 @@ class Rejestracja extends React.Component {
             password2: event.target.value
         });
 
-        if (this.isPasswordsEqual()){
+        if (this.isPasswordsEqual()) {
 
             axios.post('/users/signup', {
                 email: this.state.email,
-                password1: this.state.password1,
-                password1: this.state.password2
+                password: this.state.password1
             })
                 .then(response => {
                     console.log(response, 'User added!');
+                    window.alert("We\'ve sent an email to " + response.data.email + ". Open it up to activate your account.");
                     this.props.history.push('/signin');
+                    this.setState({
+                        email: "",
+                        password1: "",
+                        password2: ""
+                    });
                 })
                 .catch(err => {
                     console.log(err, 'User not added, try again.');
                 });
-    
-            this.setState({
-                email: "",
-                password1: "",
-                password2: ""
-            });
         } else {
             window.alert("Passwords must match");
         }
@@ -80,7 +79,7 @@ class Rejestracja extends React.Component {
 
     handlePoliciesClick = () => {
         window.open(HandbookDoc, '_blank');
-      }
+    }
     render() {
         return (
             <div className="container">
@@ -119,13 +118,13 @@ class Rejestracja extends React.Component {
                                 </div>
                                 <div className="row justify-content-center form-margin">
                                     <div className="registerForm">
-                                       <div className="row justify-content-center form-margin">
-                                              <h5>  
-                                                  <div className="button-forgot-pass" id="sign-in" >
-                                                  <input type="checkbox" required name="terms" />
-                                                   <a onClick={this.handlePoliciesClick} className = 'ml-2'>I agree to the  Privacy Policy.</a>
-                                                    </div>
-                                                </h5>
+                                        <div className="row justify-content-center form-margin">
+                                            <h5>
+                                                <div className="button-forgot-pass" id="sign-in" >
+                                                    <input type="checkbox" required name="terms" />
+                                                    <a onClick={this.handlePoliciesClick} className='ml-2'>I agree to the  Privacy Policy.</a>
+                                                </div>
+                                            </h5>
                                         </div>
                                         <div className="row justify-content-center form-margin">
                                             <button className="button button-main" type="submit">
