@@ -48,7 +48,8 @@ class ExampleGoals extends React.Component {
         axios.post('/goals/', {
             name: this.state.suggestedGoals[this.state.choosenGoal].a,
             parent: null,
-            userToken: localStorage.getItem('token')
+            userToken: localStorage.getItem('token'),
+            plannedAt: new Date().getTime() + (1000*60*60*24*30)
         },
             { headers })
             .then(response => {
