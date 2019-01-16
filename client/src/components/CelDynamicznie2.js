@@ -34,6 +34,8 @@ class CelDynamicznie2 extends React.Component {
         this.removeThisGoalAndSubgoals = this.removeThisGoalAndSubgoals.bind(this);
         this.handleDayClick = this.handleDayClick.bind(this);
         this.handleDayMouseEnter = this.handleDayMouseEnter.bind(this);
+        this.changeDescription = this.changeDescription.bind(this);
+        this.changeDescriptionInDatabase = this.changeDescriptionInDatabase.bind(this);
         this.state = {
             goals: {},
             goalId: null,
@@ -199,12 +201,39 @@ class CelDynamicznie2 extends React.Component {
                             </div>
                         </div>
                         <div className={(this.state.goals[key].isDescription === true) ? "row justify-content-center" : "row justify-content-center"} >
-                            {(this.state.goals[key].isDescription === true) ? <div className="col-8 description-subgoal"> {this.state.goals[key].description} </div> : ""}
+                            {(this.state.goals[key].isDescription === true) ? 
+                            <input type="text" onChange={(event ) => this.changeDescription(key, event)} 
+                            onBlur={(event ) => this.changeDescriptionInDatabase(key, event)}
+                             className="col-8 description-subgoal" value={this.state.goals[key].description}>  
+                            
+                             </input> : ""}
                         </div>
                     </div>
                 )
 
         );
+    }
+
+    // zmienia stan pola description dla danego podcelu
+    changeDescription(id, event) {
+        const goals = { ...this.state.goals };
+        goals[id].description = event.target.value;
+        this.setState({ goals: goals });
+    }
+
+    // zmienia stan pola description  dla danego celu w bazie danych
+    changeDescriptionInDatabase(id, event) {
+        const goals = { ...this.state.goals };
+        axios.patch("/goals/updateDescription/" + this.state.goals[id]._id,
+            {
+                "description": this.state.goals[id].description
+            },
+            this.state.header).then(response => {
+                //console.log(response)
+            })
+            .catch(err => {
+                //console.log(err);
+            });
     }
 
     // rozwijanie opisów podcelu
