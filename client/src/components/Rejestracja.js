@@ -2,8 +2,9 @@
 import React from 'react';
 import axios from 'axios';
 import {
-    Link
+Link
 } from 'react-router-dom';
+import HandbookDoc from '../resourses/policies.pdf';
 
 class Rejestracja extends React.Component {
 
@@ -76,6 +77,10 @@ class Rejestracja extends React.Component {
     handlePassword2(event) {
         this.setState({ password2: event.target.value });
     }
+
+    handlePoliciesClick = () => {
+        window.open(HandbookDoc, '_blank');
+      }
     render() {
         return (
             <div className="container">
@@ -112,35 +117,25 @@ class Rejestracja extends React.Component {
                                         placeholder="Confirm password"
                                     />
                                 </div>
-                                <div>
-                                    <input className='input_line'
-                                        onChange={this.handlePassword}
-                                        name="password"
-                                        type="password"
-                                        minLength={6}
-                                        value={this.state.password}
-                                        placeholder="Confirm your password"
-                                    />
-                                </div>
                                 <div className="row justify-content-center form-margin">
                                     <div className="registerForm">
-                                        <input type="checkbox" required name="terms" />
-                                        <label>
-                                            <h5>
-                                                I agree to the
-                                                <Link to="/TermsPolicy"> Privacy Policy.</Link>
-                                            </h5>
-                                        </label>
+                                       <div className="row justify-content-center form-margin">
+                                              <h5>  
+                                                  <div className="button-forgot-pass" id="sign-in" >
+                                                  <input type="checkbox" required name="terms" />
+                                                   <a onClick={this.handlePoliciesClick} className = 'ml-2'>I agree to the  Privacy Policy.</a>
+                                                    </div>
+                                                </h5>
+                                        </div>
                                         <div className="row justify-content-center form-margin">
                                             <button className="button button-main" type="submit">
-                                            Register<i className="GuestBookButton2" aria-hidden="true" />
+                                                Register
+                                                <i className="GuestBookButton2" aria-hidden="true" />
                                             </button>
                                         </div>
-
                                         <div className="button-forgot-pass" id="sign-in" >
                                             <Link to="/signin">Already have an account?</Link>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

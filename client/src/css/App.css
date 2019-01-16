@@ -6,6 +6,7 @@ body, html, #root{
   resize: both;
   overflow: auto;
   overflow-x: hidden;
+
 }
 
 #root {
@@ -53,7 +54,7 @@ hr {
 }
 
 
-border{
+.border{
   position: absolute;
   bottom: 0;
   left: 0;
@@ -124,6 +125,8 @@ input.hover{
   padding-bottom: 50px;
   padding-left: 30px;
   background: radial-gradient(circle, rgba(238, 227, 243, 0.01) 0%, rgb(255, 255, 255) 100%);
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 a, a:link, a:visited, a:hover, a:active {
@@ -214,10 +217,10 @@ a, a:link, a:visited, a:hover, a:active {
   }
 
   .button-forgot-pass{
-    color: #7f7f7f;
+    color: black;
     display: inline-block;
     font: 12px/1 sans-serif;
-    right: -19px;
+    left: 10px;
     position: relative;
     text-decoration: none;
     top: 5px;
