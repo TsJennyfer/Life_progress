@@ -335,7 +335,7 @@ app.post('/goals/ListofGoals', authenticate, (req, res) => {
             _creator: req.user._id,
             parent: req.body.id,
             createdAt: req.body.createdAt = new Date().getTime(),
-            plannedAt: req.body.plannedAt = new Date().getTime() + (1000*60*60*24*14)
+            plannedAt: req.body.plannedAt = new Date().getTime() + (1000*60*60*24*30)
         });
         goal.save().then((goal) => {
             //res.send(goal);
