@@ -201,11 +201,11 @@ class CelDynamicznie2 extends React.Component {
                         </div>
                         <div className={(this.state.goals[key].isDescription === true) ? "row justify-content-center" : "row justify-content-center"} >
                             {(this.state.goals[key].isDescription === true) ? 
-                            <input type="text" placeholder = "Write description" onChange={(event ) => this.changeDescription(key, event)} 
+                            <textarea multiline={true}  rows={3}  placeholder = "Write description" onChange={(event ) => this.changeDescription(key, event)} 
                             onBlur={(event ) => this.changeDescriptionInDatabase(key, event)}
                              className="col-8 description-subgoal" value={this.state.goals[key].description}>  
                             
-                             </input> : ""}
+                             </textarea> : ""}
                         </div>
                     </div>
                 )
