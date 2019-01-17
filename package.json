@@ -29,6 +29,7 @@
     "morgan": "^1.9.0",
     "nodemailer": "^4.6.8",
     "react-calendar": "^2.17.5",
+    "react-modern-datepicker": "^0.7.1",
     "react-sticky-header": "^0.1.9",
     "validator": "^10.7.1"
   }

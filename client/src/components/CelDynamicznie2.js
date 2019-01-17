@@ -11,7 +11,6 @@ import backButton from '../resourses/back-button.png';
 import arrowDown from '../resourses/arrow-down2.png';
 import arrowUp from '../resourses/arrow-up2.png';
 
-import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 
 //import { timingSafeEqual } from 'crypto';
@@ -202,7 +201,7 @@ class CelDynamicznie2 extends React.Component {
                         </div>
                         <div className={(this.state.goals[key].isDescription === true) ? "row justify-content-center" : "row justify-content-center"} >
                             {(this.state.goals[key].isDescription === true) ? 
-                            <input type="text" onChange={(event ) => this.changeDescription(key, event)} 
+                            <input type="text" placeholder = "Write description" onChange={(event ) => this.changeDescription(key, event)} 
                             onBlur={(event ) => this.changeDescriptionInDatabase(key, event)}
                              className="col-8 description-subgoal" value={this.state.goals[key].description}>  
                             
@@ -369,6 +368,8 @@ class CelDynamicznie2 extends React.Component {
                                 <hr />
                             </div>
                         
+
+
 
                      { /*  <div className="col-sm-4">
 
