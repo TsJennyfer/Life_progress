@@ -50,7 +50,7 @@ class Rejestracja extends React.Component {
             })
                 .then(response => {
                     console.log(response, 'User added!');
-                    window.alert("We\'ve sent an email to " + response.data.email + ". Open it up to activate your account.");
+                    window.alert("We've sent an email to " + response.data.email + ". Open it up to activate your account.");
                     this.props.history.push('/signin');
                     this.setState({
                         email: "",

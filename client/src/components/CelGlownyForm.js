@@ -89,13 +89,15 @@ class CelGlownyForm extends React.Component {
     handlePriorityChange(event) {
         this.setState({ priority: event.target.value });
     }
-
+        
     handleChange(date) {
         this.setState({
             startDate: date
         });
     }
 
+
+    
     render() {
         return (
             <div>
@@ -119,14 +121,24 @@ class CelGlownyForm extends React.Component {
                                 />
 
                                 <div className="row justify-content-left form-margin">
+                                    
+                                    
+                                    <div className = "form-margin">
                                     <DatePicker input className='input_line'
                                         dateFormat="DD/MM/YYYY"
                                         selected={this.state.startDate}
                                         onChange={this.handleChange}
-                                        placeholder="Planning date"
+                                        minDate={new Date()}
+                                        placeholderText="Enter tomorrow"
+                                        onClickOutside={this.openDatePicker}
+                                        open={this.state.datePickerIsOpen}
+
                                     />
-                                    <img src={Icon_calendar} width="30" height="30" alt=""
+
+                               
+                                        <img src={Icon_calendar} width="30" height="30" alt=""
                                         className="d-inline-block align-top flex-row"></img>
+                                    </div>
                                 </div>
 
 

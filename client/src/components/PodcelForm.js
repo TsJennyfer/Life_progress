@@ -89,17 +89,22 @@ class PodcelForm extends React.Component {
                                     type="text"
                                     value={this.state.name}
                                     placeholder="Goal name"
-                                    minlength={3}
-                                    maxlength={100}
+                                    minLength={3}
+                                    maxLength={100}
                                 />
                                 <div className="row justify-content-left form-margin ">
+                                    
                                     <DatePicker type="input" className = 'input_line'
                                         dateFormat="DD/MM/YYYY"
                                         selected={this.state.startDate}
                                         onChange={this.handleChange}
+                                        minDate={new Date()}
+                                        placeholderText="Enter tomorrow"
+
                                     />
-                                    <img src={Icon_calendar} width="30" height="30" alt=""
-                                     className="d-inline-block align-top flex-row"></img>
+                                    <div className = "form-margin">
+                                        <img src={Icon_calendar} width="30" height="30" alt="" ></img>
+                                    </div>
                                 </div>
                                 <input className = 'input_line'
                                     onChange={this.handleDescriptionChange}

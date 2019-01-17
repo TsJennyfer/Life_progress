@@ -1,9 +1,7 @@
 // To jest komponent strony logowania użytkownika
 import React from 'react';
 import axios from 'axios';
-import {
-    Link
-} from 'react-router-dom';
+
 import '../css/RejestracjaLogowanie.css';
 import { refreshHeader } from "./MainPage2";
 
@@ -103,9 +101,9 @@ class Logowanie extends React.Component {
                                 <button className="button-main" type="submit">
                                     Sign in<i className="GuestBookButton2" aria-hidden="true" />
                                 </button>
-                                <div className="button-forgot-pass" id="sign-in" >
+                               {/*} <div className="button-forgot-pass" id="sign-in" >
                                     <Link to="/ForgotPassword">Forgot password?</Link>
-                                </div>
+        </div>*/}
                             </div>
                         </div>
                     </form>
