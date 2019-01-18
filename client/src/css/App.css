@@ -350,6 +350,13 @@ h5 {
   color: rgb(87, 85, 85);
 }
 
+.main-goal-name-editable{
+  background: transparent !important;
+  border: none;
+  text-align: center;
+  width: 100%;
+}
+
 .terms_format{
   text-align: justify;
 

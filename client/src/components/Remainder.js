@@ -49,7 +49,7 @@ class Remainder extends React.Component {
             Object
                 .keys(this.state.userSubgoals)
                 .map(key => {
-                    if (this.state.userSubgoals[key].completed === false) {
+                    if (this.state.userSubgoals[key].completed === false && key <8) {
                         if (this.isAfter(this.state.userSubgoals[key].plannedAt) === true) {
                             return <Powiadomienie key={key} details={this.state.userSubgoals[key]} after={true} />
                         } else {

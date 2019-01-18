@@ -319,6 +319,24 @@ app.patch('/goals/updateDescription/:id', authenticate, (req, res) => {
     })
 });
 
+// Edycja nazwy celu
+app.patch('/goals/updateName/:id', authenticate, (req, res) => {
+    var id = req.params.id;
+    var body = _.pick(req.body, ['name']); //jakie pola zmieniamy
+
+    if (!ObjectId.isValid(id)) {
+        return res.status(404).send();
+    }
+    Goal.findOneAndUpdate({ _id: id, _creator: req.user._id }, { $set: body }, { new: true }).then((goal) => {
+        if (!goal) {
+            return res.status(404).send();
+        }
+        res.send({ goal });
+    }).catch((error) => {
+        res.status(400).send(error);
+    })
+});
+
 //Pobranie losowego celu
 app.get('/randomGoals', (req, res) => {
     RandomGoal.findOneRandom({}, { _id: 0, name: 1 }, {}, function (error, result) {
