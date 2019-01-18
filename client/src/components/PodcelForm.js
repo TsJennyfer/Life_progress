@@ -104,6 +104,7 @@ class PodcelForm extends React.Component {
                                     />
                                     <div className = "form-margin">
                                         <img src={Icon_calendar} width="30" height="30" alt="" ></img>
+                                         <span style={{padding: "0px 0px 0px 10px"}}>deadline</span>
                                     </div>
                                 </div>
                                 <input className = 'input_line'

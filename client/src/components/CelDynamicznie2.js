@@ -35,6 +35,7 @@ class CelDynamicznie2 extends React.Component {
         this.handleDayMouseEnter = this.handleDayMouseEnter.bind(this);
         this.changeDescription = this.changeDescription.bind(this);
         this.changeDescriptionInDatabase = this.changeDescriptionInDatabase.bind(this);
+        this.changeMainGoalName = this.changeMainGoalName.bind(this);
         this.state = {
             goals: {},
             goalId: null,
@@ -173,9 +174,10 @@ class CelDynamicznie2 extends React.Component {
             </div>
         )
     }
+
+    // lista podceli
     writeDetailsList() {
         return (
-
             Object
                 .keys(this.state.goals)
                 .map(key =>
@@ -200,17 +202,35 @@ class CelDynamicznie2 extends React.Component {
                             </div>
                         </div>
                         <div className={(this.state.goals[key].isDescription === true) ? "row justify-content-center" : "row justify-content-center"} >
-                            {(this.state.goals[key].isDescription === true) ? 
-                            <textarea multiline={true}  rows={3}  placeholder = "Write description" onChange={(event ) => this.changeDescription(key, event)} 
-                            onBlur={(event ) => this.changeDescriptionInDatabase(key, event)}
-                             className="col-8 description-subgoal" value={this.state.goals[key].description}>  
-                            
-                             </textarea> : ""}
+                            {(this.state.goals[key].isDescription === true) ?
+                                <textarea multiline={true} rows={3} placeholder="Write description" onChange={(event) => this.changeDescription(key, event)}
+                                    onBlur={(event) => this.changeDescriptionInDatabase(key, event)}
+                                    maxLength={1000}
+                                    className="col-8 description-subgoal" value={this.state.goals[key].description}>
+
+                                </textarea> : ""}
                         </div>
                     </div>
                 )
 
         );
+    }
+
+    // zmiana nazwy celu głównego
+    changeMainGoalName(event) {
+        const allGoals = { ...this.state.allGoals };
+        allGoals[0].name = event.target.value;
+        this.setState({ allGoals: allGoals });
+        axios.patch("/goals/updateName/" + this.state.allGoals[0]._id,
+            {
+                "name": this.state.allGoals[0].name
+            },
+            this.state.header).then(response => {
+                //console.log(response)
+            })
+            .catch(err => {
+                //console.log(err);
+            });
     }
 
     // zmienia stan pola description dla danego podcelu
@@ -222,7 +242,6 @@ class CelDynamicznie2 extends React.Component {
 
     // zmienia stan pola description  dla danego celu w bazie danych
     changeDescriptionInDatabase(id, event) {
-        const goals = { ...this.state.goals };
         axios.patch("/goals/updateDescription/" + this.state.goals[id]._id,
             {
                 "description": this.state.goals[id].description
@@ -352,7 +371,12 @@ class CelDynamicznie2 extends React.Component {
                             </div>
                             <div className="col-10">
                                 <h2>
-                                    {(this.state.allGoals !== null) ? this.state.allGoals[0].name : " "}
+                                    <input type="text"
+                                        maxLength={40}
+                                        className="main-goal-name-editable"
+                                        value={(this.state.allGoals !== null) ? this.state.allGoals[0].name : " "}
+                                        onChange={(event) => this.changeMainGoalName(event)}
+                                    />
                                 </h2>
 
                             </div>
@@ -361,17 +385,17 @@ class CelDynamicznie2 extends React.Component {
                                     onClick={() => this.removeThisGoalAndSubgoals()}>
                                 </button>
                             </div>
-                            <div className="col-12">
+                            {/*<div className="col-12">
                                 {(this.state.allGoals !== null) ? this.state.allGoals[0].description : ""}
-                            </div>
+        </div>*/}
                             <div className="col-12">
                                 <hr />
                             </div>
-                        
 
 
 
-                     { /*  <div className="col-sm-4">
+
+                            { /*  <div className="col-sm-4">
 
                             <DayPicker
                                 disabledDays={new Date()}

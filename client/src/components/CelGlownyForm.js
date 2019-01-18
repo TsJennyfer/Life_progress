@@ -107,7 +107,7 @@ class CelGlownyForm extends React.Component {
                         <h2>Have something new? Add new main goal  </h2>
 
                     </div>
-                    <div className="col-6">
+                    <div className="col-8">
                         <form className="registerForm" onSubmit={this.addMainGoal}>
                             <div>
 
@@ -117,6 +117,7 @@ class CelGlownyForm extends React.Component {
                                     type="text"
                                     value={this.state.name}
                                     minLength={3}
+                                    maxLength={40}
                                     placeholder="Goal name"
                                 />
 
@@ -138,6 +139,7 @@ class CelGlownyForm extends React.Component {
                                
                                         <img src={Icon_calendar} width="30" height="30" alt=""
                                         className="d-inline-block align-top flex-row"></img>
+                                        <span style={{padding: "0px 0px 0px 10px"}}>deadline</span>
                                     </div>
                                 </div>
 
