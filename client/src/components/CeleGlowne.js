@@ -7,6 +7,8 @@ import CelGlownyForm from './CelGlownyForm';
 import ExampleGoals from './ExampleGoals';
 import 'react-day-picker/lib/style.css';
 import axios from 'axios';
+import { CSSTransitionGroup } from 'react-transition-group'
+
 
 class CeleGlowne extends React.Component {
     constructor(props) {
@@ -48,18 +50,19 @@ class CeleGlowne extends React.Component {
             Object
                 .keys(this.state.goals)
                 .map(key => {
+
                    {/* if(this.state.goals === null ) 
                    return <div><h1>No goals in this period. Add some </h1></div> */}
 
                     if (this.whichPeriod(this.state.goals[key].plannedAt) === numberOfGroup)
                         return <div className="col-12 col-sm-6 col-md-4 col-lg-3 mx-3 my-3" key={key}>  <CelSzczegoly key={key}
                             details={this.state.goals[key]} />
-                        </div>
-                    
+                        </div>                     
                 }
+                
                 )
         )
-    }
+    }      
 
     drawSortedGoals() {
         return (

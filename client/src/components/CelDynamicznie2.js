@@ -128,7 +128,6 @@ class CelDynamicznie2 extends React.Component {
                             transitionLeaveTimeout={3000}
                             transitionAppear={true}
                             transitionAppearTimeout={800}>
-
                             <div
                                 key={key}
                                 className={(this.state.goals[key].completed === true) ? "button-sub-goal-done" : "button-sub-goal"}
@@ -142,8 +141,6 @@ class CelDynamicznie2 extends React.Component {
                                     <span className="glyphicon glyphicon-trash"></span>
                                 </button>
                             </div>
-
-
                         </CSSTransitionGroup>
                     </div>
                 )

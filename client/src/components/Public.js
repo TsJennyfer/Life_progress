@@ -36,6 +36,7 @@ class Public extends Component {
               <h1> Life progress</h1>
             </div>
           </div>
+
           <div className="row justify-content-center mt-5">
           <div className="col-sm-5,7">
             <h3>
