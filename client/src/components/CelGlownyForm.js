@@ -90,11 +90,11 @@ class CelGlownyForm extends React.Component {
         this.setState({ priority: event.target.value });
     }
 
- /*   handleClick () {
-        this.generateGoal();
-        this.setState({ name: this.state.randomGoal.name });
-      }*/
-        
+    /*   handleClick () {
+           this.generateGoal();
+           this.setState({ name: this.state.randomGoal.name });
+         }*/
+
     handleChange(date) {
         this.setState({
             startDate: date
@@ -102,21 +102,21 @@ class CelGlownyForm extends React.Component {
     }
 
 
-    
+
     render() {
         return (
             <div>
                 <div className="row justify-content-center form-register">
                     <div className="col-12" className="registerForm" >
-                        <h2>Have something new? Add new goal category </h2>
+                        <h2>Have something new? Add new main goal </h2>
                         <hr />
-                        <div  className="registerForm">
+                        <div className="registerForm">
                             <div className="row">
                                 <div className="col-7" >
-                                    <h3>   Don't have any ideas? Generate it </h3> 
+                                    <h3>   Don't have any ideas? Generate it </h3>
                                 </div>
                                 <div className="col-4" >
-                                    <button className="button-main-small" onClick={() => this.generateGoal() }   >
+                                    <button className="button-main-small" onClick={() => this.generateGoal()}   >
                                         {/*  <button className="button-main-small" onClick={(e) => this.handleClick(e)} > */}
                                         Generate
                                     </button>
@@ -126,10 +126,10 @@ class CelGlownyForm extends React.Component {
                                 <div className="col-7" >
                                     <h3>{(this.state.randomGoal !== null) ? this.state.randomGoal.name + "       " : ""}</h3>
                                 </div>
-                                <div className="col-4">  {(this.state.randomGoal !== null) ? 
+                                <div className="col-4">  {(this.state.randomGoal !== null) ?
                                     <button className="button-main-small" onClick={() => this.setState({ name: this.state.randomGoal.name })}>
-                                    Take it</button> : ""} 
-                                 </div>
+                                        Take it</button> : ""}
+                                </div>
                             </div>
                             <form className="registerForm" onSubmit={this.addMainGoal}>
                                 <div className="col-10">
@@ -143,17 +143,22 @@ class CelGlownyForm extends React.Component {
                                         placeholder="Goal name"
                                     />
                                     <div className="row justify-content-left form-margin">
-                                        <h5> Deadline &nbsp; &nbsp; </h5>
-
-                                        <DatePicker input className='input_line'
-                                            dateFormat="DD/MM/YYYY"
-                                            selected={this.state.startDate}
-                                            onChange={this.handleChange}
-                                            minDate={new Date()}
-                                            placeholderText="Enter tomorrow"
-                                            onClickOutside={this.openDatePicker}
-                                            open={this.state.datePickerIsOpen}
-                                        />
+                                        <div className="col-4 col-sm-3"> <h5> Deadline &nbsp; &nbsp; </h5></div>
+                                        <div className="col-2 col-sm-2">
+                                            <img src={Icon_calendar} width="30" height="30" alt=""
+                                                className="d-inline-block align-top flex-row"></img>
+                                        </div>
+                                        <div className="col-6 col-sm-7">
+                                            <DatePicker input className='input_line'
+                                                dateFormat="DD/MM/YYYY"
+                                                selected={this.state.startDate}
+                                                onChange={this.handleChange}
+                                                minDate={new Date()}
+                                                placeholderText="Enter tomorrow"
+                                                onClickOutside={this.openDatePicker}
+                                                open={this.state.datePickerIsOpen}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                                 <br />
@@ -166,7 +171,7 @@ class CelGlownyForm extends React.Component {
                     </div>
                 </div>
 
-          {/*}  <div className="row justify-content-center form-register">
+                {/*}  <div className="row justify-content-center form-register">
                     <div className="col-12">
                         <h2>Don't have any idea's? Generate it  </h2>
                         <hr />
