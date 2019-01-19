@@ -58,14 +58,12 @@ class Header extends React.Component {
                         <Link to="/">
                             <img src={feather} alt="" className="d-inline-block align-top flex-row"></img>
                         </Link>
-                        Your online <b>To Do Board</b>
                         </button>
                         :
                         <button className="button_logo">
                             <Link to="/">
                                 <img src={feather} alt="" className="d-inline-block align-top flex-row"></img>
                             </Link>
-                            Your online <b>To Do Board</b>
                         </button>
                     }
                 </div>

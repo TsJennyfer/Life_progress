@@ -111,64 +111,58 @@ class CelGlownyForm extends React.Component {
                         <h2>Have something new? Add new goal category </h2>
                         <hr />
                         <div  className="registerForm">
-                        <div className="row">
-                            <div className="col-4" >
-                                <h3>Don't have any ideas? Generate it  </h3>
-                            </div>
-                            <div className="col-4" >
-                                <button className="button-main-small" onClick={() => this.generateGoal() }   >
-                                    {/*  <button className="button-main-small" onClick={(e) => this.handleClick(e)} > */}
-                                    Generate<i className="GuestBookButton2" aria-hidden="true" />
-                                </button>
-                            </div>
-                        </div>
-                            <div>
-                                <h4>
-                                    {(this.state.randomGoal !== null) ? this.state.randomGoal.name + "       " : ""}
-                                    
-                                    <div> 
-                                    {(this.state.randomGoal !== null) ? 
-                                        <button className="button-main-small" 
-                                            onClick={() => this.setState({ name: this.state.randomGoal.name })}>
-                                            Take it!</button> : ""} 
-                                        </div>
-                                </h4>
-                            </div>
-
-                            <form className="registerForm" onSubmit={this.addMainGoal}>
-                            <div className="col-10">
-                                <input className='input_line'
-                                    onChange={this.handleNameChange}
-                                    name="name"
-                                    type="text"
-                                    value={this.state.name}
-                                    minLength={3}
-                                    maxLength={40}
-                                    placeholder="Goal name"
-                                />
-
-                                <div className="row justify-content-left form-margin">
-                                    <h5> Planning end date &nbsp; &nbsp; </h5>
-
-                                    <DatePicker input className='input_line'
-                                        dateFormat="DD/MM/YYYY"
-                                        selected={this.state.startDate}
-                                        onChange={this.handleChange}
-                                        minDate={new Date()}
-                                        placeholderText="Enter tomorrow"
-                                        onClickOutside={this.openDatePicker}
-                                        open={this.state.datePickerIsOpen}
-                                    />
+                            <div className="row">
+                                <div className="col-7" >
+                                    <h3>   Don't have any ideas? Generate it </h3> 
+                                </div>
+                                <div className="col-4" >
+                                    <button className="button-main-small" onClick={() => this.generateGoal() }   >
+                                        {/*  <button className="button-main-small" onClick={(e) => this.handleClick(e)} > */}
+                                        Generate
+                                    </button>
                                 </div>
                             </div>
-                            <br />
-                            <br />
-                            <button className="button-main" type="submit">
-                                Add new<i className="GuestBookButton2" aria-hidden="true" />
-                            </button>
-                        </form>
-                        </div>
+                            <div className="row">
+                                <div className="col-7" >
+                                    <h3>{(this.state.randomGoal !== null) ? this.state.randomGoal.name + "       " : ""}</h3>
+                                </div>
+                                <div className="col-4">  {(this.state.randomGoal !== null) ? 
+                                    <button className="button-main-small" onClick={() => this.setState({ name: this.state.randomGoal.name })}>
+                                    Take it</button> : ""} 
+                                 </div>
+                            </div>
+                            <form className="registerForm" onSubmit={this.addMainGoal}>
+                                <div className="col-10">
+                                    <input className='input_line'
+                                        onChange={this.handleNameChange}
+                                        name="name"
+                                        type="text"
+                                        value={this.state.name}
+                                        minLength={3}
+                                        maxLength={40}
+                                        placeholder="Goal name"
+                                    />
+                                    <div className="row justify-content-left form-margin">
+                                        <h5> Deadline &nbsp; &nbsp; </h5>
 
+                                        <DatePicker input className='input_line'
+                                            dateFormat="DD/MM/YYYY"
+                                            selected={this.state.startDate}
+                                            onChange={this.handleChange}
+                                            minDate={new Date()}
+                                            placeholderText="Enter tomorrow"
+                                            onClickOutside={this.openDatePicker}
+                                            open={this.state.datePickerIsOpen}
+                                        />
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                                <button className="button-main" type="submit">
+                                    Add new<i className="GuestBookButton2" aria-hidden="true" />
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
@@ -187,10 +181,10 @@ class CelGlownyForm extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <h4>
+                        <h3>
                             {(this.state.randomGoal !== null) ? this.state.randomGoal.name + "       " : ""}
                             {(this.state.randomGoal !== null) ? <button onClick={() => this.setState({ name: this.state.randomGoal.name })}>Take it!</button> : ""}
-                        </h4>
+                        </h3>
                     </div>
                 </div>
                 

@@ -364,17 +364,12 @@ h2 {
 }
 
 h3 {
-  text-align: left;
+  color: #1b1b1b; 
   font-family: 'Source Sans Pro', sans-serif; 
-  line-height: 32px; 
+  font-size: 20px; 
+  font-weight: 400; 
+  line-height: 32px;  
   margin: 0 0 24px; 
-  font-size: 19px; 
-  color: black;
-  font-size: 1.5vw;
-}
-
-h4 {
-  font-family: 'Source Sans Pro', sans-serif; 
 }
 
 h5 {
@@ -472,13 +467,13 @@ box-shadow: 0px 0px 58px -5px rgba(0,0,0,0.75);
   z-index: 1;
   width: 150px;
   height: 150px;
-  background: #99a031;
+  background: #c4d651;
   font-family: 'PT Sans', sans-serif;
   font-size: 20px;
   transition-timing-function: ease-in-out;
-  color: white; 
+  color: black; 
   border-radius: 50%;
-  box-shadow: 0px 0px 0px 5px #99a031;
+  box-shadow: 0px 0px 0px 5px #c4d651;
   transition: background 0.1s linear;
   border: solid 2px rgba(255, 255, 255, 0.47);
 }
