@@ -69,7 +69,7 @@ class CeleGlowne extends React.Component {
         if (this.state.goals.length == 0) {
             return (
                 <div>
-                    <h2>You don't have any goals yet</h2>
+                    <h3>You don't have any goals yet</h3>
                 </div>
             )
         } else {
