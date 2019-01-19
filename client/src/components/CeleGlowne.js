@@ -51,47 +51,55 @@ class CeleGlowne extends React.Component {
                 .keys(this.state.goals)
                 .map(key => {
 
-                   {/* if(this.state.goals === null ) 
+                    {/* if(this.state.goals === null ) 
                    return <div>No goals in this period. Add some </div> */}
 
                     if (this.whichPeriod(this.state.goals[key].plannedAt) === numberOfGroup)
                         return <div className="col-12 col-sm-6 col-md-4 col-lg-3 mx-3 my-3" key={key}>  <CelSzczegoly key={key}
                             details={this.state.goals[key]} />
                         </div>
-                      
+
                 }
-                
+
                 )
         )
-    }      
+    }
 
     drawSortedGoals() {
-        return (
-            <div className="container">
-                <div className="row"><h3>This month:</h3></div>
-                <div className="row">
-                    {this.drawGoals(1)}
+        if (this.state.goals.length == 0) {
+            return (
+                <div>
+                    <h2>You don't have any goals yet</h2>
                 </div>
-                <div className="row">
-                    <h3>Next month:</h3>
+            )
+        } else {
+            return (
+                <div className="container">
+                    <div className="row"><h3>This month:</h3></div>
+                    <div className="row">
+                        {this.drawGoals(1)}
+                    </div>
+                    <div className="row">
+                        <h3>Next month:</h3>
+                    </div>
+                    <div className="row">
+                        {this.drawGoals(2)}
+                    </div>
+                    <div className="row">
+                        <h3>Later:</h3>
+                    </div>
+                    <div className="row">
+                        {this.drawGoals(3)}
+                    </div>
+                    <div className="row">
+                        <h3>Past:</h3>
+                    </div>
+                    <div className="row">
+                        {this.drawGoals(0)}
+                    </div>
                 </div>
-                <div className="row">
-                    {this.drawGoals(2)}
-                </div>
-                <div className="row">
-                    <h3>Later:</h3>
-                </div>
-                <div className="row">
-                    {this.drawGoals(3)}
-                </div>
-                <div className="row">
-                    <h3>Past:</h3>
-                </div>
-                <div className="row">
-                    {this.drawGoals(0)}
-                </div>
-            </div>
-        )
+            )
+        }
     }
 
     whichPeriod(taskDate) {
@@ -120,7 +128,7 @@ class CeleGlowne extends React.Component {
                         <h2>This is your goal list</h2>
                         <hr />
                         <div className="col-sm-4">
-                        {/* <DayPicker
+                            {/* <DayPicker
                                 disabledDays={new Date()}
                                 onDayClick={this.handleDayClick}
                                 onDayMouseEnter={this.handleDayMouseEnter}
@@ -130,7 +138,7 @@ class CeleGlowne extends React.Component {
                         <div className="col-sm-8">
                             <div className="row">
                                 {this.drawSortedGoals()}
-                            </div>  
+                            </div>
                             {/*<div className="button-forgot-pass" id="sign-in"> 
                                 <Link to=""> <h3>Show your done goals </h3></Link>
                             </div>*/}
