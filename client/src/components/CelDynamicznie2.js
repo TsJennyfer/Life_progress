@@ -115,7 +115,7 @@ class CelDynamicznie2 extends React.Component {
 
     // Rysowanie głównych celów
     drawGoalsTree() {
-        console.log(this.state.goals);
+        //console.log(this.state.goals);
         return (
             Object
                 .keys(this.state.goals)
@@ -200,7 +200,7 @@ class CelDynamicznie2 extends React.Component {
                         </div>
                         <div className={(this.state.goals[key].isDescription === true) ? "row justify-content-center" : "row justify-content-center"} >
                             {(this.state.goals[key].isDescription === true) ?
-                                <textarea multiline={true} rows={3} placeholder="Write description" onChange={(event) => this.changeDescription(key, event)}
+                                <textarea rows={3} placeholder="Write description" onChange={(event) => this.changeDescription(key, event)}
                                     onBlur={(event) => this.changeDescriptionInDatabase(key, event)}
                                     maxLength={1000}
                                     className="col-8 description-subgoal" value={this.state.goals[key].description}>

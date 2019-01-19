@@ -85,19 +85,23 @@ class PodcelForm extends React.Component {
                     </div>
                     <div className="col-8">
                         <form className="registerForm" onSubmit={this.addSubGoal}>
-                            <div>
-                                <input className = 'input_line'
-                                    onChange={this.handleNameChange}
-                                    name="name"
-                                    type="text"
-                                    value={this.state.name}
-                                    placeholder="Goal name"
-                                    minLength={3}
-                                    maxLength={100}
-                                />
-                                <div className="row justify-content-left form-margin ">
-                                   <h5> Deadline &nbsp; &nbsp; </h5>
-                                   <DayPickerInput input className='input_line'
+                            <div className="row justify-content-start form-margin">
+                                <div className="col-8">
+                                    <input className='input_line'
+                                        onChange={this.handleNameChange}
+                                        name="name"
+                                        type="text"
+                                        value={this.state.name}
+                                        placeholder="Goal name"
+                                        minLength={3}
+                                        maxLength={100}
+                                    />
+                                </div>
+                            </div>
+                            <div className="row justify-content-left form-margin ">
+                                <div className="col-4 col-sm-2 pt-4"> <span style={{ fontSize: "16px" }}>Deadline:</span> </div>
+                                <div className="col-8 col-sm-8 justify-content-start pt-2">
+                                    <DayPickerInput input className='input_line'
                                         dateFormat="DD/MM/YYYY"
                                         selected={this.state.startDate}
                                         onChange={this.handleChange}
@@ -107,16 +111,21 @@ class PodcelForm extends React.Component {
                                         open={this.state.datePickerIsOpen}
                                     />
                                 </div>
-                                <input className = 'input_line'
-                                    onChange={this.handleDescriptionChange}
-                                    name="name"
-                                    type="text"
-                                    minLength={3}
-                                    value={this.state.description}
-                                    placeholder="Description(optional)"
-                                    maxLength={1000}
-                                />
                             </div>
+                            <div className="row form-margin ">
+                                <div className="col-8">
+                                    <input className='input_line'
+                                        onChange={this.handleDescriptionChange}
+                                        name="name"
+                                        type="text"
+                                        minLength={3}
+                                        value={this.state.description}
+                                        placeholder="Description(optional)"
+                                        maxLength={1000}
+                                    />
+                                </div>
+                            </div>
+
                             <br />
                             <button className="button-main" type="submit">
                                 Add new<i className="GuestBookButton2" aria-hidden="true" />
@@ -124,7 +133,7 @@ class PodcelForm extends React.Component {
                         </form>
                     </div>
                 </div>
-            </div>
+            </div >
         );
     }
 
