@@ -347,10 +347,6 @@ app.get('/randomGoals', (req, res) => {
     });
 });
 
-app.listen(port, () => {
-    console.log(`Server started on port ${port}`);
-});
-
 //Pobieranie proponowanych celi z podcelami
 app.get('/suggestedgoals/all', (req, res) =>{
     SuggestedGoal.find().then((goals)=>{
@@ -418,3 +414,11 @@ app.post('/goals/ListofGoals', authenticate, (req, res) => {
           });
     });
 }); */
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'))
+  })
+
+app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
+});
