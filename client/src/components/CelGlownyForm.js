@@ -89,6 +89,11 @@ class CelGlownyForm extends React.Component {
     handlePriorityChange(event) {
         this.setState({ priority: event.target.value });
     }
+
+ /*   handleClick () {
+        this.generateGoal();
+        this.setState({ name: this.state.randomGoal.name });
+      }*/
         
     handleChange(date) {
         this.setState({
@@ -102,15 +107,36 @@ class CelGlownyForm extends React.Component {
         return (
             <div>
                 <div className="row justify-content-center form-register">
-                    <div className="col-12">
+                    <div className="col-12" className="registerForm" >
+                        <h2>Have something new? Add new goal category </h2>
                         <hr />
-                        <h2>Have something new? Add new main goal  </h2>
-
-                    </div>
-                    <div className="col-8">
-                        <form className="registerForm" onSubmit={this.addMainGoal}>
+                        <div  className="registerForm">
+                        <div className="row">
+                            <div className="col-4" >
+                                <h3>Don't have any ideas? Generate it  </h3>
+                            </div>
+                            <div className="col-4" >
+                                <button className="button-main-small" onClick={() => this.generateGoal() }   >
+                                    {/*  <button className="button-main-small" onClick={(e) => this.handleClick(e)} > */}
+                                    Generate<i className="GuestBookButton2" aria-hidden="true" />
+                                </button>
+                            </div>
+                        </div>
                             <div>
+                                <h4>
+                                    {(this.state.randomGoal !== null) ? this.state.randomGoal.name + "       " : ""}
+                                    
+                                    <div> 
+                                    {(this.state.randomGoal !== null) ? 
+                                        <button className="button-main-small" 
+                                            onClick={() => this.setState({ name: this.state.randomGoal.name })}>
+                                            Take it!</button> : ""} 
+                                        </div>
+                                </h4>
+                            </div>
 
+                            <form className="registerForm" onSubmit={this.addMainGoal}>
+                            <div className="col-10">
                                 <input className='input_line'
                                     onChange={this.handleNameChange}
                                     name="name"
@@ -122,9 +148,8 @@ class CelGlownyForm extends React.Component {
                                 />
 
                                 <div className="row justify-content-left form-margin">
-                                    
-                                    
-                                    <div className = "form-margin">
+                                    <h5> Planning end date &nbsp; &nbsp; </h5>
+
                                     <DatePicker input className='input_line'
                                         dateFormat="DD/MM/YYYY"
                                         selected={this.state.startDate}
@@ -133,17 +158,8 @@ class CelGlownyForm extends React.Component {
                                         placeholderText="Enter tomorrow"
                                         onClickOutside={this.openDatePicker}
                                         open={this.state.datePickerIsOpen}
-
                                     />
-
-                               
-                                        <img src={Icon_calendar} width="30" height="30" alt=""
-                                        className="d-inline-block align-top flex-row"></img>
-                                        <span style={{padding: "0px 0px 0px 10px"}}>deadline</span>
-                                    </div>
                                 </div>
-
-
                             </div>
                             <br />
                             <br />
@@ -151,10 +167,12 @@ class CelGlownyForm extends React.Component {
                                 Add new<i className="GuestBookButton2" aria-hidden="true" />
                             </button>
                         </form>
+                        </div>
+
                     </div>
                 </div>
 
-                {/*<div className="row justify-content-center form-register">
+          {/*}  <div className="row justify-content-center form-register">
                     <div className="col-12">
                         <h2>Don't have any idea's? Generate it  </h2>
                         <hr />
@@ -162,8 +180,7 @@ class CelGlownyForm extends React.Component {
                     <div className="col-7">
                         <button
                             className="button-main"
-                            onClick={() => this.generateGoal()}
-                        >
+                            onClick={() => this.generateGoal()} >
                             Generate<i className="GuestBookButton2" aria-hidden="true" />
                         </button>
                     </div>
@@ -176,8 +193,8 @@ class CelGlownyForm extends React.Component {
                         </h4>
                     </div>
                 </div>
-                */}
-
+                
+        */}
             </div>
         );
     }

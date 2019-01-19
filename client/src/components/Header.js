@@ -55,15 +55,17 @@ class Header extends React.Component {
                 <div className="header-logo">
                     {(this.state.isUserLoggedIn === true) ?
                         <button className="button_logo">
-                            <Link to="/protected">
-                                <img src={feather} width="150" height="70" alt="" className="d-inline-block align-top flex-row"></img>
-                            </Link>
+                        <Link to="/">
+                            <img src={feather} alt="" className="d-inline-block align-top flex-row"></img>
+                        </Link>
+                        Your online <b>To Do Board</b>
                         </button>
                         :
                         <button className="button_logo">
                             <Link to="/">
-                                <img src={feather} width="150" height="70" alt="" className="d-inline-block align-top flex-row"></img>
+                                <img src={feather} alt="" className="d-inline-block align-top flex-row"></img>
                             </Link>
+                            Your online <b>To Do Board</b>
                         </button>
                     }
                 </div>

@@ -1,8 +1,12 @@
 // To jest komponent dodawania nowego podcelu do celu głównego
 import React from 'react';
 import axios from 'axios';
-import DatePicker from "react-datepicker";
 import moment from "moment";
+import DayPickerInput from "react-datepicker";
+
+import 'react-day-picker/lib/style.css';
+import "react-datepicker/dist/react-datepicker.css";
+import 'react-day-picker/lib/style.css';
 
 import Icon_calendar from '../resourses/Icon_calendar.png';
 
@@ -24,7 +28,6 @@ class PodcelForm extends React.Component {
             startDate: moment()
         }
     }
-
 
     addSubGoal(event) {
         event.preventDefault();
@@ -93,19 +96,16 @@ class PodcelForm extends React.Component {
                                     maxLength={100}
                                 />
                                 <div className="row justify-content-left form-margin ">
-                                    
-                                    <DatePicker type="input" className = 'input_line'
+                                   <h5> Planning end date &nbsp; &nbsp; </h5>
+                                   <DayPickerInput input className='input_line'
                                         dateFormat="DD/MM/YYYY"
                                         selected={this.state.startDate}
                                         onChange={this.handleChange}
                                         minDate={new Date()}
                                         placeholderText="Enter tomorrow"
-
+                                        onClickOutside={this.openDatePicker}
+                                        open={this.state.datePickerIsOpen}
                                     />
-                                    <div className = "form-margin">
-                                        <img src={Icon_calendar} width="30" height="30" alt="" ></img>
-                                         <span style={{padding: "0px 0px 0px 10px"}}>deadline</span>
-                                    </div>
                                 </div>
                                 <input className = 'input_line'
                                     onChange={this.handleDescriptionChange}
@@ -114,7 +114,7 @@ class PodcelForm extends React.Component {
                                     minLength={3}
                                     value={this.state.description}
                                     placeholder="Description(optional)"
-                                    maxlength={1000}
+                                    maxLength={1000}
                                 />
                             </div>
                             <br />
