@@ -37,6 +37,99 @@ class Public extends Component {
             </div>
           </div>
 
+          <div className="row justify-content-start mt-5 text-left">
+
+            <div className="col-2">
+
+            </div>
+            <div className="col-1 text-right">
+              <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
+            </div>
+
+            <div className="col-4">
+              <h3>Get organized in secondsasd</h3>
+            </div>
+
+            <div className="col-1 text-right">
+              <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
+            </div>
+
+            <div className="col-4">
+              <h3>Feel organized and motivated</h3>
+            </div>
+          </div>
+
+          <div className="row justify-content-start mt-1 text-left">
+
+            <div className="col-2">
+
+            </div>
+            <div className="col-1 text-right">
+              <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
+            </div>
+
+            <div className="col-4">
+              <h3> Planning tasks</h3>
+            </div>
+
+            <div className="col-1 text-right">
+              <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
+            </div>
+
+            <div className="col-4">
+              <h3>Have got any big goals to split?</h3>
+            </div>
+          </div>
+
+          <div className="row justify-content-start mt-1 text-left">
+
+            <div className="col-2">
+
+            </div>
+            <div className="col-1 text-right">
+              <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
+            </div>
+
+            <div className="col-4">
+              <h3>Measure progress</h3>
+            </div>
+
+            <div className="col-1 text-right">
+              <img src={done} width="30" height="30" alt="" className="d-inline-block align-top flex-row"></img>
+            </div>
+
+            <div className="col-4">
+              <h3>Use our app to granulate it!</h3>
+            </div>
+          </div>
+
+        </div>
+
+
+
+        <div className="row justify-content-center">
+          <div className="col-4">
+            <Link to="/register">
+              <button className="button-get-started">
+                <span>Get started</span>
+              </button>
+            </Link>
+          </div>
+        </div>
+
+        {/*<div className="main__container">
+        <div className="container">
+          <div className="row justify-content-center welcome">
+            <div className="col-10 ml-5">
+              <h1>Welcome to</h1>
+            </div>
+          </div>
+          <div className="row justify-content-center mt-4">
+            <div className="col-10 ml-5">
+              <h1> Life progress</h1>
+            </div>
+          </div>
+
           <div className="row justify-content-center mt-5">
           <div className="col-sm-5,7">
             <h3>
@@ -81,7 +174,8 @@ class Public extends Component {
             </div>
           </div>
         </div>
-      </div>
+    </div> */}
+      </div >
     );
   }
 }

@@ -467,13 +467,13 @@ box-shadow: 0px 0px 58px -5px rgba(0,0,0,0.75);
   z-index: 1;
   width: 150px;
   height: 150px;
-  background: #c4d651;
+  background: #a3a7abc7;
   font-family: 'PT Sans', sans-serif;
   font-size: 20px;
   transition-timing-function: ease-in-out;
   color: black; 
   border-radius: 50%;
-  box-shadow: 0px 0px 0px 5px #c4d651;
+  box-shadow: 0px 0px 0px 5px #a2a2a1;
   transition: background 0.1s linear;
   border: solid 2px rgba(255, 255, 255, 0.47);
 }
@@ -483,7 +483,7 @@ box-shadow: 0px 0px 58px -5px rgba(0,0,0,0.75);
   cursor: pointer;
   z-index: 1;
   background: rgb(5, 170, 5);
-  box-shadow: 0px 0px 0px 5px rgb(5, 170, 5);
+  box-shadow: 0px 0px 0px 5px rgb(32, 141, 32);
   transition: background 0.1s linear;
   border: dashed 2px rgba(255, 255, 255, 0.47);
 }
