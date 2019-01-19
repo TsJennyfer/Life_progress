@@ -96,7 +96,7 @@ class PodcelForm extends React.Component {
                                     maxLength={100}
                                 />
                                 <div className="row justify-content-left form-margin ">
-                                   <h5> Planning end date &nbsp; &nbsp; </h5>
+                                   <h5> Deadline &nbsp; &nbsp; </h5>
                                    <DayPickerInput input className='input_line'
                                         dateFormat="DD/MM/YYYY"
                                         selected={this.state.startDate}
