@@ -47,7 +47,7 @@ class Public extends Component {
             </div>
 
             <div className="col-4">
-              <h3>Get organized in secondsasd</h3>
+              <h3>Have any big goals to split?</h3>
             </div>
 
             <div className="col-1 text-right">
@@ -69,7 +69,7 @@ class Public extends Component {
             </div>
 
             <div className="col-4">
-              <h3> Planning tasks</h3>
+              <h3> Use our app to granulate it! </h3>
             </div>
 
             <div className="col-1 text-right">
@@ -77,7 +77,7 @@ class Public extends Component {
             </div>
 
             <div className="col-4">
-              <h3>Have got any big goals to split?</h3>
+              <h3>Get organized in seconds</h3>
             </div>
           </div>
 
@@ -99,14 +99,12 @@ class Public extends Component {
             </div>
 
             <div className="col-4">
-              <h3>Use our app to granulate it!</h3>
+              <h3>Planning tasks</h3>
             </div>
           </div>
 
         </div>
-
-
-
+        
         <div className="row justify-content-center">
           <div className="col-4">
             <Link to="/register">
