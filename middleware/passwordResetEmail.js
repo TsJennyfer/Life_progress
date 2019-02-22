@@ -19,7 +19,7 @@ var passwordResetEmail = ((req, token)=>{
         to: req.body.email, // list of receivers
         subject: "Password reset", // Subject line
         text: process.env.EMAIL_MESSAGE, // plain text body
-        html: `<b>This is your password reset link</b><br><a href="http://life-progress.pl/users/resetPasswordToken/${token}">Click to reset your password.<a/><br>` // html body
+        html: `<b>This is your password reset link</b><br><a href="https://life-progress.herokuapp.com/users/resetPasswordToken/${token}">Click to reset your password.<a/><br>` // html body
     };
 
     transporter.sendMail(mailOptions, (error, info) => {

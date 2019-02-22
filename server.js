@@ -50,7 +50,7 @@ app.get('/users/confirmEmail/:token', (req, res) => {
             return res.status(404).send();
         };
         //res.send({ user });
-        res.redirect('http://life-progress.pl');
+        res.redirect('https://life-progress.herokuapp.com');
     }).catch((error) => {
         res.status(400).send(error);
     });
@@ -85,7 +85,7 @@ app.get('/users/resetPasswordToken/:token', (req, res) => {
         if (!user) {
             return res.status(404).send();
         }
-        res.redirect('http://life-progress.pl/'); //przekierowanie do formularza zmiany hasła
+        res.redirect('https://life-progress.herokuapp.com'); //przekierowanie do formularza zmiany hasła
         res.send({ user });
     }).catch((error) => {
         res.status(400).send(error);
